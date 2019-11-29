@@ -1,17 +1,16 @@
 language: node_js
 node_js:
-  - '10'
+- '10'
 script:
-  - yarn install
-  - yarn build
-  - yarn setup
+- yarn install
+- yarn build
+- yarn setup
 cache: yarn
 deploy:
   cleanup: false
   provider: firebase
   edge: true
-  token:
-    secure: "WCXL7P9Hp724bahxhAIaMCCpETswWF3wdMoHlzvPXSJrxJYsLADiiKhnU39FT8bf49/fj0Us9fzhzp90gll8cIQ44nJtPjFPZeR1ygJelR2qZ2WU8A2AzPw16hHx7euf5g0uWretho6bVKV0OfKkOyQtsx4rpRtp/EfSuGx5yL9ml2GDZcezOwKAAiWvs0DH6r6JMT1DMRrJqQsbgNBc3xNc3mYZmNv/CBkYYyMrfeEDPiQiRW389aTYt8cNZwnxpumODxVbpw9q30POTZ4Nd60TkcbdNicD9iOYO1mjWw3CTqcnO+5XWuYA1zAFyuv9/4Bikos1zGj2TljsyXdYiEVyg2Njm/vGE6h4+BglAGgvpzcbMh+4GISJPQAT9qP8GJKef846hGOfylk5U9TSUQSw+wovMf5eQ4lAjJrWxiC+pQTCqIxYmbLni5+zUqqvKxjAJQ7JpelR5+oehrjL35h2ca/VAZc5o2tbto4fKzk42dzPz+ba9qv4Lbfs2gt4nYnW75qIdm5RlVHNuQ9IBjgxlepd5UaMTpSXSWqUADvTkONTwQOySFFA5YqtWVnfi3fug9j73OR9GtliK043T1H7eF8EGOof5QAVYoqtfd+mrOI4XljiddgRplU+qiB9Rw7CWSW3o9ot9gqf02UditfwHPRbegCGusd1mY2zQj8="
+  token: "SlM6axRXLwmioF0VSZI5FiWrrOxIGZB6SFviToQTdvX+pO3Y93j/V/OP5PxCeGnLqgIfLZAU1IC5HZvXkieYDOVgoNkVHzjziwcyM1BIejObeZDoIBBoTku1EJiVE2zrTUnJAyC0EYclZt9RE8+yYs8SSjssI6iiQIK79+NEMNRtmr5nd5Gw3Fa2hHDiMjRcyFcl0FA3sY4mU7Sp5AD/0dh3O5ccQs9XrZZzSGDjPhFEZjT6JufKeU8VaQUzarvEYlBYAKhgHmup91oWo7K+QuGP7U/cf5k9zEzlpIsZ0Ou/Nn6xusD/oTpJOfQgi+Ho7/YONAZOCs/M+x1aXSZIZNo8aBit3lLrSR7dHXEQUTW5Euii6azm6Gjod3Tu8+Eve21tTVA+itRE3EZndTeEHWrxKRpaM2yV++s863IqY5KnLhdj/f06oMQyehCQ4Xk3/7AS3Fv2IjRYJP9Kt4dJR7/44yOGeb/SH5M3rSm7kcr7Wz9tEp/gkIHuC5Uk9sPYgcvvZfLdy38OJdd7/k0v/c6nzWbythGT8NIBKek4Ds3HokosLxv4oiN0MW5DxnI3Xf8qf8A0CtYxXmZ/Ge4M5pJc2Iupc3o5FV9RGxpPdHYhR5qBXTZN1BvS67xgdtJEd+DeCdJJmzQW0j77M+Y9IzsDaQ43p5XiYmWUAU9Vy74="
 branches:
   only:
-    - master
+  - master
