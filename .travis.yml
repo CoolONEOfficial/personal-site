@@ -11,4 +11,5 @@ branches:
   - master
 after_success:
   - npm i -g firebase-ci
+  - npm i -g firebase-tools
   - firebase-ci deploy
