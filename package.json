@@ -1,0 +1,24 @@
+{
+  "name": "nuxt-firebase-pwa",
+  "version": "1.0.0",
+  "description": "Next.js * Firebase = SPA * SSR * PWA * Serverless",
+  "author": "Shinnosuke Uwai <uydasan@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "cd src && yarn dev",
+    "build": "yarn build:src",
+    "build:src": "cd src && yarn build",
+    "install": "yarn install:functions && yarn install:src",
+    "install:functions": "cd functions && yarn",
+    "install:src": "cd src && yarn",
+    "lint": "yarn lint:functions && yarn lint:src",
+    "lint:functions": "cd functions && yarn lint",
+    "lint:src": "cd src && yarn lint",
+    "setup": "yarn clean && yarn copyassets && yarn copystatic",
+    "clean": "mkdir -p public && rm -rf public/*",
+    "copyassets": "cp -R functions/nuxt/dist/ public/assets",
+    "copystatic": "cp -R src/static/* public",
+    "serve": "firebase serve --only hosting,functions",
+    "deploy": "yarn install && yarn build && yarn setup && firebase deploy"
+  }
+}
