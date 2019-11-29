@@ -4,6 +4,7 @@
   "description": "Next.js * Firebase = SPA * SSR * PWA * Serverless",
   "author": "Shinnosuke Uwai <uydasan@gmail.com>",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "cd src && yarn dev",
     "build": "yarn build:src",

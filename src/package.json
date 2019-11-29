@@ -4,6 +4,7 @@
   "description": "My personal portfolio site",
   "author": "Nickolay Trukhin &lt;coolone.official@gmail.com&gt; (http://coolone.ru)",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",

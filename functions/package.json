@@ -5,6 +5,7 @@
     "node": "10"
   },
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
     "firebase-admin": "^8.8.0",
