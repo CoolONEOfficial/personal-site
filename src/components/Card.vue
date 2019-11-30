@@ -8,7 +8,7 @@
       </header>
       <div class="card-content">
         <div class="content has-text-centered">
-          <b-icon :icon="icon" size="is-large" type="is-primary" />
+          <!--          <b-icon icon="bus" pack="fas" />-->
         </div>
       </div>
       <footer class="card-footer">
@@ -22,17 +22,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    icon: {
-      type: String,
-      required: true
-    }
-  }
+<script lang="ts">
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
+
+@Component({
+  components: {}
+})
+export default class Card extends Vue {
+  @Prop()
+  icon!: String
+
+  @Prop()
+  title!: String
 }
 </script>

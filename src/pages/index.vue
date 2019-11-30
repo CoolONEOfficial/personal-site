@@ -30,17 +30,27 @@
         No other internal dependency
       </card>
     </div>
+    {{ $t('welcome') }}
   </section>
 </template>
 
-<script>
-import Card from '~/components/Card'
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import Card from '~/components/Card.vue'
 
-export default {
-  name: 'HomePage',
-
-  components: {
-    Card
-  }
-}
+@Component({
+  components: { Card }
+})
+export default class extends Vue {}
 </script>
+
+<i18n>
+  {
+    "en": {
+      "welcome": "Localized welcome!"
+    },
+    "ru": {
+      "welcome": "Локализированный текст!"
+    }
+  }
+</i18n>

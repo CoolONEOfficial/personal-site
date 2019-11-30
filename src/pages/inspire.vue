@@ -5,6 +5,7 @@
     </h2>
     <h3 class="subtitle is-6 has-text-grey">
       Author:
+      {{ $t('welcome') }}
       <a href="https://github.com/anteriovieira">
         Antério Vieira
       </a>
