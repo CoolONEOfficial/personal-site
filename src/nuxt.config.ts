@@ -50,8 +50,8 @@ const config: Configuration = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
-    'nuxt-fire',
     'nuxt-i18n'
+    // 'nuxt-fire'
   ],
   /*
    ** Axios module configuration
@@ -86,27 +86,22 @@ const config: Configuration = {
     defaultLocale: 'en',
     vueI18n: { fallbackLocale: 'en' },
     vueI18nLoader: true
-  },
-  fire: {
-    config: {
-      apiKey: 'AIzaSyBDVOdqcspdnve9eiRpR91mV6VSFZPMNFI',
-      authDomain: 'personal-site-d9a58.firebaseapp.com',
-      databaseURL: 'https://personal-site-d9a58.firebaseio.com',
-      projectId: 'personal-site-d9a58',
-      storageBucket: 'personal-site-d9a58.appspot.com',
-      messagingSenderId: '296312063282',
-      appId: '1:296312063282:web:d0da9be983c7eb90c7432b',
-      measurementId: 'G-9H4D1GY1VP'
-    },
-    services: {
-      auth: true,
-      firestore: true,
-      functions: true,
-      storage: true,
-      performance: true,
-      analytics: true
-    }
   }
+  // fire: {
+  //   config: {
+  //     apiKey: 'AIzaSyBDVOdqcspdnve9eiRpR91mV6VSFZPMNFI',
+  //     authDomain: 'personal-site-d9a58.firebaseapp.com',
+  //     databaseURL: 'https://personal-site-d9a58.firebaseio.com',
+  //     projectId: 'personal-site-d9a58',
+  //     storageBucket: 'personal-site-d9a58.appspot.com',
+  //     messagingSenderId: '296312063282',
+  //     appId: '1:296312063282:web:d0da9be983c7eb90c7432b',
+  //     measurementId: 'G-9H4D1GY1VP'
+  //   },
+  //   services: {
+  //     firestore: true
+  //   }
+  // }
 }
 
 export default config
