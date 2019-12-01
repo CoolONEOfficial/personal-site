@@ -5,6 +5,8 @@ cache: yarn
 branches:
   only:
   - master
+script:
+  - echo script completed
 before_deploy:
   - npm i -g firebase-tools
 deploy:
