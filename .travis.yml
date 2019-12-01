@@ -2,8 +2,8 @@ language: node_js
 node_js:
 - '10'
 script:
-- yarn install
-- yarn build
+- yarn install:src
+- yarn build:src
 - yarn setup
 cache: yarn
 branches:

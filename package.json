@@ -7,7 +7,6 @@
   "license": "MIT",
   "scripts": {
     "dev": "cd src && yarn dev",
-    "build": "yarn build:src",
     "build:src": "cd src && yarn build",
     "install": "yarn install:functions && yarn install:src",
     "install:functions": "cd functions && yarn",
@@ -16,7 +15,7 @@
     "lint:functions": "cd functions && yarn lint",
     "lint:src": "cd src && yarn lint",
     "copydeps:src": "rsync -av --progress ./src ./functions/personal-site --exclude src/node_modules",
-    "setup": "yarn copydeps:src && yarn install && yarn build && cp -R src/.nuxt functions/nuxt && yarn clean && yarn copyassets && yarn copystatic",
+    "setup": "yarn copydeps:src && yarn install && yarn build:src && cp -R src/.nuxt functions/nuxt && yarn clean && yarn copyassets && yarn copystatic",
     "clean": "mkdir -p public && rm -rf public/*",
     "copyassets": "cp -R functions/nuxt/dist/ public/assets",
     "copystatic": "cp -R src/static/* public",
