@@ -13,3 +13,4 @@ firebase-debug.log
 
 # IDE / Editor
 .idea
+.DS_Store
