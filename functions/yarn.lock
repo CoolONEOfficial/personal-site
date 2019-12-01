@@ -1159,10 +1159,10 @@
     serve-static "^1.14.1"
     server-destroy "^1.0.1"
 
-"@nuxt/types@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@nuxt/types/-/types-0.4.0.tgz#7285604b04111a1d3c1819686b6bafbc047b8ac7"
-  integrity sha512-HnjPUA784d/odnDkdZ3CzwpGiJkb81hhzGFHB8I6p0xMQ1lTFFvQ07FdJXfEn44GFDq+CLjb+oy47xDvIvdb8Q==
+"@nuxt/types@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@nuxt/types/-/types-0.4.1.tgz#d695959a0f8a6c12cf0919ead342b3061b1e0380"
+  integrity sha512-XNShO3DgBfqJngWnc3FnJV2IfaW+Fr4gjHZm4GL2yMZI85PmbXKfUOe+SaiLUheYRmTWhopvCEltYNN5WyYl8g==
   dependencies:
     "@types/babel__core" "^7.1.3"
     "@types/compression" "^1.0.1"
@@ -1184,11 +1184,11 @@
     "@types/webpack-hot-middleware" "^2.16.5"
 
 "@nuxt/typescript-runtime@^0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@nuxt/typescript-runtime/-/typescript-runtime-0.2.5.tgz#c487a9a62a19ef4c86f5ed4b61a247ab731349d2"
-  integrity sha512-SQQhZ1pu1jxegywH0SzlcRVpW6wlZU67pxVq34KEHpNqTgj8aOZz3l69VbE0Xe/pjYrLkhNHGPewBJQjuKEtng==
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@nuxt/typescript-runtime/-/typescript-runtime-0.2.6.tgz#a8a26aabf48bc3c6af3c0b515cbe371bd5df64f8"
+  integrity sha512-4nAl5JKYaJIXjde1134K20eak2NlMz4aeID4e/gPWxSBnfowXM8So56KwNpxYDcKq5u/skjsO8J5qj/STq5WcQ==
   dependencies:
-    "@nuxt/types" "0.4.0"
+    "@nuxt/types" "0.4.1"
     ts-node "^8.5.4"
     typescript "~3.6"
 
@@ -6387,13 +6387,6 @@ nuxt-buefy@^0.3.19:
   dependencies:
     buefy "^0.8.8"
 
-nuxt-fire@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/nuxt-fire/-/nuxt-fire-3.0.3.tgz#82a7a128f9e22d0e5c4e6d554872edaaa5dcf062"
-  integrity sha512-5hRJ9bb3pjwtVbBb6KjlMY6jPaoAMHYMj+h+sxJZnXMigHk8ord5VQBjmWP6UjVQ1ytiTBmDHK8vE506iwMpHA==
-  dependencies:
-    lodash "^4.17.15"
-
 nuxt-i18n@^6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/nuxt-i18n/-/nuxt-i18n-6.4.0.tgz#91684e847d5333aa81fbb8e2836623a6aa3e94e3"
@@ -6758,6 +6751,21 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+
+"personal-site@file:personal-site/src":
+  version "1.0.0"
+  dependencies:
+    "@nuxt/typescript-runtime" "^0.2.5"
+    "@nuxtjs/axios" "^5.8.0"
+    "@nuxtjs/pwa" "^3.0.0-0"
+    "@nuxtjs/style-resources" "^1.0.0"
+    firebase "^7.5.0"
+    node-sass "^4.13.0"
+    nuxt "^2.10.2"
+    nuxt-buefy "^0.3.19"
+    nuxt-i18n "^6.4.0"
+    nuxt-property-decorator "^2.5.0"
+    sass-loader "^8.0.0"
 
 picomatch@^2.0.4:
   version "2.1.1"
