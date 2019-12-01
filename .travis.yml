@@ -1,10 +1,6 @@
 language: node_js
 node_js:
 - '10'
-script:
-- yarn install:src
-- yarn build:src
-- yarn setup
 cache: yarn
 branches:
   only:
@@ -13,5 +9,5 @@ before_deploy:
   - npm i -g firebase-tools
 deploy:
   provider: script
-  script: "firebase deploy --token $FIREBASE_TOKEN"
+  script: "yarn deploy:ci"
   skip_cleanup: true

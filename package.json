@@ -22,7 +22,7 @@
     "preserve": "yarn setup",
     "serve": "firebase serve --only hosting,functions",
     "predeploy": "yarn setup",
-    "deploy": "firebase deploy",
+    "deploy": "[[ -z \"$FIREBASE_TOKEN\" ]] && firebase deploy || firebase deploy --token $FIREBASE_TOKEN",
     "postdeploy": "rm -rf functions/nuxt functions/personal-site"
   }
 }
