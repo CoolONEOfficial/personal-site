@@ -19,7 +19,10 @@ const config: Configuration = {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.jpg' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.jpg' },
+      { rel: 'canonical', href: 'https://coolone.ru/' }
+    ]
   },
   /*
    ** Customize the progress-bar color
