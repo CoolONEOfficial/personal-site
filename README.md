@@ -19,12 +19,15 @@ Personal site portfolio
 ### Install dependencies
 
 ``` bash
-$ yarn install
+$ npm install # Or yarn install
+$ cd /path/to/nuxt-firebase-pwa/src && npm install
+$ cd /path/to/nuxt-firebase-pwa/functions && npm install
 ```
 
 ### Launch development server
 
 ```bash
+$ cd /path/to/nuxt-firebase-pwa/src
 $ yarn dev
 ```
 
@@ -38,12 +41,14 @@ Open [http://localhost:3000]()
 Build Nuxt.js app.
 
 ```bash
+$ cd /path/to/nuxt-firebase-pwa/src
 $ yarn build
 ```
 
 Copy assets and static files.
 
 ```bash
+$ cd /path/to/nuxt-firebase-pwa
 $ yarn setup
 ```
 

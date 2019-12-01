@@ -5,7 +5,6 @@ script:
 - yarn install
 - yarn build
 - yarn setup
-cache: yarn
 branches:
   only:
   - master
