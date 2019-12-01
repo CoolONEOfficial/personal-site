@@ -23,8 +23,7 @@
     "nuxt-buefy": "^0.3.19",
     "nuxt-i18n": "^6.4.0",
     "nuxt-property-decorator": "^2.5.0",
-    "sass-loader": "^8.0.0",
-    "core-js": "^2.6.10"
+    "sass-loader": "^8.0.0"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.3.5",
@@ -37,6 +36,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "prettier": "^1.19.1",
     "@types/node": "12.12.14",
-    "@types/webpack-env": "1.14.1"
+    "@types/webpack-env": "1.14.1",
+    "core-js": "^2.6.10"
   }
 }
