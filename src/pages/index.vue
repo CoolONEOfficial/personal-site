@@ -31,17 +31,37 @@
       </card>
     </div>
     {{ $t('welcome') }}
+    {{ getCountDocument.count }}
+    <!--    <div class="links">-->
+    <!--      <div class="button&#45;&#45;green" @click="changeCount(-1)">-1</div>-->
+    <!--      <div class="button&#45;&#45;green" @click="changeCount(1)">+1</div>-->
+    <!--    </div>-->
   </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Action, Component, Getter, Vue } from 'nuxt-property-decorator'
 import Card from '~/components/Card.vue'
 
 @Component({
   components: { Card }
 })
-export default class extends Vue {}
+export default class extends Vue {
+  @Getter
+  getCountDocument
+
+  @Action
+  bindFirestoreRef
+
+  async mounted() {
+    console.log('mounted: bindFirestoreRef')
+    try {
+      await this.bindFirestoreRef()
+    } catch (e) {
+      console.error(e)
+    }
+  }
+}
 </script>
 
 <i18n>

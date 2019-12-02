@@ -1294,6 +1294,11 @@
     mustache "^2.3.0"
     stack-trace "0.0.10"
 
+"@posva/vuefire-core@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@posva/vuefire-core/-/vuefire-core-2.2.0.tgz#0b934e9f85822529d44b8dfd5061ef53c4b2d80f"
+  integrity sha512-A5fPZCL8P+0DcS5qEY3liaLzOCdDPpdGoW050VzxNueJZDHi1eLfzAEFi5ctxH5wx7r4erwX4MGekX3K5t2b9A==
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -6577,6 +6582,13 @@ nuxt-buefy@^0.3.19:
   dependencies:
     buefy "^0.8.8"
 
+nuxt-fire@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/nuxt-fire/-/nuxt-fire-3.0.3.tgz#82a7a128f9e22d0e5c4e6d554872edaaa5dcf062"
+  integrity sha512-5hRJ9bb3pjwtVbBb6KjlMY6jPaoAMHYMj+h+sxJZnXMigHk8ord5VQBjmWP6UjVQ1ytiTBmDHK8vE506iwMpHA==
+  dependencies:
+    lodash "^4.17.15"
+
 nuxt-i18n@^6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/nuxt-i18n/-/nuxt-i18n-6.4.0.tgz#91684e847d5333aa81fbb8e2836623a6aa3e94e3"
@@ -9665,10 +9677,22 @@ vuex-class@^0.3.2:
   resolved "https://registry.yarnpkg.com/vuex-class/-/vuex-class-0.3.2.tgz#c7e96a076c1682137d4d23a8dcfdc63f220e17a8"
   integrity sha512-m0w7/FMsNcwJgunJeM+wcNaHzK2KX1K1rw2WUQf7Q16ndXHo7pflRyOV/E8795JO/7fstyjH3EgqBI4h4n4qXQ==
 
+vuex-module-decorators@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/vuex-module-decorators/-/vuex-module-decorators-0.11.0.tgz#1da409385f001dc45fffcc292f4a7895cdf8db27"
+  integrity sha512-mQeH0F9C5eoDvhOxGLxc2eKAA+GT9MvCyauZZtQSvLjN3PX//oj9mlhpmMJH2/q9LOScZ8fBrX1qqd+aOKq/LA==
+
 vuex@^3.1.1:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.1.2.tgz#a2863f4005aa73f2587e55c3fadf3f01f69c7d4d"
   integrity sha512-ha3jNLJqNhhrAemDXcmMJMKf1Zu4sybMPr9KxJIuOpVcsDQlTBYLLladav2U+g1AvdYDG5Gs0xBTb0M5pXXYFQ==
+
+vuexfire@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/vuexfire/-/vuexfire-3.2.0.tgz#a168cf4c132e15ab5db9abcdf577011f1408a66e"
+  integrity sha512-eLrQFazM5nGtaFla37dTJrHNbdrr35dwImepM+uquh5YVJuYpRYkcoJO1mDi+adqYh0RJUReNVlb5SOX/VDB4w==
+  dependencies:
+    "@posva/vuefire-core" "^2.2.0"
 
 watchpack@^1.6.0:
   version "1.6.0"

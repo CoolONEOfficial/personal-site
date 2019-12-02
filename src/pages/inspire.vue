@@ -12,3 +12,14 @@
     </h3>
   </section>
 </template>
+
+<i18n>
+  {
+    "en": {
+      "welcome": "Localized welcome!"
+    },
+    "ru": {
+      "welcome": "Локализированный текст!"
+    }
+  }
+</i18n>
