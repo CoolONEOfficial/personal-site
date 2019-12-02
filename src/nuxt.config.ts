@@ -104,7 +104,8 @@ const config: Configuration = {
       measurementId: 'G-9H4D1GY1VP'
     },
     services: {
-      firestore: true
+      firestore: true,
+      storage: true
     }
   }
 }

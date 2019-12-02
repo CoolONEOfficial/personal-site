@@ -30,6 +30,7 @@
         No other internal dependency
       </card>
     </div>
+    <img :src="imageSrc" alt="image from storage" />
     {{ $t('welcome') }}
     {{ getCountDocument.count }}
     <!--    <div class="links">-->
@@ -59,6 +60,15 @@ export default class extends Vue {
       await this.bindFirestoreRef()
     } catch (e) {
       console.error(e)
+    }
+  }
+
+  async asyncData(ctx) {
+    return {
+      imageSrc: await ctx.app.$fireStorage
+        .ref()
+        .child('2019-11-29 21.23.52.jpg')
+        .getDownloadURL()
     }
   }
 }
