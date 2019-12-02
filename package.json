@@ -14,8 +14,10 @@
     "lint": "yarn lint:functions && yarn lint:src",
     "lint:functions": "cd functions && yarn lint",
     "lint:src": "cd src && yarn lint",
-    "copydeps:src": "rsync -av --progress ./src ./functions/personal-site --exclude src/node_modules",
-    "setup": "yarn clean && yarn install && yarn build:src && cp -R src/.nuxt functions/nuxt && yarn copyassets && yarn copystatic",
+    "copydeps:src": "rsync -av ./src ./functions/personal-site --exclude src/node_modules",
+    "setup:functions": "yarn clean && yarn install",
+    "setup:src": "yarn build:src && cp -R src/.nuxt functions/nuxt && yarn copyassets && yarn copystatic",
+    "setup": "yarn setup:functions && yarn setup:src",
     "clean": "mkdir -p public functions/nuxt functions/personal-site && rm -rf public/* functions/nuxt functions/personal-site",
     "copyassets": "cp -R functions/nuxt/dist/ public/assets",
     "copystatic": "cp -R src/static/* public",
@@ -24,6 +26,15 @@
     "postserve": "yarn clean",
     "predeploy": "yarn setup",
     "deploy": "[[ -z \"$FIREBASE_TOKEN\" ]] && firebase deploy || firebase deploy --token $FIREBASE_TOKEN",
-    "postdeploy": "yarn clean"
+    "postdeploy": "yarn clean",
+    "predeploy:functions": "yarn setup:functions",
+    "deploy:functions": "firebase deploy --only functions",
+    "postdeploy:functions": "yarn clean",
+    "predeploy:api": "yarn setup:functions",
+    "deploy:api": "firebase deploy --only functions:webApi",
+    "postdeploy:api": "yarn clean",
+    "predeploy:src": "yarn setup:src",
+    "deploy:src": "firebase deploy --only hosting",
+    "postdeploy:src": "yarn clean"
   }
 }

@@ -64,6 +64,7 @@ export default class extends Vue {
   }
 
   async asyncData(ctx) {
+    console.log('okey letsgo')
     return {
       imageSrc: await ctx.app.$fireStorage
         .ref()

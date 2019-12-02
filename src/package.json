@@ -21,25 +21,27 @@
     "node-sass": "^4.13.0",
     "nuxt": "^2.10.2",
     "nuxt-buefy": "^0.3.19",
-    "nuxt-i18n": "^6.4.0",
     "nuxt-fire": "^3.0.3",
-    "vuexfire": "^3.2.0",
+    "nuxt-i18n": "^6.4.0",
     "nuxt-property-decorator": "^2.5.0",
-    "sass-loader": "^8.0.0"
+    "sass-loader": "^8.0.0",
+    "vuexfire": "^3.2.0",
+    "xhr2": "^0.2.0"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.3.5",
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
     "@nuxtjs/eslint-module": "^1.1.0",
+    "@types/node": "12.12.14",
+    "@types/webpack-env": "1.14.1",
     "babel-eslint": "^10.0.3",
+    "core-js": "^2.6.10",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-nuxt": ">=0.5.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "nodemon": "^2.0.1",
     "prettier": "^1.19.1",
-    "@types/node": "12.12.14",
-    "@types/webpack-env": "1.14.1",
-    "vuex-module-decorators": "^0.11.0",
-    "core-js": "^2.6.10"
+    "vuex-module-decorators": "^0.11.0"
   }
 }

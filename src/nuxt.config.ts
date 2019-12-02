@@ -66,12 +66,20 @@ const config: Configuration = {
    ** Build configuration
    */
   build: {
+    watch: ['api'],
     publicPath: '/assets/',
     extractCSS: true,
     /*
      ** You can extend webpack config here
      */
     extend(/* config, ctx */) {}
+  },
+  serverMiddleware: ['~/api'],
+  env: {
+    spotifySecret: process.env.SPOTIFY_SECRET || '',
+    spotifyClientId:
+      process.env.SPOTIFY_CLIENT_ID || 'c1a97fcc39184989b6ad7156730636e2',
+    spotifyUserId: process.env.SPOTIFY_USER_ID || 'cooloneofficial'
   },
   manifest: {
     name: 'Personal site of CoolONEOfficial',
