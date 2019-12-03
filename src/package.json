@@ -6,7 +6,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "nuxt-ts",
+    "dev": "nodemon --watch api --exec \"nuxt-ts\"",
     "build": "nuxt-ts build",
     "generate": "nuxt-ts generate",
     "start": "nuxt-ts start",

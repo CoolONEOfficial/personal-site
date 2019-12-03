@@ -74,7 +74,7 @@ const config: Configuration = {
      */
     extend(/* config, ctx */) {}
   },
-  serverMiddleware: ['~/api'],
+  serverMiddleware: [{ path: '/api/v1/', handler: '~/api/index.ts' },],
   env: {
     spotifySecret: process.env.SPOTIFY_SECRET || '',
     spotifyClientId:

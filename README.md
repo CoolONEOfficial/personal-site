@@ -11,7 +11,7 @@ Personal site portfolio
 
 * SSR (Sever Side Rendering)
 * PWA (Progressive Web Apps)
-* Serverless (Cloud Functions for Firebase + Firebase Hosting)
+* Serverless (Cloud Functions with api on express.js + Firebase Hosting)
 * i18n Localization (using nuxt-i18n with loader)
 * Typescript support (all pages written on ts)
 
