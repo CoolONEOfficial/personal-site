@@ -43,7 +43,7 @@ const config: Configuration = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/dotenv'],
   /*
    ** Nuxt.js modules
    */
@@ -74,12 +74,10 @@ const config: Configuration = {
      */
     extend(/* config, ctx */) {}
   },
-  serverMiddleware: [{ path: '/api/v1/', handler: '~/api/index.ts' },],
+  serverMiddleware: [{ path: '/api/v1/', handler: '~/api/index.ts' }],
   env: {
-    spotifySecret: process.env.SPOTIFY_SECRET || '',
-    spotifyClientId:
-      process.env.SPOTIFY_CLIENT_ID || 'c1a97fcc39184989b6ad7156730636e2',
-    spotifyUserId: process.env.SPOTIFY_USER_ID || 'cooloneofficial'
+    spotifyClientId: process.env.SPOTIFY_CLIENT_ID || '',
+    clientBaseUrl: process.env.CLIENT_URL || ''
   },
   manifest: {
     name: 'Personal site of CoolONEOfficial',

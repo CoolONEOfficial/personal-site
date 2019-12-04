@@ -1,8 +1,16 @@
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
+// import * as admin from 'firebase-admin';
 // import * as firebaseHelper from 'firebase-functions-helper/dist';
 import * as express from 'express';
-import * as bodyParser from "body-parser";
+// import * as bodyParser from "body-parser";
+
+// Env vars
+
+const config = functions.config();
+// Porting envs from firebase config
+for (const key in config.envs){
+  process.env[key.toUpperCase()] = config.envs[key];
+}
 
 // SSR
 
@@ -33,14 +41,14 @@ exports.ssr = functions.https.onRequest(ssrapp);
 
 // Web api
 
-admin.initializeApp(functions.config().firebase);
+// admin.initializeApp(functions.config().firebase);
 // const db = admin.firestore();
 
 // const app = express();
 const main = express();
 
-main.use(bodyParser.json());
-main.use(bodyParser.urlencoded({ extended: false }));
+// main.use(bodyParser.json());
+// main.use(bodyParser.urlencoded({ extended: false }));
 main.use('/api/v1', require('../personal-site/src/api/index.ts'));
 
 // const contactsCollection = 'contacts';

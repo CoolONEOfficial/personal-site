@@ -6,6 +6,7 @@
     <h3 class="subtitle is-6 has-text-grey">
       Author:
       {{ $t('welcome') }}
+      Query: {{ $route.query }}
       <a href="https://github.com/anteriovieira">
         Antério Vieira
       </a>
