@@ -35,6 +35,9 @@
     "postdeploy:api": "yarn clean",
     "predeploy:src": "yarn setup:src",
     "deploy:src": "firebase deploy --only hosting",
-    "postdeploy:src": "yarn clean"
+    "postdeploy:src": "yarn clean",
+    "ncu": "yarn ncu:src && yarn ncu:functions",
+    "ncu:src": "cd src && ncu -u",
+    "ncu:functions": "cd functions && ncu -u"
   }
 }
