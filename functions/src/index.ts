@@ -40,6 +40,6 @@ exports.ssr = functions.https.onRequest(ssrapp);
 
 const main = express();
 
-main.use('/api/v1', require('./spotify.ts'));
+main.use('/api/v1', require('../src/spotify.ts'));
 
 exports.webApi = functions.https.onRequest(main);

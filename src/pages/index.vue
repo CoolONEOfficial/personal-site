@@ -33,10 +33,6 @@
     <img :src="imageSrc" alt="image from storage" />
     {{ $t('welcome') }}
     {{ getCountDocument.count }}
-    <!--    <div class="links">-->
-    <!--      <div class="button&#45;&#45;green" @click="changeCount(-1)">-1</div>-->
-    <!--      <div class="button&#45;&#45;green" @click="changeCount(1)">+1</div>-->
-    <!--    </div>-->
   </section>
 </template>
 

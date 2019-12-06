@@ -1,5 +1,3 @@
-const axios = require('axios')
-const express = require('express')
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 const firebaseHelper = require('firebase-functions-helper/dist')
@@ -87,7 +85,7 @@ app.get('/spotify/callback', async ({ query: { code } }, res) => {
     }
     const { access_token, refresh_token, expires_in } = data
     const {
-      data: { id }
+      id
     } = await getUserData(access_token)
 
     if (id !== process.env.SPOTIFY_USER_ID)
@@ -126,11 +124,12 @@ const getSpotifyToken = (props = {}) =>
 const spotifyBaseUrl = 'https://api.spotify.com/v1/'
 
 const getUserData = (access_token) =>
-  axios.get(`${spotifyBaseUrl}me`, {
+  request.get(`${spotifyBaseUrl}me`, {
     headers: {
       withCredentials: true,
       Authorization: `Bearer ${access_token}`
-    }
+    },
+    json: true
   })
 
 async function getAccessToken() {
@@ -138,7 +137,8 @@ async function getAccessToken() {
   if (Date.now() > expire_time.toMillis()) {
     const refresh_token = await firestoreGet('refresh_token')
     const {
-      data: { new_access_token, expires_in }
+      access_token: new_access_token,
+      expires_in
     } = await getSpotifyToken({
       refresh_token,
       grant_type: 'refresh_token'
@@ -156,7 +156,7 @@ async function getAccessToken() {
 app.get('/spotify/now-playing/', async (req, res) => {
   try {
     const access_token = await getAccessToken()
-    const response = await request.get(
+    const data = await request.get(
       `${spotifyBaseUrl}me/player/currently-playing?market=US`,
       {
         headers: {
@@ -166,13 +166,12 @@ app.get('/spotify/now-playing/', async (req, res) => {
         json: true
       }
     )
-    const data = response
     await setLastPlayed(access_token, data)
     const reply = await firestoreGet('last_played')
     res.json({
       item: reply,
-      is_playing: data != undefined ? Boolean(data.is_playing) : false,
-      progress_ms: data != undefined ? data.progress_ms || 0 : 0
+      is_playing: data !== undefined ? Boolean(data.is_playing) : false,
+      progress_ms: data !== undefined ? data.progress_ms || 0 : 0
     })
   } catch (err) {
     console.error(err)
