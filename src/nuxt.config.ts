@@ -55,7 +55,8 @@ const config: Configuration = {
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     'nuxt-i18n',
-    'nuxt-fire'
+    'nuxt-fire',
+    '@nuxtjs/sitemap'
   ],
   /*
    ** Axios module configuration
@@ -66,7 +67,6 @@ const config: Configuration = {
    ** Build configuration
    */
   build: {
-    watch: ['api'],
     publicPath: '/assets/',
     extractCSS: true,
     /*
@@ -74,10 +74,9 @@ const config: Configuration = {
      */
     extend(/* config, ctx */) {}
   },
-  serverMiddleware: [{ path: '/api/v1/', handler: '~/api/index.ts' }],
   env: {
-    spotifyClientId: process.env.SPOTIFY_CLIENT_ID || '',
-    clientBaseUrl: process.env.CLIENT_URL || ''
+    spotifyClientId: process.env.SPOTIFY_CLIENT_ID || 'c1a97fcc39184989b6ad7156730636e2',
+    clientBaseUrl: process.env.CLIENT_URL || 'https://coolone.ru'
   },
   manifest: {
     name: 'Personal site of CoolONEOfficial',

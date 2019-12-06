@@ -49,13 +49,10 @@ export default class extends Vue {
   }
 
   asyncData({ env: { spotifyClientId, clientBaseUrl }, query, req }) {
-
-    const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${spotifyClientId}&response_type=code&scope=user-read-currently-playing,user-read-recently-played&redirect_uri=https://coolone.ru/api/v1/spotify/callback`
+    const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${spotifyClientId}&response_type=code&scope=user-read-currently-playing,user-read-recently-played&redirect_uri=${clientBaseUrl}/api/v1/spotify/callback`
     return {
       spotifyUrl,
       query,
-      clientBaseUrl,
-      spotifyClientId
     }
   }
 }
