@@ -30,44 +30,56 @@
         No other internal dependency
       </card>
     </div>
-    <img :src="imageSrc" alt="image from storage" />
+<!--    <img :src="imageSrc" alt="image from storage" />-->
     {{ $t('welcome') }}
-    {{ getCountDocument.count }}
+    <i class="la la-book"></i>
+    <Timeline v-model="getTimelineItems" />
   </section>
 </template>
 
 <script lang="ts">
-import { Action, Component, Getter, Vue } from 'nuxt-property-decorator'
+  import { Action, Component, Getter, namespace, Vue } from "nuxt-property-decorator";
 import Card from '~/components/Card.vue'
+  import Timeline from "~/components/Timeline.vue";
+
+const vuexModule = namespace('timeline')
 
 @Component({
-  components: { Card }
+  components: { Timeline, Card }
 })
 export default class extends Vue {
-  @Getter
-  getCountDocument
+  @vuexModule.Getter
+  getTimelineItems
 
-  @Action
-  bindFirestoreRef
+  // @module.Action
+  // bindTimelineItems
 
-  async mounted() {
-    console.log('mounted: bindFirestoreRef')
+  // async mounted() {
+  //   console.log('mounted: bindFirestoreRef')
+  //   try {
+  //     await this.bindTimelineItems()
+  //   } catch (e) {
+  //     console.error(e)
+  //   }
+  // }
+
+  async fetch({ store }) {
     try {
-      await this.bindFirestoreRef()
+      await store.dispatch('timeline/loadTimelineItems')
     } catch (e) {
       console.error(e)
     }
   }
 
-  async asyncData(ctx) {
-    console.log('okey letsgo')
-    return {
-      imageSrc: await ctx.app.$fireStorage
-        .ref()
-        .child('2019-11-29 21.23.52.jpg')
-        .getDownloadURL()
-    }
-  }
+  // async asyncData(ctx) {
+  //   console.log('okey letsgo')
+  //   return {
+  //     imageSrc: await ctx.app.$fireStorage
+  //       .ref()
+  //       .child('2019-11-29 21.23.52.jpg')
+  //       .getDownloadURL()
+  //   }
+  // }
 }
 </script>
 

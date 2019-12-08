@@ -32,7 +32,10 @@ const config: Configuration = {
   /*
    ** Global CSS
    */
-  css: ['./assets/scss/buefy.scss'],
+  css: [
+    './assets/scss/buefy.scss',
+    './node_modules/bulma-timeline/dist/css/bulma-timeline.min.css'
+  ],
   styleResources: {
     scss: []
   },
@@ -43,7 +46,11 @@ const config: Configuration = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxt/typescript-build', '@nuxtjs/dotenv'],
+  buildModules: [
+    '@nuxt/typescript-build',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/date-fns'
+  ],
   /*
    ** Nuxt.js modules
    */
@@ -75,7 +82,8 @@ const config: Configuration = {
     extend(/* config, ctx */) {}
   },
   env: {
-    spotifyClientId: process.env.SPOTIFY_CLIENT_ID || 'c1a97fcc39184989b6ad7156730636e2',
+    spotifyClientId:
+      process.env.SPOTIFY_CLIENT_ID || 'c1a97fcc39184989b6ad7156730636e2',
     clientBaseUrl: process.env.CLIENT_URL || 'https://coolone.ru'
   },
   manifest: {

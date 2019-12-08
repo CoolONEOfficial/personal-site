@@ -1,7 +1,18 @@
-$primary: red;
+//$primary: red;
 $link: #ff9900;
 $footer-background-color: #2c2f34;
-$link-hover: $primary;
+//$link-hover: $primary;
+//$timeline-marker-size: 12px;
+//$timeline-marker-icon-size: 24px;
+//$timeline-marker-border-size: 1px;
+//$timeline-line-width: 1px;
+//$timeline-line-style: solid;
+//$timeline-content-padding: 1em 0 0 2em;
+//$timeline-rtl-content-padding: 1em 2em 0 0;
+//$timeline-icon-size: .75rem;
+//$timeline-header-width: 4em;
+//$timeline-item-padding-left: $timeline-header-width / 2;
+$timeline-item-padding-bottom: 1em;
 
 @import "~bulma";
-@import "~buefy/src/scss/buefy";
+@import "~bulma-timeline";

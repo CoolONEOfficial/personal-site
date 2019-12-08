@@ -788,11 +788,12 @@
   dependencies:
     "@firebase/app-types" "0.4.9"
 
-"@firebase/database@0.5.14":
-  version "0.5.14"
-  resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.5.14.tgz#758bc5cc6f50736e31c5fb41f6c95c1ac5052311"
-  integrity sha512-5CeBp8m89m7JdbQl//D2ceww6mqoSnp0Qi/clU3SJ934GZFeI84ehApBNn1OpFPSqhDwxG7k/56EcoQs8nka0w==
+"@firebase/database@0.5.15":
+  version "0.5.15"
+  resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.5.15.tgz#1d88d169368b01d745956720776eb2312110d4e8"
+  integrity sha512-6GsZGDOoRbAaeBQjjbcKTCscEMV+qDXS1UWPmRYI0UBdhgCY05S1z5aNkjF2B3pFgkr35zDbVAdsQC+JhRCzLQ==
   dependencies:
+    "@firebase/component" "0.1.0"
     "@firebase/database-types" "0.4.9"
     "@firebase/logger" "0.1.32"
     "@firebase/util" "0.2.35"
@@ -1356,6 +1357,13 @@
     axios-retry "^3.1.2"
     consola "^2.10.1"
     defu "^0.0.3"
+
+"@nuxtjs/date-fns@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/date-fns/-/date-fns-1.1.0.tgz#fc333c4eec0699179941466e6570a58b1d1ef7f9"
+  integrity sha512-+y1LkNb0I2GfjSwmuDk9qbE4ySaxkp4Hs88EAHtQ0uik0ZxuuidY6y2Ak5QBdE2wq+VqefrTfg0G4EfjBUvwRA==
+  dependencies:
+    date-fns "^2.7.0"
 
 "@nuxtjs/dotenv@^1.4.1":
   version "1.4.1"
@@ -2758,6 +2766,11 @@ builtin-status-codes@^3.0.0:
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
 
+bulma-timeline@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/bulma-timeline/-/bulma-timeline-3.0.4.tgz#494f458098a06dcf8dcc7fe8f2f158b63d1d1ef2"
+  integrity sha512-gCUOcSUuzHoeVMkCpLF49j5Z5yl78XQ+KgJcT+1ju5WIGgBgVytRUob/dw5NHAxPLO2rmcvwYNbCJFp7w4WT4Q==
+
 bulma@0.7.5:
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.5.tgz#35066c37f82c088b68f94450be758fc00a967208"
@@ -3682,6 +3695,11 @@ date-and-time@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/date-and-time/-/date-and-time-0.11.0.tgz#1e22b61533af303953d79cc8c5e92e228fc5e4d2"
   integrity sha512-VyzhHurex4wlg9oMszn7O+kxHchphWjzDn7Mv0WfkFKI6hSNOQePpTBFGsnRakvLNzQKXqPBAVV8DOxUGtUxqA==
+
+date-fns@^2.7.0:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.8.1.tgz#2109362ccb6c87c3ca011e9e31f702bc09e4123b"
+  integrity sha512-EL/C8IHvYRwAHYgFRse4MGAPSqlJVlOrhVYZ75iQBKrnv+ZedmYsgwH3t+BCDuZDXpoo07+q9j4qgSSOa7irJg==
 
 de-indent@^1.0.2:
   version "1.0.2"
@@ -4789,16 +4807,16 @@ firebase-functions@^3.3.0:
     jsonwebtoken "^8.5.1"
     lodash "^4.17.14"
 
-firebase@^7.5.1:
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-7.5.1.tgz#baa04583ad31179e84636c8ca823c74f3ae3b20c"
-  integrity sha512-iG+o0WvnAxlxjKbN5fiAUcyt1Q1qvguMGgy46r52ks8sX34VN+BZDNJrVY0ktPD/Ty45jaVegjfFRmtThPt3jw==
+firebase@^7.5.2:
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-7.5.2.tgz#6b711a09d5a880b37e5ce5b97eba4ef7ec408c0d"
+  integrity sha512-G1hJ59CoV/gdNulBAFKiGD8EIDKCeQS16tc3TQ/sBCb87urDuaYKv7/n/CgK8llSt+pWJjPc6U0F223zt0OdKA==
   dependencies:
     "@firebase/analytics" "0.2.8"
     "@firebase/app" "0.4.26"
     "@firebase/app-types" "0.4.9"
     "@firebase/auth" "0.13.2"
-    "@firebase/database" "0.5.14"
+    "@firebase/database" "0.5.15"
     "@firebase/firestore" "1.8.1"
     "@firebase/functions" "0.4.27"
     "@firebase/installations" "0.3.7"
@@ -6271,6 +6289,11 @@ levn@^0.3.0, levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+line-awesome@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/line-awesome/-/line-awesome-1.3.0.tgz#51d59fe311ed040d22d8e80d3aa0b9a4b57e6cd3"
+  integrity sha512-Y0YHksL37ixDsHz+ihCwOtF5jwJgCDxQ3q+zOVgaSW8VugHGTsZZXMacPYZB1/JULBi6BAuTCTek+4ZY/UIwcw==
 
 lines-and-columns@^1.1.6:
   version "1.1.6"
