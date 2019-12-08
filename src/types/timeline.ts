@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 import Timestamp = firebase.firestore.Timestamp
-import GeoPoint = firebase.firestore.GeoPoint;
+import GeoPoint = firebase.firestore.GeoPoint
 
 export interface LocalizedString {
   en: string
@@ -27,7 +27,12 @@ export interface TimelineAchievement extends TimelineItem {
   icon: string
 }
 
+export interface Location {
+  title: LocalizedString
+  geopoint: GeoPoint
+}
+
 export interface TimelineHack extends TimelineItem {
   place: number
-  location: GeoPoint
+  location: Location
 }

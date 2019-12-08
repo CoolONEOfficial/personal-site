@@ -11,7 +11,6 @@ export const state = () => ({
 export const mutations = {
   ...vuexfireMutations,
   updateTimelineItems(state, payload) {
-    console.log('update items: ', payload)
     state.timelineItems = payload
   }
 }
@@ -55,9 +54,7 @@ function mergeAndSortItems(that, ...colNames: any) {
           const currentYear = new Date(
             (sortedData[index] as TimelineItem).date.seconds * 1000
           ).getFullYear()
-          console.log('prev: ', prevYear, ', next: ', currentYear)
           if (prevYear > currentYear) {
-            console.log('nextyear', currentYear)
             sortedData.splice(index, 0, {
               date: (sortedData[index - 1] as TimelineItem).date,
               type: 'years'

@@ -30,17 +30,22 @@
         No other internal dependency
       </card>
     </div>
-<!--    <img :src="imageSrc" alt="image from storage" />-->
+    <!--    <img :src="imageSrc" alt="image from storage" />-->
     {{ $t('welcome') }}
-    <i class="la la-book"></i>
     <Timeline v-model="getTimelineItems" />
   </section>
 </template>
 
 <script lang="ts">
-  import { Action, Component, Getter, namespace, Vue } from "nuxt-property-decorator";
+import {
+  Action,
+  Component,
+  Getter,
+  namespace,
+  Vue
+} from 'nuxt-property-decorator'
 import Card from '~/components/Card.vue'
-  import Timeline from "~/components/Timeline.vue";
+import Timeline from '~/components/Timeline.vue'
 
 const vuexModule = namespace('timeline')
 
