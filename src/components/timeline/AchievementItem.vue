@@ -2,25 +2,6 @@
   <Item :item="item" :icon="item.icon">
     achievement content
   </Item>
-  <!--  <div class="timeline-item">-->
-  <!--    <div class="timeline-marker is-image is-32x32">-->
-  <!--      <img-->
-  <!--        :src="`icons/black/icons8-${item.icon}-50.png`"-->
-  <!--        style="transform: scale(0.6)"-->
-  <!--      />-->
-  <!--    </div>-->
-  <!--    <div class="timeline-content">-->
-
-  <!--      <p class="heading">-->
-  <!--        {{-->
-  <!--          $dateFns.format(item.date.seconds * 1000, 'd MMMM yyyy', {-->
-  <!--            locale: locales[$i18n.locale]-->
-  <!--          })-->
-  <!--        }}-->
-  <!--      </p>-->
-  <!--      <p>{{ item.title[$i18n.locale] }}</p>-->
-  <!--    </div>-->
-  <!--  </div>-->
 </template>
 
 <script lang="ts">

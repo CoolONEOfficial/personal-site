@@ -1,16 +1,24 @@
 import firebase from 'firebase'
 import Timestamp = firebase.firestore.Timestamp
-import GeoPoint = firebase.firestore.GeoPoint
+import FireGeoPoint = firebase.firestore.GeoPoint
 
-export interface LocalizedString {
-  en: string
-  ru: string
+export interface GeoPoint {
+  latitude: number
+  longitude: number
 }
 
 export interface TimelineItem {
   title: LocalizedString
-  date: Timestamp
+  date: number
   type: string
+  doc: string
+  images?: boolean | any[]
+  imagesPath?: string
+}
+
+export interface LocalizedString {
+  en: string
+  ru: string
 }
 
 export interface TimelineProject extends TimelineItem {

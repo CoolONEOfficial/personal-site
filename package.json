@@ -6,6 +6,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "start:src": "cd src && yarn start",
     "dev": "cd src && yarn dev",
     "build:src": "cd src && yarn build",
     "install": "yarn copydeps:src && yarn install:functions && yarn install:src",

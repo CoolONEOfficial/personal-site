@@ -1,4 +1,5 @@
 import { Configuration } from '@nuxt/types'
+// import bulmaCarousel from 'bulma-carousel/dist/js/bulma-carousel.min.js';
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -32,17 +33,17 @@ const config: Configuration = {
   /*
    ** Global CSS
    */
-  css: [
-    './assets/scss/buefy.scss',
-    './node_modules/bulma-timeline/dist/css/bulma-timeline.min.css'
-  ],
+  css: ['./assets/scss/buefy.scss', './assets/scss/vue-carousel.scss'],
   styleResources: {
-    scss: []
+    scss: ['./assets/scss/buefy.scss']
   },
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: "@/plugins/aos", ssr: false }],
+  plugins: [
+    { src: '@/plugins/aos', ssr: false },
+    { src: '~/plugins/vue-carousel', ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -61,6 +62,7 @@ const config: Configuration = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
+    '@nuxtjs/device',
     'nuxt-i18n',
     'nuxt-fire',
     '@nuxtjs/sitemap'

@@ -6,7 +6,7 @@
       aria-label="main navigation"
     >
       <div class="navbar-brand">
-        <a class="navbar-item" href="/">
+        <a class="navbar-item" :href="'/' + $i18n.locale">
           <img src="~assets/buefy.png" alt="Buefy" height="28" />
         </a>
 
@@ -18,8 +18,10 @@
       </div>
     </nav>
 
-    <section class="main-content container">
-      <nuxt />
+    <section class="main-content">
+      <div id="app">
+        <nuxt />
+      </div>
     </section>
   </div>
 </template>

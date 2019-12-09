@@ -26,7 +26,8 @@
       "nuxt-i18n",
       "@nuxt/vue-app",
       "@nuxtjs/axios",
-      "@nuxtjs/date-fns"
+      "@nuxtjs/date-fns",
+      "@nuxtjs/device"
     ]
   },
   "include": ["**/*.ts", "**/*.vue", "node_modules/@types/node/globals.d.ts"],

@@ -1,6 +1,6 @@
 <template>
   <header class="timeline-header">
-    <span class="tag">{{ $dateFns.format(item.date.seconds * 1000, 'yyyy') }}</span>
+    <span class="tag">{{ $dateFns.format(new Date(item.date).getTime(), 'yyyy') }}</span>
   </header>
 </template>
 

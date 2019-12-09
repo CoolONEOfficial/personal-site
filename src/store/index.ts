@@ -38,8 +38,10 @@ export const mutations = {
 }
 
 export const actions = {
+  nuxtServerInit() {
+    (global as any).XMLHttpRequest = require('xhr2')
+  },
   bindFirestoreRef: firestoreAction(async function({ bindFirestoreRef }) {
-    ;(global as any).XMLHttpRequest = require('xhr2').XMLHttpRequest
     // @ts-ignore
     const ref = this.$fireStore
       .collection('countCollection')
