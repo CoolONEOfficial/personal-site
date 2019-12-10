@@ -1683,10 +1683,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.16.tgz#3ebcbd7bf978fa4c5120fee8be57083271a8b3ac"
   integrity sha512-vRuMyoOr5yfNf8QWxXegOjeyjpWJxFePzHzmBOIzDIzo+rSqF94RW0PkS6y4T2+VjAWLXHWrfbIJY3E3aS7lUw==
 
-"@types/node@12.12.15":
-  version "12.12.15"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.15.tgz#8dfb6ce22fedd469128137640a3aa8f17415422f"
-  integrity sha512-Pv+vWicyFd07Hw/SmNnTUguqrHgDfMtjabvD9sQyxeqbpCEg8CmViLBaVPHtNsoBgZECrRf5/pgV6FJIBrGSjw==
+"@types/node@12.12.17":
+  version "12.12.17"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.17.tgz#191b71e7f4c325ee0fb23bc4a996477d92b8c39b"
+  integrity sha512-Is+l3mcHvs47sKy+afn2O1rV4ldZFU7W8101cNlOd+MRbjM4Onida8jSZnJdTe/0Pcf25g9BNIUsuugmE6puHA==
 
 "@types/node@^10.1.0":
   version "10.17.8"
@@ -2778,11 +2778,6 @@ bulma-helpers@^0.3.8:
   version "0.3.8"
   resolved "https://registry.yarnpkg.com/bulma-helpers/-/bulma-helpers-0.3.8.tgz#9383f9f4b1cc5604b9b540fc26996294345f95f2"
   integrity sha512-SZBkcRCKogzYduo9GduLMtYg2SJ7RT0hRWypWXLs48lmqKxiPgj4gWlt4TzUq7fwzhbmVbtFyfWdwvWgIYCKMA==
-
-bulma-modal-fx@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/bulma-modal-fx/-/bulma-modal-fx-1.1.1.tgz#36e1a800cf25e37bbd3963f2ed3136612c8a350a"
-  integrity sha512-Ma1e/uczogPd0MzpeOsYJau1ocavO2wlnGg1ZVg+/mrsKyeasrdtyfbOH1kRdzqCH9DMrZAw7WEW0Oa3lKr6Fw==
 
 bulma-timeline@^3.0.4:
   version "3.0.4"
