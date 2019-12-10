@@ -1,9 +1,6 @@
 <template>
   <div class="timeline-header">
-    <div
-      class="tag is-medium is-primary"
-      :style="$device.isMobile ? 'position: relative; left: 30px' : ''"
-    >
+    <div class="tag is-medium is-primary">
       <slot />
     </div>
   </div>
@@ -13,9 +10,12 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component({})
-export default class extends Vue {
-
-}
+export default class extends Vue {}
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@media only screen and (max-width: 768px) {
+  position: relative;
+  left: 55px;
+}
+</style>

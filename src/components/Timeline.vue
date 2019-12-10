@@ -1,6 +1,6 @@
 <template>
   <div :class="['timeline', { 'is-centered': !$device.isMobile }]">
-    <Header class="is-medium">
+    <Header>
       To be continued...
     </Header>
 
@@ -11,7 +11,7 @@
       :item="i"
     />
 
-    <Header class="is-large">
+    <Header>
       Born to code 👶
     </Header>
   </div>

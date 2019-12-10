@@ -1,5 +1,5 @@
 import { vuexfireMutations } from 'vuexfire'
-import { GeoPoint, TimelineItem } from '~/types/timeline'
+import { GeoPoint, Image, TimelineItem } from '~/types/timeline'
 import firebase from 'firebase'
 import Timestamp = firebase.firestore.Timestamp
 import QuerySnapshot = firebase.firestore.QuerySnapshot
@@ -42,20 +42,30 @@ function mergeAndSortItems(that, ...colNames: any) {
               }
             }
             if (Boolean(data['images'])) {
-              console.log('dev: ', process.env.NODE_ENV)
-              data['images'] =
-                process.env.NODE_ENV === 'production'
-                  ? await Promise.all(
-                      (
-                        await that.$fireStorage
-                          .ref()
-                          .child(data.type + '/' + data.doc)
-                          .list()
-                      ).items
-                        .filter((i) => i.name.includes('_400x400'))
-                        .map((i) => i.getDownloadURL() as never)
-                    )
-                  : ['icon.png', 'icon.png', 'icon.png', 'icon.png']
+              let images: Image[]
+
+              if (process.env.NODE_ENV === 'production') {
+                const list = (
+                  await that.$fireStorage
+                    .ref()
+                    .child(data.type + '/' + data.doc)
+                    .list()
+                ).items
+
+                images = []
+                for (let i = 0; i < list.length; i += 2) {
+                  images.push({
+                    original: await list[i].getDownloadURL(),
+                    small: await list[i + 1].getDownloadURL()
+                  })
+                }
+              } else
+                images = new Array(5).fill({
+                  original: 'icon.png',
+                  small: 'icon.png'
+                })
+
+              data['images'] = images
             }
 
             mergedData.push(data as never)

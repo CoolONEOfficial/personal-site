@@ -13,6 +13,25 @@ $footer-background-color: #2c2f34;
 //$timeline-header-width: 4em;
 //$timeline-item-padding-left: $timeline-header-width / 2;
 $timeline-item-padding-bottom: 1em;
+$speed-slow: 150ms;
+$easing: ease-out;
 
 @import '~bulma';
 @import '~bulma-timeline';
+
+.zoom-in-enter-active,
+.zoom-in-leave-active {
+  transition: opacity  $speed-slow $easing;
+  .animation-content,
+  .animation-content {
+    transition: transform $speed-slow $easing;
+  }
+}
+.zoom-in-enter,
+.zoom-in-leave-active {
+  opacity: 0;
+  .animation-content,
+  .animation-content {
+    transform: scale(0.95);
+  }
+}

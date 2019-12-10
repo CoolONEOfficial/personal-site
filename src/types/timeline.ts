@@ -7,13 +7,17 @@ export interface GeoPoint {
   longitude: number
 }
 
+export interface Image {
+  original: string
+  small: string
+}
+
 export interface TimelineItem {
   title: LocalizedString
   date: number
   type: string
   doc: string
-  images?: boolean | any[]
-  imagesPath?: string
+  images?: Image[]
 }
 
 export interface LocalizedString {

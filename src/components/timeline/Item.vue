@@ -18,7 +18,7 @@
         }}
       </p>
       <p>{{ item.title[$i18n.locale] }}</p>
-      <h2 v-show="Boolean(subtitle)" class="subtitle is-size-7">
+      <h2 v-show="Boolean(subtitle)" class="subtitle is-size-7 has-margin-bottom-10">
         {{ subtitle }}
       </h2>
       <div class="content">
@@ -75,11 +75,11 @@ export default class extends Vue {
 
 <style scoped lang="scss">
 .content {
-  margin-left: -61px;
+  margin-left: -31px;
 
-  width: calc(80vw);
+  width: calc(100vw - 33px);
   @media only screen and (min-width: 769px) {
-    width: calc(50vw - 1px);
+    width: calc(50vw);
   }
   height: 0;
   opacity: 0;
@@ -88,6 +88,20 @@ export default class extends Vue {
 }
 
 .timeline-item {
+  @media only screen and (min-width: 769px) {
+    &:nth-of-type(even) {
+      .content {
+        margin-right: -62px;
+      }
+    }
+
+    &:nth-of-type(odd) {
+      .content {
+        margin-left: -61px;
+      }
+    }
+  }
+
   box-shadow: inset 0 8px 0 0 white, inset 0 -8px 0 0 white;
 
   transition-duration: 1200ms;
