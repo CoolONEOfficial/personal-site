@@ -4,7 +4,7 @@
     :icon="iconMap[item.place]"
     :subtitle="item.location.title[$i18n.locale]"
   >
-    <Images :item="item" />
+    <Images :item="item" v-if="item.images" />
   </Item>
 </template>
 
@@ -12,7 +12,7 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { TimelineHack } from '~/types/timeline'
 import Item from '~/components/timeline/Item.vue'
-import Images from "~/components/timeline/content/Images.vue";
+import Images from '~/components/timeline/content/Images.vue'
 
 @Component({
   components: { Images, Item }

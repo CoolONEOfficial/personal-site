@@ -6,9 +6,15 @@
         :perPageCustom="[[1024, 3]]"
         :scroll-per-page="false"
         :pagination-enabled="false"
+        :navigate-to="[
+          itemOdd ? item.images.length - ($device.isMobile ? 2 : 3) : 0,
+          false
+        ]"
       >
         <slide
-          v-for="(i, index) of item.images"
+          v-for="(i, index) of itemOdd
+            ? item.images.slice().reverse()
+            : item.images"
           :key="index"
           @slide-click="onClickImage(index)"
         >
@@ -22,7 +28,12 @@
           :per-page="1"
           :pagination-enabled="false"
         >
-          <slide v-for="(i, index) of item.images" :key="index">
+          <slide
+            v-for="(i, index) of itemOdd
+              ? item.images.slice().reverse()
+              : item.images"
+            :key="index"
+          >
             <img class="modal-image" :src="i.original" />
           </slide>
         </carousel>
@@ -49,6 +60,10 @@ export default class extends Vue {
   }
 
   navigateTo: any = 0
+
+  get itemOdd() {
+    return this.item.orderId % 2 !== 0
+  }
 }
 </script>
 

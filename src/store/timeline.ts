@@ -81,24 +81,35 @@ function mergeAndSortItems(that, ...colNames: any) {
         )
       )
 
-      // add years
       .then((sortedData) => {
-        for (let index = 1; index < sortedData.length; index++) {
+        // Reverse orderId
+        for (const [
+          mItemId,
+          mItem
+        ] of (sortedData as TimelineItem[]).entries()) {
+          mItem.orderId = sortedData.length - mItemId
+        }
+        return sortedData
+      })
+
+      // add years
+      .then((orderedData) => {
+        for (let index = 1; index < orderedData.length; index++) {
           const prevYear = new Date(
-            (sortedData[index - 1] as TimelineItem).date
+            (orderedData[index - 1] as TimelineItem).date
           ).getFullYear()
           const currentYear = new Date(
-            (sortedData[index] as TimelineItem).date
+            (orderedData[index] as TimelineItem).date
           ).getFullYear()
           if (prevYear > currentYear) {
-            sortedData.splice(index, 0, {
+            orderedData.splice(index, 0, {
               date: prevYear,
               type: 'years'
             } as never)
             index++
           }
         }
-        return sortedData
+        return orderedData
       })
 
       // log any errors

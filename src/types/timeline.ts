@@ -18,6 +18,7 @@ export interface TimelineItem {
   type: string
   doc: string
   images?: Image[]
+  orderId: number
 }
 
 export interface LocalizedString {
