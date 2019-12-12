@@ -15,10 +15,12 @@ export interface Image {
 export interface TimelineItem {
   title: LocalizedString
   date: number
-  type: string
-  doc: string
   images?: Image[]
-  orderId: number
+  singleImage?: Image
+
+  _type: string
+  _doc: string
+  _orderId: number
 }
 
 export interface LocalizedString {
@@ -37,7 +39,7 @@ export interface TimelineBook extends TimelineItem {
 }
 
 export interface TimelineAchievement extends TimelineItem {
-  icon: string
+  type: string
 }
 
 export interface Location {

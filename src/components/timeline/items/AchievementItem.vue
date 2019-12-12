@@ -1,7 +1,5 @@
 <template>
-  <Item :item="item" :icon="item.icon">
-    achievement content
-  </Item>
+  <Item :item="item" :icon="item.type" :subtitle="$t(item.type)" />
 </template>
 
 <script lang="ts">
@@ -19,3 +17,18 @@ export default class extends Vue {
 </script>
 
 <style scoped lang="scss"></style>
+
+<i18n>
+  {
+    "en": {
+      "certificate": "Certificate",
+      "diploma": "Diploma",
+      "other": "Other"
+    },
+    "ru": {
+      "certificate": "Сертификат",
+      "diploma": "Диплом",
+      "other": "Другое"
+    }
+  }
+</i18n>

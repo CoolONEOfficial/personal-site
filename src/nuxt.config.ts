@@ -36,7 +36,8 @@ const config: Configuration = {
   css: [
     './assets/scss/buefy.scss',
     './assets/scss/vue-carousel.scss',
-    'bulma-helpers/css/bulma-helpers.min.css'
+    './assets/scss/styles.scss',
+    'bulma-helpers/css/bulma-helpers.min.css',
   ],
   styleResources: {
     scss: ['./assets/scss/buefy.scss']

@@ -5,9 +5,7 @@
     :subtitle="
       $t(item.category)
     "
-  >
-    test
-  </Item>
+  />
 </template>
 
 <script lang="ts">

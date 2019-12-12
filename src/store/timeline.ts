@@ -33,9 +33,9 @@ function mergeAndSortItems(that, ...colNames: any) {
           for (const doc of snapshot.docs) {
             const data = doc.data()
             data['date'] = (data['date'] as Timestamp).toDate()
-            data['type'] = doc.ref.parent.path
-            data['doc'] = doc.id
-            if (data['type'] == 'hacks') {
+            data['_type'] = doc.ref.parent.path
+            data['_doc'] = doc.id
+            if (data['_type'] == 'hacks') {
               data['location']['geopoint'] = {
                 latitude: data['location']['geopoint'].latitude,
                 longitude: data['location']['geopoint'].longitude
@@ -48,7 +48,7 @@ function mergeAndSortItems(that, ...colNames: any) {
                 const list = (
                   await that.$fireStorage
                     .ref()
-                    .child(data.type + '/' + data.doc)
+                    .child(`${data._type}/${data._doc}`)
                     .list()
                 ).items
 
@@ -66,6 +66,23 @@ function mergeAndSortItems(that, ...colNames: any) {
                 })
 
               data['images'] = images
+            } else if (Boolean(data['singleImage'])) {
+              data['singleImage'] =
+                process.env.NODE_ENV === 'production'
+                  ? {
+                      original: await that.$fireStorage
+                        .ref()
+                        .child(`${data._type}/${data._doc}/1.jpg`)
+                        .getDownloadURL(),
+                      small: await that.$fireStorage
+                        .ref()
+                        .child(`${data._type}/${data._doc}/1_400x400.jpg`)
+                        .getDownloadURL()
+                    }
+                  : {
+                      original: 'icon.png',
+                      small: 'icon.png'
+                    }
             }
 
             mergedData.push(data as never)
@@ -82,12 +99,12 @@ function mergeAndSortItems(that, ...colNames: any) {
       )
 
       .then((sortedData) => {
-        // Reverse orderId
+        // Reverse _orderId
         for (const [
           mItemId,
           mItem
         ] of (sortedData as TimelineItem[]).entries()) {
-          mItem.orderId = sortedData.length - mItemId
+          mItem._orderId = mItemId + 1
         }
         return sortedData
       })
@@ -104,7 +121,7 @@ function mergeAndSortItems(that, ...colNames: any) {
           if (prevYear > currentYear) {
             orderedData.splice(index, 0, {
               date: new Date(prevYear, 1, 1).getTime(),
-              type: 'years'
+              _type: 'years'
             } as never)
             index++
           }

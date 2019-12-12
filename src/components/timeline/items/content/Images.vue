@@ -21,7 +21,7 @@
           <img class="item-image" :src="i.small" />
         </slide>
       </carousel>
-      <b-modal :active.sync="isImageModalActive" animation="zoom-in">
+      <b-modal :active.sync="isModalActive" animation="zoom-in">
         <carousel
           class="show-overflow"
           :navigate-to="navigateTo"
@@ -52,29 +52,22 @@ export default class extends Vue {
   @Prop({ default: {} })
   item!: TimelineItem
 
-  isImageModalActive = false
+  isModalActive = false
 
   onClickImage(index) {
     this.navigateTo = [index, false]
-    this.isImageModalActive = true
+    this.isModalActive = true
   }
 
   navigateTo: any = 0
 
   get itemRtl() {
-    return !this.$device.isMobile && this.item.orderId % 2 !== 0
+    return !this.$device.isMobile && this.item._orderId % 2 !== 0
   }
 }
 </script>
 
 <style scoped lang="scss">
-.modal-image {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-}
-
 .item-image {
   object-fit: cover;
   height: 300px;

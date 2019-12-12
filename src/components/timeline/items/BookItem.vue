@@ -4,8 +4,7 @@
     icon="book"
     :subtitle="item.author"
     style="white-space: nowrap"
-  >
-  </Item>
+  />
 </template>
 
 <script lang="ts">

@@ -5,7 +5,7 @@
     </Header>
 
     <component
-      :is="i.type"
+      :is="i._type"
       v-for="(i, index) of value"
       :key="index"
       :item="i"
@@ -19,11 +19,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
-import BookItem from '~/components/timeline/BookItem.vue'
-import AchievementItem from '~/components/timeline/AchievementItem.vue'
-import ProjectItem from '~/components/timeline/ProjectItem.vue'
-import YearItem from '~/components/timeline/YearItem.vue'
-import HackItem from '~/components/timeline/HackItem.vue'
+import BookItem from '~/components/timeline/items/BookItem.vue'
+import AchievementItem from '~/components/timeline/items/AchievementItem.vue'
+import ProjectItem from '~/components/timeline/items/ProjectItem.vue'
+import YearItem from '~/components/timeline/Year.vue'
+import HackItem from '~/components/timeline/items/HackItem.vue'
 import Header from '~/components/timeline/Header.vue'
 
 @Component({

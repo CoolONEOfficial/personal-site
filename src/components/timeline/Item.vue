@@ -18,10 +18,15 @@
         }}
       </p>
       <p>{{ item.title[$i18n.locale] }}</p>
-      <h2 v-show="Boolean(subtitle)" class="subtitle is-size-7 has-margin-bottom-10">
+      <h2
+        v-show="Boolean(subtitle)"
+        class="subtitle is-size-7 has-margin-bottom-10"
+      >
         {{ subtitle }}
       </h2>
       <div class="content">
+        <Images :item="item" v-if="item.images" />
+        <SingleImage :item="item" v-else-if="item.singleImage" />
         <slot />
       </div>
     </div>
@@ -33,10 +38,14 @@ import { Component, Prop, State, Vue } from 'nuxt-property-decorator'
 import { enUS, ru } from 'date-fns/locale'
 import { TimelineItem } from '~/types/timeline'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
+import SingleImage from '~/components/timeline/items/content/SingleImage.vue'
+import Images from '~/components/timeline/items/content/Images.vue'
 
 const vuexModule = namespace('timeline')
 
-@Component({})
+@Component({
+  components: { Images, SingleImage }
+})
 export default class extends Vue {
   @Prop({ default: {} })
   item!: TimelineItem
