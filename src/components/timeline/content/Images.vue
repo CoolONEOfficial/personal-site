@@ -7,12 +7,12 @@
         :scroll-per-page="false"
         :pagination-enabled="false"
         :navigate-to="[
-          itemOdd ? item.images.length - ($device.isMobile ? 2 : 3) : 0,
+          itemRtl ? item.images.length - ($device.isMobile ? 2 : 3) : 0,
           false
         ]"
       >
         <slide
-          v-for="(i, index) of itemOdd
+          v-for="(i, index) of itemRtl
             ? item.images.slice().reverse()
             : item.images"
           :key="index"
@@ -29,7 +29,7 @@
           :pagination-enabled="false"
         >
           <slide
-            v-for="(i, index) of itemOdd
+            v-for="(i, index) of itemRtl
               ? item.images.slice().reverse()
               : item.images"
             :key="index"
@@ -61,8 +61,8 @@ export default class extends Vue {
 
   navigateTo: any = 0
 
-  get itemOdd() {
-    return this.item.orderId % 2 !== 0
+  get itemRtl() {
+    return !this.$device.isMobile && this.item.orderId % 2 !== 0
   }
 }
 </script>

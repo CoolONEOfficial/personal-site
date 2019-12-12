@@ -103,7 +103,7 @@ function mergeAndSortItems(that, ...colNames: any) {
           ).getFullYear()
           if (prevYear > currentYear) {
             orderedData.splice(index, 0, {
-              date: prevYear,
+              date: new Date(prevYear, 0, 0).getTime(),
               type: 'years'
             } as never)
             index++
