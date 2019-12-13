@@ -1,6 +1,6 @@
 <template>
   <div>
-    hackathons! {{ $props }}
+    events here! {{ $props }}
   </div>
 </template>
 

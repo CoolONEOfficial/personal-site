@@ -1,7 +1,13 @@
 <template>
-  <div :class="['timeline', 'has-padding-top-20', { 'is-centered': !$device.isMobile }]">
+  <div
+    :class="[
+      'timeline',
+      'has-padding-top-20',
+      { 'is-centered': !$device.isMobile }
+    ]"
+  >
     <Header emoji="👨‍💻" :emoji-top="true">
-      To be continued...
+      {{ $t('future') }}
     </Header>
 
     <component
@@ -12,7 +18,7 @@
     />
 
     <Header emoji="👶">
-      Born to code
+      {{ $t('birth') }}
     </Header>
   </div>
 </template>
@@ -42,4 +48,15 @@ export default class extends Vue {
 }
 </script>
 
-<style scoped lang="sass"></style>
+<i18n>
+  {
+    "en": {
+      "birth": "Born to code",
+      "future": "To be continued..."
+    },
+    "ru": {
+      "birth": "Рожден кодить",
+      "future": "Продолжение следует..."
+    }
+  }
+</i18n>

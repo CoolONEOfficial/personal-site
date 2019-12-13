@@ -6,13 +6,12 @@
 
 <script lang="ts">
 import { Component, namespace, Vue } from 'nuxt-property-decorator'
-import Card from '~/components/Card.vue'
 import Timeline from '~/components/Timeline.vue'
 
 const vuexModule = namespace('timeline')
 
 @Component({
-  components: { Timeline, Card }
+  components: { Timeline }
 })
 export default class extends Vue {
   @vuexModule.Getter
@@ -27,14 +26,3 @@ export default class extends Vue {
   }
 }
 </script>
-
-<i18n>
-  {
-    "en": {
-      "welcome": "Localized welcome!"
-    },
-    "ru": {
-      "welcome": "Локализированный текст!"
-    }
-  }
-</i18n>
