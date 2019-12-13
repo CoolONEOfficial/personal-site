@@ -17,6 +17,7 @@ export interface TimelineItem {
   date: number
   images?: Image[]
   singleImage?: Image
+  description?: string
 
   _type: string
   _doc: string

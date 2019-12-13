@@ -1,5 +1,5 @@
 <template>
-  <div class="timeline-header">
+  <div :class="['timeline-header', { 'left-position': $device.isMobile }]">
     <div class="tag is-medium is-primary">
       <slot />
     </div>
@@ -14,7 +14,7 @@ export default class extends Vue {}
 </script>
 
 <style scoped lang="scss">
-@media only screen and (max-width: 768px) {
+.left-position {
   position: relative;
   left: 55px;
 }

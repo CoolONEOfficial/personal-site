@@ -70,7 +70,8 @@ const config: Configuration = {
     '@nuxtjs/device',
     'nuxt-i18n',
     'nuxt-fire',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/markdownit'
   ],
   /*
    ** Axios module configuration
@@ -127,6 +128,9 @@ const config: Configuration = {
       firestore: true,
       storage: true
     }
+  },
+  markdownit: {
+    injected: true
   }
 }
 

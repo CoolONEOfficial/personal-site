@@ -24,9 +24,22 @@
       >
         {{ subtitle }}
       </h2>
-      <div class="content">
-        <Images :item="item" v-if="item.images" />
-        <SingleImage :item="item" v-else-if="item.singleImage" />
+      <div class="content reverse">
+        <div
+          :class="[
+            { columns: item.singleImage },
+            { reverse: !$device.isMobile && item.singleImage && itemRtl },
+            'is-marginless-horizontal'
+          ]"
+        >
+          <div class="column is-paddingless">
+            <Images :item="item" v-if="item.images" />
+            <SingleImage :item="item" v-else-if="item.singleImage" />
+          </div>
+          <div class="column is-paddingless">
+            <Description v-if="item.description" :item="item" />
+          </div>
+        </div>
         <slot />
       </div>
     </div>
@@ -40,11 +53,12 @@ import { TimelineItem } from '~/types/timeline'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
 import SingleImage from '~/components/timeline/items/content/SingleImage.vue'
 import Images from '~/components/timeline/items/content/Images.vue'
+import Description from '~/components/timeline/items/content/Description.vue'
 
 const vuexModule = namespace('timeline')
 
 @Component({
-  components: { Images, SingleImage }
+  components: { Description, Images, SingleImage }
 })
 export default class extends Vue {
   @Prop({ default: {} })
@@ -75,6 +89,10 @@ export default class extends Vue {
     )
   }
 
+  get itemRtl() {
+    return !this.$device.isMobile && this.item._orderId % 2 !== 0
+  }
+
   onItemHover() {
     const key = (this.$vnode.componentInstance as any)._uid
     this.updateHoveredItem(key)
@@ -83,6 +101,10 @@ export default class extends Vue {
 </script>
 
 <style scoped lang="scss">
+.reverse {
+  flex-direction: row-reverse;
+}
+
 .content {
   margin-left: -31px;
 
@@ -90,23 +112,24 @@ export default class extends Vue {
   @media only screen and (min-width: 769px) {
     width: calc(50vw);
   }
-  height: 0;
+  max-height: 0;
   opacity: 0;
+  overflow: hidden;
 
-  transition: height 1.2s 0.2s, opacity 0.2s ease-in-out 0s;
+  transition: max-height 1.2s 0.2s, opacity 0.2s linear 0s;
 }
 
 .timeline-item {
   @media only screen and (min-width: 769px) {
     &:nth-of-type(even) {
       .content {
-        margin-right: -62px;
+        margin-right: -61px;
       }
     }
 
     &:nth-of-type(odd) {
       .content {
-        margin-left: -61px;
+        margin-left: -62px;
       }
     }
   }
@@ -123,9 +146,9 @@ export default class extends Vue {
     }
     background-color: $white-ter;
     .content {
-      height: 300px;
+      max-height: 400px;
       opacity: 1;
-      transition: height 1.2s 0s, opacity 0.5s ease-in-out 0.5s;
+      transition: max-height 1.2s 0s, opacity 0.5s linear 0.5s;
     }
   }
 }

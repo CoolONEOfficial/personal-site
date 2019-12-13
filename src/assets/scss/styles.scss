@@ -4,3 +4,8 @@
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
 }
+
+.is-marginless-horizontal {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}

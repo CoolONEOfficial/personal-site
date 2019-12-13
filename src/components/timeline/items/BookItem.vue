@@ -3,7 +3,6 @@
     :item="item"
     icon="book"
     :subtitle="item.author"
-    style="white-space: nowrap"
   />
 </template>
 

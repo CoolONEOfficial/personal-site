@@ -1,7 +1,7 @@
 <template>
   <div>
     <img
-      class="item-image has-margin-right-10"
+      class="item-image"
       :src="item.singleImage.small"
       @click="onImageClick"
     />
@@ -33,7 +33,7 @@ export default class extends Vue {
 .item-image {
   object-fit: cover;
   height: 300px;
-  width: 50%;
+  width: 100%;
   overflow: hidden;
 }
 </style>
