@@ -49,7 +49,7 @@
 <script lang="ts">
 import { Component, Prop, State, Vue } from 'nuxt-property-decorator'
 import { enUS, ru } from 'date-fns/locale'
-import { TimelineItem } from '~/types/timeline'
+import { isRtl, TimelineItem } from "~/types/timeline";
 import { namespace } from '~/node_modules/nuxt-property-decorator'
 import SingleImage from '~/components/timeline/items/content/SingleImage.vue'
 import Images from '~/components/timeline/items/content/Images.vue'
@@ -89,13 +89,13 @@ export default class extends Vue {
     )
   }
 
-  get itemRtl() {
-    return !this.$device.isMobile && this.item._orderId % 2 !== 0
-  }
-
   onItemHover() {
     const key = (this.$vnode.componentInstance as any)._uid
     this.updateHoveredItem(key)
+  }
+
+  get itemRtl() {
+    return isRtl(this, this.item)
   }
 }
 </script>
@@ -123,13 +123,13 @@ export default class extends Vue {
   @media only screen and (min-width: 769px) {
     &:nth-of-type(even) {
       .content {
-        margin-right: -61px;
+        margin-right: calc(-29.5px - 2em);
       }
     }
 
     &:nth-of-type(odd) {
       .content {
-        margin-left: -62px;
+        margin-left: calc(-29.5px - 2em);
       }
     }
   }

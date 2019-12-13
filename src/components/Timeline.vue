@@ -1,6 +1,6 @@
 <template>
-  <div :class="['timeline', { 'is-centered': !$device.isMobile }]">
-    <Header>
+  <div :class="['timeline', 'has-padding-top-20', { 'is-centered': !$device.isMobile }]">
+    <Header emoji="👨‍💻" :emoji-top="true">
       To be continued...
     </Header>
 
@@ -11,8 +11,8 @@
       :item="i"
     />
 
-    <Header>
-      Born to code 👶
+    <Header emoji="👶">
+      Born to code
     </Header>
   </div>
 </template>

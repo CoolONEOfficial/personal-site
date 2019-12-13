@@ -1,6 +1,6 @@
 <template>
   <div
-    class="description has-margin-10"
+    class="description"
     v-html="$md.render(item.description)"
   />
 </template>
@@ -20,5 +20,6 @@ export default class extends Vue {
 <style scoped lang="scss">
 .description {
   text-align: justify;
+  margin: 0.5rem 1rem 0;
 }
 </style>

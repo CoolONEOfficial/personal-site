@@ -8,9 +8,9 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
-import { TimelineHack } from '~/types/timeline'
 import Item from '~/components/timeline/Item.vue'
 import Images from '~/components/timeline/items/content/Images.vue'
+import { TimelineHack } from "~/types/items/hack";
 
 @Component({
   components: { Images, Item }

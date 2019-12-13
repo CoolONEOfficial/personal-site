@@ -1,9 +1,16 @@
 $timeline-item-padding-bottom: 1em;
 $speed-slow: 150ms;
+$navbar-height: 5rem;
+$navbar-item-img-max-height: 3.5rem;
 $easing: ease-out;
+$primary: #03A9F4;
 
 @import '~bulma';
 @import '~bulma-timeline';
+
+.tag {
+  height: 20px !important;
+}
 
 .zoom-in-enter-active,
 .zoom-in-leave-active {

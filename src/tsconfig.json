@@ -20,7 +20,6 @@
     "types": [
       "@types/node",
       "@nuxt/types",
-      "nuxt-buefy",
       "@types/webpack-env",
       "nuxt-fire",
       "nuxt-i18n",

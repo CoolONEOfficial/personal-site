@@ -4,8 +4,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
-import { TimelineAchievement } from '~/types/timeline'
 import Item from '~/components/timeline/Item.vue'
+import { TimelineAchievement } from "~/types/items/achievement";
 
 @Component({
   components: { Item }

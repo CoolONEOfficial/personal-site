@@ -1,7 +1,11 @@
 <template>
   <div>
     <img
-      class="item-image"
+      :class="[
+        'item-image',
+        { 'right-inset': !$device.isMobile && itemRtl },
+        { 'left-inset': !$device.isMobile && !itemRtl }
+      ]"
       :src="item.singleImage.small"
       @click="onImageClick"
     />
@@ -14,7 +18,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { Prop } from '~/node_modules/nuxt-property-decorator'
-import { TimelineItem } from '~/types/timeline'
+import { isRtl, TimelineItem } from '~/types/timeline'
 
 @Component({})
 export default class extends Vue {
@@ -26,6 +30,10 @@ export default class extends Vue {
   onImageClick() {
     this.isModalActive = true
   }
+
+  get itemRtl() {
+    return isRtl(this, this.item)
+  }
 }
 </script>
 
@@ -35,5 +43,13 @@ export default class extends Vue {
   height: 300px;
   width: 100%;
   overflow: hidden;
+}
+
+.right-inset {
+  padding-right: 0.5em !important;
+}
+
+.left-inset {
+  padding-left: 0.5em !important;
 }
 </style>

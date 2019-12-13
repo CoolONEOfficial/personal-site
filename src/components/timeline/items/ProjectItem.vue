@@ -10,8 +10,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
-import { TimelineProject } from '~/types/timeline'
 import Item from '~/components/timeline/Item.vue'
+import { TimelineProject } from "~/types/items/project";
 
 @Component({
   components: { Item }

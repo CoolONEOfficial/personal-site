@@ -8,8 +8,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
-import { TimelineBook } from '~/types/timeline'
 import Item from '~/components/timeline/Item.vue'
+import { TimelineBook } from "~/types/items/book";
 
 @Component({
   components: { Item }

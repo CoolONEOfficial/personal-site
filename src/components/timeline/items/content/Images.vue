@@ -45,7 +45,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { Prop } from '~/node_modules/nuxt-property-decorator'
-import { TimelineItem } from '~/types/timeline'
+import { isRtl, TimelineItem } from "~/types/timeline";
 
 @Component({})
 export default class extends Vue {
@@ -62,7 +62,7 @@ export default class extends Vue {
   navigateTo: any = 0
 
   get itemRtl() {
-    return !this.$device.isMobile && this.item._orderId % 2 !== 0
+    return isRtl(this, this.item)
   }
 }
 </script>

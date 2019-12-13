@@ -1,6 +1,30 @@
-import firebase from 'firebase'
-import Timestamp = firebase.firestore.Timestamp
-import FireGeoPoint = firebase.firestore.GeoPoint
+export interface Item {
+  title: LocalizedString
+  date: number
+  images?: Image[]
+  singleImage?: Image
+}
+
+export interface PageItem extends Item {
+  description?: string
+}
+
+export interface TimelineItem extends Item {
+  description?: string
+
+  _type: string
+  _doc: string
+  _orderId: number
+}
+
+export function isRtl(context, item: TimelineItem) {
+  return !context.$device.isMobile && item._orderId % 2 !== 0
+}
+
+export interface LocalizedString {
+  en: string
+  ru: string
+}
 
 export interface GeoPoint {
   latitude: number
@@ -12,43 +36,7 @@ export interface Image {
   small: string
 }
 
-export interface TimelineItem {
-  title: LocalizedString
-  date: number
-  images?: Image[]
-  singleImage?: Image
-  description?: string
-
-  _type: string
-  _doc: string
-  _orderId: number
-}
-
-export interface LocalizedString {
-  en: string
-  ru: string
-}
-
-export interface TimelineProject extends TimelineItem {
-  github: string
-  platform: string
-  category: string
-}
-
-export interface TimelineBook extends TimelineItem {
-  author: string
-}
-
-export interface TimelineAchievement extends TimelineItem {
-  type: string
-}
-
 export interface Location {
   title: LocalizedString
   geopoint: GeoPoint
-}
-
-export interface TimelineHack extends TimelineItem {
-  place: number
-  location: Location
 }
