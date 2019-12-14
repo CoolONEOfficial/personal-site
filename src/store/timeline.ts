@@ -1,5 +1,4 @@
-import { vuexfireMutations } from 'vuexfire'
-import { GeoPoint, Image, TimelineItem } from '~/types/timeline'
+import { Image, TimelineItem } from "~/types/timeline";
 import firebase from 'firebase'
 import Timestamp = firebase.firestore.Timestamp
 import QuerySnapshot = firebase.firestore.QuerySnapshot
@@ -10,7 +9,6 @@ export const state = () => ({
 })
 
 export const mutations = {
-  ...vuexfireMutations,
   updateTimelineItems(state, payload) {
     state.timelineItems = payload
   },

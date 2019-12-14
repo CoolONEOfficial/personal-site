@@ -33,21 +33,34 @@ export default class extends Vue {
   display: flex;
 }
 
+.column {
+  transition: color 300ms linear;
+}
+
 .item-image {
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 0.75em;
   opacity: 0.6;
+  transition: opacity 300ms linear;
 }
 
 .nav-item {
   margin-top: 1em;
   margin-bottom: 1em;
+  transition: background 300ms linear;
 }
 
-.selected, .nav-item:hover {
+.selected {
   background: hsl(0, 0%, 98%);
+}
 
+.nav-item:hover {
+  background: hsl(0, 0%, 96%) !important;
+}
+
+.selected,
+.nav-item:hover {
   .item-image {
     opacity: 1 !important;
   }

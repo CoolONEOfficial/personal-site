@@ -1,4 +1,5 @@
 import { Configuration } from '@nuxt/types'
+import { PRIMARY_COLOR } from './util/constants'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -19,22 +20,36 @@ const config: Configuration = {
         name: 'description',
         content: process.env.npm_package_description || ''
       },
-      { name: 'msapplication-TileColor', content: '#03A9F4' },
-      { name: 'theme-color', content: '#03A9F4' }
+      { name: 'msapplication-TileColor', content: PRIMARY_COLOR },
+      { name: 'theme-color', content: PRIMARY_COLOR }
     ],
     link: [
       { rel: 'canonical', href: 'https://coolone.ru/' },
-      { rel: 'apple-touch-icon', sizes:"180x180", href: '/apple-touch-icon.png' },
-      { rel: 'icon', type:'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-      { rel: 'icon', type:'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png'
+      },
       { rel: 'manifest', href: '/site.webmanifest' },
-      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#03A9F4' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: PRIMARY_COLOR }
     ]
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: PRIMARY_COLOR },
   /*
    ** Global CSS
    */
@@ -42,7 +57,7 @@ const config: Configuration = {
     './assets/scss/buefy.scss',
     './assets/scss/vue-carousel.scss',
     './assets/scss/styles.scss',
-    'bulma-helpers/css/bulma-helpers.min.css',
+    'bulma-helpers/css/bulma-helpers.min.css'
   ],
   styleResources: {
     scss: ['./assets/scss/buefy.scss']

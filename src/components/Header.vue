@@ -3,7 +3,7 @@
     <template slot="brand">
       <b-navbar-item @click="onLogoClicked">
         <img
-          src="favicon.jpg"
+          src="/favicon.jpg"
           style="border-radius: 50%;"
           alt="Favicon image"
           class="has-margin-right-10"
@@ -28,6 +28,7 @@
 
     <template slot="end">
       <HeaderItem v-for="(i, index) of endItems" :key="index" :item="i" />
+      <div style="width: 0.75rem" />
     </template>
   </b-navbar>
 </template>
