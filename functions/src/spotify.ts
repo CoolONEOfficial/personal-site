@@ -1,4 +1,6 @@
-const functions = require('firebase-functions')
+// const { db } = require('./index')
+
+// const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 const firebaseHelper = require('firebase-functions-helper/dist')
 const request = require('request-promise')
@@ -7,7 +9,7 @@ require('dotenv').config()
 
 const app = (module.exports = require('express')())
 
-admin.initializeApp(functions.config().firebase)
+// admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
 
 // Express app
