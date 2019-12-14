@@ -4,6 +4,10 @@ $navbar-height: 5rem;
 $navbar-item-img-max-height: 3.5rem;
 $easing: ease-out;
 $primary: #03A9F4;
+$primary-light: #81D4FA;
+$link: #4a4a4a;
+$link-invert: $primary;
+$navbar-item-color: #7a7a7a;
 
 @import '~bulma';
 @import '~bulma-timeline';

@@ -52,7 +52,7 @@ export default class extends Vue {
     const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${spotifyClientId}&response_type=code&scope=user-read-currently-playing,user-read-recently-played&redirect_uri=${clientBaseUrl}/api/v1/spotify/callback`
     return {
       spotifyUrl,
-      query,
+      query
     }
   }
 }

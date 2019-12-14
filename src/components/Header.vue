@@ -1,28 +1,26 @@
 <template>
   <b-navbar>
     <template slot="brand">
-      <nuxt-link :to="localePath('index')">
-        <b-navbar-item>
-          <img
-            src="favicon.jpg"
-            style="border-radius: 50%;"
-            alt="Favicon image"
-            class="has-margin-right-10"
-          />
-          <div>
-            <h1 class="title is-5">{{ $t('initials') }}</h1>
-            <div class="columns is-marginless">
-              <div class="tag-text tags has-addons is-marginless logo-subtitle">
-                <span class="tag hover-light is-dark is-marginless">Web</span>
-                <span class="tag hover-dark is-primary is-marginless last-tag"
-                  >Mobile</span
-                >
-                {{ $t('developer') }}
-              </div>
+      <b-navbar-item @click="onLogoClicked">
+        <img
+          src="favicon.jpg"
+          style="border-radius: 50%;"
+          alt="Favicon image"
+          class="has-margin-right-10"
+        />
+        <div>
+          <h1 class="title is-5">{{ $t('initials') }}</h1>
+          <div class="columns is-marginless">
+            <div class="tag-text tags has-addons is-marginless logo-subtitle">
+              <span class="tag hover-light is-dark is-marginless">Web</span>
+              <span class="tag hover-dark is-primary is-marginless last-tag"
+                >Mobile</span
+              >
+              {{ $t('developer') }}
             </div>
           </div>
-        </b-navbar-item>
-      </nuxt-link>
+        </div>
+      </b-navbar-item>
     </template>
     <template slot="start">
       <HeaderItem v-for="(i, index) of items" :key="index" :item="i" />
@@ -82,6 +80,10 @@ export default class extends Vue {
       to: 'about'
     }
   ]
+
+  onLogoClicked() {
+    this.$router.push(this.localePath('index'))
+  }
 }
 </script>
 

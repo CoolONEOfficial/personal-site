@@ -1,15 +1,16 @@
 <template>
-  <b-navbar-item>
-    <nuxt-link :to="localePath(item.to)">
-      <div class="columns">
-        <figure class="image is-16x16 item-image">
-          <img :src="`icons/black/icons8-${item.icon}-50.png`" />
-        </figure>
-        <div class="column">
-          {{ $t(item.title) }}
-        </div>
+  <b-navbar-item
+    :class="['nav-item', { selected: $route.path.includes(item.to) }]"
+    @click="onItemClicked"
+  >
+    <div class="columns">
+      <figure class="image is-16x16 item-image">
+        <img :src="`/icons/black/icons8-${item.icon}-50.png`" />
+      </figure>
+      <div class="column">
+        {{ $t(item.title) }}
       </div>
-    </nuxt-link>
+    </div>
   </b-navbar-item>
 </template>
 
@@ -20,6 +21,10 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 export default class extends Vue {
   @Prop({ required: true })
   item
+
+  onItemClicked() {
+    this.$router.push(this.localePath(this.item.to))
+  }
 }
 </script>
 
@@ -32,6 +37,24 @@ export default class extends Vue {
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 0.75em;
+  opacity: 0.6;
+}
+
+.nav-item {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.selected, .nav-item:hover {
+  background: hsl(0, 0%, 98%);
+
+  .item-image {
+    opacity: 1 !important;
+  }
+
+  .column {
+    color: #4a4a4a !important;
+  }
 }
 </style>
 

@@ -1,15 +1,14 @@
 <template>
-    <div>
-        about
-    </div>
+  <div>
+    about
+  </div>
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from "nuxt-property-decorator";
+import { Component, Vue } from 'nuxt-property-decorator'
 
-  @Component({})
-  export default class extends Vue {
-  }
+@Component({})
+export default class extends Vue {}
 </script>
 
 <style scoped lang="scss"></style>
