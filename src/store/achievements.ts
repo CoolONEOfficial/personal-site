@@ -2,6 +2,7 @@ import firebase from 'firebase'
 import { TimelineAchievement } from '~/types/items/achievement'
 import QuerySnapshot = firebase.firestore.QuerySnapshot
 import Timestamp = firebase.firestore.Timestamp
+import { PAGINATION_COUNT } from "~/util/constants";
 
 export const state = () => ({
   achievements: [],
@@ -39,7 +40,7 @@ async function getAchievements(that) {
     await that.$fireStore
       .collection('achievements')
       .orderBy('date')
-      .limit(5)
+      .limit(PAGINATION_COUNT)
       .get()
   )
 }
@@ -53,7 +54,7 @@ async function nextPage(that, achievements: TimelineAchievement[]) {
       .startAfter(
         Timestamp.fromMillis(achievements[achievements.length - 1].date)
       )
-      .limit(5)
+      .limit(PAGINATION_COUNT)
       .get()
   )
 }
@@ -64,7 +65,7 @@ async function prevPage(that, achievements) {
       .collection('achievements')
       .orderBy('date')
       .endBefore(Timestamp.fromMillis(achievements[0].date))
-      .limitToLast(5)
+      .limitToLast(PAGINATION_COUNT)
       .get()
   )
 }

@@ -1,6 +1,12 @@
 <template>
   <div :class="['container', { 'is-loading': isLoading }]">
-    <div class="columns is-multiline">
+    <div
+      :class="[
+        'columns',
+        'is-multiline',
+        `columns-${$device.isMobile ? 'mobile' : 'desktop'}`
+      ]"
+    >
       <div
         class="column is-one-third"
         v-for="(i, index) of getAchievements"
@@ -81,14 +87,18 @@ export default class extends Vue {
 </script>
 
 <style scoped lang="scss">
-  .container {
-    transition: opacity 1s;
-  }
-  .is-loading {
-    opacity: 0.5;
-  }
+.container {
+  transition: opacity 1s;
+}
+.is-loading {
+  opacity: 0.5;
+}
 
-  .columns {
-    min-height: calc(100vh - 3.5rem - 80px);
-  }
+.columns-desktop {
+  min-height: calc(100vh - 3.5rem - 80px);
+}
+
+.columns-mobile {
+  min-height: calc(100vh - 5rem - 25px);
+}
 </style>

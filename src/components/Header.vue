@@ -1,5 +1,5 @@
 <template>
-  <b-navbar>
+  <b-navbar class="header">
     <template slot="brand">
       <b-navbar-item @click="onLogoClicked">
         <img
@@ -89,19 +89,21 @@ export default class extends Vue {
 </script>
 
 <style lang="scss">
-.title {
-  margin-bottom: 5px !important;
-}
+.header {
+  .title {
+    margin-bottom: 5px !important;
+  }
 
-.last-tag {
-  margin-right: 0.5rem !important;
-}
+  .last-tag {
+    margin-right: 0.5rem !important;
+  }
 
-.tag-text {
-  margin-left: 0.5rem;
-  font-size: 0.75rem;
-  color: $grey !important;
-  line-height: 1.6 !important;
+  .tag-text {
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    color: $grey !important;
+    line-height: 1.6 !important;
+  }
 }
 </style>
 
