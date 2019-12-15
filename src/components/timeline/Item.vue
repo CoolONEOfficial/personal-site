@@ -12,7 +12,7 @@
     <div class="timeline-content">
       <p class="heading">
         {{
-          $dateFns.format(new Date(item.date).getTime(), 'd MMMM yyyy', {
+          $dateFns.format(item.date.getTime(), 'd MMMM yyyy', {
             locale: locales[$i18n.locale]
           })
         }}

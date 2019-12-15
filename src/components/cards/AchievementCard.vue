@@ -3,10 +3,7 @@ import { enUS } from "date-fns/locale";import { ru } from "date-fns/locale";
   <div class="card">
     <div class="card-image">
       <figure class="image is-4by3">
-        <img
-          src="https://bulma.io/images/placeholders/1280x960.png"
-          alt="Placeholder image"
-        />
+        <img :src="itemImage" />
       </figure>
     </div>
     <div class="card-content">
@@ -30,8 +27,8 @@ import { enUS } from "date-fns/locale";import { ru } from "date-fns/locale";
         iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
         <a href="#">#responsive</a>
         <br />
-        <time :datetime="new Date(item.date).toDateString()">{{
-          $dateFns.format(new Date(item.date).getTime(), 'd MMMM yyyy', {
+        <time :datetime="item.date.toDateString()">{{
+          $dateFns.format(item.date.getTime(), 'd MMMM yyyy', {
             locale: locales[$i18n.locale]
           })
         }}</time>
@@ -53,6 +50,14 @@ export default class extends Vue {
   locales = {
     en: enUS,
     ru
+  }
+
+  get itemImage() {
+    if (this.item.singleImage) return this.item.singleImage.small
+
+    if (this.item.images) return this.item.images[0].small
+
+    return
   }
 }
 </script>

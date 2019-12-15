@@ -3,6 +3,7 @@ import { TimelineAchievement } from '~/types/items/achievement'
 import QuerySnapshot = firebase.firestore.QuerySnapshot
 import Timestamp = firebase.firestore.Timestamp
 import { PAGINATION_COUNT } from '~/util/constants'
+import { Item } from '~/types/types'
 
 export const state = () => ({
   achievements: [],
@@ -30,16 +31,17 @@ async function getDocsCount(that) {
   return sizeDoc.data()['numberOfDocs']
 }
 
-function parseQuery(ss: QuerySnapshot) {
-  return ss.docs.map((mDoc) => {
-    const data = mDoc.data()
-    data['date'] = data['date'].toMillis()
-    return data
-  })
+function parseQuery(that, ss: QuerySnapshot) {
+  return Promise.all(
+    ss.docs.map(async (mDoc) => {
+      return (await TimelineAchievement.fromDoc(that, mDoc)) as never
+    })
+  )
 }
 
 async function getAchievements(that) {
   return parseQuery(
+    that,
     await queryRef(that)
       .limit(PAGINATION_COUNT)
       .get()
@@ -48,9 +50,10 @@ async function getAchievements(that) {
 
 async function nextPage(that, achievements: TimelineAchievement[]) {
   return parseQuery(
+    that,
     await queryRef(that)
       .startAfter(
-        Timestamp.fromMillis(achievements[achievements.length - 1].date)
+        Timestamp.fromDate(achievements[achievements.length - 1].date)
       )
       .limit(PAGINATION_COUNT)
       .get()
@@ -59,6 +62,7 @@ async function nextPage(that, achievements: TimelineAchievement[]) {
 
 async function prevPage(that, achievements) {
   return parseQuery(
+    that,
     await queryRef(that)
       .endBefore(Timestamp.fromMillis(achievements[0].date))
       .limitToLast(PAGINATION_COUNT)

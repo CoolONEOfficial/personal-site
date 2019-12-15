@@ -1,7 +1,11 @@
-import { Image, TimelineItem } from "~/types/timeline";
 import firebase from 'firebase'
-import Timestamp = firebase.firestore.Timestamp
 import QuerySnapshot = firebase.firestore.QuerySnapshot
+import { TimelineItem } from '~/types/timeline'
+import { Item } from '~/types/types'
+import { TimelineHack } from '~/types/items/hack'
+import { TimelineProject } from '~/types/items/project'
+import { TimelineBook } from '~/types/items/book'
+import { TimelineAchievement } from '~/types/items/achievement'
 
 export const state = () => ({
   timelineItems: [],
@@ -29,61 +33,16 @@ function mergeAndSortItems(that, ...colNames: any) {
         const mergedData = []
         for (const snapshot of promiseResults) {
           for (const doc of snapshot.docs) {
-            const data = doc.data()
-            data['date'] = (data['date'] as Timestamp).toDate()
-            data['_type'] = doc.ref.parent.path
-            data['_doc'] = doc.id
-            if (data['_type'] == 'hacks') {
-              data['location']['geopoint'] = {
-                latitude: data['location']['geopoint'].latitude,
-                longitude: data['location']['geopoint'].longitude
-              }
-            }
-            if (Boolean(data['images'])) {
-              let images: Image[]
-
-              if (process.env.NODE_ENV === 'production') {
-                const list = (
-                  await that.$fireStorage
-                    .ref()
-                    .child(`${data._type}/${data._doc}`)
-                    .list()
-                ).items
-
-                images = []
-                for (let i = 0; i < list.length; i += 2) {
-                  images.push({
-                    original: await list[i].getDownloadURL(),
-                    small: await list[i + 1].getDownloadURL()
-                  })
-                }
-              } else
-                images = new Array(5).fill({
-                  original: 'icon.png',
-                  small: 'icon.png'
-                })
-
-              data['images'] = images
-            } else if (Boolean(data['singleImage'])) {
-              data['singleImage'] =
-                process.env.NODE_ENV === 'production'
-                  ? {
-                      original: await that.$fireStorage
-                        .ref()
-                        .child(`${data._type}/${data._doc}/1.jpg`)
-                        .getDownloadURL(),
-                      small: await that.$fireStorage
-                        .ref()
-                        .child(`${data._type}/${data._doc}/1_400x400.jpg`)
-                        .getDownloadURL()
-                    }
-                  : {
-                      original: 'icon.png',
-                      small: 'icon.png'
-                    }
+            const typeMap = {
+              hacks: TimelineHack,
+              projects: TimelineProject,
+              books: TimelineBook,
+              achievements: TimelineAchievement
             }
 
-            mergedData.push(data as never)
+            mergedData.push(
+              (await typeMap[doc.ref.parent.path].fromDoc(that, doc)) as never
+            )
           }
         }
         return mergedData
@@ -91,9 +50,12 @@ function mergeAndSortItems(that, ...colNames: any) {
 
       // sort the results
       .then((mergedData) =>
-        mergedData.sort(
-          (a, b) => (b as TimelineItem).date - (a as TimelineItem).date
-        )
+        mergedData.sort((a, b) => {
+          return (
+            (b as TimelineItem).date.getTime() -
+            (a as TimelineItem).date.getTime()
+          )
+        })
       )
 
       .then((sortedData) => {
@@ -118,7 +80,7 @@ function mergeAndSortItems(that, ...colNames: any) {
           ).getFullYear()
           if (prevYear > currentYear) {
             orderedData.splice(index, 0, {
-              date: new Date(prevYear, 1, 1).getTime(),
+              date: new Date(prevYear, 1, 1),
               _type: 'years'
             } as never)
             index++

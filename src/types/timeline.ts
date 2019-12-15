@@ -1,40 +1,40 @@
-export interface Item {
-  title: LocalizedString
-  date: number
-  images?: Image[]
-  singleImage?: Image
-  description?: LocalizedString
-}
+import firebase from 'firebase'
+import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
+import { Item } from '~/types/types'
 
-export interface PageItem extends Item {
-}
+export class TimelineItem extends Item {
+  public _orderId!: number
 
-export interface TimelineItem extends Item {
-  _type: string
-  _doc: string
-  _orderId: number
+  constructor(
+    title,
+    date,
+    images,
+    singleImage,
+    description,
+    public _type: string,
+    public _doc: string
+  ) {
+    super(title, date, images, singleImage, description)
+  }
+
+  static async fromDoc(
+    that,
+    doc: QueryDocumentSnapshot
+  ): Promise<TimelineItem> {
+    const item = await super.fromDoc(that, doc)
+
+    return new TimelineItem(
+      item.title,
+      item.date,
+      item.images,
+      item.singleImage,
+      item.description,
+      doc.ref.parent.path,
+      doc.id
+    )
+  }
 }
 
 export function isRtl(context, item: TimelineItem) {
   return !context.$device.isMobile && item._orderId % 2 !== 0
-}
-
-export interface LocalizedString {
-  en: string
-  ru: string
-}
-
-export interface GeoPoint {
-  latitude: number
-  longitude: number
-}
-
-export interface Image {
-  original: string
-  small: string
-}
-
-export interface Location {
-  title: LocalizedString
-  geopoint: GeoPoint
 }
