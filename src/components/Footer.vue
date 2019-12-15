@@ -108,7 +108,7 @@ export default class extends Vue {
 <i18n>
   {
     "en": {
-      "initials": "Nickolay Trukhin",
+      "initials": "Website portfolio of Nikolai Trukhin",
       "license-text": "The source code is licensed"
     },
     "ru": {

@@ -124,7 +124,7 @@ const config: Configuration = {
   },
   buefy: {
     css: false,
-    materialDesignIcons: false
+    materialDesignIcons: true
   },
   i18n: {
     locales: ['en', 'ru'],
