@@ -3,15 +3,13 @@ export interface Item {
   date: number
   images?: Image[]
   singleImage?: Image
+  description?: LocalizedString
 }
 
 export interface PageItem extends Item {
-  description?: string
 }
 
 export interface TimelineItem extends Item {
-  description?: string
-
   _type: string
   _doc: string
   _orderId: number

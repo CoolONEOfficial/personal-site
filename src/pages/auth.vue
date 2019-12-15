@@ -15,7 +15,11 @@
 <script lang="ts">
 import { Component, State, Vue } from 'nuxt-property-decorator'
 
-@Component({})
+@Component({
+  nuxtI18n: {
+    seo: false
+  }
+})
 export default class extends Vue {
   get isConnected() {
     return this.$store.state.isConnected

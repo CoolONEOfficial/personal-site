@@ -1,15 +1,22 @@
+import { enUS } from "date-fns/locale";import { ru } from "date-fns/locale";
 <template>
   <div class="card">
     <div class="card-image">
       <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+        <img
+          src="https://bulma.io/images/placeholders/1280x960.png"
+          alt="Placeholder image"
+        />
       </figure>
     </div>
     <div class="card-content">
       <div class="media">
         <div class="media-left">
           <figure class="image is-48x48">
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+            <img
+              src="https://bulma.io/images/placeholders/96x96.png"
+              alt="Placeholder image"
+            />
           </figure>
         </div>
         <div class="media-content">
@@ -19,21 +26,35 @@
       </div>
 
       <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-        <a href="#">#css</a> <a href="#">#responsive</a>
-        <br>
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
+        iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
+        <a href="#">#responsive</a>
+        <br />
+        <time :datetime="new Date(item.date).toDateString()">{{
+          $dateFns.format(new Date(item.date).getTime(), 'd MMMM yyyy', {
+            locale: locales[$i18n.locale]
+          })
+        }}</time>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { TimelineItem } from '~/types/timeline'
+import { enUS, ru } from 'date-fns/locale'
 
 @Component({})
-export default class extends Vue {}
+export default class extends Vue {
+  @Prop({ required: true })
+  item!: TimelineItem
+
+  locales = {
+    en: enUS,
+    ru
+  }
+}
 </script>
 
 <style scoped lang="scss"></style>

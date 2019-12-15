@@ -11,7 +11,15 @@ const config: Configuration = {
    ** Headers of the page
    */
   head: {
-    title: 'Personal site of CoolONEOfficial',
+    // @ts-ignore
+    titleTemplate: ({ title, locale }) => {
+      const end = {
+        ru: 'Cайт-портфолио Николая Трухина',
+        en: 'Website portfolio of Nikolai Trukhin'
+      }
+
+      return title ? `${title} — ${end[locale]}` : end[locale]
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -127,8 +135,19 @@ const config: Configuration = {
     materialDesignIcons: true
   },
   i18n: {
-    locales: ['en', 'ru'],
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US'
+      },
+      {
+        code: 'ru',
+        iso: 'ru-RU'
+      }
+    ],
+    baseUrl: 'https://coolone.ru',
     defaultLocale: 'en',
+    seo: true,
     strategy: 'prefix',
     vueI18n: { fallbackLocale: 'en' },
     vueI18nLoader: true

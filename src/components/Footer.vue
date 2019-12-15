@@ -37,20 +37,8 @@ import { Component, Vue } from 'nuxt-property-decorator'
 export default class extends Vue {
   socials = [
     {
-      icon: 'instagram',
-      url: 'https://www.instagram.com/coolone.official/'
-    },
-    {
-      icon: 'vk-circled',
-      url: 'https://vk.com/cooloneofficial'
-    },
-    {
       icon: 'facebook',
       url: 'https://www.facebook.com/coolone.official'
-    },
-    {
-      icon: 'linkedin',
-      url: 'https://www.linkedin.com/in/cooloneofficial/'
     },
     {
       icon: 'skype',
@@ -60,6 +48,18 @@ export default class extends Vue {
       icon: 'spotify',
       url:
         'https://open.spotify.com/user/cooloneofficial?si=hGzFbziRTcWYOCEGZwdREQ'
+    },
+    {
+      icon: 'linkedin',
+      url: 'https://www.linkedin.com/in/cooloneofficial/'
+    },
+    {
+      icon: 'instagram',
+      url: 'https://www.instagram.com/coolone.official/'
+    },
+    {
+      icon: 'vk-circled',
+      url: 'https://vk.com/cooloneofficial'
     }
   ]
 }

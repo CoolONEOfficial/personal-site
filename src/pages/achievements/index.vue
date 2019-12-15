@@ -83,6 +83,12 @@ export default class extends Vue {
       console.error('error! ', e)
     }
   }
+
+  head() {
+    return {
+      title: { title: this.$t('title'), locale: this.$i18n.locale }
+    }
+  }
 }
 </script>
 
@@ -102,3 +108,14 @@ export default class extends Vue {
   min-height: calc(100vh - 5rem - 25px);
 }
 </style>
+
+<i18n>
+  {
+    "en": {
+      "title": "Achievements"
+    },
+    "ru": {
+      "title": "Достижения"
+    }
+  }
+</i18n>
