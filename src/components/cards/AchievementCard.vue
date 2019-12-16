@@ -55,8 +55,7 @@ import { enUS, ru } from 'date-fns/locale'
 import { TimelineAchievement } from '~/types/items/achievement'
 
 @Component({
-  components: {
-  }
+  components: {}
 })
 export default class extends Vue {
   @Prop({ required: true })
