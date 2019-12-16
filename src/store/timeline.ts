@@ -1,7 +1,6 @@
 import firebase from 'firebase'
 import QuerySnapshot = firebase.firestore.QuerySnapshot
 import { TimelineItem } from '~/types/timeline'
-import { Item } from '~/types/types'
 import { TimelineHack } from '~/types/items/hack'
 import { TimelineProject } from '~/types/items/project'
 import { TimelineBook } from '~/types/items/book'

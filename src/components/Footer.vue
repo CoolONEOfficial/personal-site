@@ -15,7 +15,7 @@
         <div class="column">
           <div :class="['socials', { 'socials-mobile': $device.isMobile }]">
             <figure
-              class="image is-32x32 social"
+              class="image is-32x32 social icon-hover"
               v-for="(i, index) of socials"
               :key="index"
             >
@@ -90,12 +90,6 @@ export default class extends Vue {
 
 .social {
   padding: 0 !important;
-  opacity: 0.6;
-  transition: opacity 300ms linear;
-
-  &:hover {
-    opacity: 1;
-  }
 
   margin: 0 0 0 1em !important;
 

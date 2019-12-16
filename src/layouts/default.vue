@@ -12,6 +12,12 @@
   </div>
 </template>
 
+<style lang="scss">
+.main-content {
+  min-height: calc(100vh - 6em);
+}
+</style>
+
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import Header from '~/components/Header.vue'

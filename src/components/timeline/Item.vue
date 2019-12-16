@@ -10,20 +10,52 @@
       />
     </div>
     <div class="timeline-content">
-      <p class="heading">
-        {{
-          $dateFns.format(item.date.getTime(), 'd MMMM yyyy', {
-            locale: locales[$i18n.locale]
-          })
-        }}
-      </p>
-      <p>{{ item.title[$i18n.locale] }}</p>
-      <h2
-        v-show="Boolean(subtitle)"
-        class="subtitle is-size-7 has-margin-bottom-10"
+      <div
+        :class="[
+          'columns',
+          'is-marginless',
+          'is-paddingless',
+          'head-content',
+          { reverse: itemRtl }
+        ]"
       >
-        {{ subtitle }}
-      </h2>
+        <div class="column is-marginless is-paddingless">
+          <p class="heading">
+            {{
+              $dateFns.format(item.date.getTime(), 'd MMMM yyyy', {
+                locale: locales[$i18n.locale]
+              })
+            }}
+          </p>
+          <p>{{ item.title[$i18n.locale] }}</p>
+          <h2
+            v-show="Boolean(subtitle)"
+            class="subtitle is-size-7 has-margin-bottom-10"
+          >
+            {{ subtitle }}
+          </h2>
+        </div>
+        <div class="column is-marginless is-paddingless is-narrow">
+          <nuxt-link
+            :to="
+              localePath({
+                name: `${item._type}-doc`,
+                params: { doc: item._doc }
+              })
+            "
+          >
+            <b-icon
+              :class="[
+                'icon-open',
+                `icon-open-${itemRtl ? 'left' : 'right'}`,
+                'icon-hover'
+              ]"
+              :icon="`chevron-${itemRtl ? 'left' : 'right'}`"
+              size="is-medium"
+            />
+          </nuxt-link>
+        </div>
+      </div>
       <div class="content reverse">
         <div
           :class="[
@@ -49,7 +81,7 @@
 <script lang="ts">
 import { Component, Prop, State, Vue } from 'nuxt-property-decorator'
 import { enUS, ru } from 'date-fns/locale'
-import { isRtl, TimelineItem } from "~/types/timeline";
+import { isRtl, TimelineItem } from '~/types/timeline'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
 import SingleImage from '~/components/timeline/items/content/SingleImage.vue'
 import Images from '~/components/timeline/items/content/Images.vue'
@@ -101,8 +133,21 @@ export default class extends Vue {
 </script>
 
 <style scoped lang="scss">
-.reverse {
-  flex-direction: row-reverse;
+.head-content {
+  width: 100%;
+}
+
+.icon-open {
+  position: absolute;
+  top: 2rem;
+
+  &-left {
+    left: calc(1rem);
+  }
+
+  &-right {
+    right: calc(1rem);
+  }
 }
 
 .content {
@@ -117,6 +162,11 @@ export default class extends Vue {
   overflow: hidden;
 
   transition: max-height 1.2s 0.2s, opacity 0.2s linear 0s;
+}
+
+.icon-open {
+  opacity: 0;
+  cursor: pointer;
 }
 
 .timeline-item {
@@ -149,6 +199,9 @@ export default class extends Vue {
       max-height: 400px;
       opacity: 1;
       transition: max-height 1.2s 0s, opacity 0.5s linear 0.5s;
+    }
+    .icon-open {
+      opacity: 0.6;
     }
   }
 }

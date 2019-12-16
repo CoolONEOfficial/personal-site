@@ -18,7 +18,6 @@ export class Item {
     if (Boolean(data.images)) {
       let images: Image[]
 
-      console.log('preimages')
       if (process.env.NODE_ENV === 'production') {
         const list = (
           await that.$fireStorage

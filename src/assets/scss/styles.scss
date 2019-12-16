@@ -1,3 +1,16 @@
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.icon-hover {
+  opacity: .6;
+  transition: opacity .3s linear;
+
+  &:hover {
+    opacity: 1 !important;
+  }
+}
+
 .modal-image {
   position: relative;
   top: 50%;
