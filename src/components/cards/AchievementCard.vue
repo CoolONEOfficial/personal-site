@@ -53,11 +53,9 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { enUS, ru } from 'date-fns/locale'
 import { TimelineAchievement } from '~/types/items/achievement'
-import VClamp from 'vue-clamp'
 
 @Component({
   components: {
-    VClamp
   }
 })
 export default class extends Vue {
