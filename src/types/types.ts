@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import Timestamp = firebase.firestore.Timestamp
 import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
+import { PLACEHOLDER_IMAGE } from '~/util/constants'
 
 export class Item {
   constructor(
@@ -14,14 +15,15 @@ export class Item {
   static async fromDoc(that, doc: QueryDocumentSnapshot): Promise<Item> {
     const data = doc.data()
 
-    if (Boolean(data['images'])) {
+    if (Boolean(data.images)) {
       let images: Image[]
 
+      console.log('preimages')
       if (process.env.NODE_ENV === 'production') {
         const list = (
           await that.$fireStorage
             .ref()
-            .child(`${data._type}/${data._doc}`)
+            .child(`${doc.ref.parent.path}/${doc.id}/images`)
             .list()
         ).items
 
@@ -34,27 +36,31 @@ export class Item {
         }
       } else
         images = new Array(5).fill({
-          original: 'icon.png',
-          small: 'icon.png'
+          original: PLACEHOLDER_IMAGE,
+          small: PLACEHOLDER_IMAGE
         })
 
       data['images'] = images
-    } else if (Boolean(data.singleImage)) {
+    }
+
+    if (Boolean(data.singleImage)) {
       data.singleImage =
         process.env.NODE_ENV === 'production'
           ? {
               original: await that.$fireStorage
                 .ref()
-                .child(`${data._type}/${data._doc}/1.jpg`)
+                .child(`${doc.ref.parent.path}/${doc.id}/singleImage/1.jpg`)
                 .getDownloadURL(),
               small: await that.$fireStorage
                 .ref()
-                .child(`${data._type}/${data._doc}/1_400x400.jpg`)
+                .child(
+                  `${doc.ref.parent.path}/${doc.id}/singleImage/1_400x400.jpg`
+                )
                 .getDownloadURL()
             }
           : {
-              original: 'icon.png',
-              small: 'icon.png'
+              original: PLACEHOLDER_IMAGE,
+              small: PLACEHOLDER_IMAGE
             }
     }
 

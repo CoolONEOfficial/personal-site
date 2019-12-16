@@ -9,11 +9,19 @@
     >
       <div
         class="column is-one-third"
-        v-for="(i, index) of getAchievements"
+        v-for="(_, index) of new Array(paginationCount / 2)"
         :key="index"
         data-aos="fade"
       >
-        <AchievementCard :item="i" />
+        <AchievementCard
+          v-for="(i, cardIndex) of [
+            getAchievements[index],
+            getAchievements[paginationCount / 2 + index]
+          ].filter(Boolean)"
+          :key="cardIndex"
+          :item="i"
+          class="has-margin-top-20"
+        />
       </div>
     </div>
 
@@ -23,7 +31,7 @@
       :current.sync="currentPage"
       :per-page="paginationCount"
       order="is-centered"
-      size="small"
+      size="is-small"
     />
   </div>
 </template>

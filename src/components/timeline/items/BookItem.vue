@@ -19,5 +19,3 @@ export default class extends Vue {
   item!: TimelineBook
 }
 </script>
-
-<style scoped lang="scss"></style>

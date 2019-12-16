@@ -1,0 +1,12 @@
+{
+  "en": {
+    "certificate": "Certificate",
+    "diploma": "Diploma",
+    "other": "Other"
+  },
+  "ru": {
+    "certificate": "Сертификат",
+    "diploma": "Диплом",
+    "other": "Другое"
+  }
+}

@@ -12,8 +12,8 @@
           <h1 class="title is-5">{{ $t('initials') }}</h1>
           <div class="columns is-marginless">
             <b-taglist attached class="is-marginless">
-              <b-tag class="hover-light" type="is-dark">Web</b-tag>
-              <b-tag class="hover-dark" type="is-primary">Mobile</b-tag>
+              <b-tag class="hover-light is-marginless" type="is-dark">Web</b-tag>
+              <b-tag class="hover-dark is-marginless" type="is-primary">Mobile</b-tag>
             </b-taglist>
             <div class="tag-text">
               {{ $t('developer') }}

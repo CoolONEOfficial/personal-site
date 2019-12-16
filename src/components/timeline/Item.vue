@@ -5,7 +5,7 @@
   >
     <div class="timeline-marker is-image is-32x32" style="margin-top: 1em">
       <img
-        :src="`icons/black/icons8-${icon}-50.png`"
+        :src="`/icons/black/icons8-${icon}-50.png`"
         style="transform: scale(0.6)"
       />
     </div>

@@ -34,21 +34,21 @@ export default class extends Vue {
 }
 
 .column {
-  transition: color 300ms linear;
+  transition: color .3s linear;
 }
 
 .item-image {
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: 0.75em;
-  opacity: 0.6;
-  transition: opacity 300ms linear;
+  margin-left: .75em;
+  opacity: .6;
+  transition: opacity .3s linear;
 }
 
 .nav-item {
   margin-top: 1em;
   margin-bottom: 1em;
-  transition: background 300ms linear;
+  transition: background .3s linear;
 }
 
 .selected {

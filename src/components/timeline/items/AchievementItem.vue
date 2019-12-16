@@ -16,19 +16,5 @@ export default class extends Vue {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<i18n src="~/lang/achievementsTypes.json"/>
 
-<i18n>
-  {
-    "en": {
-      "certificate": "Certificate",
-      "diploma": "Diploma",
-      "other": "Other"
-    },
-    "ru": {
-      "certificate": "Сертификат",
-      "diploma": "Диплом",
-      "other": "Другое"
-    }
-  }
-</i18n>
