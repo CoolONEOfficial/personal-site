@@ -10,7 +10,7 @@ admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
 
 const sizesColl = "sizes";
-const listenCollections = ["achievements", "projects", "hacks", "books"];
+const listenCollections = ["achievements", "projects", "events", "books"];
 
 export const documentWriteListener = functions.firestore
   .document("{collectionId}/{documentUid}")

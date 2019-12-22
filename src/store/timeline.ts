@@ -1,10 +1,11 @@
 import firebase from 'firebase'
 import QuerySnapshot = firebase.firestore.QuerySnapshot
 import { TimelineItem } from '~/types/timeline'
-import { TimelineHack } from '~/types/items/hack'
+import { EventType } from '~/types/items/event'
 import { TimelineProject } from '~/types/items/project'
 import { TimelineBook } from '~/types/items/book'
 import { TimelineAchievement } from '~/types/items/achievement'
+import { TimelineHack } from "~/types/items/events/hack";
 
 export const state = () => ({
   timelineItems: [],
@@ -23,7 +24,12 @@ export const mutations = {
 function mergeAndSortItems(that, ...colNames: any) {
   const cols = []
   for (const mName of colNames) {
-    cols.push(that.$fireStore.collection(mName).get() as never)
+    const collRef = that.$fireStore.collection(mName)
+    cols.push(
+      mName == 'events'
+        ? (collRef.where('type', '==', EventType.HACKATHON).get() as never)
+        : (collRef.get() as never)
+    )
   }
   return (
     Promise.all(cols)
@@ -100,7 +106,7 @@ export const actions = {
       'projects',
       'books',
       'achievements',
-      'hacks'
+      'events'
     )
     commit('updateTimelineItems', items)
     return items

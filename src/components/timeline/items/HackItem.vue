@@ -10,7 +10,7 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import Item from '~/components/timeline/Item.vue'
 import Images from '~/components/timeline/items/content/Images.vue'
-import { TimelineHack } from "~/types/items/hack";
+import { TimelineHack } from "~/types/items/events/hack";
 
 @Component({
   components: { Images, Item }

@@ -10,7 +10,7 @@
     </div>
     <div class="card-content hover-dark" @click="onCardClicked">
       <div class="media">
-        <div class="media-left">
+        <div class="media-left" v-if="item.logo">
           <figure class="image is-48x48">
             <img :src="item.logo" />
           </figure>
@@ -86,7 +86,7 @@ export default class extends Vue {
   onCardClicked() {
     this.$router.push(
       this.localePath({
-        name: 'achievements-doc',
+        name: `${this.item._type}-doc`,
         params: { doc: this.item._doc }
       })
     )

@@ -39,7 +39,7 @@ import Header from '~/components/timeline/Header.vue'
     projects: ProjectItem,
     achievements: AchievementItem,
     years: YearItem,
-    hacks: HackItem
+    events: HackItem
   }
 })
 export default class extends Vue {

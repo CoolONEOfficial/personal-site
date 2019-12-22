@@ -15,7 +15,8 @@ import { COLL_NAMES } from '~/util/constants'
 import Card from '~/components/Card.vue'
 import CardCatalog from '~/components/CardCatalog.vue'
 
-const vuexModule = namespace(COLL_NAMES.ACHIEVEMENTS)
+const COLL_NAME = COLL_NAMES.ACHIEVEMENTS
+const vuexModule = namespace(COLL_NAME)
 
 @Component({
   components: { CardCatalog, Card }
@@ -35,7 +36,7 @@ export default class extends Vue {
 
   async fetch({ store }) {
     try {
-      await store.dispatch(`${COLL_NAMES.ACHIEVEMENTS}/loadAchievements`)
+      await store.dispatch(`${COLL_NAME}/loadAchievements`)
     } catch (e) {
       console.error('error! ', e)
     }

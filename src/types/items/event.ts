@@ -1,18 +1,30 @@
 import { TimelineItem } from '~/types/timeline'
 import firebase from 'firebase'
-import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
-import { PLACEHOLDER_IMAGE } from '~/util/constants'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
-import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils'
-import DocumentData = firebase.firestore.DocumentData
+import DocumentData = firebase.firestore.DocumentData;
+import { deepMerge } from "~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils";
+import { AchievementType } from "~/types/items/achievement";
 
-export enum AchievementType {
+export enum EventType {
   OTHER = 'other',
-  DIPLOMA = 'diploma',
-  CERTIFICATE = 'certificate',
+  HACKATHON = 'hackathon',
+  MEETUP = 'meetup',
+  CONFERENCE = 'conference',
+  WEBINAR = 'webinar',
+  LECTURE = 'lecture',
+  TRAINING = 'training',
+  MASTER_CLASS = 'master_class',
+  FORUM = 'forum',
+  TOURNAMENT = 'tournament',
+  COMPETITION = 'competition',
+  EXHIBITION = 'exhibition',
+  FESTIVAL = 'festival',
+  ROUND_TABLE = 'round_table',
+  STUDY = 'study',
+  EXCURSION = 'excursion'
 }
 
-export class TimelineAchievement extends TimelineItem {
+export class TimelineEvent extends TimelineItem {
   constructor(
     title,
     date,
@@ -21,22 +33,17 @@ export class TimelineAchievement extends TimelineItem {
     description,
     _type,
     _doc,
-    public type: AchievementType,
-    public logo: string,
-    public organisation: string,
-    public tags: string[]
+    public type: EventType,
+    public location: Location
   ) {
     super(title, date, images, singleImage, description, _type, _doc)
   }
 
-  static async fromDoc(
-    that,
-    doc: DocumentSnapshot
-  ): Promise<TimelineAchievement> {
+  static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineEvent> {
     const item = await super.fromDoc(that, doc)
     const data = doc.data() as DocumentData
 
-    return new TimelineAchievement(
+    return new TimelineEvent(
       item.title,
       item.date,
       item.images,
@@ -45,19 +52,12 @@ export class TimelineAchievement extends TimelineItem {
       item._type,
       item._doc,
       data.type,
-      process.env.NODE_ENV === 'production'
-        ? await that.$fireStorage
-            .ref()
-            .child(`${item._type}/${item._doc}/logo_400x400.jpg`)
-            .getDownloadURL()
-        : PLACEHOLDER_IMAGE,
-      data.organisation,
-      data.tags
+      data.location
     )
   }
 }
 
-export class PageAchievement extends TimelineAchievement {
+export class PageEvent extends TimelineEvent {
   constructor(
     title,
     date,
@@ -67,10 +67,7 @@ export class PageAchievement extends TimelineAchievement {
     _type,
     _doc,
     type,
-    logo,
-    organisation,
-    tags,
-    public url
+    location,
   ) {
     super(
       title,
@@ -81,9 +78,7 @@ export class PageAchievement extends TimelineAchievement {
       _type,
       _doc,
       type,
-      logo,
-      organisation,
-      tags
+      location
     )
   }
 
@@ -91,11 +86,11 @@ export class PageAchievement extends TimelineAchievement {
     that,
     doc: DocumentSnapshot,
     docPage: DocumentSnapshot
-  ): Promise<PageAchievement> {
+  ): Promise<PageEvent> {
     const item = await super.fromDoc(that, doc)
     const data = deepMerge(doc.data(), docPage.data())
 
-    return new PageAchievement(
+    return new PageEvent(
       item.title,
       item.date,
       item.images,
@@ -104,10 +99,7 @@ export class PageAchievement extends TimelineAchievement {
       item._type,
       item._doc,
       item.type,
-      item.logo,
-      item.organisation,
-      item.tags,
-      data.url
+      item.location
     )
   }
 }

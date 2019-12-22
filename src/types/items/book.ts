@@ -46,7 +46,7 @@ export class PageBook extends TimelineBook {
     _type,
     _doc,
     author,
-    public url: String
+    public url
   ) {
     super(title, date, images, singleImage, description, _type, _doc, author)
   }
@@ -68,7 +68,7 @@ export class PageBook extends TimelineBook {
       item._type,
       item._doc,
       item.author,
-      data.url as String
+      data.url
     )
   }
 }

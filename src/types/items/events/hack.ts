@@ -1,15 +1,9 @@
-import { TimelineItem } from '~/types/timeline'
-import firebase from 'firebase'
-import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
+import { TimelineEvent } from '~/types/items/event'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
+import firebase from 'firebase'
 import DocumentData = firebase.firestore.DocumentData;
 
-interface Hack {
-  place: number
-  location: Location
-}
-
-export class TimelineHack extends TimelineItem implements Hack {
+export class TimelineHack extends TimelineEvent {
   constructor(
     title,
     date,
@@ -18,10 +12,10 @@ export class TimelineHack extends TimelineItem implements Hack {
     description,
     _type,
     _doc,
-    public location: Location,
-    public place: number
+    location,
+    public place: String
   ) {
-    super(title, date, images, singleImage, description, _type, _doc)
+    super(title, date, images, singleImage, description, _type, _doc, location)
   }
 
   static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineHack> {
@@ -36,7 +30,7 @@ export class TimelineHack extends TimelineItem implements Hack {
       item.description,
       item._type,
       item._doc,
-      data.location,
+      item.location,
       data.place
     )
   }
@@ -67,10 +61,10 @@ export class PageHack extends TimelineHack {
     )
   }
 
-  // static async fromDoc(that, doc: QueryDocumentSnapshot): Promise<PageHack> {
+  // static async fromDoc(that, doc: QueryDocumentSnapshot): Promise<PageEvent> {
   //   const item = await super.fromDoc(that, doc)
   //
-  //   return new PageHack(
+  //   return new PageEvent(
   //     item.title,
   //     item.date,
   //     item.images,
