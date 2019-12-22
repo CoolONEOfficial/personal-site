@@ -1,6 +1,8 @@
 import { TimelineItem } from '~/types/timeline'
 import firebase from 'firebase'
 import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
+import DocumentSnapshot = firebase.firestore.DocumentSnapshot
+import DocumentData = firebase.firestore.DocumentData;
 
 interface Hack {
   place: number
@@ -22,12 +24,9 @@ export class TimelineHack extends TimelineItem implements Hack {
     super(title, date, images, singleImage, description, _type, _doc)
   }
 
-  static async fromDoc(
-    that,
-    doc: QueryDocumentSnapshot
-  ): Promise<TimelineHack> {
+  static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineHack> {
     const item = await super.fromDoc(that, doc)
-    const data = doc.data()
+    const data = doc.data() as DocumentData
 
     return new TimelineHack(
       item.title,

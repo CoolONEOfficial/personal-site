@@ -1,7 +1,8 @@
 import firebase from 'firebase'
 import Timestamp = firebase.firestore.Timestamp
-import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
 import { PLACEHOLDER_IMAGE } from '~/util/constants'
+import DocumentSnapshot = firebase.firestore.DocumentSnapshot
+import DocumentData = firebase.firestore.DocumentData;
 
 export class Item {
   constructor(
@@ -12,8 +13,8 @@ export class Item {
     public description?: LocalizedString
   ) {}
 
-  static async fromDoc(that, doc: QueryDocumentSnapshot): Promise<Item> {
-    const data = doc.data()
+  static async fromDoc(that, doc: DocumentSnapshot): Promise<Item> {
+    const data = doc.data() as DocumentData
 
     if (Boolean(data.images)) {
       let images: Image[]

@@ -1,6 +1,7 @@
 import { TimelineItem } from '~/types/timeline'
 import firebase from 'firebase'
-import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
+import DocumentSnapshot = firebase.firestore.DocumentSnapshot
+import DocumentData = firebase.firestore.DocumentData;
 
 export class TimelineProject extends TimelineItem {
   constructor(
@@ -16,12 +17,9 @@ export class TimelineProject extends TimelineItem {
     super(title, date, images, singleImage, description, _type, _doc)
   }
 
-  static async fromDoc(
-    that,
-    doc: QueryDocumentSnapshot
-  ): Promise<TimelineProject> {
+  static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineProject> {
     const item = await super.fromDoc(that, doc)
-    const data = doc.data()
+    const data = doc.data() as DocumentData
 
     return new TimelineProject(
       item.title,
@@ -52,9 +50,9 @@ export class PageProject extends TimelineProject {
     super(title, date, images, singleImage, description, _type, _doc, category)
   }
 
-  static async fromDoc(that, doc: QueryDocumentSnapshot): Promise<PageProject> {
+  static async fromDoc(that, doc: DocumentSnapshot): Promise<PageProject> {
     const item = await super.fromDoc(that, doc)
-    const data = doc.data()
+    const data = doc.data() as DocumentData
 
     return new PageProject(
       item.title,

@@ -1,13 +1,13 @@
 <template>
   <b-navbar-item
-    :class="['nav-item', { selected: $route.path.includes(item.to) }]"
+    :class="['nav-item', { 'nav-item-selected': $route.path.includes(item.to) }]"
     @click="onItemClicked"
   >
     <div class="columns">
-      <figure class="image is-16x16 item-image">
+      <figure class="image is-16x16 nav-item-image">
         <img :src="`/icons/black/icons8-${item.icon}-50.png`" />
       </figure>
-      <div class="column">
+      <div class="column nav-item-title">
         {{ $t(item.title) }}
       </div>
     </div>
@@ -27,49 +27,6 @@ export default class extends Vue {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.columns {
-  display: flex;
-}
-
-.column {
-  transition: color .3s linear;
-}
-
-.item-image {
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: .75em;
-  opacity: .6;
-  transition: opacity .3s linear;
-}
-
-.nav-item {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  transition: background .3s linear;
-}
-
-.selected {
-  background: hsl(0, 0%, 98%);
-}
-
-.nav-item:hover {
-  background: hsl(0, 0%, 96%) !important;
-}
-
-.selected,
-.nav-item:hover {
-  .item-image {
-    opacity: 1 !important;
-  }
-
-  .column {
-    color: #4a4a4a !important;
-  }
-}
-</style>
 
 <i18n>
   {

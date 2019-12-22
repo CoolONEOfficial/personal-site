@@ -1,8 +1,8 @@
 <template>
-  <footer class="footer has-margin-top-25">
+  <footer class="footer">
     <div class="content">
-      <div class="columns">
-        <div class="column">
+      <div class="columns is-multiline">
+        <div v-if="!$device.isMobile" class="column">
           <!--TODO-->
         </div>
         <div class="column has-text-centered subtitle is-6 footer-text-wrapper">
@@ -75,6 +75,7 @@ export default class extends Vue {
 
   &-mobile {
     justify-content: center;
+    flex-flow: wrap-reverse;
   }
 }
 
@@ -91,11 +92,7 @@ export default class extends Vue {
 .social {
   padding: 0 !important;
 
-  margin: 0 0 0 1em !important;
-
-  &:last-child {
-    margin-left: 0 !important;
-  }
+  margin: .25em !important;
 }
 </style>
 

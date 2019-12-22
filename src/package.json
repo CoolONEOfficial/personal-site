@@ -37,7 +37,8 @@
     "sass-loader": "^8.0.0",
     "vue-carousel": "^0.18.0",
     "vuexfire": "^3.2.0",
-    "xhr2": "^0.2.0"
+    "xhr2": "^0.2.0",
+    "lodash.clonedeep": "^4.5.0"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.5.1",

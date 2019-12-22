@@ -1,9 +1,12 @@
 <template>
   <div class="card">
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img :src="itemImage" class="achievement-image" />
+    <div v-if="itemImage" class="card-image">
+      <figure class="image is-4by3" @click="isModalActive = true">
+        <img :src="itemImage.small" class="achievement-image" />
       </figure>
+      <b-modal :active.sync="isModalActive" animation="zoom-in">
+        <img class="modal-image" :src="itemImage.original" />
+      </b-modal>
     </div>
     <div class="card-content hover-dark" @click="onCardClicked">
       <div class="media">
@@ -14,12 +17,13 @@
         </div>
         <div class="media-content">
           <p class="title is-4">{{ item.title[$i18n.locale] }}</p>
-          <p class="subtitle is-6">{{ item.organisation }}</p>
+          <p class="subtitle is-6">{{ subtitle }}</p>
         </div>
       </div>
 
       <div class="content">
         <div
+          v-if="item.description"
           class="description"
           v-html="$md.render(item.description[$i18n.locale])"
         />
@@ -61,15 +65,20 @@ export default class extends Vue {
   @Prop({ required: true })
   item!: TimelineAchievement
 
+  @Prop({ required: true })
+  subtitle!: String
+
   locales = {
     en: enUS,
     ru
   }
 
-  get itemImage() {
-    if (this.item.singleImage) return this.item.singleImage.small
+  isModalActive = false
 
-    if (this.item.images) return this.item.images[0].small
+  get itemImage() {
+    if (this.item.singleImage) return this.item.singleImage
+
+    if (this.item.images) return this.item.images[0]
 
     return
   }

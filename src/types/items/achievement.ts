@@ -2,6 +2,9 @@ import { TimelineItem } from '~/types/timeline'
 import firebase from 'firebase'
 import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
 import { PLACEHOLDER_IMAGE } from '~/util/constants'
+import DocumentSnapshot = firebase.firestore.DocumentSnapshot
+import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils'
+import DocumentData = firebase.firestore.DocumentData
 
 export class TimelineAchievement extends TimelineItem {
   constructor(
@@ -22,10 +25,10 @@ export class TimelineAchievement extends TimelineItem {
 
   static async fromDoc(
     that,
-    doc: QueryDocumentSnapshot
+    doc: DocumentSnapshot
   ): Promise<TimelineAchievement> {
     const item = await super.fromDoc(that, doc)
-    const data = doc.data()
+    const data = doc.data() as DocumentData
 
     return new TimelineAchievement(
       item.title,
@@ -60,7 +63,8 @@ export class PageAchievement extends TimelineAchievement {
     type,
     logo,
     organisation,
-    tags
+    tags,
+    public url
   ) {
     super(
       title,
@@ -77,21 +81,28 @@ export class PageAchievement extends TimelineAchievement {
     )
   }
 
-  // static async fromDoc(
-  //   that,
-  //   doc: QueryDocumentSnapshot
-  // ): Promise<PageAchievement> {
-  //   const item = await super.fromDoc(that, doc)
-  //
-  //   return new PageAchievement(
-  //     item.title,
-  //     item.date,
-  //     item.images,
-  //     item.singleImage,
-  //     item.description,
-  //     item._type,
-  //     item._doc,
-  //     item.type
-  //   )
-  // }
+  static async fromDocs(
+    that,
+    doc: DocumentSnapshot,
+    docPage: DocumentSnapshot
+  ): Promise<PageAchievement> {
+    console.log(`path: ${doc.ref.path}`);
+    const item = await super.fromDoc(that, doc)
+    const data = deepMerge(doc.data(), docPage.data())
+
+    return new PageAchievement(
+      item.title,
+      item.date,
+      item.images,
+      item.singleImage,
+      item.description,
+      item._type,
+      item._doc,
+      item.type,
+      item.logo,
+      item.organisation,
+      item.tags,
+      data.url
+    )
+  }
 }

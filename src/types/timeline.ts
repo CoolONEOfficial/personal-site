@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
 import { Item } from '~/types/types'
+import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 
 export class TimelineItem extends Item {
   public _orderId!: number
@@ -19,7 +20,7 @@ export class TimelineItem extends Item {
 
   static async fromDoc(
     that,
-    doc: QueryDocumentSnapshot
+    doc: DocumentSnapshot
   ): Promise<TimelineItem> {
     const item = await super.fromDoc(that, doc)
 
