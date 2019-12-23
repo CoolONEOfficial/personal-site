@@ -65,7 +65,8 @@ const config: Configuration = {
     './assets/scss/buefy.scss',
     './assets/scss/vue-carousel.scss',
     './assets/scss/styles.scss',
-    'bulma-helpers/css/bulma-helpers.min.css'
+    'bulma-helpers/css/bulma-helpers.min.css',
+    'plyr/dist/plyr.css'
   ],
   styleResources: {
     scss: ['./assets/scss/buefy.scss']
@@ -75,7 +76,8 @@ const config: Configuration = {
    */
   plugins: [
     { src: '@/plugins/aos', ssr: false },
-    { src: '~/plugins/vue-carousel', ssr: false }
+    { src: '~/plugins/vue-carousel', ssr: false },
+    '~/plugins/vue-plyr'
   ],
   /*
    ** Nuxt.js dev-modules

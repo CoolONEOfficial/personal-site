@@ -19,14 +19,14 @@ export class TimelineAchievement extends TimelineItem {
     images,
     singleImage,
     description,
+    tags,
     _type,
     _doc,
     public type: AchievementType,
     public logo: string,
-    public organisation: string,
-    public tags: string[]
+    public organisation: string
   ) {
-    super(title, date, images, singleImage, description, _type, _doc)
+    super(title, date, images, singleImage, description, tags, _type, _doc)
   }
 
   static async fromDoc(
@@ -42,6 +42,7 @@ export class TimelineAchievement extends TimelineItem {
       item.images,
       item.singleImage,
       item.description,
+      item.tags,
       item._type,
       item._doc,
       data.type,
@@ -51,8 +52,7 @@ export class TimelineAchievement extends TimelineItem {
             .child(`${item._type}/${item._doc}/logo_400x400.jpg`)
             .getDownloadURL()
         : PLACEHOLDER_IMAGE,
-      data.organisation,
-      data.tags
+      data.organisation
     )
   }
 }
@@ -64,12 +64,12 @@ export class PageAchievement extends TimelineAchievement {
     images,
     singleImage,
     description,
+    tags,
     _type,
     _doc,
     type,
     logo,
     organisation,
-    tags,
     public url
   ) {
     super(
@@ -78,12 +78,12 @@ export class PageAchievement extends TimelineAchievement {
       images,
       singleImage,
       description,
+      tags,
       _type,
       _doc,
       type,
       logo,
-      organisation,
-      tags
+      organisation
     )
   }
 
@@ -103,12 +103,12 @@ export class PageAchievement extends TimelineAchievement {
       item.images,
       item.singleImage,
       data.description,
+      item.tags,
       item._type,
       item._doc,
       item.type,
       item.logo,
       item.organisation,
-      item.tags,
       data.url
     )
   }

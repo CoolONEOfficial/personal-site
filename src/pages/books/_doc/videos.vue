@@ -1,14 +1,21 @@
 <template>
-  <div>
-    videos
-  </div>
+  <Videos :page-item="getBookPage" />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { namespace } from '~/node_modules/nuxt-property-decorator'
+import { COLL_NAMES } from '~/util/constants'
+import Description from '~/components/hero/Description.vue'
+import Photos from '~/components/hero/Photos.vue'
+import Videos from '~/components/hero/Videos.vue'
+const vuexModule = namespace(COLL_NAMES.BOOKS)
 
-@Component({})
-export default class extends Vue {}
+@Component({
+  components: { Videos, Photos, Description }
+})
+export default class extends Vue {
+  @vuexModule.Getter
+  getBookPage
+}
 </script>
-
-<style scoped lang="scss"></style>

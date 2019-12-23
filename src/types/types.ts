@@ -10,7 +10,8 @@ export class Item {
     public date: Date,
     public images?: Image[],
     public singleImage?: Image,
-    public description?: LocalizedString
+    public description?: LocalizedString,
+    public tags?: string[]
   ) {}
 
   static async fromDoc(that, doc: DocumentSnapshot): Promise<Item> {
@@ -69,7 +70,8 @@ export class Item {
       (data.date as Timestamp).toDate(),
       data.images,
       data.singleImage,
-      data.description
+      data.description,
+      data.tags
     )
   }
 }

@@ -52,7 +52,7 @@ export default class extends Vue {
       },
       {
         title: 'videos',
-        visible: Boolean(this.item.youtube),
+        visible: Boolean(this.item.videos),
         icon: 'video-gallery',
         to: {
           name: `${this.item._type}-doc-videos`,

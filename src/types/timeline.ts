@@ -12,10 +12,11 @@ export class TimelineItem extends Item {
     images,
     singleImage,
     description,
+    tags,
     public _type: string,
     public _doc: string
   ) {
-    super(title, date, images, singleImage, description)
+    super(title, date, images, singleImage, description, tags)
   }
 
   static async fromDoc(
@@ -30,6 +31,7 @@ export class TimelineItem extends Item {
       item.images,
       item.singleImage,
       item.description,
+      item.tags,
       doc.ref.parent.path,
       doc.id
     )

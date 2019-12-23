@@ -3,7 +3,7 @@ import firebase from 'firebase'
 import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
 import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
-import DocumentData = firebase.firestore.DocumentData;
+import DocumentData = firebase.firestore.DocumentData
 
 export class TimelineBook extends TimelineItem {
   constructor(
@@ -12,11 +12,12 @@ export class TimelineBook extends TimelineItem {
     images,
     singleImage,
     description,
+    tags,
     _type,
     _doc,
     public author: string
   ) {
-    super(title, date, images, singleImage, description, _type, _doc)
+    super(title, date, images, singleImage, description, tags, _type, _doc)
   }
 
   static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineBook> {
@@ -29,6 +30,7 @@ export class TimelineBook extends TimelineItem {
       item.images,
       item.singleImage,
       item.description,
+      item.tags,
       item._type,
       item._doc,
       data.author
@@ -43,12 +45,23 @@ export class PageBook extends TimelineBook {
     images,
     singleImage,
     description,
+    tags,
     _type,
     _doc,
     author,
     public url
   ) {
-    super(title, date, images, singleImage, description, _type, _doc, author)
+    super(
+      title,
+      date,
+      images,
+      singleImage,
+      description,
+      tags,
+      _type,
+      _doc,
+      author
+    )
   }
 
   static async fromDocs(
@@ -65,6 +78,7 @@ export class PageBook extends TimelineBook {
       item.images,
       item.singleImage,
       item.description,
+      item.tags,
       item._type,
       item._doc,
       item.author,

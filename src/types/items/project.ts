@@ -16,11 +16,12 @@ export class TimelineProject extends TimelineItem {
     images,
     singleImage,
     description,
+    tags,
     _type,
     _doc,
     public type: ProjectType
   ) {
-    super(title, date, images, singleImage, description, _type, _doc)
+    super(title, date, images, singleImage, description, tags, _type, _doc)
   }
 
   static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineProject> {
@@ -33,6 +34,7 @@ export class TimelineProject extends TimelineItem {
       item.images,
       item.singleImage,
       item.description,
+      item.tags,
       item._type,
       item._doc,
       data.type
@@ -47,6 +49,7 @@ export class PageProject extends TimelineProject {
     images,
     singleImage,
     description,
+    tags,
     _type,
     _doc,
     type,
@@ -59,6 +62,7 @@ export class PageProject extends TimelineProject {
       images,
       singleImage,
       description,
+      tags,
       _type,
       _doc,
       type
@@ -79,6 +83,7 @@ export class PageProject extends TimelineProject {
       item.images,
       item.singleImage,
       item.description,
+      item.tags,
       item._type,
       item._doc,
       item.type,

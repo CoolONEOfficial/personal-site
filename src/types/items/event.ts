@@ -31,12 +31,13 @@ export class TimelineEvent extends TimelineItem {
     images,
     singleImage,
     description,
+    tags,
     _type,
     _doc,
     public type: EventType,
     public location: Location
   ) {
-    super(title, date, images, singleImage, description, _type, _doc)
+    super(title, date, images, singleImage, description, tags, _type, _doc)
   }
 
   static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineEvent> {
@@ -49,6 +50,7 @@ export class TimelineEvent extends TimelineItem {
       item.images,
       item.singleImage,
       item.description,
+      item.tags,
       item._type,
       item._doc,
       data.type,
@@ -64,10 +66,12 @@ export class PageEvent extends TimelineEvent {
     images,
     singleImage,
     description,
+    tags,
     _type,
     _doc,
     type,
     location,
+    public videos
   ) {
     super(
       title,
@@ -75,6 +79,7 @@ export class PageEvent extends TimelineEvent {
       images,
       singleImage,
       description,
+      tags,
       _type,
       _doc,
       type,
@@ -96,10 +101,12 @@ export class PageEvent extends TimelineEvent {
       item.images,
       item.singleImage,
       item.description,
+      item.tags,
       item._type,
       item._doc,
       item.type,
-      item.location
+      item.location,
+      data.videos
     )
   }
 }

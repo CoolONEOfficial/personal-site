@@ -10,13 +10,14 @@ export class TimelineHack extends TimelineEvent {
     images,
     singleImage,
     description,
+    tags,
     _type,
     _doc,
     type,
     location,
     public place: String
   ) {
-    super(title, date, images, singleImage, description, _type, _doc, type, location)
+    super(title, date, images, singleImage, description, tags, _type, _doc, type, location)
   }
 
   static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineHack> {
@@ -29,6 +30,7 @@ export class TimelineHack extends TimelineEvent {
       item.images,
       item.singleImage,
       item.description,
+      item.tags,
       item._type,
       item._doc,
       item.type,
@@ -45,6 +47,7 @@ export class PageHack extends TimelineHack {
     images,
     singleImage,
     description,
+    tags,
     _type,
     _doc,
     type,
@@ -57,6 +60,7 @@ export class PageHack extends TimelineHack {
       images,
       singleImage,
       description,
+      tags,
       _type,
       _doc,
       type,
