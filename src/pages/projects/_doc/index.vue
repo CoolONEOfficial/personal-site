@@ -1,25 +1,21 @@
 <template>
-  <div class="container has-text-centered">
-    <h1 class="title">
-      {{ getProjectPage.title[$i18n.locale] }}
-    </h1>
-    <h2 class="subtitle">
-      Subtitle
-    </h2>
-  </div>
+  <Description :page-item="getProjectPage" :subtitle="$t(getProjectPage.type)" />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
 import { COLL_NAMES } from '~/util/constants'
+import Description from "~/components/hero/Description.vue";
 const vuexModule = namespace(COLL_NAMES.PROJECTS)
 
-@Component({})
+@Component({
+  components: { Description }
+})
 export default class extends Vue {
   @vuexModule.Getter
   getProjectPage
 }
 </script>
 
-<style scoped lang="scss"></style>
+<i18n src="~/lang/projectsTypes.json"/>

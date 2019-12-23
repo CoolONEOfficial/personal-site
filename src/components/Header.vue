@@ -1,5 +1,5 @@
 <template>
-  <b-navbar class="header">
+  <b-navbar class="header has-margin-bottom-10">
     <template slot="brand">
       <b-navbar-item @click="onLogoClicked">
         <img

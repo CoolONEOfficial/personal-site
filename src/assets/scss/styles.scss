@@ -18,6 +18,12 @@
   transform: translateY(-50%) translateX(-50%);
 }
 
+.image-centered {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .is-marginless-horizontal {
   margin-left: 0 !important;
   margin-right: 0 !important;
@@ -49,6 +55,7 @@
   }
 
   &-title {
+    color: #7a7a7a;
     transition: color .3s linear;
   }
 

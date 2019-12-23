@@ -11,7 +11,6 @@
         class="column is-one-third"
         v-for="(_, index) of new Array(paginationCount / 2)"
         :key="index"
-        data-aos="fade"
       >
         <Card
           v-for="(i, cardIndex) of [
@@ -20,7 +19,7 @@
           ].filter(Boolean)"
           :key="cardIndex"
           :item="i"
-          :subtitle="i[itemSubtitle]"
+          :subtitle="itemSubtitle(i)"
           class="has-margin-top-20"
         />
       </div>
@@ -51,7 +50,7 @@ export default class extends Vue {
   items
 
   @Prop()
-  itemSubtitle!: String
+  itemSubtitle!: Function
 
   @Prop()
   docsCount

@@ -1,0 +1,38 @@
+{
+  "en": {
+    "other": "Event",
+    "hack": "Hackathon",
+    "meetup": "Meetup",
+    "conference": "Conference",
+    "webinar": "Webinar",
+    "lecture": "Lecture",
+    "training": "Training",
+    "master_class": "Master class",
+    "forum": "Forum",
+    "tournament": "Tournament",
+    "competition": "Competition",
+    "exhibition": "Exhibition",
+    "festival": "Festival",
+    "round_table": "Round table",
+    "study": "Study",
+    "excursion": "Excursion"
+  },
+  "ru": {
+    "other": "Мероприятие",
+    "hack": "Хакатон",
+    "meetup": "Митап",
+    "conference": "Конференция",
+    "webinar": "Вебинар",
+    "lecture": "Лекция",
+    "training": "Тренинг",
+    "master_class": "Мастер класс",
+    "forum": "Форум",
+    "tournament": "Турнир",
+    "competition": "Соревнование",
+    "exhibition": "Выставка",
+    "festival": "Фестиваль",
+    "round_table": "Круглый стол",
+    "study": "Исследование",
+    "excursion": "Экскурсия"
+  }
+}

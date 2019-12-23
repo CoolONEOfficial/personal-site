@@ -7,7 +7,7 @@ import { AchievementType } from "~/types/items/achievement";
 
 export enum EventType {
   OTHER = 'other',
-  HACKATHON = 'hackathon',
+  HACK = 'hack',
   MEETUP = 'meetup',
   CONFERENCE = 'conference',
   WEBINAR = 'webinar',

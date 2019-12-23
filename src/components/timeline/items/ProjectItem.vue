@@ -1,9 +1,9 @@
 <template>
   <Item
-    :icon="iconMap[item.category]"
+    :icon="iconMap[item.type]"
     :item="item"
     :subtitle="
-      $t(item.category)
+      $t(item.type)
     "
   />
 </template>
@@ -27,15 +27,4 @@ export default class extends Vue {
 }
 </script>
 
-<i18n>
-  {
-    "en": {
-      "game": "Computer game",
-      "mobile_app": "Mobile app"
-    },
-    "ru": {
-      "game": "Игра",
-      "mobile_app": "Мобильное приложение"
-    }
-  }
-</i18n>
+<i18n src="~/lang/projectsTypes.json"/>

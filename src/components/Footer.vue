@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer has-margin-top-10">
     <div class="content">
       <div class="columns is-multiline">
         <div v-if="!$device.isMobile" class="column">

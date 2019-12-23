@@ -4,7 +4,7 @@
     :on-next-page="nextPage"
     :on-prev-page="prevPage"
     :items="getEvents"
-    item-subtitle="organisation"
+    :item-subtitle="subtitle"
   />
 </template>
 
@@ -34,6 +34,10 @@ export default class extends Vue {
   @vuexModule.Action
   prevPage
 
+  subtitle(item) {
+    return this.$t(item.type)
+  }
+
   async fetch({ store }) {
     try {
       await store.dispatch(`${COLL_NAME}/loadEvents`)
@@ -49,6 +53,8 @@ export default class extends Vue {
   }
 }
 </script>
+
+<i18n src="~/lang/eventsTypes.json"/>
 
 <i18n>
   {

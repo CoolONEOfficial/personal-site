@@ -93,14 +93,16 @@ export class PageAchievement extends TimelineAchievement {
     docPage: DocumentSnapshot
   ): Promise<PageAchievement> {
     const item = await super.fromDoc(that, doc)
+    console.log('doc: ', doc.data(), '....... docPage: ', docPage.data());
     const data = deepMerge(doc.data(), docPage.data())
+    console.log('result: ', data)
 
     return new PageAchievement(
       item.title,
       item.date,
       item.images,
       item.singleImage,
-      item.description,
+      data.description,
       item._type,
       item._doc,
       item.type,

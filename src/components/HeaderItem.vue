@@ -3,7 +3,7 @@
     :class="['nav-item', { 'nav-item-selected': $route.path.includes(item.to) }]"
     @click="onItemClicked"
   >
-    <div class="columns">
+    <div class="columns is-mobile">
       <figure class="image is-16x16 nav-item-image">
         <img :src="`/icons/black/icons8-${item.icon}-50.png`" />
       </figure>

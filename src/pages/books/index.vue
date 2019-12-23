@@ -4,7 +4,7 @@
     :on-next-page="nextPage"
     :on-prev-page="prevPage"
     :items="getBooks"
-    item-subtitle="author"
+    :item-subtitle="subtitle"
   />
 </template>
 
@@ -33,6 +33,10 @@ export default class extends Vue {
 
   @vuexModule.Action
   prevPage
+
+  subtitle(item) {
+    return item.author
+  }
 
   async fetch({ store }) {
     try {

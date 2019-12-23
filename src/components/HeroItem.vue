@@ -4,7 +4,7 @@
       'columns',
       'is-marginless',
       'nav-item',
-      { 'nav-item-selected': $route.path.includes(item.to) }
+      { 'nav-item-selected': $route.path === localePath(item.to.name) }
     ]"
     @click="onItemClicked"
   >

@@ -5,7 +5,7 @@ import { EventType } from '~/types/items/event'
 import { TimelineProject } from '~/types/items/project'
 import { TimelineBook } from '~/types/items/book'
 import { TimelineAchievement } from '~/types/items/achievement'
-import { TimelineHack } from "~/types/items/events/hack";
+import { TimelineHack } from '~/types/items/events/hack'
 
 export const state = () => ({
   timelineItems: [],
@@ -27,7 +27,7 @@ function mergeAndSortItems(that, ...colNames: any) {
     const collRef = that.$fireStore.collection(mName)
     cols.push(
       mName == 'events'
-        ? (collRef.where('type', '==', EventType.HACKATHON).get() as never)
+        ? (collRef.where('type', '==', EventType.HACK).get() as never)
         : (collRef.get() as never)
     )
   }
@@ -39,7 +39,7 @@ function mergeAndSortItems(that, ...colNames: any) {
         for (const snapshot of promiseResults) {
           for (const doc of snapshot.docs) {
             const typeMap = {
-              hacks: TimelineHack,
+              events: TimelineHack,
               projects: TimelineProject,
               books: TimelineBook,
               achievements: TimelineAchievement

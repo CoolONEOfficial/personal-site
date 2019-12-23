@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div v-if="itemImage" class="card-image">
-      <figure class="image is-4by3" @click="isModalActive = true">
+      <figure class="image" @click="isModalActive = true">
         <img :src="itemImage.small" class="achievement-image" />
       </figure>
       <b-modal :active.sync="isModalActive" animation="zoom-in">
@@ -24,7 +24,7 @@
       <div class="content">
         <div
           v-if="item.description"
-          class="description"
+          class="has-text-justified"
           v-html="$md.render(item.description[$i18n.locale])"
         />
         <br />
@@ -93,9 +93,3 @@ export default class extends Vue {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.achievement-image {
-  object-fit: cover;
-}
-</style>
