@@ -1,7 +1,7 @@
 import DocumentData = firebase.firestore.DocumentData
 import { Track } from "~/types/music";
 
-const apiUrl = process.env.API_URL
+const apiUrl = process.env.clientBaseUrl
 
 export const state = () => ({
   isConnected: false,
