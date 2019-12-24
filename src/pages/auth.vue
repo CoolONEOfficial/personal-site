@@ -13,7 +13,10 @@
 </template>
 
 <script lang="ts">
-import { Component, State, Vue } from 'nuxt-property-decorator'
+  import { Component, Getter, State, Vue } from "nuxt-property-decorator";
+import { namespace } from "~/node_modules/nuxt-property-decorator";
+
+const vuexModule = namespace('music')
 
 @Component({
   nuxtI18n: {
@@ -27,6 +30,12 @@ export default class extends Vue {
   get message() {
     return this.$store.state.message
   }
+
+  @vuexModule.Getter
+  getIsConnected
+
+  @vuexModule.Getter
+  getMessage
 
   query
   spotifyUrl

@@ -95,6 +95,7 @@ const config: Configuration = {
     'nuxt-buefy',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     '@nuxtjs/device',
@@ -107,7 +108,16 @@ const config: Configuration = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/api/': {
+      target: 'https://coolone.ru/',
+      pathRewrite: { '^/api/': '' },
+      changeOrigin: true
+    }
+  },
   /*
    ** Build configuration
    */
