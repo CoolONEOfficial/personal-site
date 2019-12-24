@@ -17,7 +17,7 @@
           <img :src="getTrack.album.image" />
           <div
             style="display: flex"
-            v-if="getIsPlaying && progress"
+            v-show="getIsPlaying && progress"
             :class="[
               'music-progress-wrapper'
             ]"
@@ -45,13 +45,12 @@
           </a>
         </p>
         <vue-plyr
-          class="music-play"
+          :class="['music-play', {'music-play-disabled': !Boolean(getTrack.previewUrl)}]"
           :options="{
             controls: ['play']
           }"
         >
-          <audio>
-            <source :src="getTrack.previewUrl" type="audio/mp3" />
+          <audio :src="getTrack.previewUrl" type="audio/mp3">
           </audio>
         </vue-plyr>
       </div>
@@ -160,6 +159,12 @@ export default class extends Vue {
     position: relative;
     left: 50%;
     transform: translateX(-50%) scale(2);
+    transition: opacity 1s linear;
+
+    &-disabled {
+      opacity: .6;
+      pointer-events: none;
+    }
   }
 
   &-progress,
