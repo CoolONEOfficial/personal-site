@@ -90,7 +90,7 @@ app.get('/spotify/callback', async ({ query: { code } }, res) => {
       'process.env.SPOTIFY_CLIENT_SECRET:',
       process.env.SPOTIFY_CLIENT_SECRET
     )
-    console.debug('process.env.CLIENT_URL:', process.env.CLIENT_URL)
+    console.debug('process.env.API_URL:', process.env.API_URL)
     console.debug('code:', code)
 
     const data = await getSpotifyToken({
@@ -132,7 +132,7 @@ const getSpotifyToken = (props = {}) =>
     form: {
       client_id: process.env.SPOTIFY_CLIENT_ID,
       client_secret: process.env.SPOTIFY_CLIENT_SECRET,
-      redirect_uri: `${process.env.CLIENT_URL}/api/v1/spotify/callback`,
+      redirect_uri: `${process.env.API_URL}/api/v1/spotify/callback`,
       ...props
     },
     json: true

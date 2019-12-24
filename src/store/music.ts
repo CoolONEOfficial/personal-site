@@ -1,7 +1,7 @@
 import DocumentData = firebase.firestore.DocumentData
 import { Track } from "~/types/music";
 
-const clientUrl = process.env.CLIENT_URL
+const apiUrl = process.env.API_URL
 
 export const state = () => ({
   isConnected: false,
@@ -43,7 +43,7 @@ export const actions = {
 
     if (isConnected) {
       const resp = await (this as any).$axios.$get(
-        `${clientUrl}/api/v1/spotify/now-playing`
+        `${apiUrl}/api/v1/spotify/now-playing`
       )
       console.log('resp: ', resp)
       commit('updateTrack', Track.fromMap(resp['item']))

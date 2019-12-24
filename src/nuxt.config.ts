@@ -101,6 +101,7 @@ const config: Configuration = {
     '@nuxtjs/device',
     'nuxt-i18n',
     'nuxt-fire',
+    'nuxt-purgecss',
     '@nuxtjs/sitemap',
     '@nuxtjs/markdownit'
   ],
@@ -132,7 +133,7 @@ const config: Configuration = {
   env: {
     spotifyClientId:
       process.env.SPOTIFY_CLIENT_ID || 'c1a97fcc39184989b6ad7156730636e2',
-    clientBaseUrl: process.env.CLIENT_URL || 'https://coolone.ru'
+    clientBaseUrl: process.env.API_URL || 'https://personal-site-d9a58.web.app'
   },
   manifest: {
     name: 'Personal site of CoolONEOfficial',
