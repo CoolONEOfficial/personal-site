@@ -9,7 +9,8 @@ import { TimelineHack } from '~/types/items/events/hack'
 
 export const state = () => ({
   timelineItems: [],
-  hoveredItem: null
+  hoveredItem: null,
+  imageItems: null
 })
 
 export const mutations = {
@@ -18,6 +19,9 @@ export const mutations = {
   },
   updateHoveredItem(state, hoveredItem) {
     state.hoveredItem = hoveredItem
+  },
+  updateImageItems(state, payload) {
+    state.imageItems = payload
   }
 }
 
@@ -114,6 +118,12 @@ export const actions = {
   updateHoveredItem: ({ commit, state }, hoveredItem) => {
     commit('updateHoveredItem', hoveredItem)
     return state.hoveredItem
+  },
+  initImageItems({ commit, state }) {
+    commit(
+      'updateImageItems',
+      state.timelineItems.filter((mItem) => Boolean(mItem.images))
+    )
   }
 }
 
@@ -123,5 +133,8 @@ export const getters = {
   },
   getHoveredItem(state) {
     return state.hoveredItem
+  },
+  getImageItems(state) {
+    return state.imageItems
   }
 }

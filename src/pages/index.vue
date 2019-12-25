@@ -1,6 +1,7 @@
 <template>
   <section>
-    <Timeline v-model="getTimelineItems" />
+    <p class="title has-text-centered has-padding-top-50">Хронология</p>
+    <Timeline class="has-margin-top-40" v-model="getTimelineItems" />
   </section>
 </template>
 

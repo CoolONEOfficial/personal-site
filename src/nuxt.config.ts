@@ -1,11 +1,27 @@
 import { Configuration } from '@nuxt/types'
 import { PRIMARY_COLOR } from './util/constants'
+import PurgecssPlugin from 'purgecss-webpack-plugin'
+import glob from 'glob-all'
+import path from 'path'
+import purgecss from '@fullhuman/postcss-purgecss'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
+const whitelistPatterns: RegExp[] = [/mdi/, /icon/, /is-grouped/],
+  whitelistPatternsChildren: RegExp[] = [
+    /navbar/,
+    /modal/,
+    /tag/,
+    /image/,
+    /taglist/,
+    /plyr/,
+    /VueCarousel/
+  ]
+
 const config: Configuration = {
   modern: !isDev,
-  debug: true,
+  debug: !isDev,
+  dev: isDev,
   mode: 'universal',
   /*
    ** Headers of the page
@@ -101,7 +117,7 @@ const config: Configuration = {
     '@nuxtjs/device',
     'nuxt-i18n',
     'nuxt-fire',
-    'nuxt-purgecss',
+    'vue-scrollto/nuxt',
     '@nuxtjs/sitemap',
     '@nuxtjs/markdownit'
   ],
@@ -123,12 +139,43 @@ const config: Configuration = {
    ** Build configuration
    */
   build: {
+    // analyze: true,
     publicPath: '/assets/',
     extractCSS: true,
-    /*
-     ** You can extend webpack config here
-     */
-    extend(/* config, ctx */) {}
+    extend(config, { isDev }) {
+      if (!isDev && config.plugins != undefined) {
+        config.plugins.push(
+          new PurgecssPlugin({
+            // purgecss configuration
+            // https://github.com/FullHuman/purgecss
+            paths: glob.sync([
+              path.join(__dirname, './pages/**/*.vue'),
+              path.join(__dirname, './layouts/**/*.vue'),
+              path.join(__dirname, './components/**/*.vue')
+            ]),
+            whitelist: ['html', 'body', 'nuxt-progress'],
+            whitelistPatterns,
+            whitelistPatternsChildren
+          })
+        )
+      }
+    },
+    postcss: isDev
+      ? {}
+      : {
+          plugins: [
+            purgecss({
+              content: [
+                './pages/**/*.vue',
+                './layouts/**/*.vue',
+                './components/**/*.vue'
+              ],
+              whitelist: ['html', 'body', 'nuxt-progress'],
+              whitelistPatterns,
+              whitelistPatternsChildren
+            })
+          ]
+        }
   },
   env: {
     spotifyClientId:
@@ -189,6 +236,18 @@ const config: Configuration = {
   markdownit: {
     injected: true
   }
+  // purgeCSS: {
+  //   whitelistPatterns: [/mdi/, /icon/, /is-grouped/, /navbar/],
+  //   whitelistPatternsChildren: [
+  //     /select/,
+  //     /switch/,
+  //     /modal/,
+  //     /b-tabs/,
+  //     /autocomplete/,
+  //     /dropdown/,
+  //     /navbar/
+  //   ]
+  // }
 }
 
 export default config

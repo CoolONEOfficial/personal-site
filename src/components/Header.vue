@@ -1,5 +1,12 @@
 <template>
-  <b-navbar class="header has-margin-bottom-10">
+  <b-navbar
+    id="nav"
+    :class="[
+      'header',
+      'has-margin-bottom-10',
+      { 'is-transparent is-fixed-top': homepage }
+    ]"
+  >
     <template slot="brand">
       <b-navbar-item @click="onLogoClicked">
         <img
@@ -38,13 +45,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import HeaderItem from '~/components/HeaderItem.vue'
 
 @Component({
   components: { HeaderItem }
 })
 export default class extends Vue {
+  @Prop()
+  homepage!: boolean
+
   items = [
     {
       title: 'achievements',
@@ -86,6 +96,25 @@ export default class extends Vue {
     }
   ]
 
+  mounted() {
+    if (this.homepage)
+      this.$nextTick(function() {
+        window.addEventListener('scroll', function() {
+          let navbar = document.getElementById('nav')
+          let nav_classes = navbar!.classList
+          if (document.documentElement.scrollTop >= window.innerHeight) {
+            if (!nav_classes.contains('shrink')) {
+              nav_classes.toggle('shrink')
+            }
+          } else {
+            if (nav_classes.contains('shrink')) {
+              nav_classes.toggle('shrink')
+            }
+          }
+        })
+      })
+  }
+
   onLogoClicked() {
     this.$router.push(this.localePath('index'))
   }
@@ -94,6 +123,14 @@ export default class extends Vue {
 
 <style lang="scss">
 .header {
+  position: relative;
+  transition: top 1s;
+  top: -100% !important;
+
+  &.shrink {
+    top: 0 !important;
+  }
+
   .title {
     margin-bottom: 5px !important;
   }
