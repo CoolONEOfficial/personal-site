@@ -8,7 +8,7 @@
       <slot />
     </div>
     <div class="hero-foot" v-if="items.length > 1">
-      <div class="columns justify-center has-margin-bottom-20">
+      <div class="columns is-mobile justify-center has-margin-bottom-20">
         <HeroItem v-for="(i, index) of items" :key="index" :item="i" />
       </div>
     </div>

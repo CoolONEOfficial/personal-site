@@ -27,7 +27,7 @@
               })
             }}
           </p>
-          <p class="has-margin-right-45">{{ item.title[$i18n.locale] }}</p>
+          <p :class="`has-margin-${ itemRtl ? 'left' : 'right' }-45`">{{ item.title[$i18n.locale] }}</p>
           <h2
             v-show="Boolean(subtitle)"
             class="subtitle is-size-7 has-margin-bottom-10"

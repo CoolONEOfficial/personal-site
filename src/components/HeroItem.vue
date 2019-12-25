@@ -2,6 +2,7 @@
   <div
     :class="[
       'columns',
+      'is-mobile',
       'is-marginless',
       'nav-item',
       { 'nav-item-selected': $route.path === localePath(item.to.name) }
