@@ -27,7 +27,7 @@
               })
             }}
           </p>
-          <p>{{ item.title[$i18n.locale] }}</p>
+          <p class="has-margin-right-45">{{ item.title[$i18n.locale] }}</p>
           <h2
             v-show="Boolean(subtitle)"
             class="subtitle is-size-7 has-margin-bottom-10"
@@ -195,11 +195,13 @@ export default class extends Vue {
       padding-right: 30px;
     }
     background-color: $white-ter;
+
     .content {
       max-height: 400px;
       opacity: 1;
       transition: max-height 1.2s 0s, opacity 0.5s linear 0.5s;
     }
+
     .icon-open {
       opacity: 0.6;
     }
