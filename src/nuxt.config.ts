@@ -163,7 +163,12 @@ const config: Configuration = {
     seo: true,
     strategy: 'prefix',
     vueI18n: { fallbackLocale: 'en' },
-    vueI18nLoader: true
+    vueI18nLoader: true,
+    detectBrowserLanguage: {
+      useCookie: true,
+      alwaysRedirect: true,
+      fallbackLocale: 'en'
+    }
   },
   fire: {
     config: {
