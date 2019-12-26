@@ -16,7 +16,7 @@
         />
         <div>
           <h1 class="title is-5">{{ $t('initials') }}</h1>
-          <div class="columns is-marginless">
+          <div class="columns is-marginless header-subtitle">
             <b-taglist attached class="is-marginless">
               <b-tag class="hover-light is-marginless" type="is-dark"
                 >Web</b-tag
@@ -150,6 +150,10 @@ export default class extends Vue {
     clip-path: circle(50% at 50% 50%);
     height: 56px;
     width: 56px;
+  }
+
+  &-subtitle {
+    display: flex;
   }
 }
 </style>
