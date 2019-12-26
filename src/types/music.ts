@@ -1,10 +1,10 @@
 export class Album {
   constructor(
-    public id: String,
-    public name: String,
-    public type: String,
-    public url: String,
-    public image: String
+    public id: string,
+    public name: string,
+    public type: string,
+    public url: string,
+    public image: string
   ) {
   }
 
@@ -21,9 +21,9 @@ export class Album {
 
 export class Artist {
   constructor(
-    public id: String,
-    public name: String,
-    public url: String
+    public id: string,
+    public name: string,
+    public url: string
   ) {
   }
 
@@ -38,13 +38,13 @@ export class Artist {
 
 export class Track {
   constructor(
-    public id: String,
-    public name: String,
-    public previewUrl: String,
+    public id: string,
+    public name: string,
+    public previewUrl: string,
     public album: Album,
     public durationMs: number,
     public artists: Artist[],
-    public url: String
+    public url: string
   ) {
   }
 

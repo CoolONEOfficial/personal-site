@@ -21,7 +21,11 @@
         :pagination-enabled="false"
       >
         <slide v-for="(i, index) of images" :key="index">
-          <Picture class="welcome-background-image" :src="i.small" />
+          <Picture
+            class="welcome-background-image"
+            :src="i.small"
+            :alt="`Background image of welcome screen №${index + 1}`"
+          />
         </slide>
       </carousel>
     </client-only>
@@ -48,7 +52,11 @@
                 :key="index"
                 @slide-click="onImageClick(index)"
               >
-                <Picture class="image is-128x128 welcome-carousel-image" :src="i.small" />
+                <Picture
+                  class="image is-128x128 welcome-carousel-image"
+                  :src="i.small"
+                  :alt="`Carousel image of welcome screen №${index + 1}`"
+                />
               </slide>
             </carousel>
           </client-only>
@@ -80,7 +88,7 @@
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
 import { CAROUSEL_INTERVAL } from '~/util/constants'
-import Picture from "~/components/Picture.vue";
+import Picture from '~/components/Picture.vue'
 
 const vuexModule = namespace('timeline')
 
@@ -144,8 +152,7 @@ export default class extends Vue {
   mounted() {
     this.initImageItems()
 
-    for(let i = 0; i < 5; i++)
-      this.addRandomImage()
+    for (let i = 0; i < 5; i++) this.addRandomImage()
   }
 }
 </script>

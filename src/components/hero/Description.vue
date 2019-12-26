@@ -63,6 +63,7 @@
             { 'description-image-desktop': !$device.isMobile }
           ]"
           fit="contain"
+          alt="Description page image"
         />
       </div>
     </div>

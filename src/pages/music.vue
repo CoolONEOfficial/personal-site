@@ -63,6 +63,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
 import { COLL_NAMES } from '~/util/constants'
 import { Track } from '~/types/music'
+import { getMeta } from "~/util/seo";
 
 const COLL_NAME = COLL_NAMES.MUSIC
 const vuexModule = namespace(COLL_NAME)
@@ -118,7 +119,13 @@ export default class extends Vue {
 
   head() {
     return {
-      title: { title: this.$t('title'), locale: this.$i18n.locale }
+      title: { title: this.$t('title'), locale: this.$i18n.locale },
+      meta: getMeta(
+        this.$i18n.locale,
+        this.getTrack.album.image,
+        this.$t('title') as string,
+        undefined
+      )
     }
   }
 }

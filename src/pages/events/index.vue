@@ -14,6 +14,7 @@ import { namespace } from '~/node_modules/nuxt-property-decorator'
 import { COLL_NAMES } from '~/util/constants'
 import Card from '~/components/Card.vue'
 import CardCatalog from '~/components/CardCatalog.vue'
+import { getMeta } from "~/util/seo";
 
 const COLL_NAME = COLL_NAMES.EVENTS
 const vuexModule = namespace(COLL_NAME)
@@ -48,7 +49,13 @@ export default class extends Vue {
 
   head() {
     return {
-      title: { title: this.$t('title'), locale: this.$i18n.locale }
+      title: { title: this.$t('title'), locale: this.$i18n.locale },
+      meta: getMeta(
+        this.$i18n.locale,
+        undefined,
+        this.$t('title') as string,
+        undefined
+      )
     }
   }
 }

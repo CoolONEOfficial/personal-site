@@ -11,7 +11,7 @@
       <b-navbar-item @click="onLogoClicked">
         <Picture
           src="/favicon.jpg"
-          alt="Favicon image"
+          alt="Header logo image"
           class="header-logo has-margin-right-10"
         />
         <div>

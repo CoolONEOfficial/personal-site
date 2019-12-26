@@ -9,6 +9,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import Hero from '~/components/Hero.vue'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
 import { COLL_NAMES } from '~/util/constants'
+import { getMetaPage } from "~/util/seo";
 
 const COLL_NAME = COLL_NAMES.EVENTS
 const vuexModule = namespace(COLL_NAME)
@@ -33,7 +34,8 @@ export default class extends Vue {
       title: {
         title: this.getEventPage.title[this.$i18n.locale],
         locale: this.$i18n.locale
-      }
+      },
+      meta: getMetaPage(this.$i18n.locale, this.getEventPage)
     }
   }
 }

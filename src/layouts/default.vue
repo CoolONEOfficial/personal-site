@@ -24,7 +24,8 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
-import Welcome from "~/components/Welcome.vue";
+import Welcome from '~/components/Welcome.vue'
+import { getMeta } from '~/util/seo'
 
 @Component({
   components: { Welcome, Footer, Header }
@@ -36,8 +37,12 @@ export default class extends Vue {
   }
 
   head() {
+    const locale = this.$i18n.locale
+    const i18nSeo = this.$nuxtI18nSeo()
     return {
-      title: { locale: this.$i18n.locale }
+      title: { locale },
+      // @ts-ignore
+      meta: [...getMeta(locale), ...i18nSeo.meta]
     }
   }
 }

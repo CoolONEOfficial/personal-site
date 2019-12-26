@@ -4,6 +4,7 @@ import PurgecssPlugin from 'purgecss-webpack-plugin'
 import glob from 'glob-all'
 import path from 'path'
 import purgecss from '@fullhuman/postcss-purgecss'
+import { getTitle } from './util/seo'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -26,6 +27,7 @@ const config: Configuration = {
   /*
    ** Headers of the page
    */
+  // @ts-ignore
   head: {
     // @ts-ignore
     titleTemplate: ({ title, locale }) => {
@@ -39,16 +41,10 @@ const config: Configuration = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      },
       { name: 'msapplication-TileColor', content: PRIMARY_COLOR },
       { name: 'theme-color', content: PRIMARY_COLOR }
     ],
     link: [
-      { rel: 'canonical', href: 'https://coolone.ru/' },
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
@@ -189,7 +185,7 @@ const config: Configuration = {
     clientBaseUrl: process.env.API_URL || 'https://personal-site-d9a58.web.app'
   },
   manifest: {
-    name: 'Personal site of CoolONEOfficial',
+    name: 'Website portfolio of Nikolai Trukhin',
     lang: 'en-US'
   },
   typescript: {
@@ -213,7 +209,7 @@ const config: Configuration = {
     ],
     baseUrl: 'https://coolone.ru',
     defaultLocale: 'en',
-    seo: true,
+    seo: false,
     strategy: 'prefix',
     vueI18n: { fallbackLocale: 'en' },
     vueI18nLoader: true,

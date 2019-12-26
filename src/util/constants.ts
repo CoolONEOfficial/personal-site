@@ -7,5 +7,5 @@ export const COLL_NAMES = {
   PROJECTS: 'projects',
   BOOKS: 'books',
   EVENTS: 'events',
-  MUSIC: 'music',
+  MUSIC: 'music'
 }

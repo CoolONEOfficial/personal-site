@@ -22,6 +22,7 @@
             class="item-image is-marginless"
             :src="i.small"
             fit="cover"
+            :alt="`Timeline carousel image №${index + 1}`"
           />
         </slide>
       </carousel>
@@ -38,7 +39,12 @@
               : item.images"
             :key="index"
           >
-            <Picture class="modal-image" :src="i.original" fit="contain" />
+            <Picture
+              class="modal-image"
+              :src="i.original"
+              fit="contain"
+              :alt="`Timeline modal image №${index + 1}`"
+            />
           </slide>
         </carousel>
       </b-modal>

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div v-if="itemImage" class="card-image">
-      <Picture :src="itemImage.small" @click="isModalActive = true" />
+      <Picture :src="itemImage.small" @click="isModalActive = true" alt="Card general image" />
       <b-modal :active.sync="isModalActive" animation="zoom-in">
         <img class="modal-image" :src="itemImage.original" />
       </b-modal>
@@ -9,10 +9,7 @@
     <div class="card-content hover-dark" @click="onCardClicked">
       <div class="media">
         <div class="media-left" v-if="item.logo">
-          <Picture class="image is-48x48" :src="item.logo" />
-<!--          <figure class="image is-48x48">-->
-<!--            <img :src="item.logo" />-->
-<!--          </figure>-->
+          <Picture class="image is-48x48" :src="item.logo" alt="Card logo image" />
         </div>
         <div class="media-content">
           <p class="title is-4">{{ item.title[$i18n.locale] }}</p>

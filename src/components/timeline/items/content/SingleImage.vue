@@ -10,12 +10,14 @@
       :src="item.singleImage.small"
       fit="cover"
       @click="onImageClick"
+      alt="Timeline image"
     />
     <b-modal :active.sync="isModalActive" animation="zoom-in">
       <Picture
         class="modal-image"
         :src="item.singleImage.original"
         fit="cover"
+        alt="Timeline modal image"
       />
     </b-modal>
   </div>

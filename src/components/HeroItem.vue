@@ -14,6 +14,7 @@
       :src="`/icons/black/icons8-${item.icon}-50.png`"
       :centered="true"
       fit="contain"
+      alt="Icon of hero item"
     />
     <div class="column nav-item-title">
       {{ $t(item.title) }}

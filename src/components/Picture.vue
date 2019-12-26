@@ -8,6 +8,7 @@
         :class="['lazyload']"
         :style="`width: 100%; height: 100%; object-fit: ${fit};`"
         @click="onImageClick"
+        :alt="alt"
       />
     </picture>
   </figure>
@@ -29,6 +30,9 @@ export default class extends Vue {
 
   @Prop({ default: false })
   centered
+
+  @Prop()
+  alt
 
   onImageClick() {
     this.$emit('click')
