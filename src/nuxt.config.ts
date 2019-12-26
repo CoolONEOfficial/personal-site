@@ -7,16 +7,16 @@ import purgecss from '@fullhuman/postcss-purgecss'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-const whitelistPatterns: RegExp[] = [/mdi/, /icon/, /is-grouped/],
-  whitelistPatternsChildren: RegExp[] = [
-    /navbar/,
-    /modal/,
-    /tag/,
-    /image/,
-    /taglist/,
-    /plyr/,
-    /VueCarousel/
-  ]
+const whitelistPatterns: RegExp[] = [/mdi/, /icon/, /is-grouped/, /picture/]
+const whitelistPatternsChildren: RegExp[] = [
+  /navbar/,
+  /modal/,
+  /tag/,
+  /image/,
+  /taglist/,
+  /plyr/,
+  /VueCarousel/
+]
 
 const config: Configuration = {
   modern: !isDev,
@@ -93,6 +93,7 @@ const config: Configuration = {
   plugins: [
     { src: '@/plugins/aos', ssr: false },
     { src: '~/plugins/vue-carousel', ssr: false },
+    { src: '~/plugins/vue-lazysizes', ssr: false },
     '~/plugins/vue-plyr'
   ],
   /*
@@ -119,7 +120,8 @@ const config: Configuration = {
     'nuxt-fire',
     'vue-scrollto/nuxt',
     '@nuxtjs/sitemap',
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
+    '@bazzite/nuxt-optimized-images'
   ],
   /*
    ** Axios module configuration
@@ -142,7 +144,7 @@ const config: Configuration = {
     // analyze: true,
     publicPath: '/assets/',
     extractCSS: true,
-    extend(config, { isDev }) {
+    extend(config, { isDev, isClient, loaders: { vue } }) {
       if (!isDev && config.plugins != undefined) {
         config.plugins.push(
           new PurgecssPlugin({
@@ -158,6 +160,10 @@ const config: Configuration = {
             whitelistPatternsChildren
           })
         )
+      }
+      if (isClient && vue != undefined && vue.transformAssetUrls != undefined) {
+        vue.transformAssetUrls.img = ['data-src', 'src']
+        vue.transformAssetUrls.source = ['data-srcset', 'srcset']
       }
     },
     postcss: isDev
@@ -235,19 +241,10 @@ const config: Configuration = {
   },
   markdownit: {
     injected: true
+  },
+  optimizedImages: {
+    optimizeImages: true
   }
-  // purgeCSS: {
-  //   whitelistPatterns: [/mdi/, /icon/, /is-grouped/, /navbar/],
-  //   whitelistPatternsChildren: [
-  //     /select/,
-  //     /switch/,
-  //     /modal/,
-  //     /b-tabs/,
-  //     /autocomplete/,
-  //     /dropdown/,
-  //     /navbar/
-  //   ]
-  // }
 }
 
 export default config

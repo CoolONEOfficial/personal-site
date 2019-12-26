@@ -1,16 +1,22 @@
 <template>
   <div>
-    <img
+    <Picture
       :class="[
         'item-image',
+        'is-marginless',
         { 'right-inset': !$device.isMobile && itemRtl },
         { 'left-inset': !$device.isMobile && !itemRtl }
       ]"
       :src="item.singleImage.small"
+      fit="cover"
       @click="onImageClick"
     />
     <b-modal :active.sync="isModalActive" animation="zoom-in">
-      <img class="modal-image" :src="item.singleImage.original" />
+      <Picture
+        class="modal-image"
+        :src="item.singleImage.original"
+        fit="cover"
+      />
     </b-modal>
   </div>
 </template>
@@ -19,8 +25,11 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import { Prop } from '~/node_modules/nuxt-property-decorator'
 import { isRtl, TimelineItem } from '~/types/timeline'
+import Picture from '~/components/Picture.vue'
 
-@Component({})
+@Component({
+  components: { Picture }
+})
 export default class extends Vue {
   @Prop({ default: {} })
   item!: TimelineItem
@@ -39,8 +48,7 @@ export default class extends Vue {
 
 <style scoped lang="scss">
 .item-image {
-  object-fit: cover;
-  height: 300px;
+  height: 280px;
   width: 100%;
   overflow: hidden;
 }

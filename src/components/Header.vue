@@ -9,11 +9,10 @@
   >
     <template slot="brand">
       <b-navbar-item @click="onLogoClicked">
-        <img
+        <Picture
           src="/favicon.jpg"
-          style="border-radius: 50%;"
           alt="Favicon image"
-          class="has-margin-right-10"
+          class="header-logo has-margin-right-10"
         />
         <div>
           <h1 class="title is-5">{{ $t('initials') }}</h1>
@@ -47,9 +46,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import HeaderItem from '~/components/HeaderItem.vue'
+import Picture from '~/components/Picture.vue'
 
 @Component({
-  components: { HeaderItem }
+  components: { Picture, HeaderItem }
 })
 export default class extends Vue {
   @Prop()
@@ -144,6 +144,12 @@ export default class extends Vue {
     font-size: 0.75rem;
     color: $grey !important;
     line-height: 1.6 !important;
+  }
+
+  &-logo {
+    clip-path: circle(50% at 50% 50%);
+    height: 56px;
+    width: 56px;
   }
 }
 </style>

@@ -18,7 +18,11 @@
           :key="index"
           @slide-click="onClickImage(index)"
         >
-          <img class="item-image" :src="i.small" />
+          <Picture
+            class="item-image is-marginless"
+            :src="i.small"
+            fit="cover"
+          />
         </slide>
       </carousel>
       <b-modal :active.sync="isModalActive" animation="zoom-in">
@@ -34,7 +38,7 @@
               : item.images"
             :key="index"
           >
-            <img class="modal-image" :src="i.original" />
+            <Picture class="modal-image" :src="i.original" fit="contain" />
           </slide>
         </carousel>
       </b-modal>
@@ -45,9 +49,12 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { Prop } from '~/node_modules/nuxt-property-decorator'
-import { isRtl, TimelineItem } from "~/types/timeline";
+import { isRtl, TimelineItem } from '~/types/timeline'
+import Picture from '~/components/Picture.vue'
 
-@Component({})
+@Component({
+  components: { Picture }
+})
 export default class extends Vue {
   @Prop({ default: {} })
   item!: TimelineItem
@@ -69,13 +76,12 @@ export default class extends Vue {
 
 <style scoped lang="scss">
 .item-image {
-  object-fit: cover;
-  height: 300px;
-  width: 300px;
+  height: 100%;
+  width: 100%;
 }
 
 .carousel {
   background: $grey-lighter;
-  height: 300px;
+  height: 280px;
 }
 </style>

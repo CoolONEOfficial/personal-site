@@ -1,9 +1,7 @@
 <template>
   <div class="card">
     <div v-if="itemImage" class="card-image">
-      <figure class="image" @click="isModalActive = true">
-        <img :src="itemImage.small" class="achievement-image" />
-      </figure>
+      <Picture :src="itemImage.small" @click="isModalActive = true" />
       <b-modal :active.sync="isModalActive" animation="zoom-in">
         <img class="modal-image" :src="itemImage.original" />
       </b-modal>
@@ -11,9 +9,10 @@
     <div class="card-content hover-dark" @click="onCardClicked">
       <div class="media">
         <div class="media-left" v-if="item.logo">
-          <figure class="image is-48x48">
-            <img :src="item.logo" />
-          </figure>
+          <Picture class="image is-48x48" :src="item.logo" />
+<!--          <figure class="image is-48x48">-->
+<!--            <img :src="item.logo" />-->
+<!--          </figure>-->
         </div>
         <div class="media-content">
           <p class="title is-4">{{ item.title[$i18n.locale] }}</p>
@@ -57,9 +56,10 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { enUS, ru } from 'date-fns/locale'
 import { TimelineAchievement } from '~/types/items/achievement'
+import Picture from '~/components/Picture.vue'
 
 @Component({
-  components: {}
+  components: { Picture }
 })
 export default class extends Vue {
   @Prop({ required: true })

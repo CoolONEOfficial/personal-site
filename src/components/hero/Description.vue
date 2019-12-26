@@ -56,15 +56,14 @@
         </nav>
       </div>
       <div class="column" v-if="pageItem.singleImage">
-        <figure class="image">
-          <img
-            :src="pageItem.singleImage.original"
-            :class="[
-              'description-image',
-              { 'description-image-desktop': !$device.isMobile }
-            ]"
-          />
-        </figure>
+        <Picture
+          :src="pageItem.singleImage.original"
+          :class="[
+            'description-image',
+            { 'description-image-desktop': !$device.isMobile }
+          ]"
+          fit="contain"
+        />
       </div>
     </div>
   </div>
@@ -73,8 +72,11 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { enUS, ru } from 'date-fns/locale'
+import Picture from '~/components/Picture.vue'
 
-@Component({})
+@Component({
+  components: { Picture }
+})
 export default class extends Vue {
   @Prop({ required: true })
   pageItem
@@ -99,9 +101,10 @@ export default class extends Vue {
     left: 50%;
     transform: translateX(-50%);
     &-desktop {
+      height: 80vh;
       position: absolute;
       top: 50%;
-      transform: translateX(-50%) translateY(-40%);
+      transform: translateY(-50%);
     }
   }
 

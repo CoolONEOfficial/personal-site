@@ -21,9 +21,7 @@
         :pagination-enabled="false"
       >
         <slide v-for="(i, index) of images" :key="index">
-          <figure class="image">
-            <img class="welcome-background-image" :src="i.small" />
-          </figure>
+          <Picture class="welcome-background-image" :src="i.small" />
         </slide>
       </carousel>
     </client-only>
@@ -40,15 +38,17 @@
               :perPage="1"
               :scroll-per-page="true"
               :pagination-enabled="false"
+              :autoplay="autoplay"
+              :autoplay-timeout="CAROUSEL_INTERVAL"
+              :autoplay-hover-pause="true"
+              :loop="true"
             >
               <slide
                 v-for="(i, index) of images"
                 :key="index"
                 @slide-click="onImageClick(index)"
               >
-                <figure class="image is-128x128 is-square">
-                  <img class="welcome-carousel-image" :src="i.small" />
-                </figure>
+                <Picture class="image is-128x128 welcome-carousel-image" :src="i.small" />
               </slide>
             </carousel>
           </client-only>
@@ -80,10 +80,13 @@
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
 import { CAROUSEL_INTERVAL } from '~/util/constants'
+import Picture from "~/components/Picture.vue";
 
 const vuexModule = namespace('timeline')
 
-@Component({})
+@Component({
+  components: { Picture }
+})
 export default class extends Vue {
   @vuexModule.Action
   initImageItems
@@ -95,7 +98,10 @@ export default class extends Vue {
 
   navigateTo: any = 0
 
-  interval
+  get autoplay() {
+    return !this.isModalActive
+  }
+
   isModalActive = false
 
   images = [
@@ -122,11 +128,11 @@ export default class extends Vue {
     return arr[this.randomInt(arr.length)]
   }
 
-  @Watch('carouselModel')
-  onCarouselModelChanged(newVal, prevVal) {
-    if (this.interval != undefined) clearInterval(this.interval)
-    this.interval = setInterval(this.addRandomImage, CAROUSEL_INTERVAL)
-  }
+  // @Watch('carouselModel')
+  // onCarouselModelChanged(newVal, prevVal) {
+  //   if (this.interval != undefined) clearInterval(this.interval)
+  //   this.interval = setInterval(this.addRandomImage, CAROUSEL_INTERVAL)
+  // }
 
   addRandomImage() {
     this.images.push(
@@ -136,13 +142,10 @@ export default class extends Vue {
   }
 
   mounted() {
-    const timeout = setTimeout(() => {
-      clearTimeout(timeout)
+    this.initImageItems()
 
-      this.initImageItems()
-
+    for(let i = 0; i < 5; i++)
       this.addRandomImage()
-    }, 3000 + CAROUSEL_INTERVAL)
   }
 }
 </script>
@@ -166,7 +169,10 @@ export default class extends Vue {
     &-image {
       width: 100vw !important;
       height: 100vh !important;
-      object-fit: cover;
+
+      & img {
+        object-fit: cover;
+      }
       filter: blur(15px) grayscale(50%) opacity(25%);
     }
   }
@@ -177,8 +183,12 @@ export default class extends Vue {
     clip-path: circle(50% at 50% 50%);
 
     &-image {
+      clip-path: circle(50% at 50% 50%);
       border-radius: 50%;
-      object-fit: cover;
+
+      & img {
+        object-fit: cover;
+      }
     }
 
     &-mobile {

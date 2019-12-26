@@ -9,9 +9,12 @@
     ]"
     @click="onItemClicked"
   >
-    <figure class="image is-16x16 nav-item-image">
-      <img :src="`/icons/black/icons8-${item.icon}-50.png`" />
-    </figure>
+    <Picture
+      class="image is-16x16 nav-item-image"
+      :src="`/icons/black/icons8-${item.icon}-50.png`"
+      :centered="true"
+      fit="contain"
+    />
     <div class="column nav-item-title">
       {{ $t(item.title) }}
     </div>
@@ -20,8 +23,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import Picture from '~/components/Picture.vue'
 
-@Component({})
+@Component({
+  components: { Picture }
+})
 export default class extends Vue {
   @Prop({ required: true })
   item

@@ -14,6 +14,7 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "@bazzite/nuxt-optimized-images": "^0.3.0",
     "@fullhuman/postcss-purgecss": "^1.3.0",
     "@nuxt/typescript-runtime": "^0.3.2",
     "@nuxtjs/axios": "^5.8.0",
@@ -31,6 +32,10 @@
     "firebase-functions": "^3.3.0",
     "firebase-functions-helper": "^0.7.4",
     "glob-all": "^3.1.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^8.0.0",
+    "imagemin-svgo": "^7.0.0",
+    "lazysizes": "^5.2.0",
     "line-awesome": "^1.3.0",
     "lodash.clonedeep": "^4.5.0",
     "node-sass": "^4.13.0",

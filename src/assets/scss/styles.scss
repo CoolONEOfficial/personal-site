@@ -62,8 +62,7 @@
   }
 
   &-image {
-    margin-top: auto;
-    margin-bottom: auto;
+    min-height: 48px;
     margin-left: .75em;
     opacity: .6;
     transition: opacity .3s linear;
