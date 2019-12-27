@@ -118,6 +118,7 @@ const config: Configuration = {
     'nuxt-fire',
     'vue-scrollto/nuxt',
     '@nuxtjs/markdownit',
+    '@nuxtjs/component-cache',
     '@bazzite/nuxt-optimized-images',
     '@nuxtjs/sitemap' // sitemap at end
   ],

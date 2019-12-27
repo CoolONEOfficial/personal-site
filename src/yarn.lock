@@ -1362,6 +1362,13 @@
     consola "^2.10.1"
     defu "^0.0.3"
 
+"@nuxtjs/component-cache@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/component-cache/-/component-cache-1.1.5.tgz#4866cb601a7e6a1387e931bbb929bafeec5981d5"
+  integrity sha512-S87xiF9d7WFOWPtcPSGz6T8dnV6wmUDy3W3pN35OhCYtXtav4jS27AySowx1fqk2fl7pPJW5GgTrwSHSKGCB7Q==
+  dependencies:
+    lru-cache "^5.1.1"
+
 "@nuxtjs/date-fns@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/date-fns/-/date-fns-1.1.0.tgz#fc333c4eec0699179941466e6570a58b1d1ef7f9"
