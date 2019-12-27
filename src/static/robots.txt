@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /ru/auth/
+Disallow: /en/auth/
+Host: https://coolone.ru
+Sitemap: https://coolone.ru/sitemap.xml
