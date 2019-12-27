@@ -87,7 +87,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
-import { CAROUSEL_INTERVAL } from '~/util/constants'
+import { CAROUSEL_INTERVAL, LOGO_IMAGE } from "~/util/constants";
 import Picture from '~/components/Picture.vue'
 
 const vuexModule = namespace('timeline')
@@ -114,8 +114,8 @@ export default class extends Vue {
 
   images = [
     {
-      original: '/favicon.jpg',
-      small: '/favicon.jpg'
+      original: LOGO_IMAGE,
+      small: LOGO_IMAGE
     }
   ]
 

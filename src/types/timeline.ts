@@ -1,5 +1,5 @@
-import firebase from 'firebase'
-import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 import { Item } from '~/types/types'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 

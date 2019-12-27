@@ -1,4 +1,5 @@
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 import QuerySnapshot = firebase.firestore.QuerySnapshot
 import { TimelineItem } from '~/types/timeline'
 import { EventType } from '~/types/items/event'

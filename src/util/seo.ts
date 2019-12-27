@@ -1,14 +1,78 @@
 import { TimelineItem } from '~/types/timeline'
+const { LOGO_IMAGE, SOCIAL_LINKS } = require('./constants.ts')
+import { baseUrl } from '../.nuxt/nuxt-i18n/options'
 
-const descriptionMap = {
-  ru:
-    'Портфолио Mobile/Web разработчика, где Вы можете увидеть технические достижения, прочитанные книги, прослушать музыку и многое другое.',
-  en:
-    'A portfolio of a mobile/web developer, where you can see technical achievements, read books, listen to music and much more.'
+export const JSON_LD = {
+  PERSON: {
+    '@type': 'Person',
+    name: 'Nickolay Trukhin',
+    image: LOGO_IMAGE,
+    sameAs: [
+      SOCIAL_LINKS.VK,
+      SOCIAL_LINKS.FB,
+      SOCIAL_LINKS.INSTAGRAM,
+      SOCIAL_LINKS.LINKEDIN,
+      SOCIAL_LINKS.SKYPE,
+      SOCIAL_LINKS.SPOTIFY,
+      SOCIAL_LINKS.TWITTER,
+      SOCIAL_LINKS.GH
+    ],
+    jobTitle: 'Software developer',
+    url: 'https://coolone.ru'
+  }
 }
-const titleMap = {
-  ru: 'Cайт-портфолио Николая Трухина',
-  en: 'Website portfolio of Nikolai Trukhin'
+
+interface Breadcrumb {
+  name: string
+  url: string
+}
+
+export function getLdBreadcrumbs(breadcrumbList: Breadcrumb[]) {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbList.map((mBreadcrumb, index) => {
+      return {
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@id': mBreadcrumb.url,
+          name: mBreadcrumb.name
+        }
+      }
+    })
+  }
+}
+
+export function getArticle(
+  that,
+  locale,
+  collName,
+  page: TimelineItem | any,
+  mainEntity: object
+) {
+  return {
+    '@context': 'https://schema.org/',
+    '@type': 'ItemPage',
+    breadcrumb: getLdBreadcrumbs([
+      {
+        name: that.$t('title') as string,
+        url: `${baseUrl}${that.localePath({
+          name: collName
+        })}`
+      },
+      {
+        name: page.title[locale],
+        url: `${baseUrl}${that.$route.fullPath}`
+      }
+    ]),
+    mainEntity: {
+      ...mainEntity,
+      name: page.title[locale],
+      description: page.description ? page.description[locale] : ''
+    },
+    name: that.$t('name'),
+    author: JSON_LD.PERSON
+  }
 }
 
 export function getTitle(locale, title) {
@@ -23,9 +87,20 @@ export function getMetaPage(locale, item: TimelineItem | any) {
       : Boolean(item.singleImage)
       ? item.singleImage.small
       : undefined,
-    item.title,
-    item.description
+    item.title[locale],
+    item.description[locale]
   )
+}
+
+const descriptionMap = {
+  ru:
+    'Портфолио Mobile/Web разработчика, где Вы можете увидеть технические достижения, прочитанные книги, прослушать музыку и многое другое.',
+  en:
+    'A portfolio of a mobile/web developer, where you can see technical achievements, read books, listen to music and much more.'
+}
+const titleMap = {
+  ru: 'Cайт-портфолио Николая Трухина',
+  en: 'Website portfolio of Nikolai Trukhin'
 }
 
 export function getMeta(
@@ -34,7 +109,7 @@ export function getMeta(
   title?: string,
   description?: string
 ) {
-  title = getTitle(locale, title)
+  if (title) title = getTitle(locale, title)
   return [
     {
       hid: 'description',
@@ -69,7 +144,7 @@ export function getMeta(
     {
       hid: 'og:image',
       property: 'og:image',
-      content: image || '/favicon.jpg'
+      content: image || LOGO_IMAGE
     }
   ]
 }

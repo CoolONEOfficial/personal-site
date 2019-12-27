@@ -1,9 +1,10 @@
 import { TimelineItem } from '~/types/timeline'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
 import DocumentData = firebase.firestore.DocumentData;
 import { deepMerge } from "~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils";
-import { AchievementType } from "~/types/items/achievement";
+import { LocalizedString } from "~/types/types";
 
 export enum EventType {
   OTHER = 'other',
@@ -24,6 +25,16 @@ export enum EventType {
   EXCURSION = 'excursion'
 }
 
+export interface Geopoint {
+
+  latitude, longitude: number
+}
+
+export interface Location {
+  title: LocalizedString,
+  geopoint: Geopoint
+}
+
 export class TimelineEvent extends TimelineItem {
   constructor(
     title,
@@ -35,7 +46,7 @@ export class TimelineEvent extends TimelineItem {
     _type,
     _doc,
     public type: EventType,
-    public location: Location
+    public location?: Location
   ) {
     super(title, date, images, singleImage, description, tags, _type, _doc)
   }

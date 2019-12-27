@@ -1,11 +1,10 @@
 import { Configuration } from '@nuxt/types'
-import { PRIMARY_COLOR } from './util/constants'
+import { BASE_URL, FIREBASE_PROJECT_ID, FIREBASE_STORAGE_BUCKET, PRIMARY_COLOR } from "./util/constants";
 import PurgecssPlugin from 'purgecss-webpack-plugin'
 import glob from 'glob-all'
 import path from 'path'
 import purgecss from '@fullhuman/postcss-purgecss'
-import { getTitle } from './util/seo'
-
+const getRoutes = require('./util/routes.ts')
 const isDev = process.env.NODE_ENV !== 'production'
 
 const whitelistPatterns: RegExp[] = [/mdi/, /icon/, /is-grouped/, /picture/]
@@ -90,7 +89,8 @@ const config: Configuration = {
     { src: '@/plugins/aos', ssr: false },
     { src: '~/plugins/vue-carousel', ssr: false },
     { src: '~/plugins/vue-lazysizes', ssr: false },
-    '~/plugins/vue-plyr'
+    '~/plugins/vue-plyr',
+    '~/plugins/jsonld'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -115,9 +115,9 @@ const config: Configuration = {
     'nuxt-i18n',
     'nuxt-fire',
     'vue-scrollto/nuxt',
-    '@nuxtjs/sitemap',
     '@nuxtjs/markdownit',
-    '@bazzite/nuxt-optimized-images'
+    '@bazzite/nuxt-optimized-images',
+    '@nuxtjs/sitemap' // sitemap at end
   ],
   /*
    ** Axios module configuration
@@ -207,7 +207,7 @@ const config: Configuration = {
         iso: 'ru-RU'
       }
     ],
-    baseUrl: 'https://coolone.ru',
+    baseUrl: BASE_URL,
     defaultLocale: 'en',
     seo: false,
     strategy: 'prefix',
@@ -224,8 +224,8 @@ const config: Configuration = {
       apiKey: 'AIzaSyBDVOdqcspdnve9eiRpR91mV6VSFZPMNFI',
       authDomain: 'personal-site-d9a58.firebaseapp.com',
       databaseURL: 'https://personal-site-d9a58.firebaseio.com',
-      projectId: 'personal-site-d9a58',
-      storageBucket: 'personal-site-d9a58.appspot.com',
+      projectId: FIREBASE_PROJECT_ID,
+      storageBucket: FIREBASE_STORAGE_BUCKET,
       messagingSenderId: '296312063282',
       appId: '1:296312063282:web:d0da9be983c7eb90c7432b',
       measurementId: 'G-9H4D1GY1VP'
@@ -240,6 +240,14 @@ const config: Configuration = {
   },
   optimizedImages: {
     optimizeImages: true
+  },
+  sitemap: {
+    hostname: BASE_URL,
+    gzip: true,
+    exclude: ['/auth'],
+    routes() {
+      return getRoutes()
+    }
   }
 }
 

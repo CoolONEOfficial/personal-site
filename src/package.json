@@ -43,6 +43,7 @@
     "nuxt-buefy": "^0.3.19",
     "nuxt-fire": "^3.5.1",
     "nuxt-i18n": "^6.4.1",
+    "nuxt-jsonld": "^1.4.5",
     "nuxt-property-decorator": "^2.5.0",
     "nuxt-purgecss": "^0.2.1",
     "plyr": "^3.5.6",

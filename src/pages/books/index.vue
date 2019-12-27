@@ -61,13 +61,4 @@ export default class extends Vue {
 }
 </script>
 
-<i18n>
-  {
-    "en": {
-      "title": "Books"
-    },
-    "ru": {
-      "title": "Книги"
-    }
-  }
-</i18n>
+<i18n src="~/lang/books.json" />

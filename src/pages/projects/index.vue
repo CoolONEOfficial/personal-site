@@ -14,7 +14,7 @@ import { namespace } from '~/node_modules/nuxt-property-decorator'
 import { COLL_NAMES } from '~/util/constants'
 import Card from '~/components/Card.vue'
 import CardCatalog from '~/components/CardCatalog.vue'
-import { getMeta } from "~/util/seo";
+import { getMeta } from '~/util/seo'
 
 const COLL_NAME = COLL_NAMES.PROJECTS
 const vuexModule = namespace(COLL_NAME)
@@ -61,15 +61,6 @@ export default class extends Vue {
 }
 </script>
 
-<i18n src="~/lang/projectsTypes.json"/>
+<i18n src="~/lang/projectsTypes.json" />
 
-<i18n>
-  {
-    "en": {
-      "title": "Projects"
-    },
-    "ru": {
-      "title": "Проекты"
-    }
-  }
-</i18n>
+<i18n src="~/lang/projects.json" />

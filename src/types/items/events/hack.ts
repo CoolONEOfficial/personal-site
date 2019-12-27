@@ -1,6 +1,7 @@
 import { TimelineEvent } from '~/types/items/event'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 import DocumentData = firebase.firestore.DocumentData;
 
 export class TimelineHack extends TimelineEvent {

@@ -26,7 +26,10 @@ import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
 import Welcome from '~/components/Welcome.vue'
 import { getMeta } from '~/util/seo'
+import { Jsonld } from '~/node_modules/nuxt-jsonld'
+import { SOCIAL_LINKS } from '~/util/constants'
 
+@Jsonld
 @Component({
   components: { Welcome, Footer, Header }
 })

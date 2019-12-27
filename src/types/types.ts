@@ -1,4 +1,5 @@
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 import Timestamp = firebase.firestore.Timestamp
 import { PLACEHOLDER_IMAGE } from '~/util/constants'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot

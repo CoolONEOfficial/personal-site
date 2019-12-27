@@ -1,3 +1,4 @@
+import { ProjectType } from "~/types/items/project";
 <template>
   <Hero :doc="$route.params.doc" :item="getProjectPage">
     <nuxt />
@@ -9,17 +10,24 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import Hero from '~/components/Hero.vue'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
 import { COLL_NAMES } from '~/util/constants'
-import { getMetaPage } from "~/util/seo";
+import { getArticle, getMetaPage } from '~/util/seo'
+import { Jsonld } from '~/node_modules/nuxt-jsonld'
+import {
+  PageProject,
+  ProjectPlatform,
+  ProjectType
+} from '~/types/items/project'
 
 const COLL_NAME = COLL_NAMES.PROJECTS
 const vuexModule = namespace(COLL_NAME)
 
+@Jsonld
 @Component({
   components: { Hero }
 })
 export default class extends Vue {
   @vuexModule.Getter
-  getProjectPage
+  getProjectPage!: PageProject
 
   async fetch({ store, params }) {
     try {
@@ -38,5 +46,25 @@ export default class extends Vue {
       meta: getMetaPage(this.$i18n.locale, this.getProjectPage)
     }
   }
+
+  jsonld() {
+    let type = 'SoftwareApplication'
+    if (this.getProjectPage.type == ProjectType.GAME) type = 'VideoGame'
+    else
+      switch (this.getProjectPage.platform) {
+        case ProjectPlatform.MOBILE:
+          type = 'MobileApplication'
+          break
+        case ProjectPlatform.WEB:
+          type = 'MobileApplication'
+          break
+      }
+
+    return getArticle(this, this.$i18n.locale, COLL_NAME, this.getProjectPage, {
+      '@type': type
+    })
+  }
 }
 </script>
+
+<i18n src="~/lang/projects.json" />

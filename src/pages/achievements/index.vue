@@ -61,13 +61,4 @@ export default class extends Vue {
 }
 </script>
 
-<i18n>
-  {
-    "en": {
-      "title": "Achievements"
-    },
-    "ru": {
-      "title": "Достижения"
-    }
-  }
-</i18n>
+<i18n src="~/lang/achievements.json" />

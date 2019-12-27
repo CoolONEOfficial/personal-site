@@ -32,34 +32,43 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { SOCIAL_LINKS } from "~/util/constants";
 
 @Component({})
 export default class extends Vue {
   socials = [
     {
       icon: 'facebook',
-      url: 'https://www.facebook.com/coolone.official'
+      url: SOCIAL_LINKS.FB
     },
     {
       icon: 'skype',
-      url: 'https://join.skype.com/invite/oZ5zVVogLOtv'
+      url: SOCIAL_LINKS.SKYPE
     },
     {
       icon: 'spotify',
       url:
-        'https://open.spotify.com/user/cooloneofficial?si=hGzFbziRTcWYOCEGZwdREQ'
+        SOCIAL_LINKS.SPOTIFY
     },
     {
       icon: 'linkedin',
-      url: 'https://www.linkedin.com/in/cooloneofficial/'
+      url: SOCIAL_LINKS.LINKEDIN
     },
     {
       icon: 'instagram',
-      url: 'https://www.instagram.com/coolone.official/'
+      url: SOCIAL_LINKS.INSTAGRAM
     },
     {
       icon: 'vk-circled',
-      url: 'https://vk.com/cooloneofficial'
+      url: SOCIAL_LINKS.VK
+    },
+    {
+      icon: 'github',
+      url: SOCIAL_LINKS.GH
+    },
+    {
+      icon: 'twitter',
+      url: SOCIAL_LINKS.TWITTER
     }
   ]
 }

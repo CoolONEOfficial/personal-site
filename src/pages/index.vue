@@ -1,16 +1,23 @@
 <template>
   <section>
     <p class="title has-text-centered has-padding-top-50">Хронология</p>
-    <Timeline class="has-margin-top-40 has-margin-bottom-50" v-model="getTimelineItems" />
+    <Timeline
+      class="has-margin-top-40 has-margin-bottom-50"
+      v-model="getTimelineItems"
+    />
   </section>
 </template>
 
 <script lang="ts">
 import { Component, namespace, Vue } from 'nuxt-property-decorator'
 import Timeline from '~/components/Timeline.vue'
+import { Jsonld } from '~/node_modules/nuxt-jsonld'
+import { JSON_LD } from '~/util/seo'
+import { LOGO_IMAGE } from "~/util/constants";
 
 const vuexModule = namespace('timeline')
 
+@Jsonld
 @Component({
   components: { Timeline }
 })
@@ -25,5 +32,27 @@ export default class extends Vue {
       console.error('error! ', e)
     }
   }
+
+  jsonld() {
+    return {
+      '@context': 'https://schema.org/',
+      '@type': 'WebSite',
+      name: this.$t('name'),
+      url: 'https://coolone.ru',
+      author: JSON_LD.PERSON,
+      image: LOGO_IMAGE,
+    }
+  }
 }
 </script>
+
+<i18n>
+  {
+    "en": {
+      "name": "Website portfolio of Nikolai Trukhin"
+    },
+    "ru": {
+      "name": "Cайт-портфолио Николая Трухина"
+    }
+  }
+</i18n>

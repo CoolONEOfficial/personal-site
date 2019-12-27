@@ -4,7 +4,7 @@
     :class="[
       'header',
       'has-margin-bottom-10',
-      { 'is-transparent is-fixed-top': homepage }
+      { 'is-transparent is-fixed-top header-homepage': homepage }
     ]"
   >
     <template slot="brand">
@@ -125,12 +125,14 @@ export default class extends Vue {
 .header {
   position: relative;
   transition: top 1s, opacity 1s linear;
-  top: -100% !important;
-  opacity: 0 !important;
+  &-homepage {
+    top: -100% !important;
+    opacity: 0 !important;
 
-  &.shrink {
-    top: 0 !important;
-    opacity: 1 !important;
+    &.shrink {
+      top: 0 !important;
+      opacity: 1 !important;
+    }
   }
 
   .title {

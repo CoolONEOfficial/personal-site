@@ -1,6 +1,7 @@
 import { PAGINATION_COUNT } from '~/util/constants'
 import QuerySnapshot = firebase.firestore.QuerySnapshot
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 import Timestamp = firebase.firestore.Timestamp
 import { TimelineItem } from "~/types/timeline";
 

@@ -14,7 +14,7 @@ import { namespace } from '~/node_modules/nuxt-property-decorator'
 import { COLL_NAMES } from '~/util/constants'
 import Card from '~/components/Card.vue'
 import CardCatalog from '~/components/CardCatalog.vue'
-import { getMeta } from "~/util/seo";
+import { getMeta } from '~/util/seo'
 
 const COLL_NAME = COLL_NAMES.EVENTS
 const vuexModule = namespace(COLL_NAME)
@@ -61,15 +61,6 @@ export default class extends Vue {
 }
 </script>
 
-<i18n src="~/lang/eventsTypes.json"/>
+<i18n src="~/lang/eventsTypes.json" />
 
-<i18n>
-  {
-    "en": {
-      "title": "Events"
-    },
-    "ru": {
-      "title": "Мероприятия"
-    }
-  }
-</i18n>
+<i18n src="~/lang/events.json" />

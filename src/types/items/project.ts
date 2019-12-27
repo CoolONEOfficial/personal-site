@@ -1,5 +1,6 @@
 import { TimelineItem } from '~/types/timeline'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
 import DocumentData = firebase.firestore.DocumentData
 import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils'
@@ -7,6 +8,12 @@ import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/
 export enum ProjectType {
   MOBILE_APP = 'other',
   GAME = 'hackathon'
+}
+
+export enum ProjectPlatform {
+  MOBILE = 'mobile',
+  DESKTOP = 'desktop',
+  WEB = 'web'
 }
 
 export class TimelineProject extends TimelineItem {
@@ -54,7 +61,7 @@ export class PageProject extends TimelineProject {
     _doc,
     type,
     public github,
-    public platform
+    public platform: ProjectPlatform
   ) {
     super(
       title,
@@ -88,7 +95,7 @@ export class PageProject extends TimelineProject {
       item._doc,
       item.type,
       data.github,
-      data.platform
+      data.platform as ProjectPlatform
     )
   }
 }
