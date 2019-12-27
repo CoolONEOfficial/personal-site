@@ -23,3 +23,13 @@ export const SOCIAL_LINKS = {
   VK: 'https://vk.com/cooloneofficial',
   GH: 'https://github.com/CoolONEOfficial'
 }
+export const LOCALES = [
+  {
+    code: 'en',
+    iso: 'en-US'
+  },
+  {
+    code: 'ru',
+    iso: 'ru-RU'
+  }
+]

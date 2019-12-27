@@ -1,5 +1,5 @@
 import { Configuration } from '@nuxt/types'
-import { BASE_URL, FIREBASE_PROJECT_ID, FIREBASE_STORAGE_BUCKET, PRIMARY_COLOR } from "./util/constants";
+import { BASE_URL, FIREBASE_PROJECT_ID, FIREBASE_STORAGE_BUCKET, LOCALES, PRIMARY_COLOR } from "./util/constants";
 import PurgecssPlugin from 'purgecss-webpack-plugin'
 import glob from 'glob-all'
 import path from 'path'
@@ -197,16 +197,7 @@ const config: Configuration = {
     materialDesignIcons: true
   },
   i18n: {
-    locales: [
-      {
-        code: 'en',
-        iso: 'en-US'
-      },
-      {
-        code: 'ru',
-        iso: 'ru-RU'
-      }
-    ],
+    locales: LOCALES,
     baseUrl: BASE_URL,
     defaultLocale: 'en',
     seo: false,
