@@ -3,11 +3,8 @@
     :class="['timeline-item', { hovered: hovered }]"
     @mouseenter="onItemHover"
   >
-    <div class="timeline-marker is-image is-32x32" style="margin-top: 1em">
-      <img
-        :src="`/icons/black/icons8-${icon}-50.png`"
-        style="transform: scale(0.6)"
-      />
+    <div class="timeline-marker is-image is-32x32">
+      <Picture :src="`/icons/black/icons8-${icon}-50.png`" fit="contain" alt="Item icon" />
     </div>
     <div class="timeline-content">
       <div
@@ -27,7 +24,9 @@
               })
             }}
           </p>
-          <p :class="`has-margin-${ itemRtl ? 'left' : 'right' }-45`">{{ item.title[$i18n.locale] }}</p>
+          <p :class="`has-margin-${itemRtl ? 'left' : 'right'}-45`">
+            {{ item.title[$i18n.locale] }}
+          </p>
           <h2
             v-show="Boolean(subtitle)"
             class="subtitle is-size-7 has-margin-bottom-10"
@@ -86,11 +85,12 @@ import { namespace } from '~/node_modules/nuxt-property-decorator'
 import SingleImage from '~/components/timeline/items/content/SingleImage.vue'
 import Images from '~/components/timeline/items/content/Images.vue'
 import Description from '~/components/timeline/items/content/Description.vue'
+import Picture from "~/components/Picture.vue";
 
 const vuexModule = namespace('timeline')
 
 @Component({
-  components: { Description, Images, SingleImage }
+  components: { Picture, Description, Images, SingleImage }
 })
 export default class extends Vue {
   @Prop({ default: {} })
@@ -140,6 +140,8 @@ export default class extends Vue {
 .icon-open {
   position: absolute;
   top: 2rem;
+  opacity: 0;
+  cursor: pointer;
 
   &-left {
     left: calc(1rem);
@@ -164,46 +166,53 @@ export default class extends Vue {
   transition: max-height 1.2s 0.2s, opacity 0.2s linear 0s;
 }
 
-.icon-open {
-  opacity: 0;
-  cursor: pointer;
-}
+.timeline {
+  &-marker {
+    margin-top: 1em;
 
-.timeline-item {
-  @media only screen and (min-width: 769px) {
-    &:nth-of-type(even) {
-      .content {
-        margin-right: calc(-29.5px - 2em);
-      }
-    }
-
-    &:nth-of-type(odd) {
-      .content {
-        margin-left: calc(-29.5px - 2em);
-      }
+    & .picture {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%) scale(0.75);
     }
   }
 
-  box-shadow: inset 0 8px 0 0 white, inset 0 -8px 0 0 white;
-
-  transition-duration: 1200ms;
-  transition-property: padding-left, padding-right, background-color;
-
-  &.hovered {
+  &-item {
     @media only screen and (min-width: 769px) {
-      padding-left: 30px;
-      padding-right: 30px;
-    }
-    background-color: $white-ter;
+      &:nth-of-type(even) {
+        .content {
+          margin-right: calc(-29.5px - 2em);
+        }
+      }
 
-    .content {
-      max-height: 400px;
-      opacity: 1;
-      transition: max-height 1.2s 0s, opacity 0.5s linear 0.5s;
+      &:nth-of-type(odd) {
+        .content {
+          margin-left: calc(-29.5px - 2em);
+        }
+      }
     }
 
-    .icon-open {
-      opacity: 0.6;
+    box-shadow: inset 0 8px 0 0 white, inset 0 -8px 0 0 white;
+
+    transition-duration: 1200ms;
+    transition-property: padding-left, padding-right, background-color;
+
+    &.hovered {
+      @media only screen and (min-width: 769px) {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+      background-color: $white-ter;
+
+      .content {
+        max-height: 400px;
+        opacity: 1;
+        transition: max-height 1.2s 0s, opacity 0.5s linear 0.5s;
+      }
+
+      .icon-open {
+        opacity: 0.6;
+      }
     }
   }
 }

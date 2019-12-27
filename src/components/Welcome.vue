@@ -8,7 +8,12 @@
         :pagination-enabled="false"
       >
         <slide v-for="(i, index) of images" :key="index">
-          <img class="modal-image" :src="i.original" />
+          <Picture
+            class="modal-image"
+            :src="i.original"
+            fit="contain"
+            :alt="`Modal welcome image №${index + 1}`"
+          />
         </slide>
       </carousel>
     </b-modal>
@@ -25,11 +30,12 @@
             class="welcome-background-image"
             :src="i.small"
             :alt="`Background image of welcome screen №${index + 1}`"
+            data-aos="fade"
           />
         </slide>
       </carousel>
     </client-only>
-    <div class="hero-body">
+    <div class="hero-body" data-aos="fade" data-aos-delay="1000">
       <div :class="['container', { 'has-text-centered': $device.isMobile }]">
         <div class="columns">
           <client-only>
@@ -63,7 +69,7 @@
           <div
             :class="[
               'welcome-text',
-              { 'has-margin-left-20': !$device.isMobile }
+              { 'has-margin-left-50': !$device.isMobile }
             ]"
           >
             <p class="title has-margin-top-30">{{ $t('initials') }}</p>
@@ -87,7 +93,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
-import { CAROUSEL_INTERVAL, LOGO_IMAGE } from "~/util/constants";
+import { CAROUSEL_INTERVAL, LOGO_IMAGE } from '~/util/constants'
 import Picture from '~/components/Picture.vue'
 
 const vuexModule = namespace('timeline')

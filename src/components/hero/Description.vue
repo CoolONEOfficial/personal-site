@@ -8,7 +8,8 @@
         ]"
       >
         <div :class="[{ columns: pageItem.singleImage }]">
-          <figure
+          <Picture
+            :src="pageItem.logo"
             :class="[
               'image',
               'is-128x128',
@@ -16,9 +17,10 @@
               { 'image-centered': !pageItem.singleImage }
             ]"
             v-if="!$device.isMobile && pageItem.logo"
-          >
-            <img :src="pageItem.logo" />
-          </figure>
+            fit="contain"
+            alt="Hero description image"
+          />
+
           <div class="column">
             <h1 class="title">
               {{ pageItem.title[$i18n.locale] }}

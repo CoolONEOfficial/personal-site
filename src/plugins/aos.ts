@@ -4,7 +4,8 @@ import 'aos/dist/aos.css'
 
 export default ({ app }) => {
   app.AOS = new AOS.init({
-    disable: 'phone',
+    // disable: 'phone',
     duration: 1200,
+    once: true
   })
 }

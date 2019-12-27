@@ -1,6 +1,8 @@
 <template>
   <section>
-    <p class="title has-text-centered has-padding-top-50">Хронология</p>
+    <p class="title has-text-centered has-padding-top-50" data-aos="fade">
+      Хронология
+    </p>
     <Timeline
       class="has-margin-top-40 has-margin-bottom-50"
       v-model="getTimelineItems"
@@ -13,7 +15,7 @@ import { Component, namespace, Vue } from 'nuxt-property-decorator'
 import Timeline from '~/components/Timeline.vue'
 import { Jsonld } from '~/node_modules/nuxt-jsonld'
 import { JSON_LD } from '~/util/seo'
-import { LOGO_IMAGE } from "~/util/constants";
+import { LOGO_IMAGE } from '~/util/constants'
 
 const vuexModule = namespace('timeline')
 
@@ -40,7 +42,7 @@ export default class extends Vue {
       name: this.$t('name'),
       url: 'https://coolone.ru',
       author: JSON_LD.PERSON,
-      image: LOGO_IMAGE,
+      image: LOGO_IMAGE
     }
   }
 }

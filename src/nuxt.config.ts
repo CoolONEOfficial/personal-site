@@ -15,7 +15,8 @@ const whitelistPatternsChildren: RegExp[] = [
   /image/,
   /taglist/,
   /plyr/,
-  /VueCarousel/
+  /VueCarousel/,
+  /aos/
 ]
 
 const config: Configuration = {
@@ -98,7 +99,8 @@ const config: Configuration = {
   buildModules: [
     '@nuxt/typescript-build',
     '@nuxtjs/dotenv',
-    '@nuxtjs/date-fns'
+    '@nuxtjs/date-fns',
+    '@nuxtjs/google-analytics'
   ],
   /*
    ** Nuxt.js modules
@@ -239,6 +241,9 @@ const config: Configuration = {
     routes() {
       return getRoutes()
     }
+  },
+  googleAnalytics: {
+    id: 'G-N84HJNQLWP'
   }
 }
 

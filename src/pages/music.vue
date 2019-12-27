@@ -14,7 +14,7 @@
             { 'music-image-mobile': $device.isMobile }
           ]"
         >
-          <img :src="getTrack.album.image" />
+          <Picture :src="getTrack.album.image" alt="Album picture" />
           <div
             style="display: flex"
             v-show="getIsPlaying && progress"
@@ -64,11 +64,14 @@ import { namespace } from '~/node_modules/nuxt-property-decorator'
 import { COLL_NAMES } from '~/util/constants'
 import { Track } from '~/types/music'
 import { getMeta } from "~/util/seo";
+import Picture from "~/components/Picture.vue";
 
 const COLL_NAME = COLL_NAMES.MUSIC
 const vuexModule = namespace(COLL_NAME)
 
-@Component({})
+@Component({
+  components: { Picture }
+})
 export default class extends Vue {
   @vuexModule.Getter
   getTrack!: Track

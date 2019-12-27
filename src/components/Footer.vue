@@ -20,7 +20,11 @@
               :key="index"
             >
               <a :href="i.url">
-                <img :src="`/icons/black/icons8-${i.icon}-50.png`" />
+                <Picture
+                  :src="`/icons/black/icons8-${i.icon}-50.png`"
+                  fit="contain"
+                  alt="Footer social icon"
+                />
               </a>
             </figure>
           </div>

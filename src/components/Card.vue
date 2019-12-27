@@ -3,7 +3,7 @@
     <div v-if="itemImage" class="card-image">
       <Picture :src="itemImage.small" @click="isModalActive = true" alt="Card general image" />
       <b-modal :active.sync="isModalActive" animation="zoom-in">
-        <img class="modal-image" :src="itemImage.original" />
+        <Picture class="modal-image" :src="itemImage.original" fit="contain" alt="Modal card image" />
       </b-modal>
     </div>
     <div class="card-content hover-dark" @click="onCardClicked">
