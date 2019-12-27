@@ -124,11 +124,13 @@ export default class extends Vue {
 <style lang="scss">
 .header {
   position: relative;
-  transition: top 1s;
+  transition: top 1s, opacity 1s linear;
   top: -100% !important;
+  opacity: 0 !important;
 
   &.shrink {
     top: 0 !important;
+    opacity: 1 !important;
   }
 
   .title {
