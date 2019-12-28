@@ -10,7 +10,7 @@
     <template slot="brand">
       <b-navbar-item @click="onLogoClicked">
         <Picture
-          src="/favicon.jpg"
+          v-model="headerSrc"
           alt="Header logo image"
           class="header-logo has-margin-right-10"
         />
@@ -54,6 +54,10 @@ import Picture from '~/components/Picture.vue'
 export default class extends Vue {
   @Prop()
   homepage!: boolean
+
+  get headerSrc() {
+    return '/favicon.jpg'
+  }
 
   items = [
     {
@@ -146,7 +150,6 @@ export default class extends Vue {
   .tag-text {
     margin-left: 0.5rem;
     font-size: 0.75rem;
-    color: $grey !important;
     line-height: 1.6 !important;
   }
 

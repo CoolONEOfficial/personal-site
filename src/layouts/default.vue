@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <Welcome v-if="homepage" />
+  <div id="main-layout" :style="themeStyle">
+    <Welcome v-if="homepage" @vantaBlack="vantaBlack" />
 
     <Header :homepage="homepage" />
 
@@ -14,20 +14,13 @@
   </div>
 </template>
 
-<style lang="scss">
-#main-content {
-  min-height: calc(100vh - 6em);
-}
-</style>
-
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Action, Component, Getter, Vue } from 'nuxt-property-decorator'
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
 import Welcome from '~/components/Welcome.vue'
 import { getMeta } from '~/util/seo'
 import { Jsonld } from '~/node_modules/nuxt-jsonld'
-import { SOCIAL_LINKS } from '~/util/constants'
 
 @Jsonld
 @Component({
@@ -48,5 +41,39 @@ export default class extends Vue {
       meta: [...getMeta(locale), ...i18nSeo.meta]
     }
   }
+
+  @Getter
+  getTheme
+
+  @Action
+  switchTheme
+
+  get themeStyle() {
+    const theme = this.getTheme
+    return {
+      '--background-color': theme.schemeColor,
+      '--text-color': theme.textColor,
+      '--timeline-background-opacity': theme.timelineBackgroundOpacity,
+      '--timeline-line': theme.timelineItemLine,
+      '--navbar-background': theme.navbarBackground
+    }
+  }
+
+  vantaBlack() {
+    this.switchTheme()
+  }
 }
 </script>
+
+<style lang="scss">
+#main {
+  &-content {
+    min-height: calc(100vh - 6em);
+  }
+
+  &-layout {
+    transition: background-color 250ms;
+    background-color: var(--background-color);
+  }
+}
+</style>

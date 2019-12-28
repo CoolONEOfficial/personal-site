@@ -4,7 +4,7 @@
     @mouseenter="onItemHover"
   >
     <div class="timeline-marker is-image is-32x32">
-      <Picture :src="`/icons/black/icons8-${icon}-50.png`" fit="contain" alt="Item icon" />
+      <Icon :icon="icon" fit="contain" alt="Item icon" />
     </div>
     <div class="timeline-content">
       <div
@@ -85,12 +85,13 @@ import { namespace } from '~/node_modules/nuxt-property-decorator'
 import SingleImage from '~/components/timeline/items/content/SingleImage.vue'
 import Images from '~/components/timeline/items/content/Images.vue'
 import Description from '~/components/timeline/items/content/Description.vue'
-import Picture from "~/components/Picture.vue";
+import Picture from '~/components/Picture.vue'
+import Icon from '~/components/Icon.vue'
 
 const vuexModule = namespace('timeline')
 
 @Component({
-  components: { Picture, Description, Images, SingleImage }
+  components: { Icon, Picture, Description, Images, SingleImage }
 })
 export default class extends Vue {
   @Prop({ default: {} })
@@ -172,8 +173,9 @@ export default class extends Vue {
 
     & .picture {
       position: relative;
-      top: 50%;
-      transform: translateY(-50%) scale(0.75);
+      top: 55%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%) scale(0.75);
     }
   }
 
@@ -192,7 +194,8 @@ export default class extends Vue {
       }
     }
 
-    box-shadow: inset 0 8px 0 0 white, inset 0 -8px 0 0 white;
+    box-shadow: inset 0 8px 0 0 var(--background-color),
+      inset 0 -8px 0 0 var(--background-color);
 
     transition-duration: 1200ms;
     transition-property: padding-left, padding-right, background-color;
@@ -202,7 +205,7 @@ export default class extends Vue {
         padding-left: 30px;
         padding-right: 30px;
       }
-      background-color: $white-ter;
+      background-color: rgba($white-ter, var(--timeline-background-opacity));
 
       .content {
         max-height: 400px;

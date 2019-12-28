@@ -14,7 +14,7 @@
             { 'music-image-mobile': $device.isMobile }
           ]"
         >
-          <Picture :src="getTrack.album.image" alt="Album picture" />
+          <Picture v-model="getTrack.album.image" alt="Album picture" />
           <div
             style="display: flex"
             v-show="getIsPlaying && progress"

@@ -7,10 +7,10 @@
     @click="onItemClicked"
   >
     <div class="columns is-mobile">
-      <Picture
+      <Icon
         class="image is-16x16 nav-item-image"
         :centered="true"
-        :src="`/icons/black/icons8-${item.icon}-50.png`"
+        :icon="item.icon"
         fit="contain"
         alt="Header item icon"
       />
@@ -24,9 +24,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import Picture from '~/components/Picture.vue'
+import Icon from "~/components/Icon.vue";
 
 @Component({
-  components: { Picture }
+  components: { Icon, Picture }
 })
 export default class extends Vue {
   @Prop({ required: true })

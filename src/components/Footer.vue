@@ -7,26 +7,23 @@
         </div>
         <div class="column has-text-centered subtitle is-6 footer-text-wrapper">
           <p class="footer-text">
-            <a href="https://coolone.ru">{{ $t('initials') }}</a
+            <nuxt-link :to="localePath({ name: 'index' })">{{
+              $t('initials')
+            }}</nuxt-link
             >.<br />{{ $t('license-text') }}
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
           </p>
         </div>
         <div class="column">
           <div :class="['socials', { 'socials-mobile': $device.isMobile }]">
-            <figure
-              class="image is-32x32 social icon-hover"
-              v-for="(i, index) of socials"
-              :key="index"
-            >
-              <a :href="i.url">
-                <Picture
-                  :src="`/icons/black/icons8-${i.icon}-50.png`"
-                  fit="contain"
-                  alt="Footer social icon"
-                />
-              </a>
-            </figure>
+            <a v-for="(i, index) of socials" :key="index" :href="i.url">
+              <Icon
+                class="image is-32x32 social icon-hover"
+                :icon="i.icon"
+                fit="contain"
+                alt="Footer social icon"
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -35,10 +32,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-import { SOCIAL_LINKS } from "~/util/constants";
+import { Component, Getter, Vue } from 'nuxt-property-decorator'
+import { SOCIAL_LINKS } from '~/util/constants'
+import Icon from '~/components/Icon.vue'
 
-@Component({})
+@Component({
+  components: { Icon }
+})
 export default class extends Vue {
   socials = [
     {
@@ -51,8 +51,7 @@ export default class extends Vue {
     },
     {
       icon: 'spotify',
-      url:
-        SOCIAL_LINKS.SPOTIFY
+      url: SOCIAL_LINKS.SPOTIFY
     },
     {
       icon: 'linkedin',
@@ -75,6 +74,9 @@ export default class extends Vue {
       url: SOCIAL_LINKS.TWITTER
     }
   ]
+
+  @Getter
+  getThemeInvert
 }
 </script>
 
@@ -104,8 +106,7 @@ export default class extends Vue {
 
 .social {
   padding: 0 !important;
-
-  margin: .25em !important;
+  margin: 0.25em !important;
 }
 </style>
 

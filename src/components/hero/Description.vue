@@ -16,7 +16,7 @@
         >
           <div :class="[{ columns: pageItem.singleImage }]">
             <Picture
-              :src="pageItem.logo"
+              v-model="pageItem.logo"
               :class="[
                 'image',
                 'is-128x128',
@@ -66,7 +66,7 @@
         </div>
         <div class="column" v-if="pageItem.singleImage">
           <Picture
-            :src="pageItem.singleImage.original"
+            v-model="pageItem.singleImage.original"
             :class="[
               'description-image',
               { 'description-image-desktop': !$device.isMobile }

@@ -14,7 +14,7 @@
           class="photos-carousel"
         >
           <Picture
-            :src="i.original"
+            v-model="i.original"
             fit="contain"
             :alt="`Item photo №${index + 1}`"
           />

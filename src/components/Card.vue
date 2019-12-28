@@ -1,15 +1,15 @@
 <template>
   <div class="card">
     <div v-if="itemImage" class="card-image">
-      <Picture :src="itemImage.small" @click="isModalActive = true" alt="Card general image" />
+      <Picture v-model="itemImage.small" @click="isModalActive = true" alt="Card general image" />
       <b-modal :active.sync="isModalActive" animation="zoom-in">
-        <Picture class="modal-image" :src="itemImage.original" fit="contain" alt="Modal card image" />
+        <Picture class="modal-image" v-model="itemImage.original" fit="contain" alt="Modal card image" />
       </b-modal>
     </div>
     <div class="card-content hover-dark" @click="onCardClicked">
       <div class="media">
         <div class="media-left" v-if="item.logo">
-          <Picture class="image is-48x48" :src="item.logo" alt="Card logo image" />
+          <Picture class="image is-48x48" v-model="item.logo" alt="Card logo image" />
         </div>
         <div class="media-content">
           <p class="title is-4">{{ item.title[$i18n.locale] }}</p>

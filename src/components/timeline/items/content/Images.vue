@@ -20,7 +20,7 @@
         >
           <Picture
             class="images-image is-marginless"
-            :src="i.small"
+            v-model="i.small"
             fit="cover"
             :alt="`Timeline carousel image №${index + 1}`"
           />
@@ -42,7 +42,7 @@
           >
             <Picture
               class="modal-image"
-              :src="i.original"
+              v-model="i.original"
               fit="contain"
               :alt="`Timeline modal image №${index + 1}`"
             />

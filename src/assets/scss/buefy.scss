@@ -1,10 +1,23 @@
-$timeline-item-padding-bottom: 1em;
 $speed-slow: 150ms;
 $navbar-height: 5rem;
 $navbar-item-img-max-height: 3.5rem;
 $easing: ease-out;
 $primary: #03a9f4;
 $primary-light: #81d4fa;
+$text: hsl(0, 0%, 29%);
+$text-invert: #fff;
+$scheme-main: hsl(0, 0%, 100%);
+$scheme-invert: hsl(0, 0%, 4%);
+$timeline-item-padding-bottom: 1em;
+$timeline-line-color-black: rgba(244, 244, 244, 0.1);
+$timeline-line-color-white: hsl(0, 0%, 86%);
+$timeline-marker-color: var(--timeline-line);
+$timeline-line-color: var(--timeline-line);
+$navbar-background-color: var(--navbar-background);
+$footer-background-color: var(--navbar-background);
+$navbar-background-color-black: #181818;
+$navbar-background-color-white: #fefefe;
+$card-background-color: var(--navbar-background);
 $link: #4a4a4a;
 $link-invert: $primary;
 $navbar-item-color: #7a7a7a;
@@ -35,4 +48,15 @@ $pagination-current-border-color: hsl(0, 0%, 86%);
   .animation-content {
     transform: scale(0.95);
   }
+}
+
+:export {
+  text: $text;
+  textInvert: $text-invert;
+  schemeMain: $scheme-main;
+  schemeInvert: $scheme-invert;
+  timelineLineColorWhite: $timeline-line-color-white;
+  timelineLineColorBlack: $timeline-line-color-black;
+  navbarBackgroundColorWhite: $navbar-background-color-white;
+  navbarBackgroundColorBlack: $navbar-background-color-black;
 }

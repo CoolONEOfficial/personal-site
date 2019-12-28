@@ -7,7 +7,7 @@
         { 'right-inset': !$device.isMobile && itemRtl },
         { 'left-inset': !$device.isMobile && !itemRtl }
       ]"
-      :src="item.singleImage.small"
+      v-model="item.singleImage.small"
       fit="cover"
       @click="onImageClick"
       alt="Timeline image"
@@ -15,7 +15,7 @@
     <b-modal :active.sync="isModalActive" animation="zoom-in">
       <Picture
         class="modal-image"
-        :src="item.singleImage.original"
+        v-model="item.singleImage.original"
         fit="cover"
         alt="Timeline modal image"
       />

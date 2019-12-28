@@ -10,7 +10,7 @@
         <slide v-for="(i, index) of images" :key="index">
           <Picture
             class="modal-image"
-            :src="i.original"
+            v-model="i.original"
             fit="contain"
             :alt="`Modal welcome image №${index + 1}`"
           />
@@ -24,17 +24,32 @@
         :perPage="1"
         :scroll-per-page="true"
         :pagination-enabled="false"
+        :touch-drag="false"
+        :mouse-drag="false"
       >
         <slide v-for="(i, index) of images" :key="index">
           <Picture
             class="welcome-background-image"
-            :src="i.small"
+            v-model="i.small"
             :alt="`Background image of welcome screen №${index + 1}`"
             data-aos="fade"
           />
         </slide>
       </carousel>
     </client-only>
+    <div class="hero-head">
+      <Icon
+        icon="invert-colors"
+        :class="[
+          'image',
+          'is-32x32',
+          'icon-hover',
+          'welcome-switcher',
+          { 'welcome-switcher-mobile': $device.isMobile }
+        ]"
+        @click="vantaBlack"
+      />
+    </div>
     <div class="hero-body" data-aos="fade" data-aos-delay="1000">
       <div :class="['container', { 'has-text-centered': $device.isMobile }]">
         <div class="columns">
@@ -53,13 +68,10 @@
               :autoplay-hover-pause="true"
               :loop="true"
             >
-              <slide
-                v-for="(i, index) of images"
-                :key="index"
-              >
+              <slide v-for="(i, index) of images" :key="index">
                 <Picture
                   class="image is-128x128 welcome-carousel-image"
-                  :src="i.small"
+                  v-model="i.small"
                   :alt="`Carousel image of welcome screen №${index + 1}`"
                   @click="onImageClick(index)"
                 />
@@ -81,9 +93,10 @@
     <div class="hero-foot">
       <a href="#" v-scroll-to="'#main-content'">
         <b-icon
-          :class="['welcome-scroll', 'icon-hover', 'has-margin-bottom-15']"
+          :class="['welcome-scroll', 'icon-hover']"
           icon="chevron-down"
           size="is-medium"
+          :color="getThemeInvert.textColor"
         />
       </a>
     </div>
@@ -91,15 +104,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'nuxt-property-decorator'
+import { Component, Getter, Vue, Watch } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
 import { CAROUSEL_INTERVAL, LOGO_IMAGE } from '~/util/constants'
 import Picture from '~/components/Picture.vue'
+import Icon from "~/components/Icon.vue";
 
 const vuexModule = namespace('timeline')
 
 @Component({
-  components: { Picture }
+  components: { Icon, Picture }
 })
 export default class extends Vue {
   @vuexModule.Action
@@ -108,9 +122,19 @@ export default class extends Vue {
   @vuexModule.Getter
   getImageItems
 
+  @Getter
+  getTheme
+
+  @Getter
+  getThemeInvert
+
   carouselModel = 0
 
   navigateTo: any = 0
+
+  vantaBlack() {
+    this.$emit('vantaBlack')
+  }
 
   get autoplay() {
     return !this.isModalActive
@@ -142,12 +166,6 @@ export default class extends Vue {
     return arr[this.randomInt(arr.length)]
   }
 
-  // @Watch('carouselModel')
-  // onCarouselModelChanged(newVal, prevVal) {
-  //   if (this.interval != undefined) clearInterval(this.interval)
-  //   this.interval = setInterval(this.addRandomImage, CAROUSEL_INTERVAL)
-  // }
-
   addRandomImage() {
     this.images.push(
       this.randomItem(this.randomItem(this.getImageItems).images)
@@ -165,14 +183,26 @@ export default class extends Vue {
 
 <style scoped lang="scss">
 .welcome {
+  &-switcher {
+    cursor: pointer;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    &-mobile {
+      left: 50%;
+      transform: translateX(-50%);
+      right: unset;
+    }
+  }
+
   &-scroll {
     position: relative;
     left: 50%;
+    bottom: 2rem;
     transform: translateX(-50%);
   }
 
   &-background {
-    z-index: -1;
     position: absolute;
     left: 0;
     top: 0;

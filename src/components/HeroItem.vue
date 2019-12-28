@@ -9,9 +9,9 @@
     ]"
     @click="onItemClicked"
   >
-    <Picture
+    <Icon
       class="image is-16x16 nav-item-image"
-      :src="`/icons/black/icons8-${item.icon}-50.png`"
+      :icon="item.icon"
       :centered="true"
       fit="contain"
       alt="Icon of hero item"
@@ -25,9 +25,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import Picture from '~/components/Picture.vue'
+import Icon from "~/components/Icon.vue";
 
 @Component({
-  components: { Picture }
+  components: { Icon, Picture }
 })
 export default class extends Vue {
   @Prop({ required: true })
