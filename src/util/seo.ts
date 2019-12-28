@@ -1,6 +1,7 @@
 import { TimelineItem } from '~/types/timeline'
 const { LOGO_IMAGE, SOCIAL_LINKS } = require('./constants.ts')
 import { baseUrl } from '../.nuxt/nuxt-i18n/options'
+import { BASE_URL } from "~/util/constants";
 
 export const JSON_LD = {
   PERSON: {
@@ -144,7 +145,7 @@ export function getMeta(
     {
       hid: 'og:image',
       property: 'og:image',
-      content: image || LOGO_IMAGE
+      content: image || BASE_URL + LOGO_IMAGE
     }
   ]
 }
