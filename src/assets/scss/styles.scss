@@ -1,5 +1,9 @@
 /* purgecss start ignore */
 
+body {
+  overflow-x: hidden;
+}
+
 .reverse {
   flex-direction: row-reverse;
 }

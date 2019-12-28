@@ -2,7 +2,7 @@
   <div>
     <client-only placeholder="Loading...">
       <carousel
-        class="carousel"
+        class="images-carousel"
         :perPageCustom="[[1024, 3]]"
         :scroll-per-page="false"
         :pagination-enabled="false"
@@ -19,7 +19,7 @@
           @slide-click="onClickImage(index)"
         >
           <Picture
-            class="item-image is-marginless"
+            class="images-image is-marginless"
             :src="i.small"
             fit="cover"
             :alt="`Timeline carousel image №${index + 1}`"
@@ -34,6 +34,7 @@
           :pagination-enabled="false"
         >
           <slide
+            class="images-slide"
             v-for="(i, index) of itemRtl
               ? item.images.slice().reverse()
               : item.images"
@@ -81,13 +82,15 @@ export default class extends Vue {
 </script>
 
 <style scoped lang="scss">
-.item-image {
-  height: 100%;
-  width: 100%;
-}
+.images {
+  &-carousel {
+    background: $grey-lighter;
+    height: 280px;
+  }
 
-.carousel {
-  background: $grey-lighter;
-  height: 280px;
+  &-image {
+    height: 280px;
+    width: 100%;
+  }
 }
 </style>

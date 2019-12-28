@@ -1,12 +1,6 @@
 <template>
   <section class="hero is-fullheight-with-navbar">
-    <div
-      :class="
-        $device.isMobile ? ['hero-head', 'has-padding-left-15', 'has-padding-right-15'] : ['hero-body']
-      "
-    >
-      <slot />
-    </div>
+    <slot />
     <div class="hero-foot" v-if="items.length > 1">
       <div class="columns is-mobile justify-center has-margin-bottom-20">
         <HeroItem v-for="(i, index) of items" :key="index" :item="i" />

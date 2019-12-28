@@ -1,8 +1,15 @@
 <template>
-  <div class="videos-wrapper">
+  <div
+    :class="[
+      'videos-wrapper',
+      'hero-body',
+      'has-padding-left-15',
+      'has-padding-right-15'
+    ]"
+  >
     <client-only placeholder="Loading...">
       <carousel
-        class="show-overflow"
+        class="videos-carousel show-overflow"
         :per-page="1"
         :scroll-per-page="false"
         :pagination-enabled="true"
@@ -37,6 +44,10 @@ export default class extends Vue {
 .videos {
   &-wrapper {
     min-width: 100%;
+  }
+
+  &-carousel {
+    width: 100%;
   }
 
   &-plyr-margins {

@@ -31,7 +31,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async loadEvents({ commit }) {
+  async loadEvents({ commit, getters }) {
     commit('updateDocsCount', await getDocsCount(this, COLL_NAME))
     commit('updateEvents', await getItems(this, COLL_NAME, TimelineEvent))
   },

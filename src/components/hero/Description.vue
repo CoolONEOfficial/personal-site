@@ -1,72 +1,80 @@
 <template>
-  <div :class="['container', { 'has-text-centered': !pageItem.singleImage }]">
-    <div :class="['columns', 'is-multiline', { 'is-6': !$device.isMobile }]">
-      <div
-        :class="[
-          'column',
-          { 'small-width': !$device.isMobile && !pageItem.singleImage }
-        ]"
-      >
-        <div :class="[{ columns: pageItem.singleImage }]">
-          <Picture
-            :src="pageItem.logo"
-            :class="[
-              'image',
-              'is-128x128',
-              'description-logo',
-              { 'image-centered': !pageItem.singleImage }
-            ]"
-            v-if="!$device.isMobile && pageItem.logo"
-            fit="contain"
-            alt="Hero description image"
-          />
-
-          <div class="column">
-            <h1 class="title">
-              {{ pageItem.title[$i18n.locale] }}
-            </h1>
-            <h2 v-if="subtitle" class="subtitle description-subtitle">
-              {{ subtitle }}
-            </h2>
-          </div>
-        </div>
+  <div
+    :class="
+      $device.isMobile
+        ? ['hero-head', 'has-padding-left-15', 'has-padding-right-15']
+        : ['hero-body']
+    "
+  >
+    <div :class="['container', { 'has-text-centered': !pageItem.singleImage }]">
+      <div :class="['columns', 'is-multiline', { 'is-6': !$device.isMobile }]">
         <div
-          v-if="pageItem.description"
-          class="has-text-justified"
-          v-html="$md.render(pageItem.description[$i18n.locale])"
-        />
-        <br />
-        <nav class="level" v-if="pageItem.description">
-          <div class="level-left">
-            <time :datetime="pageItem.date.toDateString()">{{
-              $dateFns.format(pageItem.date.getTime(), 'd MMMM yyyy', {
-                locale: locales[$i18n.locale]
-              })
-            }}</time>
-          </div>
-          <div class="level-right">
-            <b-taglist attached class="is-marginless">
-              <b-tag
-                class="hover-dark is-marginless"
-                v-for="(i, index) of pageItem.tags"
-                :key="index"
-              >
-                {{ i }}
-              </b-tag>
-            </b-taglist>
-          </div>
-        </nav>
-      </div>
-      <div class="column" v-if="pageItem.singleImage">
-        <Picture
-          :src="pageItem.singleImage.original"
           :class="[
-            'description-image',
-            { 'description-image-desktop': !$device.isMobile }
+            'column',
+            { 'small-width': !$device.isMobile && !pageItem.singleImage }
           ]"
-          fit="contain"
-          alt="Description page image"
-        />
+        >
+          <div :class="[{ columns: pageItem.singleImage }]">
+            <Picture
+              :src="pageItem.logo"
+              :class="[
+                'image',
+                'is-128x128',
+                'description-logo',
+                { 'image-centered': !pageItem.singleImage }
+              ]"
+              v-if="!$device.isMobile && pageItem.logo"
+              fit="contain"
+              alt="Hero description image"
+            />
+
+            <div class="column">
+              <h1 class="title">
+                {{ pageItem.title[$i18n.locale] }}
+              </h1>
+              <h2 v-if="subtitle" class="subtitle description-subtitle">
+                {{ subtitle }}
+              </h2>
+            </div>
+          </div>
+          <div
+            v-if="pageItem.description"
+            class="has-text-justified"
+            v-html="$md.render(pageItem.description[$i18n.locale])"
+          />
+          <br />
+          <nav class="level" v-if="pageItem.description">
+            <div class="level-left">
+              <time :datetime="pageItem.date.toDateString()">{{
+                $dateFns.format(pageItem.date.getTime(), 'd MMMM yyyy', {
+                  locale: locales[$i18n.locale]
+                })
+              }}</time>
+            </div>
+            <div class="level-right">
+              <b-taglist attached class="is-marginless">
+                <b-tag
+                  class="hover-dark is-marginless"
+                  v-for="(i, index) of pageItem.tags"
+                  :key="index"
+                >
+                  {{ i }}
+                </b-tag>
+              </b-taglist>
+            </div>
+          </nav>
+        </div>
+        <div class="column" v-if="pageItem.singleImage">
+          <Picture
+            :src="pageItem.singleImage.original"
+            :class="[
+              'description-image',
+              { 'description-image-desktop': !$device.isMobile }
+            ]"
+            fit="contain"
+            alt="Description page image"
+          />
+        </div>
       </div>
     </div>
   </div>
