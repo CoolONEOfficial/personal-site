@@ -11,9 +11,13 @@ Personal site portfolio
 
 * SSR (Sever Side Rendering)
 * PWA (Progressive Web Apps)
-* Serverless (Cloud Functions with api on express.js + Firebase Hosting)
+* Serverless (Cloud Functions with api on express.js for spotify music integration)
 * i18n Localization (using nuxt-i18n with loader)
-* Typescript support (all pages written on ts)
+* Typescript support (all pages&components written on ts)
+* Dark/Light theme support
+* SEO friendly (JSON-LD, Open graph etc)
+* Spotify integration to stream playable music (with Cloud Functions api on express.js)
+* Integrated with [mobile app](https://github.com/CoolONEOfficial/personal_site_app) on flutter for content management
 
 ## 👶Start
 
