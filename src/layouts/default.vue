@@ -62,6 +62,13 @@ export default class extends Vue {
   vantaBlack() {
     this.switchTheme()
   }
+
+  @Action
+  initTheme
+
+  mounted() {
+    this.initTheme()
+  }
 }
 </script>
 

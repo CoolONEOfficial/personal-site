@@ -16,7 +16,13 @@ export const actions = {
   },
 
   switchTheme({ commit, getters }) {
+    console.log('switching theme..')
     commit('updateTheme', getters.getThemeInvert)
+  },
+
+  initTheme({ commit }) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+      commit('updateTheme', getters.getThemeInvert)
   }
 }
 
