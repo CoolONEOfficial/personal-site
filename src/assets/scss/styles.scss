@@ -4,13 +4,17 @@ body {
   overflow-x: hidden;
 }
 
+.markdown {
+  white-space: pre-wrap;
+}
+
 .reverse {
   flex-direction: row-reverse;
 }
 
 .icon-hover {
-  opacity: .6;
-  transition: opacity .3s linear;
+  opacity: 0.6;
+  transition: opacity 0.3s linear;
 
   &:hover {
     opacity: 1 !important;
@@ -35,7 +39,14 @@ body {
   margin-right: 0 !important;
 }
 
-.title, .heading, .mdi, .subtitle, p, a, time {
+.title,
+.heading,
+.mdi,
+.subtitle,
+p,
+a,
+time,
+strong {
   color: var(--text-color) !important;
 }
 
@@ -50,21 +61,21 @@ body {
 .nav-item {
   margin-top: 1em;
   margin-bottom: 1em;
-  transition: background .3s linear;
+  transition: background 0.3s linear;
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(50%, 50%, 50%, .07) !important;
+    background-color: rgba(50%, 50%, 50%, 0.07) !important;
   }
 
   &-selected {
-    background-color: rgba(50%, 50%, 50%, .05);
+    background-color: rgba(50%, 50%, 50%, 0.05);
   }
 
   &-selected,
   &:hover {
     .nav-item-image {
-      opacity: .8 !important;
+      opacity: 0.8 !important;
     }
 
     .nav-item-title {
@@ -74,14 +85,14 @@ body {
 
   &-title {
     color: #7a7a7a;
-    transition: color .3s linear;
+    transition: color 0.3s linear;
   }
 
   &-image {
     min-height: 48px;
-    margin-left: .75em;
-    opacity: .6;
-    transition: opacity .3s linear;
+    margin-left: 0.75em;
+    opacity: 0.6;
+    transition: opacity 0.3s linear;
   }
 }
 
@@ -92,11 +103,11 @@ body {
   }
 
   &-dark:hover {
-    box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, .03) !important;
+    box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.03) !important;
   }
 
   &-light:hover {
-    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, .03) !important;
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.03) !important;
   }
 }
 

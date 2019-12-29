@@ -5,6 +5,7 @@ import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
 import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
 import DocumentData = firebase.firestore.DocumentData
+import { LocalizedString } from "~/types/types";
 
 export class TimelineBook extends TimelineItem {
   constructor(
@@ -12,13 +13,24 @@ export class TimelineBook extends TimelineItem {
     date,
     images,
     singleImage,
-    description,
+    descriptionText,
+    descriptionHtml,
     tags,
     _type,
     _doc,
     public author: string
   ) {
-    super(title, date, images, singleImage, description, tags, _type, _doc)
+    super(
+      title,
+      date,
+      images,
+      singleImage,
+      descriptionText,
+      descriptionHtml,
+      tags,
+      _type,
+      _doc
+    )
   }
 
   static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineBook> {
@@ -30,7 +42,8 @@ export class TimelineBook extends TimelineItem {
       item.date,
       item.images,
       item.singleImage,
-      item.description,
+      item.descriptionText,
+      item.descriptionHtml,
       item.tags,
       item._type,
       item._doc,
@@ -45,7 +58,8 @@ export class PageBook extends TimelineBook {
     date,
     images,
     singleImage,
-    description,
+    descriptionText,
+    descriptionHtml,
     tags,
     _type,
     _doc,
@@ -57,7 +71,8 @@ export class PageBook extends TimelineBook {
       date,
       images,
       singleImage,
-      description,
+      descriptionText,
+      descriptionHtml,
       tags,
       _type,
       _doc,
@@ -78,7 +93,8 @@ export class PageBook extends TimelineBook {
       item.date,
       item.images,
       item.singleImage,
-      item.description,
+      LocalizedString.mdToText(LocalizedString.fromMap(data.description)),
+      LocalizedString.mdToHtml(LocalizedString.fromMap(data.description)),
       item.tags,
       item._type,
       item._doc,

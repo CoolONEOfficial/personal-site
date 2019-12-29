@@ -19,9 +19,9 @@
 
       <div class="content">
         <div
-          v-if="item.description"
-          class="has-text-justified"
-          v-html="$md.render(item.description[$i18n.locale])"
+          v-if="item.descriptionHtml"
+          class="has-text-justified markdown"
+          v-html="item.descriptionHtml[$i18n.locale]"
         />
         <br />
         <nav class="level">

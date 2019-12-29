@@ -6,11 +6,12 @@ import { PLACEHOLDER_IMAGE } from '~/util/constants'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
 import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils'
 import DocumentData = firebase.firestore.DocumentData
+import { LocalizedString } from "~/types/types";
 
 export enum AchievementType {
   OTHER = 'other',
   DIPLOMA = 'diploma',
-  CERTIFICATE = 'certificate',
+  CERTIFICATE = 'certificate'
 }
 
 export class TimelineAchievement extends TimelineItem {
@@ -19,7 +20,8 @@ export class TimelineAchievement extends TimelineItem {
     date,
     images,
     singleImage,
-    description,
+    descriptionText,
+    descriptionHtml,
     tags,
     _type,
     _doc,
@@ -27,7 +29,17 @@ export class TimelineAchievement extends TimelineItem {
     public logo: string,
     public organisation: string
   ) {
-    super(title, date, images, singleImage, description, tags, _type, _doc)
+    super(
+      title,
+      date,
+      images,
+      singleImage,
+      descriptionText,
+      descriptionHtml,
+      tags,
+      _type,
+      _doc
+    )
   }
 
   static async fromDoc(
@@ -42,7 +54,8 @@ export class TimelineAchievement extends TimelineItem {
       item.date,
       item.images,
       item.singleImage,
-      item.description,
+      item.descriptionText,
+      item.descriptionHtml,
       item.tags,
       item._type,
       item._doc,
@@ -64,7 +77,8 @@ export class PageAchievement extends TimelineAchievement {
     date,
     images,
     singleImage,
-    description,
+    descriptionText,
+    descriptionHtml,
     tags,
     _type,
     _doc,
@@ -78,7 +92,8 @@ export class PageAchievement extends TimelineAchievement {
       date,
       images,
       singleImage,
-      description,
+      descriptionText,
+      descriptionHtml,
       tags,
       _type,
       _doc,
@@ -94,7 +109,7 @@ export class PageAchievement extends TimelineAchievement {
     docPage: DocumentSnapshot
   ): Promise<PageAchievement> {
     const item = await super.fromDoc(that, doc)
-    console.log('doc: ', doc.data(), '....... docPage: ', docPage.data());
+    console.log('doc: ', doc.data(), '....... docPage: ', docPage.data())
     const data = deepMerge(doc.data(), docPage.data())
     console.log('result: ', data)
 
@@ -103,7 +118,8 @@ export class PageAchievement extends TimelineAchievement {
       item.date,
       item.images,
       item.singleImage,
-      data.description,
+      LocalizedString.mdToText(LocalizedString.fromMap(data.description)),
+      LocalizedString.mdToHtml(LocalizedString.fromMap(data.description)),
       item.tags,
       item._type,
       item._doc,

@@ -68,7 +68,7 @@
             <SingleImage :item="item" v-else-if="item.singleImage" />
           </div>
           <div class="column is-paddingless">
-            <Description v-if="item.description" :item="item" />
+            <Description v-if="item.descriptionHtml" :item="item" />
           </div>
         </div>
         <slot />

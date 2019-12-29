@@ -4,6 +4,7 @@ import 'firebase/firestore'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
 import DocumentData = firebase.firestore.DocumentData
 import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils'
+import { LocalizedString } from "~/types/types";
 
 export enum ProjectType {
   MOBILE_APP = 'other',
@@ -22,13 +23,24 @@ export class TimelineProject extends TimelineItem {
     date,
     images,
     singleImage,
-    description,
+    descriptionText,
+    descriptionHtml,
     tags,
     _type,
     _doc,
     public type: ProjectType
   ) {
-    super(title, date, images, singleImage, description, tags, _type, _doc)
+    super(
+      title,
+      date,
+      images,
+      singleImage,
+      descriptionText,
+      descriptionHtml,
+      tags,
+      _type,
+      _doc
+    )
   }
 
   static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineProject> {
@@ -40,7 +52,8 @@ export class TimelineProject extends TimelineItem {
       item.date,
       item.images,
       item.singleImage,
-      item.description,
+      item.descriptionText,
+      item.descriptionHtml,
       item.tags,
       item._type,
       item._doc,
@@ -55,7 +68,8 @@ export class PageProject extends TimelineProject {
     date,
     images,
     singleImage,
-    description,
+    descriptionText,
+    descriptionHtml,
     tags,
     _type,
     _doc,
@@ -68,7 +82,8 @@ export class PageProject extends TimelineProject {
       date,
       images,
       singleImage,
-      description,
+      descriptionText,
+      descriptionHtml,
       tags,
       _type,
       _doc,
@@ -89,7 +104,8 @@ export class PageProject extends TimelineProject {
       item.date,
       item.images,
       item.singleImage,
-      item.description,
+      LocalizedString.mdToText(LocalizedString.fromMap(data.description)),
+      LocalizedString.mdToHtml(LocalizedString.fromMap(data.description)),
       item.tags,
       item._type,
       item._doc,

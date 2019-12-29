@@ -38,12 +38,12 @@
             </div>
           </div>
           <div
-            v-if="pageItem.description"
-            class="has-text-justified"
-            v-html="$md.render(pageItem.description[$i18n.locale])"
+            v-if="pageItem.descriptionHtml"
+            class="has-text-justified markdown"
+            v-html="pageItem.descriptionHtml[$i18n.locale]"
           />
           <br />
-          <nav class="level" v-if="pageItem.description">
+          <nav class="level" v-if="pageItem.descriptionHtml">
             <div class="level-left">
               <time :datetime="pageItem.date.toDateString()">{{
                 $dateFns.format(pageItem.date.getTime(), 'd MMMM yyyy', {

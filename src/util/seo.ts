@@ -1,7 +1,7 @@
 import { TimelineItem } from '~/types/timeline'
 const { LOGO_IMAGE, SOCIAL_LINKS } = require('./constants.ts')
 import { baseUrl } from '../.nuxt/nuxt-i18n/options'
-import { BASE_URL } from "~/util/constants";
+import { BASE_URL } from '~/util/constants'
 
 export const JSON_LD = {
   PERSON: {
@@ -69,9 +69,9 @@ export function getArticle(
     mainEntity: {
       ...mainEntity,
       name: page.title[locale],
-      description: page.description ? page.description[locale] : ''
+      description: page.descriptionText ? page.descriptionText[locale] : ''
     },
-    name: that.$t('name'),
+    name: page.title[locale],
     author: JSON_LD.PERSON
   }
 }
@@ -89,7 +89,7 @@ export function getMetaPage(locale, item: TimelineItem | any) {
       ? item.singleImage.small
       : undefined,
     item.title[locale],
-    item.description[locale]
+    item.descriptionText[locale]
   )
 }
 

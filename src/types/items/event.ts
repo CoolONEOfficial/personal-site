@@ -2,9 +2,9 @@ import { TimelineItem } from '~/types/timeline'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
-import DocumentData = firebase.firestore.DocumentData;
-import { deepMerge } from "~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils";
-import { LocalizedString } from "~/types/types";
+import DocumentData = firebase.firestore.DocumentData
+import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils'
+import { LocalizedString } from '~/types/types'
 
 export enum EventType {
   OTHER = 'other',
@@ -26,12 +26,12 @@ export enum EventType {
 }
 
 export interface Geopoint {
-
-  latitude, longitude: number
+  latitude
+  longitude: number
 }
 
 export interface Location {
-  title: LocalizedString,
+  title: LocalizedString
   geopoint: Geopoint
 }
 
@@ -41,14 +41,25 @@ export class TimelineEvent extends TimelineItem {
     date,
     images,
     singleImage,
-    description,
+    descriptionText,
+    descriptionHtml,
     tags,
     _type,
     _doc,
     public type: EventType,
     public location?: Location
   ) {
-    super(title, date, images, singleImage, description, tags, _type, _doc)
+    super(
+      title,
+      date,
+      images,
+      singleImage,
+      descriptionText,
+      descriptionHtml,
+      tags,
+      _type,
+      _doc
+    )
   }
 
   static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineEvent> {
@@ -60,7 +71,8 @@ export class TimelineEvent extends TimelineItem {
       item.date,
       item.images,
       item.singleImage,
-      item.description,
+      item.descriptionText,
+      item.descriptionHtml,
       item.tags,
       item._type,
       item._doc,
@@ -76,7 +88,8 @@ export class PageEvent extends TimelineEvent {
     date,
     images,
     singleImage,
-    description,
+    descriptionText,
+    descriptionHtml,
     tags,
     _type,
     _doc,
@@ -89,7 +102,8 @@ export class PageEvent extends TimelineEvent {
       date,
       images,
       singleImage,
-      description,
+      descriptionText,
+      descriptionHtml,
       tags,
       _type,
       _doc,
@@ -111,7 +125,8 @@ export class PageEvent extends TimelineEvent {
       item.date,
       item.images,
       item.singleImage,
-      item.description,
+      LocalizedString.mdToText(LocalizedString.fromMap(data.description)),
+      LocalizedString.mdToHtml(LocalizedString.fromMap(data.description)),
       item.tags,
       item._type,
       item._doc,

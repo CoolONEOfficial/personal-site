@@ -3,7 +3,8 @@ import 'firebase/firestore'
 import Timestamp = firebase.firestore.Timestamp
 import { PLACEHOLDER_IMAGE } from '~/util/constants'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
-import DocumentData = firebase.firestore.DocumentData;
+import DocumentData = firebase.firestore.DocumentData
+import { convertToHTML, convertToPlainText } from '~/util/md'
 
 export class Item {
   constructor(
@@ -11,7 +12,8 @@ export class Item {
     public date: Date,
     public images?: Image[],
     public singleImage?: Image,
-    public description?: LocalizedString,
+    public descriptionText?: LocalizedString,
+    public descriptionHtml?: LocalizedString,
     public tags?: string[]
   ) {}
 
@@ -71,15 +73,39 @@ export class Item {
       (data.date as Timestamp).toDate(),
       data.images,
       data.singleImage,
-      data.description,
+      LocalizedString.mdToText(LocalizedString.fromMap(data.description)),
+      LocalizedString.mdToHtml(LocalizedString.fromMap(data.description)),
       data.tags
     )
   }
 }
 
-export interface LocalizedString {
-  en: string
-  ru: string
+export class LocalizedString {
+  constructor(public en: string, public ru: string) {}
+
+  static fromMap(map: Map<string, any> | any) {
+    if (!Boolean(map)) return
+    const en: string = map['en']
+    const ru = map['ru']
+    return new LocalizedString(
+      Boolean(en) ? en.replace(/\\n/g, '\n') : '',
+      Boolean(ru) ? ru.replace(/\\n/g, '\n') : ''
+    )
+  }
+
+  static mdToHtml(str?: LocalizedString) {
+    if (!str) return
+    str.ru = convertToHTML(str.ru)
+    str.en = convertToHTML(str.en)
+    return str
+  }
+
+  static mdToText(str?: LocalizedString) {
+    if (!str) return
+    str.ru = convertToPlainText(str.ru)
+    str.en = convertToPlainText(str.en)
+    return str
+  }
 }
 
 export interface GeoPoint {

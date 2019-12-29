@@ -1,7 +1,7 @@
 <template>
   <div
-    class="description"
-    v-html="$md.render(item.description[$i18n.locale])"
+    class="description markdown"
+    v-html="item.descriptionHtml[$i18n.locale]"
   />
 </template>
 
