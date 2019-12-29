@@ -12,6 +12,7 @@ export class Item {
     public date: Date,
     public images?: Image[],
     public singleImage?: Image,
+    public logo?: Image,
     public descriptionText?: LocalizedString,
     public descriptionHtml?: LocalizedString,
     public tags?: string[]
@@ -68,11 +69,33 @@ export class Item {
             }
     }
 
+    if (Boolean(data.logo)) {
+      data.logo =
+        process.env.NODE_ENV === 'production'
+          ? {
+            original: await that.$fireStorage
+              .ref()
+              .child(`${doc.ref.parent.path}/${doc.id}/logo/1.jpg`)
+              .getDownloadURL(),
+            small: await that.$fireStorage
+              .ref()
+              .child(
+                `${doc.ref.parent.path}/${doc.id}/logo/1_400x400.jpg`
+              )
+              .getDownloadURL()
+          }
+          : {
+            original: PLACEHOLDER_IMAGE,
+            small: PLACEHOLDER_IMAGE
+          }
+    }
+
     return new Item(
       data.title,
       (data.date as Timestamp).toDate(),
       data.images,
       data.singleImage,
+      data.logo,
       LocalizedString.mdToText(LocalizedString.fromMap(data.description)),
       LocalizedString.mdToHtml(LocalizedString.fromMap(data.description)),
       data.tags

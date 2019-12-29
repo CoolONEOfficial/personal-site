@@ -19,11 +19,11 @@
           <div class="columns is-marginless header-subtitle">
             <b-taglist attached class="is-marginless">
               <b-tag class="hover-light is-marginless" type="is-dark"
-                >Web</b-tag
-              >
+                >Web
+              </b-tag>
               <b-tag class="hover-dark is-marginless" type="is-primary"
-                >Mobile</b-tag
-              >
+                >Mobile
+              </b-tag>
             </b-taglist>
             <div class="tag-text">
               {{ $t('developer') }}
@@ -47,9 +47,11 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import HeaderItem from '~/components/HeaderItem.vue'
 import Picture from '~/components/Picture.vue'
+import { Action } from '~/node_modules/nuxt-property-decorator'
+import Icon from '~/components/Icon.vue'
 
 @Component({
-  components: { Picture, HeaderItem }
+  components: { Icon, Picture, HeaderItem }
 })
 export default class extends Vue {
   @Prop()
@@ -129,6 +131,7 @@ export default class extends Vue {
 .header {
   position: relative;
   transition: top 1s, opacity 1s linear;
+
   &-homepage {
     top: -100% !important;
     opacity: 0 !important;

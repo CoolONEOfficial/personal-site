@@ -118,7 +118,6 @@ const config: Configuration = {
     'nuxt-i18n',
     'nuxt-fire',
     'vue-scrollto/nuxt',
-    '@nuxtjs/markdownit',
     '@nuxtjs/component-cache',
     '@bazzite/nuxt-optimized-images',
     '@nuxtjs/sitemap' // sitemap at end
@@ -229,9 +228,6 @@ const config: Configuration = {
       firestore: true,
       storage: true
     }
-  },
-  markdownit: {
-    injected: true
   },
   optimizedImages: {
     optimizeImages: true

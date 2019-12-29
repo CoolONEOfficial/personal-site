@@ -9,7 +9,7 @@
     <div class="card-content hover-dark" @click="onCardClicked">
       <div class="media">
         <div class="media-left" v-if="item.logo">
-          <Picture class="image is-48x48" v-model="item.logo" alt="Card logo image" />
+          <Picture class="image is-48x48" v-model="item.logo.small" alt="Card logo image" />
         </div>
         <div class="media-content">
           <p class="title is-4">{{ item.title[$i18n.locale] }}</p>

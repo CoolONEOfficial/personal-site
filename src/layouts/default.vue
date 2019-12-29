@@ -1,6 +1,6 @@
 <template>
   <div id="main-layout" :style="themeStyle">
-    <Welcome v-if="homepage" @vantaBlack="vantaBlack" />
+    <Welcome v-if="homepage" />
 
     <Header :homepage="homepage" />
 
@@ -45,9 +45,6 @@ export default class extends Vue {
   @Getter
   getTheme
 
-  @Action
-  switchTheme
-
   get themeStyle() {
     const theme = this.getTheme
     return {
@@ -57,10 +54,6 @@ export default class extends Vue {
       '--timeline-line': theme.timelineItemLine,
       '--navbar-background': theme.navbarBackground
     }
-  }
-
-  vantaBlack() {
-    this.switchTheme()
   }
 
   @Action

@@ -1,7 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { Item } from '~/types/types'
-import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
+import DocumentSnapshot = firebase.firestore.DocumentSnapshot
 
 export class TimelineItem extends Item {
   public _orderId!: number
@@ -11,18 +11,26 @@ export class TimelineItem extends Item {
     date,
     images,
     singleImage,
-    descriptionText,descriptionHtml,
+    logo,
+    descriptionText,
+    descriptionHtml,
     tags,
     public _type: string,
     public _doc: string
   ) {
-    super(title, date, images, singleImage, descriptionText,descriptionHtml, tags)
+    super(
+      title,
+      date,
+      images,
+      singleImage,
+      logo,
+      descriptionText,
+      descriptionHtml,
+      tags
+    )
   }
 
-  static async fromDoc(
-    that,
-    doc: DocumentSnapshot
-  ): Promise<TimelineItem> {
+  static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineItem> {
     const item = await super.fromDoc(that, doc)
 
     return new TimelineItem(
@@ -30,6 +38,7 @@ export class TimelineItem extends Item {
       item.date,
       item.images,
       item.singleImage,
+      item.logo,
       item.descriptionText,
       item.descriptionHtml,
       item.tags,

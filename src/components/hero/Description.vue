@@ -16,14 +16,14 @@
         >
           <div :class="[{ columns: pageItem.singleImage }]">
             <Picture
-              v-model="pageItem.logo"
+              v-if="!$device.isMobile && pageItem.logo"
+              v-model="pageItem.logo.small"
               :class="[
                 'image',
                 'is-128x128',
                 'description-logo',
                 { 'image-centered': !pageItem.singleImage }
               ]"
-              v-if="!$device.isMobile && pageItem.logo"
               fit="contain"
               alt="Hero description image"
             />

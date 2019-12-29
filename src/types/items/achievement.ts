@@ -20,13 +20,13 @@ export class TimelineAchievement extends TimelineItem {
     date,
     images,
     singleImage,
+    logo,
     descriptionText,
     descriptionHtml,
     tags,
     _type,
     _doc,
     public type: AchievementType,
-    public logo: string,
     public organisation: string
   ) {
     super(
@@ -34,6 +34,7 @@ export class TimelineAchievement extends TimelineItem {
       date,
       images,
       singleImage,
+      logo,
       descriptionText,
       descriptionHtml,
       tags,
@@ -54,18 +55,13 @@ export class TimelineAchievement extends TimelineItem {
       item.date,
       item.images,
       item.singleImage,
+      item.logo,
       item.descriptionText,
       item.descriptionHtml,
       item.tags,
       item._type,
       item._doc,
       data.type,
-      process.env.NODE_ENV === 'production'
-        ? await that.$fireStorage
-            .ref()
-            .child(`${item._type}/${item._doc}/logo_400x400.jpg`)
-            .getDownloadURL()
-        : PLACEHOLDER_IMAGE,
       data.organisation
     )
   }
@@ -77,13 +73,13 @@ export class PageAchievement extends TimelineAchievement {
     date,
     images,
     singleImage,
+    logo,
     descriptionText,
     descriptionHtml,
     tags,
     _type,
     _doc,
     type,
-    logo,
     organisation,
     public url
   ) {
@@ -92,13 +88,13 @@ export class PageAchievement extends TimelineAchievement {
       date,
       images,
       singleImage,
+      logo,
       descriptionText,
       descriptionHtml,
       tags,
       _type,
       _doc,
       type,
-      logo,
       organisation
     )
   }
@@ -118,13 +114,13 @@ export class PageAchievement extends TimelineAchievement {
       item.date,
       item.images,
       item.singleImage,
+      item.logo,
       LocalizedString.mdToText(LocalizedString.fromMap(data.description)),
       LocalizedString.mdToHtml(LocalizedString.fromMap(data.description)),
       item.tags,
       item._type,
       item._doc,
       item.type,
-      item.logo,
       item.organisation,
       data.url
     )

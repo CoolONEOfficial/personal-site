@@ -2,7 +2,7 @@ import { TimelineEvent } from '~/types/items/event'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import DocumentData = firebase.firestore.DocumentData;
+import DocumentData = firebase.firestore.DocumentData
 
 export class TimelineHack extends TimelineEvent {
   constructor(
@@ -10,7 +10,9 @@ export class TimelineHack extends TimelineEvent {
     date,
     images,
     singleImage,
-    descriptionText,descriptionHtml,
+    logo,
+    descriptionText,
+    descriptionHtml,
     tags,
     _type,
     _doc,
@@ -18,7 +20,20 @@ export class TimelineHack extends TimelineEvent {
     location,
     public place: String
   ) {
-    super(title, date, images, singleImage, descriptionText,descriptionHtml, tags, _type, _doc, type, location)
+    super(
+      title,
+      date,
+      images,
+      singleImage,
+      logo,
+      descriptionText,
+      descriptionHtml,
+      tags,
+      _type,
+      _doc,
+      type,
+      location
+    )
   }
 
   static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineHack> {
@@ -30,7 +45,9 @@ export class TimelineHack extends TimelineEvent {
       item.date,
       item.images,
       item.singleImage,
-      item.descriptionText,item.descriptionHtml,
+      item.logo,
+      item.descriptionText,
+      item.descriptionHtml,
       item.tags,
       item._type,
       item._doc,
@@ -47,7 +64,9 @@ export class PageHack extends TimelineHack {
     date,
     images,
     singleImage,
-    descriptionText,descriptionHtml,
+    logo,
+    descriptionText,
+    descriptionHtml,
     tags,
     _type,
     _doc,
@@ -60,7 +79,9 @@ export class PageHack extends TimelineHack {
       date,
       images,
       singleImage,
-      descriptionText,descriptionHtml,
+      logo,
+      descriptionText,
+      descriptionHtml,
       tags,
       _type,
       _doc,

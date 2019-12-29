@@ -105,7 +105,7 @@
 
 <script lang="ts">
 import { Component, Getter, Vue, Watch } from 'nuxt-property-decorator'
-import { namespace } from '~/node_modules/nuxt-property-decorator'
+import { Action, namespace } from "~/node_modules/nuxt-property-decorator";
 import { CAROUSEL_INTERVAL, LOGO_IMAGE } from '~/util/constants'
 import Picture from '~/components/Picture.vue'
 import Icon from "~/components/Icon.vue";
@@ -116,6 +116,10 @@ const vuexModule = namespace('timeline')
   components: { Icon, Picture }
 })
 export default class extends Vue {
+  carouselModel = 0
+
+  navigateTo: any = 0
+
   @vuexModule.Action
   initImageItems
 
@@ -128,12 +132,11 @@ export default class extends Vue {
   @Getter
   getThemeInvert
 
-  carouselModel = 0
-
-  navigateTo: any = 0
+  @Action
+  switchTheme
 
   vantaBlack() {
-    this.$emit('vantaBlack')
+    this.switchTheme()
   }
 
   get autoplay() {
