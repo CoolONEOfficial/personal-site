@@ -53,13 +53,9 @@
             </div>
             <div class="level-right">
               <b-taglist attached class="is-marginless">
-                <b-tag
-                  class="hover-dark is-marginless"
-                  v-for="(i, index) of pageItem.tags"
-                  :key="index"
-                >
+                <Tag v-for="(i, index) of pageItem.tags" :key="index">
                   {{ i }}
-                </b-tag>
+                </Tag>
               </b-taglist>
             </div>
           </nav>
@@ -84,9 +80,10 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { enUS, ru } from 'date-fns/locale'
 import Picture from '~/components/Picture.vue'
+import Tag from '~/components/Tag.vue'
 
 @Component({
-  components: { Picture }
+  components: { Tag, Picture }
 })
 export default class extends Vue {
   @Prop({ required: true })

@@ -209,7 +209,7 @@ const config: Configuration = {
     vueI18nLoader: true,
     detectBrowserLanguage: {
       useCookie: true,
-      alwaysRedirect: true,
+      alwaysRedirect: !isDev,
       fallbackLocale: 'en'
     }
   },
