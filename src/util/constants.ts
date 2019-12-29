@@ -19,7 +19,7 @@ export const SOCIAL_LINKS = {
   SPOTIFY: 'https://open.spotify.com/user/cooloneofficial?si=hGzFbziRTcWYOCEGZwdREQ',
   LINKEDIN: 'https://www.linkedin.com/in/cooloneofficial/',
   INSTAGRAM: 'https://www.instagram.com/coolone.official/',
-  TWITTER: 'https://twitter.com/CoolONE83466707',
+  TWITTER: 'https://twitter.com/CoolONEOfficial',
   VK: 'https://vk.com/cooloneofficial',
   GH: 'https://github.com/CoolONEOfficial'
 }
