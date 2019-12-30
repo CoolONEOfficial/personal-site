@@ -1,10 +1,22 @@
 {
   "en": {
-    "game": "Computer game",
-    "mobile_app": "Mobile app"
+    "for": "for",
+    "game": "game",
+    "app": "app",
+    "android": "Android",
+    "windows": "Windows",
+    "desktop": "PC",
+    "mobile": "Mobile",
+    "ios": "iOS",
+    "macos": "macOS",
+    "linux": "Linux"
   },
   "ru": {
-    "game": "Игра",
-    "mobile_app": "Мобильное приложение"
+    "for": "для",
+    "game": "игра",
+    "app": "приложение",
+    "mobile": "Мобильное",
+    "web": "Веб",
+    "desktop": "ПК"
   }
 }

@@ -49,6 +49,7 @@ import HeaderItem from '~/components/HeaderItem.vue'
 import Picture from '~/components/Picture.vue'
 import { Action } from '~/node_modules/nuxt-property-decorator'
 import Icon from '~/components/Icon.vue'
+import { ABOUT_DOCUMENT_ID } from '~/util/constants'
 
 @Component({
   components: { Icon, Picture, HeaderItem }
@@ -90,15 +91,19 @@ export default class extends Vue {
   ]
 
   endItems = [
-    {
-      title: 'feedback',
-      icon: 'comments',
-      to: 'feedback'
-    },
+    // TODO: feedback
+    // {
+    //   title: 'feedback',
+    //   icon: 'comments',
+    //   to: 'feedback'
+    // },
     {
       title: 'about',
       icon: 'info',
-      to: 'about'
+      to: {
+        name: `projects-doc`,
+        params: { doc: ABOUT_DOCUMENT_ID }
+      }
     }
   ]
 

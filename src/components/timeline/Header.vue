@@ -38,6 +38,7 @@ export default class extends Vue {
 }
 
 .timeline-header {
+  z-index: 1;
   height: 30px;
 
   &-top {

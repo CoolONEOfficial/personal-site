@@ -7,14 +7,19 @@ import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/
 import { LocalizedString } from "~/types/types";
 
 export enum ProjectType {
-  MOBILE_APP = 'other',
-  GAME = 'hackathon'
+  APP = 'app',
+  GAME = 'game'
 }
 
 export enum ProjectPlatform {
   MOBILE = 'mobile',
   DESKTOP = 'desktop',
-  WEB = 'web'
+  WEB = 'web',
+  WINDOWS = 'windows',
+  LINUX = 'linux',
+  MACOSX = 'macosx',
+  ANDROID = 'android',
+  IOS = 'ios'
 }
 
 export class TimelineProject extends TimelineItem {
@@ -29,7 +34,8 @@ export class TimelineProject extends TimelineItem {
     tags,
     _type,
     _doc,
-    public type: ProjectType
+    public type: ProjectType,
+    public platform: ProjectPlatform
   ) {
     super(
       title,
@@ -60,7 +66,8 @@ export class TimelineProject extends TimelineItem {
       item.tags,
       item._type,
       item._doc,
-      data.type
+      data.type,
+      data.platform
     )
   }
 }
@@ -78,8 +85,8 @@ export class PageProject extends TimelineProject {
     _type,
     _doc,
     type,
-    public github,
-    public platform: ProjectPlatform
+    platform,
+    public github
   ) {
     super(
       title,
@@ -92,7 +99,8 @@ export class PageProject extends TimelineProject {
       tags,
       _type,
       _doc,
-      type
+      type,
+      platform
     )
   }
 
@@ -116,8 +124,8 @@ export class PageProject extends TimelineProject {
       item._type,
       item._doc,
       item.type,
-      data.github,
-      data.platform as ProjectPlatform
+      data.platform as ProjectPlatform,
+      data.github
     )
   }
 }

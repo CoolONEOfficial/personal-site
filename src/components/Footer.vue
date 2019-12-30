@@ -11,7 +11,9 @@
               $t('initials')
             }}</nuxt-link
             >.<br />{{ $t('license-text') }}
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a
+            >.<br />{{ $t('icon8-license-text') }}
+            <a href="https://icons8.com/">icon8.com</a>.
           </p>
         </div>
         <div class="column">
@@ -114,11 +116,13 @@ export default class extends Vue {
   {
     "en": {
       "initials": "Website portfolio of Nikolai Trukhin",
-      "license-text": "The source code is licensed"
+      "license-text": "The source code is licensed",
+      "icon8-license-text": "Icons by "
     },
     "ru": {
       "initials": "Cайт-портфолио Николая Трухина",
-      "license-text": "Исходный код лицензирован"
+      "license-text": "Исходный код лицензирован",
+      "icon8-license-text": "На сайте используются иконки от "
     }
   }
 </i18n>
