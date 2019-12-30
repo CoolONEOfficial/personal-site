@@ -68,7 +68,7 @@ export class PageBook extends TimelineBook {
     _type,
     _doc,
     author,
-    public url
+    public site
   ) {
     super(
       title,
@@ -105,7 +105,7 @@ export class PageBook extends TimelineBook {
       item._type,
       item._doc,
       item.author,
-      data.url
+      data.site
     )
   }
 }

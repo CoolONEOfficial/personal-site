@@ -9,7 +9,8 @@
     "mobile": "Mobile",
     "ios": "iOS",
     "macos": "macOS",
-    "linux": "Linux"
+    "linux": "Linux",
+    "web": "Web"
   },
   "ru": {
     "for": "для",

@@ -14,7 +14,9 @@
             { 'small-width': !$device.isMobile && !pageItem.singleImage }
           ]"
         >
-          <div :class="[{ columns: pageItem.singleImage }]">
+          <div
+            :class="['has-margin-bottom-20', { columns: pageItem.singleImage }]"
+          >
             <Picture
               v-if="!$device.isMobile && pageItem.logo"
               v-model="pageItem.logo.small"
@@ -22,7 +24,7 @@
                 'image',
                 'is-128x128',
                 'description-logo',
-                'has-margin-bottom-30',
+                { 'has-margin-bottom-30': !pageItem.singleImage },
                 { 'image-centered': !pageItem.singleImage }
               ]"
               fit="contain"
@@ -33,18 +35,38 @@
               <h1 class="title">
                 {{ pageItem.title[$i18n.locale] }}
               </h1>
-              <h2 v-if="subtitle" class="subtitle description-subtitle">
+              <h2 v-if="subtitle" class="subtitle">
                 {{ subtitle }}
               </h2>
             </div>
           </div>
           <div
+            :class="[
+              'columns',
+              { 'is-centered': !pageItem.singleImage },
+              'is-mobile',
+              { 'has-margin-bottom-20': !pageItem.singleImage }
+            ]"
+          >
+            <a v-if="pageItem.github" :href="pageItem.github">
+              <Icon
+                class="image is-32x32 icon-hover description-icon"
+                icon="octocat"
+              />
+            </a>
+            <a v-if="pageItem.site" :href="pageItem.site">
+              <Icon
+                class="image is-32x32 icon-hover description-icon"
+                icon="website"
+              />
+            </a>
+          </div>
+          <div
             v-if="pageItem.descriptionHtml"
-            class="has-text-justified markdown"
+            class="has-text-justified markdown has-padding-bottom-20"
             v-html="pageItem.descriptionHtml[$i18n.locale]"
           />
-          <br />
-          <nav class="level" v-if="pageItem.descriptionHtml">
+          <nav class="level is-mobile" v-if="pageItem.descriptionHtml">
             <div class="level-left">
               <time :datetime="pageItem.date.toDateString()">{{
                 $dateFns.format(pageItem.date.getTime(), 'd MMMM yyyy', {
@@ -53,11 +75,7 @@
               }}</time>
             </div>
             <div class="level-right">
-              <b-taglist attached class="is-marginless">
-                <Tag v-for="(i, index) of pageItem.tags" :key="index">
-                  {{ i }}
-                </Tag>
-              </b-taglist>
+              <Tags v-model="pageItem.tags" />
             </div>
           </nav>
         </div>
@@ -82,9 +100,11 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { enUS, ru } from 'date-fns/locale'
 import Picture from '~/components/Picture.vue'
 import Tag from '~/components/Tag.vue'
+import Icon from '~/components/Icon.vue'
+import Tags from '~/components/Tags.vue'
 
 @Component({
-  components: { Tag, Picture }
+  components: { Tags, Icon, Tag, Picture }
 })
 export default class extends Vue {
   @Prop({ required: true })
@@ -117,8 +137,9 @@ export default class extends Vue {
     }
   }
 
-  &-subtitle {
-    margin-bottom: 0.5rem !important;
+  &-icon {
+    padding: 0 !important;
+    margin: 0.25em !important;
   }
 }
 

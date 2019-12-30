@@ -3,6 +3,8 @@ import DocumentSnapshot = firebase.firestore.DocumentSnapshot
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import DocumentData = firebase.firestore.DocumentData
+import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils'
+import { LocalizedString } from '~/types/types'
 
 export class TimelineHack extends TimelineEvent {
   constructor(
@@ -72,7 +74,8 @@ export class PageHack extends TimelineHack {
     _doc,
     type,
     location,
-    place
+    place,
+    public site
   ) {
     super(
       title,
@@ -91,19 +94,29 @@ export class PageHack extends TimelineHack {
     )
   }
 
-  // static async fromDoc(that, doc: QueryDocumentSnapshot): Promise<PageEvent> {
-  //   const item = await super.fromDoc(that, doc)
-  //
-  //   return new PageEvent(
-  //     item.title,
-  //     item.date,
-  //     item.images,
-  //     item.singleImage,
-  //     item.descriptionText,item.descriptionHtml,
-  //     item._type,
-  //     item._doc,
-  //     item.location,
-  //     item.place
-  //   )
-  // }
+  static async fromDocs(
+    that,
+    doc: DocumentSnapshot,
+    docPage: DocumentSnapshot
+  ): Promise<PageHack> {
+    const item = await super.fromDoc(that, doc)
+    const data = deepMerge(doc.data(), docPage.data())
+
+    return new PageHack(
+      item.title,
+      item.date,
+      item.images,
+      item.singleImage,
+      item.logo,
+      LocalizedString.mdToText(LocalizedString.fromMap(data.description)),
+      LocalizedString.mdToHtml(LocalizedString.fromMap(data.description)),
+      item.tags,
+      item._type,
+      item._doc,
+      item.type,
+      item.location,
+      item.place,
+      data.site
+    )
+  }
 }

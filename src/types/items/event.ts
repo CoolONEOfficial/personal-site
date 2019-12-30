@@ -99,7 +99,8 @@ export class PageEvent extends TimelineEvent {
     _doc,
     type,
     location,
-    public videos
+    public videos,
+    public site
   ) {
     super(
       title,
@@ -138,7 +139,8 @@ export class PageEvent extends TimelineEvent {
       item._doc,
       item.type,
       item.location,
-      data.videos
+      data.videos,
+      data.site
     )
   }
 }
