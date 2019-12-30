@@ -18,6 +18,11 @@
     "app": "приложение",
     "mobile": "Мобильное",
     "web": "Веб",
-    "desktop": "ПК"
+    "desktop": "ПК",
+    "ios": "iOS",
+    "macos": "macOS",
+    "linux": "Linux",
+    "windows": "Windows",
+    "android": "Android"
   }
 }

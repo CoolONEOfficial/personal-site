@@ -38,17 +38,17 @@
       </carousel>
     </client-only>
     <div class="hero-head">
-      <Icon
-        icon="invert-colors"
+      <div
         :class="[
-          'image',
-          'is-32x32',
-          'icon-hover',
-          'welcome-switcher',
-          { 'welcome-switcher-mobile': $device.isMobile }
+          'columns',
+          'welcome-switcher-wrapper',
+          { 'is-centered': $device.isMobile },
+          { 'welcome-switcher-wrapper-desktop': !$device.isMobile }
         ]"
-        @click="vantaBlack"
-      />
+      >
+        <ThemeSwitcher class="welcome-switcher" />
+        <LangSwitcher class="welcome-switcher" />
+      </div>
     </div>
     <div class="hero-body" data-aos="fade" data-aos-delay="1000">
       <div :class="['container', { 'has-text-centered': $device.isMobile }]">
@@ -105,15 +105,17 @@
 
 <script lang="ts">
 import { Component, Getter, Vue, Watch } from 'nuxt-property-decorator'
-import { Action, namespace } from "~/node_modules/nuxt-property-decorator";
+import { Action, namespace } from '~/node_modules/nuxt-property-decorator'
 import { CAROUSEL_INTERVAL, LOGO_IMAGE } from '~/util/constants'
 import Picture from '~/components/Picture.vue'
-import Icon from "~/components/Icon.vue";
+import Icon from '~/components/Icon.vue'
+import LangSwitcher from '~/components/LangSwitcher.vue'
+import ThemeSwitcher from '~/components/ThemeSwitcher.vue'
 
 const vuexModule = namespace('timeline')
 
 @Component({
-  components: { Icon, Picture }
+  components: { ThemeSwitcher, LangSwitcher, Icon, Picture }
 })
 export default class extends Vue {
   carouselModel = 0
@@ -131,13 +133,6 @@ export default class extends Vue {
 
   @Getter
   getThemeInvert
-
-  @Action
-  switchTheme
-
-  vantaBlack() {
-    this.switchTheme()
-  }
 
   get autoplay() {
     return !this.isModalActive
@@ -187,14 +182,14 @@ export default class extends Vue {
 <style scoped lang="scss">
 .welcome {
   &-switcher {
-    cursor: pointer;
-    position: absolute;
-    right: 2rem;
-    top: 2rem;
-    &-mobile {
-      left: 50%;
-      transform: translateX(-50%);
-      right: unset;
+    margin: 1rem;
+
+    &-wrapper {
+      margin: 1rem !important;
+
+      &-desktop {
+        justify-content: flex-end;
+      }
     }
   }
 

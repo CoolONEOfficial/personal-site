@@ -1,5 +1,11 @@
 <template>
-  <Picture class="icon" @click="onClick" v-model="src" :fit="fit" :alt="alt" />
+  <Picture
+    :class="['icon', { 'icon-clickable': clickable }]"
+    @click="onClick"
+    v-model="src"
+    :fit="fit"
+    :alt="alt"
+  />
 </template>
 
 <script lang="ts">
@@ -22,6 +28,9 @@ export default class extends Vue {
   @Prop({ default: true })
   invert
 
+  @Prop({ default: false })
+  clickable
+
   @Getter
   getTheme
 
@@ -41,4 +50,9 @@ export default class extends Vue {
 </script>
 
 <style lang="scss">
+.icon {
+  &-clickable {
+    cursor: pointer;
+  }
+}
 </style>

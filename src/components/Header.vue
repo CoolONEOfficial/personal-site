@@ -37,8 +37,10 @@
     </template>
 
     <template slot="end">
-      <HeaderItem v-for="(i, index) of endItems" :key="index" :item="i" />
-      <div style="width: 0.75rem" />
+      <b-navbar-item class="header-switcher-item">
+        <ThemeSwitcher class="header-switcher" />
+        <LangSwitcher class="header-switcher" />
+      </b-navbar-item>
     </template>
   </b-navbar>
 </template>
@@ -50,9 +52,11 @@ import Picture from '~/components/Picture.vue'
 import { Action } from '~/node_modules/nuxt-property-decorator'
 import Icon from '~/components/Icon.vue'
 import { ABOUT_DOCUMENT_ID } from '~/util/constants'
+import ThemeSwitcher from "~/components/ThemeSwitcher.vue";
+import LangSwitcher from "~/components/LangSwitcher.vue";
 
 @Component({
-  components: { Icon, Picture, HeaderItem }
+  components: { LangSwitcher, ThemeSwitcher, Icon, Picture, HeaderItem }
 })
 export default class extends Vue {
   @Prop()
@@ -87,16 +91,7 @@ export default class extends Vue {
       title: 'music',
       icon: 'music',
       to: 'music'
-    }
-  ]
-
-  endItems = [
-    // TODO: feedback
-    // {
-    //   title: 'feedback',
-    //   icon: 'comments',
-    //   to: 'feedback'
-    // },
+    },
     {
       title: 'about',
       icon: 'info',
@@ -136,6 +131,14 @@ export default class extends Vue {
 .header {
   position: relative;
   transition: top 1s, opacity 1s linear;
+
+  &-switcher {
+    margin: 1rem;
+
+    &-item {
+      background: unset !important;
+    }
+  }
 
   &-homepage {
     top: -100% !important;

@@ -84,7 +84,7 @@ export default class extends Vue {
 <style scoped lang="scss">
 .images {
   &-carousel {
-    background: $grey-lighter;
+    background: rgba(127, 127, 127, .25);
     height: 280px;
   }
 
