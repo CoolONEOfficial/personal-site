@@ -1,7 +1,7 @@
 <template>
   <section>
     <p class="title has-text-centered has-padding-top-50" data-aos="fade">
-      Хронология
+      {{ $t('chronology') }}
     </p>
     <Timeline
       class="has-margin-top-40 has-margin-bottom-50"
@@ -51,10 +51,12 @@ export default class extends Vue {
 <i18n>
   {
     "en": {
-      "name": "Website portfolio of Nikolai Trukhin"
+      "name": "Website portfolio of Nikolai Trukhin",
+      "chronology": "Chronology"
     },
     "ru": {
-      "name": "Cайт-портфолио Николая Трухина"
+      "name": "Cайт-портфолио Николая Трухина",
+      "chronology": "Хронология"
     }
   }
 </i18n>

@@ -1,6 +1,5 @@
 import { TimelineItem } from '~/types/timeline'
 const { LOGO_IMAGE, SOCIAL_LINKS } = require('./constants.ts')
-import { baseUrl } from '../.nuxt/nuxt-i18n/options'
 import { BASE_URL } from '~/util/constants'
 
 export const JSON_LD = {
@@ -57,13 +56,13 @@ export function getArticle(
     breadcrumb: getLdBreadcrumbs([
       {
         name: that.$t('title') as string,
-        url: `${baseUrl}${that.localePath({
+        url: `${BASE_URL}${that.localePath({
           name: collName
         })}`
       },
       {
         name: page.title[locale],
-        url: `${baseUrl}${that.$route.fullPath}`
+        url: `${BASE_URL}${that.$route.fullPath}`
       }
     ]),
     mainEntity: {

@@ -29,18 +29,17 @@ const db = firebase
 module.exports = async function getRoutes() {
   const routes: string[] = []
 
-  for (const mLocale of LOCALES) {
-    for (const mColl of [
-      COLL_NAMES.EVENTS,
-      COLL_NAMES.BOOKS,
-      COLL_NAMES.PROJECTS,
-      COLL_NAMES.ACHIEVEMENTS
-    ]) {
-      for (const mDoc of (await db.collection(mColl).get()).docs) {
-        routes.push(`${mLocale.code}/${mColl}/${mDoc.id}`)
-      }
+  for (const mColl of [
+    COLL_NAMES.EVENTS,
+    COLL_NAMES.BOOKS,
+    COLL_NAMES.PROJECTS,
+    COLL_NAMES.ACHIEVEMENTS
+  ]) {
+    for (const mDoc of (await db.collection(mColl).get()).docs) {
+      routes.push(`${mColl}/${mDoc.id}`)
     }
   }
+
   console.log('dynamic routes:', routes)
 
   return routes

@@ -129,10 +129,6 @@ const config: Configuration = {
     '@nuxtjs/sitemap' // sitemap at end
   ],
   /*
-   ** Redirect from root page
-   */
-  serverMiddleware: ['~/serverMiddleware/redirect.ts'],
-  /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
@@ -214,7 +210,7 @@ const config: Configuration = {
     baseUrl: BASE_URL,
     defaultLocale: 'en',
     seo: false,
-    strategy: 'prefix',
+    strategy: 'no_prefix',
     vueI18n: { fallbackLocale: 'en' },
     vueI18nLoader: true,
     detectBrowserLanguage: {

@@ -16,7 +16,6 @@ import {
   getMetaPage,
   JSON_LD
 } from '~/util/seo'
-import { baseUrl } from '~/.nuxt/nuxt-i18n/options'
 import { Jsonld } from '~/node_modules/nuxt-jsonld'
 import { PageBook } from '~/types/items/book'
 
