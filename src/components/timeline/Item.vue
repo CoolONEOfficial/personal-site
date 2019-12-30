@@ -24,15 +24,15 @@
               })
             }}
           </p>
-          <p :class="`has-margin-${itemRtl ? 'left' : 'right'}-45`">
+          <h2 :class="`has-margin-${itemRtl ? 'left' : 'right'}-45`">
             {{ item.title[$i18n.locale] }}
-          </p>
-          <h2
+          </h2>
+          <p
             v-show="Boolean(subtitle)"
             class="subtitle is-size-7 has-margin-bottom-10"
           >
             {{ subtitle }}
-          </h2>
+          </p>
         </div>
         <div class="column is-marginless is-paddingless is-narrow">
           <nuxt-link

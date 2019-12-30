@@ -28,8 +28,9 @@ import { Jsonld } from '~/node_modules/nuxt-jsonld'
 })
 export default class extends Vue {
   get homepage() {
-    console.log('page:', this.$nuxt.$route.path.substring(3))
-    return this.$nuxt.$route.path.substring(3) === ''
+    const page = this.$nuxt.$route.name
+    console.log('page name:', page)
+    return page && page.includes('index')
   }
 
   head() {
