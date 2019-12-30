@@ -2,7 +2,7 @@
   <section class="hero is-fullheight-with-navbar">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <p class="title has-margin-bottom-20">
+        <p class="title has-margin-bottom-30">
           {{ $t(getIsPlaying ? 'now' : 'last_played') }}
         </p>
         <figure

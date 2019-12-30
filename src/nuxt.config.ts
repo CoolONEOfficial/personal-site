@@ -1,5 +1,11 @@
 import { Configuration } from '@nuxt/types'
-import { BASE_URL, FIREBASE_PROJECT_ID, FIREBASE_STORAGE_BUCKET, LOCALES, PRIMARY_COLOR } from "./util/constants";
+import {
+  BASE_URL,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGE_BUCKET,
+  LOCALES,
+  PRIMARY_COLOR
+} from './util/constants'
 import PurgecssPlugin from 'purgecss-webpack-plugin'
 import glob from 'glob-all'
 import path from 'path'
@@ -123,6 +129,10 @@ const config: Configuration = {
     '@nuxtjs/sitemap' // sitemap at end
   ],
   /*
+   ** Redirect from root page
+   */
+  serverMiddleware: ['~/serverMiddleware/redirect.ts'],
+  /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
@@ -209,7 +219,6 @@ const config: Configuration = {
     vueI18nLoader: true,
     detectBrowserLanguage: {
       useCookie: true,
-      alwaysRedirect: !isDev,
       fallbackLocale: 'en'
     }
   },
