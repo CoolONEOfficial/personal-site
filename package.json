@@ -17,7 +17,7 @@
     "lint:src": "cd src && yarn lint",
     "deploy": "[[ -z \"$FIREBASE_TOKEN\" ]] && firebase deploy || firebase deploy --token $FIREBASE_TOKEN",
     "postdeploy": "yarn clean",
-    "deploy:functions": "firebase deploy --only functions",
+    "deploy:functions": "[[ -z \"$FIREBASE_TOKEN\" ]] && firebase deploy --only functions || firebase deploy --only functions --token $FIREBASE_TOKEN",
     "deploy:api": "firebase deploy --only functions:webApi",
     "ncu": "yarn ncu:src && yarn ncu:functions",
     "ncu:src": "cd src && ncu -u",

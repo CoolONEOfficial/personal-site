@@ -11,5 +11,5 @@ before_deploy:
   - npm i -g firebase-tools
 deploy:
   provider: script
-  script: "yarn deploy || yarn deploy"
+  script: "yarn deploy:functions || yarn deploy:functions"
   skip_cleanup: true
