@@ -15,6 +15,7 @@ import { COLL_NAMES } from '~/util/constants'
 import Card from '~/components/Card.vue'
 import CardCatalog from '~/components/CardCatalog.vue'
 import { getMeta } from '~/util/seo'
+import { TimelineProject } from "~/types/items/project";
 
 const COLL_NAME = COLL_NAMES.PROJECTS
 const vuexModule = namespace(COLL_NAME)
@@ -36,7 +37,12 @@ export default class extends Vue {
   prevPage
 
   subtitle(item) {
-    return this.$t(item.type)
+    return TimelineProject.getSubtitle(
+      this.$t(item.type),
+      this.$t('for'),
+      this.$t(item.platform),
+      item.platform
+    )
   }
 
   async fetch({ store }) {

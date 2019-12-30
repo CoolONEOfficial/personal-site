@@ -4,7 +4,7 @@ import 'firebase/firestore'
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
 import DocumentData = firebase.firestore.DocumentData
 import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils'
-import { LocalizedString } from "~/types/types";
+import { LocalizedString } from '~/types/types'
 
 export enum ProjectType {
   APP = 'app',
@@ -69,6 +69,31 @@ export class TimelineProject extends TimelineItem {
       data.type,
       data.platform
     )
+  }
+
+  static capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
+
+  static getSubtitle(tType, tFor, tPlatform, platform) {
+    return TimelineProject.useFor(platform)
+      ? `${TimelineProject.capitalizeFirstLetter(tType)} ${tFor} ${tPlatform}`
+      : `${tPlatform} ${tType}`
+  }
+
+  static useFor(platform) {
+    switch (platform) {
+      case ProjectPlatform.MOBILE:
+      case ProjectPlatform.DESKTOP:
+      case ProjectPlatform.ANDROID:
+      case ProjectPlatform.WEB:
+        return false
+      case ProjectPlatform.WINDOWS:
+      case ProjectPlatform.LINUX:
+      case ProjectPlatform.IOS:
+      case ProjectPlatform.MACOSX:
+        return true
+    }
   }
 }
 

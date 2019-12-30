@@ -22,6 +22,7 @@
                 'image',
                 'is-128x128',
                 'description-logo',
+                'has-margin-bottom-30',
                 { 'image-centered': !pageItem.singleImage }
               ]"
               fit="contain"

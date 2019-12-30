@@ -18,6 +18,15 @@ export default class extends Vue {
   @Prop({ default: {} })
   item!: TimelineProject
 
+  get subtitle() {
+    return TimelineProject.getSubtitle(
+      this.$t(this.item.type),
+      this.$t('for'),
+      this.$t(this.item.platform),
+      this.item.platform
+    )
+  }
+
   get icon() {
     switch (this.item.type) {
       case ProjectType.APP:
@@ -44,35 +53,6 @@ export default class extends Vue {
         return 'game-controller'
     }
     return
-  }
-
-  capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1)
-  }
-
-  get subtitle() {
-    const type = this.item.type
-    const platform = this.item.platform
-    return this.useFor(type, platform)
-      ? `${this.capitalizeFirstLetter(this.$t(type))} ${this.$t(
-          'for'
-        )} ${this.$t(platform)}`
-      : `${this.$t(platform)} ${this.$t(type)}`
-  }
-
-  useFor(type: ProjectType, platform: ProjectPlatform) {
-    switch (platform) {
-      case ProjectPlatform.MOBILE:
-      case ProjectPlatform.DESKTOP:
-      case ProjectPlatform.ANDROID:
-      case ProjectPlatform.WEB:
-        return false
-      case ProjectPlatform.WINDOWS:
-      case ProjectPlatform.LINUX:
-      case ProjectPlatform.IOS:
-      case ProjectPlatform.MACOSX:
-        return true
-    }
   }
 }
 </script>
