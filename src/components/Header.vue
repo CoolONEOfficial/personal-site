@@ -37,7 +37,7 @@
     </template>
 
     <template slot="end">
-      <b-navbar-item class="header-switcher-item">
+      <b-navbar-item class="header-switcher-item header-switcher-item-mobile">
         <ThemeSwitcher class="header-switcher" />
         <LangSwitcher class="header-switcher" />
       </b-navbar-item>
@@ -137,6 +137,11 @@ export default class extends Vue {
 
     &-item {
       background: unset !important;
+
+      &-mobile {
+        display: flex !important;
+        justify-content: center;
+      }
     }
   }
 

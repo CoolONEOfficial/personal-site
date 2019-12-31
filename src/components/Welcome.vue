@@ -41,6 +41,7 @@
       <div
         :class="[
           'columns',
+          'is-mobile',
           'welcome-switcher-wrapper',
           { 'is-centered': $device.isMobile },
           { 'welcome-switcher-wrapper-desktop': !$device.isMobile }
