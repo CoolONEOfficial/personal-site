@@ -39,7 +39,11 @@ export async function getItems(that, collName, timelineType) {
 }
 
 export async function getItemPage(that, doc, collName, pageType) {
-  const docRef = that.$fireStore.collection(collName).doc(doc)
+  const docRef = that.$fireStore
+    .collection(collName)
+    .doc('doc')
+    .collection('timeline')
+    .doc(doc)
 
   return pageType.fromDocs(
     that,

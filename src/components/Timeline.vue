@@ -29,8 +29,8 @@ import BookItem from '~/components/timeline/items/BookItem.vue'
 import AchievementItem from '~/components/timeline/items/AchievementItem.vue'
 import ProjectItem from '~/components/timeline/items/ProjectItem.vue'
 import YearItem from '~/components/timeline/Year.vue'
-import HackItem from '~/components/timeline/items/HackItem.vue'
 import Header from '~/components/timeline/Header.vue'
+import EventItem from '~/components/timeline/items/EventItem.vue'
 
 @Component({
   components: {
@@ -39,7 +39,7 @@ import Header from '~/components/timeline/Header.vue'
     projects: ProjectItem,
     achievements: AchievementItem,
     years: YearItem,
-    events: HackItem
+    events: EventItem
   }
 })
 export default class extends Vue {

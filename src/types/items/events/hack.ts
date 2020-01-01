@@ -20,7 +20,7 @@ export class TimelineHack extends TimelineEvent {
     _doc,
     type,
     location,
-    public place: String
+    public place: number
   ) {
     super(
       title,
