@@ -6,7 +6,7 @@
         @click="isModalActive = true"
         alt="Card general image"
       />
-      <b-modal :active.sync="isModalActive" trap-focus animation="zoom-in">
+      <b-modal :can-cancel="['escape', 'x']" :active.sync="isModalActive" trap-focus animation="zoom-in">
         <Picture
           class="modal-image"
           v-model="itemImage.original"

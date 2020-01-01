@@ -26,7 +26,7 @@
           />
         </slide>
       </carousel>
-      <b-modal :active.sync="isModalActive" trap-focus animation="zoom-in">
+      <b-modal :can-cancel="['escape', 'x']" :active.sync="isModalActive" trap-focus animation="zoom-in">
         <carousel
           class="show-overflow"
           :navigate-to="navigateTo"
