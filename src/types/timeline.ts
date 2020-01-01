@@ -30,7 +30,7 @@ export class TimelineItem extends Item {
     )
   }
 
-  static async fromDoc(that, doc: DocumentSnapshot): Promise<TimelineItem> {
+  static async fromDoc(that, doc): Promise<TimelineItem> {
     const item = await super.fromDoc(that, doc)
 
     return new TimelineItem(
@@ -42,7 +42,7 @@ export class TimelineItem extends Item {
       item.descriptionText,
       item.descriptionHtml,
       item.tags,
-      doc.ref.parent.path,
+      doc.ref.parent.parent.parent.path,
       doc.id
     )
   }

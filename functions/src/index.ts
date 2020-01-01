@@ -13,7 +13,7 @@ const sizesColl = "sizes";
 const listenCollections = ["achievements", "projects", "events", "books"];
 
 export const documentWriteListener = functions.firestore
-  .document("{collectionId}/{documentUid}")
+  .document("{collectionId}/doc/timeline/{documentUid}")
   .onWrite((change, context) => {
     if (listenCollections.indexOf(context.params.collectionId) > -1) {
       if (!change.before.exists) {

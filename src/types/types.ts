@@ -18,7 +18,7 @@ export class Item {
     public tags?: string[]
   ) {}
 
-  static async fromDoc(that, doc: DocumentSnapshot): Promise<Item> {
+  static async fromDoc(that, doc): Promise<Item> {
     const data = doc.data() as DocumentData
 
     if (Boolean(data.images)) {
@@ -28,7 +28,7 @@ export class Item {
         const list = (
           await that.$fireStorage
             .ref()
-            .child(`${doc.ref.parent.path}/${doc.id}/images`)
+            .child(`${doc.ref.parent.parent.parent.path}/${doc.id}/images`)
             .list()
         ).items
 
@@ -54,12 +54,12 @@ export class Item {
           ? {
               original: await that.$fireStorage
                 .ref()
-                .child(`${doc.ref.parent.path}/${doc.id}/singleImage/1.jpg`)
+                .child(`${doc.ref.parent.parent.parent.path}/${doc.id}/singleImage/1.jpg`)
                 .getDownloadURL(),
               small: await that.$fireStorage
                 .ref()
                 .child(
-                  `${doc.ref.parent.path}/${doc.id}/singleImage/1_400x400.jpg`
+                  `${doc.ref.parent.parent.parent.path}/${doc.id}/singleImage/1_400x400.jpg`
                 )
                 .getDownloadURL()
             }
@@ -75,12 +75,12 @@ export class Item {
           ? {
             original: await that.$fireStorage
               .ref()
-              .child(`${doc.ref.parent.path}/${doc.id}/logo/1.jpg`)
+              .child(`${doc.ref.parent.parent.parent.path}/${doc.id}/logo/1.jpg`)
               .getDownloadURL(),
             small: await that.$fireStorage
               .ref()
               .child(
-                `${doc.ref.parent.path}/${doc.id}/logo/1_400x400.jpg`
+                `${doc.ref.parent.parent.parent.path}/${doc.id}/logo/1_400x400.jpg`
               )
               .getDownloadURL()
           }
