@@ -1,12 +1,6 @@
 <template>
   <div :class="['container', { 'is-loading': isLoading }]">
-    <div
-      :class="[
-        'columns',
-        'is-multiline',
-        `columns-${$device.isMobile ? 'mobile' : 'desktop'}`
-      ]"
-    >
+    <div :class="['columns', 'is-multiline', 'columns-mobile']">
       <div
         class="column is-one-third"
         v-for="(_, index) of new Array(paginationCount / 2)"
@@ -14,8 +8,10 @@
       >
         <Card
           v-for="(i, cardIndex) of [
-            items[index],
-            items[paginationCount / 2 + index]
+            items[$device.isMobile ? index * 2 : index],
+            items[
+              $device.isMobile ? index * 2 + 1 : paginationCount / 2 + index
+            ]
           ].filter(Boolean)"
           :key="cardIndex"
           :item="i"
@@ -88,6 +84,7 @@ export default class extends Vue {
 .container {
   transition: opacity 1s;
 }
+
 .is-loading {
   opacity: 0.5;
 }

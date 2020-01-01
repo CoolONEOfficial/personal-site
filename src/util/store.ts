@@ -3,7 +3,7 @@ import QuerySnapshot = firebase.firestore.QuerySnapshot
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import Timestamp = firebase.firestore.Timestamp
-import { TimelineItem } from "~/types/timeline";
+import { TimelineItem } from '~/types/timeline'
 
 const queryRef = (that, collName) =>
   that.$fireStore.collection(collName).orderBy('date', 'desc')
@@ -47,14 +47,21 @@ export async function getItemPage(that, doc, collName, pageType) {
   )
 }
 
-export async function nextPage(that, collName, items: TimelineItem[], timelineType) {
+export async function nextPage(
+  that,
+  collName,
+  items: TimelineItem[],
+  timelineType
+) {
   return parseQuery(
     that,
     await queryRef(that, collName)
-      .startAfter(Timestamp.fromDate(items[items.length - 1].date))
+      .startAfter(
+        Timestamp.fromMillis(items[items.length - 1].date.getMilliseconds())
+      )
       .limit(PAGINATION_COUNT)
       .get(),
-    timelineType,
+    timelineType
   )
 }
 
@@ -62,7 +69,7 @@ export async function prevPage(that, collName, items, timelineType) {
   return parseQuery(
     that,
     await queryRef(that, collName)
-      .endBefore(Timestamp.fromMillis(items[0].date))
+      .endBefore(Timestamp.fromMillis(items[0].date.getMilliseconds()))
       .limitToLast(PAGINATION_COUNT)
       .get(),
     timelineType
