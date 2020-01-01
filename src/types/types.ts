@@ -111,8 +111,8 @@ export class LocalizedString {
     const en: string = map['en']
     const ru = map['ru']
     return new LocalizedString(
-      Boolean(en) ? en.replace(/\\n/g, '\n\t') : '',
-      Boolean(ru) ? ru.replace(/\\n/g, '\n\t') : ''
+      Boolean(en) ? en.replace(/\n/g, '\n\t') : '',
+      Boolean(ru) ? ru.replace(/\n/g, '\n\t') : ''
     )
   }
 
