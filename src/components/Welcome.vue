@@ -160,25 +160,10 @@ export default class extends Vue {
     return CAROUSEL_INTERVAL
   }
 
-  randomInt(limit) {
-    return Math.floor(Math.random() * limit)
-  }
-
-  randomItem(arr: any[]) {
-    return arr[this.randomInt(arr.length)]
-  }
-
-  addRandomImage() {
-    this.images.push(
-      this.randomItem(this.randomItem(this.getImageItems).images)
-    )
-    this.carouselModel = this.images.length - 1
-  }
-
   mounted() {
     this.initImageItems()
 
-    for (let i = 0; i < 5; i++) this.addRandomImage()
+    this.images.push(...this.getImageItems.map((mItem) => mItem.images).flat().slice(0,5))
   }
 }
 </script>
