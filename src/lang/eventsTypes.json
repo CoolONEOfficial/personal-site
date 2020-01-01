@@ -14,9 +14,9 @@
     "exhibition": "Exhibition",
     "festival": "Festival",
     "round_table": "Round table",
-    "study": "Study",
+    "study": "Research",
     "excursion": "Excursion",
-    "course": "Course"
+    "course": "Course of study"
   },
   "ru": {
     "other": "Мероприятие",
@@ -35,6 +35,6 @@
     "round_table": "Круглый стол",
     "study": "Исследование",
     "excursion": "Экскурсия",
-    "course": "Курсы"
+    "course": "Курс обучения"
   }
 }

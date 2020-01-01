@@ -22,7 +22,8 @@ export enum EventType {
   FESTIVAL = 'festival',
   ROUND_TABLE = 'round_table',
   STUDY = 'study',
-  EXCURSION = 'excursion'
+  EXCURSION = 'excursion',
+  COURSE = 'course'
 }
 
 export interface Geopoint {
