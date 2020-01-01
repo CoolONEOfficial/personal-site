@@ -53,20 +53,19 @@
                     'description-links-left':
                       pageItem.singleImage && !$device.isMobile
                   },
-                  { 'is-centered': !pageItem.singleImage || $device.isMobile },
-                  { 'has-margin-bottom-20': !pageItem.singleImage }
+                  { 'is-centered': !pageItem.singleImage || $device.isMobile }
                 ]"
               >
-                <a v-if="pageItem.github" :href="pageItem.github">
+                <a
+                  v-for="([key, value], index) of Object.entries(linksMap)"
+                  :key="index"
+                  :href="pageItem[key]"
+                  v-if="pageItem[key]"
+                  :class="{ 'has-margin-bottom-20': !pageItem.singleImage }"
+                >
                   <Icon
                     class="image is-32x32 icon-hover description-icon"
-                    icon="octocat"
-                  />
-                </a>
-                <a v-if="pageItem.site" :href="pageItem.site">
-                  <Icon
-                    class="image is-32x32 icon-hover description-icon"
-                    icon="website"
+                    :icon="value"
                   />
                 </a>
               </div>
@@ -88,7 +87,7 @@
               </time>
             </div>
             <div class="level-right">
-              <Tags v-model="pageItem.tags" />
+              <Tags v-model="pageItem.tags" :max="$device.isMobile ? 2 : 4" />
             </div>
           </nav>
         </div>
@@ -129,6 +128,13 @@ export default class extends Vue {
   locales = {
     en: enUS,
     ru
+  }
+
+  linksMap = {
+    github: 'octocat',
+    googlePlay: 'google-play',
+    appStore: 'apple-app-store',
+    site: 'website'
   }
 }
 </script>

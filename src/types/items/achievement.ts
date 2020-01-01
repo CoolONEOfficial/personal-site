@@ -81,6 +81,7 @@ export class PageAchievement extends TimelineAchievement {
     _doc,
     type,
     organisation,
+    public videos,
     public site
   ) {
     super(
@@ -122,7 +123,8 @@ export class PageAchievement extends TimelineAchievement {
       item._doc,
       item.type,
       item.organisation,
-      data.url
+      data.videos,
+      data.site
     )
   }
 }

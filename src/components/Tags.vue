@@ -18,7 +18,7 @@ export default class extends Vue {
   @Prop()
   value!: String[]
 
-  @Prop({ default: 3 })
+  @Prop({ default: 2 })
   max!: number
 }
 </script>

@@ -111,7 +111,10 @@ export class PageProject extends TimelineProject {
     _doc,
     type,
     platform,
-    public github
+    public videos,
+    public github,
+    public googlePlay,
+    public appStore,
   ) {
     super(
       title,
@@ -150,7 +153,10 @@ export class PageProject extends TimelineProject {
       item._doc,
       item.type,
       data.platform as ProjectPlatform,
-      data.github
+      data.videos,
+      data.github,
+      data.google_play,
+      data.app_store
     )
   }
 }

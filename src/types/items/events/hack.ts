@@ -75,6 +75,7 @@ export class PageHack extends TimelineHack {
     type,
     location,
     place,
+    public videos,
     public site
   ) {
     super(
@@ -116,6 +117,7 @@ export class PageHack extends TimelineHack {
       item.type,
       item.location,
       item.place,
+      data.videos,
       data.site
     )
   }
