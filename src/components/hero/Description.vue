@@ -2,7 +2,12 @@
   <div
     :class="
       $device.isMobile
-        ? ['hero-head', 'has-padding-left-15', 'has-padding-right-15']
+        ? [
+            'hero-head',
+            'has-padding-left-15',
+            'has-padding-right-15',
+            'has-margin-bottom-10'
+          ]
         : ['hero-body']
     "
   >
@@ -38,28 +43,34 @@
               <h2 v-if="subtitle" class="subtitle">
                 {{ subtitle }}
               </h2>
+              <div
+                :class="[
+                  'description-links',
+                  'columns',
+                  'is-marginless',
+                  'is-mobile',
+                  {
+                    'description-links-left':
+                      pageItem.singleImage && !$device.isMobile
+                  },
+                  { 'is-centered': !pageItem.singleImage || $device.isMobile },
+                  { 'has-margin-bottom-20': !pageItem.singleImage }
+                ]"
+              >
+                <a v-if="pageItem.github" :href="pageItem.github">
+                  <Icon
+                    class="image is-32x32 icon-hover description-icon"
+                    icon="octocat"
+                  />
+                </a>
+                <a v-if="pageItem.site" :href="pageItem.site">
+                  <Icon
+                    class="image is-32x32 icon-hover description-icon"
+                    icon="website"
+                  />
+                </a>
+              </div>
             </div>
-          </div>
-          <div
-            :class="[
-              'columns',
-              { 'is-centered': !pageItem.singleImage },
-              'is-mobile',
-              { 'has-margin-bottom-20': !pageItem.singleImage }
-            ]"
-          >
-            <a v-if="pageItem.github" :href="pageItem.github">
-              <Icon
-                class="image is-32x32 icon-hover description-icon"
-                icon="octocat"
-              />
-            </a>
-            <a v-if="pageItem.site" :href="pageItem.site">
-              <Icon
-                class="image is-32x32 icon-hover description-icon"
-                icon="website"
-              />
-            </a>
           </div>
           <div
             v-if="pageItem.descriptionHtml"
@@ -68,11 +79,13 @@
           />
           <nav class="level is-mobile" v-if="pageItem.descriptionHtml">
             <div class="level-left">
-              <time :datetime="pageItem.date.toDateString()">{{
-                $dateFns.format(pageItem.date.getTime(), 'd MMMM yyyy', {
-                  locale: locales[$i18n.locale]
-                })
-              }}</time>
+              <time :datetime="pageItem.date.toDateString()"
+                >{{
+                  $dateFns.format(pageItem.date.getTime(), 'd MMMM yyyy', {
+                    locale: locales[$i18n.locale]
+                  })
+                }}
+              </time>
             </div>
             <div class="level-right">
               <Tags v-model="pageItem.tags" />
@@ -122,15 +135,27 @@ export default class extends Vue {
 
 <style lang="scss">
 .description {
+  &-links {
+    margin-top: 1rem !important;
+
+    &-left {
+      margin-left: -0.25rem !important;
+      margin-top: -1rem !important;
+    }
+  }
+
   &-image {
     object-fit: contain;
     max-height: 60vh;
-    max-width: 40vw;
+    max-width: 100%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+
     &-desktop {
+      margin-left: 2rem;
       height: 80vh;
+      max-width: 40vw;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);

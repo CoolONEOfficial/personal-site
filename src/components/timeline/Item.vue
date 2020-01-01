@@ -208,7 +208,7 @@ export default class extends Vue {
       background-color: rgba($white-ter, var(--timeline-background-opacity));
 
       .content {
-        max-height: 400px;
+        max-height: 500px;
         opacity: 1;
         transition: max-height 1.2s 0s, opacity 0.5s linear 0.5s;
       }

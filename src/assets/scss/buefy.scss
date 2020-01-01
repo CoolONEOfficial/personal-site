@@ -19,7 +19,7 @@ $footer-background-color: var(--navbar-background);
 $navbar-background-color-black: #181818;
 $navbar-background-color-white: hsl(0, 0%, 98%);
 $card-background-color: var(--navbar-background);
-$link: #4a4a4a;
+$link: $primary;
 $link-invert: $primary;
 $navbar-item-color: #7a7a7a;
 $pagination-color: #4a4a4a;

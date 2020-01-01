@@ -164,6 +164,7 @@ export default class extends Vue {
   }
 
   .tag-text {
+    color: var(--text-color) !important;
     margin-left: 0.5rem;
     font-size: 0.75rem;
     line-height: 1.6 !important;
