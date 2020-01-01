@@ -1,6 +1,6 @@
 <template>
   <section class="hero is-fullheight">
-    <b-modal :active.sync="isModalActive" animation="zoom-in">
+    <b-modal :active.sync="isModalActive" trap-focus animation="zoom-in">
       <carousel
         class="show-overflow"
         :navigate-to="navigateTo"
