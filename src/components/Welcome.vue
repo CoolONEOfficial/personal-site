@@ -69,12 +69,15 @@
               :autoplay-hover-pause="true"
               :loop="true"
             >
-              <slide v-for="(i, index) of images" :key="index">
+              <slide
+                v-for="(i, index) of images"
+                :key="index"
+                @slide-click="onImageClick(index)"
+              >
                 <Picture
                   class="image is-128x128 welcome-carousel-image"
                   v-model="i.small"
                   :alt="`Carousel image of welcome screen №${index + 1}`"
-                  @click="onImageClick(index)"
                 />
               </slide>
             </carousel>

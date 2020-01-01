@@ -123,7 +123,9 @@ export const actions = {
   initImageItems({ commit, state }) {
     commit(
       'updateImageItems',
-      state.timelineItems.filter((mItem) => Boolean(mItem.images))
+      state.timelineItems.filter(
+        (mItem) => mItem._type == 'events' && Boolean(mItem.images)
+      )
     )
   }
 }
