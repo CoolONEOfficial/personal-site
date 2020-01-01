@@ -6,7 +6,11 @@ import Timestamp = firebase.firestore.Timestamp
 import { TimelineItem } from '~/types/timeline'
 
 const queryRef = (that, collName) =>
-  that.$fireStore.collection(collName).orderBy('date', 'desc')
+  that.$fireStore
+    .collection(collName)
+    .doc('doc')
+    .collection('timeline')
+    .orderBy('date', 'desc')
 
 export async function getDocsCount(that, collName) {
   const sizeDoc = await that.$fireStore
