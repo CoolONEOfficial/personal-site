@@ -1,9 +1,5 @@
 <template>
-  <Item
-    :item="item"
-    :icon="icon"
-    :subtitle="item.location.title[$i18n.locale]"
-  />
+  <Item :item="item" :icon="icon" :subtitle="subtitle" />
 </template>
 
 <script lang="ts">
@@ -19,6 +15,12 @@ import { EventType, TimelineEvent } from '~/types/items/event'
 export default class extends Vue {
   @Prop({ default: {} })
   item!: TimelineEvent
+
+  get subtitle() {
+    return this.item.location
+      ? this.item.location.title[this.$i18n.locale]
+      : this.item.type
+  }
 
   get icon() {
     switch (this.item.type) {
