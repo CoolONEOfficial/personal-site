@@ -22,6 +22,7 @@
             class="image is-48x48"
             v-model="item.logo.small"
             alt="Card logo image"
+            fit="contain"
           />
         </div>
         <div class="media-content">

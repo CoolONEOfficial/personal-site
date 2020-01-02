@@ -48,9 +48,7 @@ export class Item {
     }
 
     for(const mName of ['singleImage', 'logo']) {
-      console.log('mVal: ', data[mName]);
       if (data[mName]) {
-        console.log(`${doc.ref.parent.parent.parent.path}/${doc.id}/${mName}/1${data[mName]}`);
         data[mName] =
           process.env.NODE_ENV === 'production'
             ? {
