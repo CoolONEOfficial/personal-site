@@ -19,7 +19,7 @@ export default class extends Vue {
   get subtitle() {
     return this.item.location
       ? this.item.location.title[this.$i18n.locale]
-      : this.item.type
+      : this.$t(this.item.type)
   }
 
   get icon() {
@@ -40,3 +40,5 @@ export default class extends Vue {
   }
 }
 </script>
+
+<i18n src="~/lang/eventsTypes.json" />
