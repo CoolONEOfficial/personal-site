@@ -2,7 +2,6 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import Timestamp = firebase.firestore.Timestamp
 import { PLACEHOLDER_IMAGE } from '~/util/constants'
-import DocumentSnapshot = firebase.firestore.DocumentSnapshot
 import DocumentData = firebase.firestore.DocumentData
 import { convertToHTML, convertToPlainText } from '~/util/md'
 
@@ -48,46 +47,29 @@ export class Item {
       data['images'] = images
     }
 
-    if (Boolean(data.singleImage)) {
-      data.singleImage =
-        process.env.NODE_ENV === 'production'
-          ? {
+    for(const mName of ['singleImage', 'logo']) {
+      console.log('mVal: ', data[mName]);
+      if (data[mName]) {
+        console.log(`${doc.ref.parent.parent.parent.path}/${doc.id}/${mName}/1${data[mName]}`);
+        data[mName] =
+          process.env.NODE_ENV === 'production'
+            ? {
               original: await that.$fireStorage
                 .ref()
-                .child(`${doc.ref.parent.parent.parent.path}/${doc.id}/singleImage/1.jpg`)
+                .child(`${doc.ref.parent.parent.parent.path}/${doc.id}/${mName}/1${data[mName]}`)
                 .getDownloadURL(),
               small: await that.$fireStorage
                 .ref()
                 .child(
-                  `${doc.ref.parent.parent.parent.path}/${doc.id}/singleImage/1_400x400.jpg`
+                  `${doc.ref.parent.parent.parent.path}/${doc.id}/${mName}/1_400x400${data[mName]}`
                 )
                 .getDownloadURL()
             }
-          : {
+            : {
               original: PLACEHOLDER_IMAGE,
               small: PLACEHOLDER_IMAGE
             }
-    }
-
-    if (Boolean(data.logo)) {
-      data.logo =
-        process.env.NODE_ENV === 'production'
-          ? {
-            original: await that.$fireStorage
-              .ref()
-              .child(`${doc.ref.parent.parent.parent.path}/${doc.id}/logo/1.jpg`)
-              .getDownloadURL(),
-            small: await that.$fireStorage
-              .ref()
-              .child(
-                `${doc.ref.parent.parent.parent.path}/${doc.id}/logo/1_400x400.jpg`
-              )
-              .getDownloadURL()
-          }
-          : {
-            original: PLACEHOLDER_IMAGE,
-            small: PLACEHOLDER_IMAGE
-          }
+      }
     }
 
     return new Item(
