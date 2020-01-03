@@ -1,6 +1,6 @@
 <template>
   <header class="timeline-header">
-    <span class="tag">{{ $dateFns.format(item.date, 'yyyy') }}</span>
+    <span class="tag">{{ item.date }}</span>
   </header>
 </template>
 
