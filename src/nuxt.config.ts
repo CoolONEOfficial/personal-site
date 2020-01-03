@@ -22,7 +22,8 @@ const whitelistPatternsChildren: RegExp[] = [
   /taglist/,
   /plyr/,
   /VueCarousel/,
-  /aos/
+  /aos/,
+  /pagination/
 ]
 
 const config: Configuration = {

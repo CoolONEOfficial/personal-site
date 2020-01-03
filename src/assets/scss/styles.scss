@@ -22,8 +22,14 @@ body {
   }
 }
 
-.pagination-link {
-  background-color: var(--navbar-background);
+.pagination {
+  &-link {
+    background-color: var(--navbar-background);
+  }
+
+  &-list li {
+    color: transparent;
+  }
 }
 
 .modal-image {
