@@ -1,10 +1,10 @@
 <template>
   <section>
-    <p class="title has-text-centered has-padding-top-50" data-aos="fade">
+    <p class="title has-text-centered" data-aos="fade">
       {{ $t('chronology') }}
     </p>
     <Timeline
-      class="has-margin-top-40 has-margin-bottom-50"
+      class="has-margin-top-60 has-margin-bottom-50"
       v-model="getTimelineItems"
     />
   </section>

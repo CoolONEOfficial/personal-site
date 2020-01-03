@@ -3,8 +3,8 @@
     id="nav"
     :class="[
       'header',
-      'has-margin-bottom-10',
-      { 'is-transparent is-fixed-top header-homepage': homepage }
+      'is-fixed-top',
+      { 'is-transparent header-homepage': homepage }
     ]"
   >
     <template slot="brand">
@@ -35,7 +35,6 @@
     <template slot="start">
       <HeaderItem v-for="(i, index) of items" :key="index" :item="i" />
     </template>
-
     <template slot="end">
       <b-navbar-item class="header-switcher-item header-switcher-item-mobile">
         <ThemeSwitcher class="header-switcher" />

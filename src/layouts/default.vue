@@ -53,7 +53,8 @@ export default class extends Vue {
       '--text-color': theme.textColor,
       '--timeline-background-opacity': theme.timelineBackgroundOpacity,
       '--timeline-line': theme.timelineItemLine,
-      '--navbar-background': theme.navbarBackground
+      '--navbar-background': theme.navbarBackground,
+      '--pagination-current-background': theme.paginationCurrentBackground
     }
   }
 
@@ -70,6 +71,7 @@ export default class extends Vue {
 #main {
   &-content {
     min-height: calc(100vh - 6em);
+    padding-top: 5rem;
   }
 
   &-layout {

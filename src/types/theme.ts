@@ -8,6 +8,7 @@ export const THEMES = {
     timelineBackgroundOpacity: 1,
     timelineItemLine: variables.timelineLineColorWhite,
     navbarBackground: variables.navbarBackgroundColorWhite,
+    paginationCurrentBackground: variables.paginationCurrentBackgroundColorWhite
   },
   BLACK: {
     name: 'black',
@@ -16,6 +17,7 @@ export const THEMES = {
     timelineBackgroundOpacity: 0.1,
     timelineItemLine: variables.timelineLineColorBlack,
     navbarBackground: variables.navbarBackgroundColorBlack,
+    paginationCurrentBackground: variables.paginationCurrentBackgroundColorBlack
   }
 }
 
@@ -26,6 +28,7 @@ export interface Theme {
   timelineBackgroundOpacity: string
   timelineItemLine: string
   navbarBackground: string
+  paginationCurrentBackground: string
 }
 
 export function invertTheme(theme: Theme) {
