@@ -58,16 +58,34 @@
       <div class="content reverse">
         <div
           :class="[
-            { columns: item.singleImage },
+            { 'columns justify-center': item.singleImage },
             { reverse: !$device.isMobile && item.singleImage && itemRtl },
             'is-marginless-horizontal'
           ]"
         >
-          <div class="column is-paddingless">
-            <Images :item="item" v-if="item.images" />
-            <SingleImage :item="item" v-else-if="item.singleImage" />
-          </div>
-          <div class="column is-paddingless">
+          <Images
+            :item="item"
+            v-if="item.images"
+            :class="{ 'content-item': item.singleImage && !$device.isMobile }"
+          />
+          <SingleImage
+            :item="item"
+            v-else-if="item.singleImage"
+            :class="[
+              {
+                'has-padding-top-20 has-padding-bottom-20 content-item':
+                  item.singleImage && !$device.isMobile
+              }
+            ]"
+          />
+          <div
+            :class="[
+              {
+                'text-vertical-center content-item':
+                  item.singleImage && !$device.isMobile
+              }
+            ]"
+          >
             <Description v-if="item.descriptionHtml" :item="item" />
           </div>
         </div>
@@ -138,6 +156,11 @@ export default class extends Vue {
   width: 100%;
 }
 
+.text-vertical-center {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .icon-open {
   position: absolute;
   top: 2rem;
@@ -165,6 +188,10 @@ export default class extends Vue {
   overflow: hidden;
 
   transition: max-height 1.2s 0.2s, opacity 0.2s linear 0s;
+
+  &-item {
+    max-width: 50%;
+  }
 }
 
 .timeline {

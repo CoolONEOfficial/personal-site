@@ -8,7 +8,7 @@
         { 'left-inset': !$device.isMobile && !itemRtl }
       ]"
       v-model="item.singleImage.small"
-      fit="cover"
+      fit="contain"
       @click="onImageClick"
       alt="Timeline image"
     />
@@ -16,7 +16,7 @@
       <Picture
         class="modal-image"
         v-model="item.singleImage.original"
-        fit="cover"
+        fit="contain"
         alt="Timeline modal image"
       />
     </b-modal>
