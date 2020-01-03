@@ -35,7 +35,7 @@ module.exports = async function getRoutes() {
     COLL_NAMES.PROJECTS,
     COLL_NAMES.ACHIEVEMENTS
   ]) {
-    for (const mDoc of (await db.collection(mColl).get()).docs) {
+    for (const mDoc of (await db.collection(mColl).doc('doc').collection('timeline').get()).docs) {
       routes.push(`${mColl}/${mDoc.id}`)
     }
   }
