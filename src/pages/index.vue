@@ -5,7 +5,6 @@
     </p>
     <Timeline
       class="has-margin-top-60 has-margin-bottom-50"
-      v-model="getTimelineItems"
     />
   </section>
 </template>
@@ -24,9 +23,6 @@ const vuexModule = namespace('timeline')
   components: { Timeline }
 })
 export default class extends Vue {
-  @vuexModule.Getter
-  getTimelineItems
-
   async fetch({ store, app }) {
     try {
       await store.dispatch('timeline/loadTimelineItems')

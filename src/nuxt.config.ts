@@ -98,6 +98,7 @@ const config: Configuration = {
     { src: '~/plugins/vue-carousel', ssr: false },
     { src: '~/plugins/vue-lazysizes', ssr: false },
     { src: '~/plugins/vuex-persist', ssr: false },
+    { src: '~/plugins/vue-infinite-loading', ssr: false },
     '~/plugins/vue-plyr',
     '~/plugins/jsonld'
   ],

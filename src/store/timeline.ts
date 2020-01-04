@@ -11,12 +11,16 @@ import { TimelineHack } from '~/types/items/events/hack'
 export const state = () => ({
   timelineItems: [],
   hoveredItem: null,
-  imageItems: null
+  imageItems: null,
+  lastDate: null
 })
 
 export const mutations = {
-  updateTimelineItems(state, payload) {
-    state.timelineItems = payload
+  addTimelineItems(state, payload) {
+    state.timelineItems.push(...payload)
+  },
+  updateLastDate(state, payload) {
+    state.lastDate = payload
   },
   updateHoveredItem(state, hoveredItem) {
     state.hoveredItem = hoveredItem
@@ -26,73 +30,66 @@ export const mutations = {
   }
 }
 
-async function mergeAndSortItems(that, ...colNames: any) {
-  // const cols = []
-  // for (const mName of colNames) {
-  //   const collRef = that.$fireStore.collection(mName)
-  //   cols.push(
-  //     mName == 'events'
-  //       ? (collRef.where('type', '==', EventType.HACK).get() as never)
-  //       : (collRef.get() as never)
-  //   )
-  // }
-  const timelineDocs = (
-    await that.$fireStore
+export const actions = {
+  async loadTimelineItems({ commit, getters }) {
+    const queryRef = (this as any).$fireStore
       .collectionGroup('timeline')
       .orderBy('date', 'desc')
-      .get()
-  ).docs
+    const timelineDocs = (
+      await (getters.getLastDate != null
+        ? queryRef.startAfter(getters.getLastDate)
+        : queryRef
+      )
+        .limit(10)
+        .get()
+    ).docs
 
-  const timelineData = []
+    const timelineData: TimelineItem[] = []
 
-  for (const mDoc of timelineDocs) {
-    const mDocType = mDoc.ref.parent.parent.parent.path
-    const typeMap = {
-      events: TimelineHack,
-      projects: TimelineProject,
-      books: TimelineBook,
-      achievements: TimelineAchievement
+    for (const mDoc of timelineDocs) {
+      const mDocType = mDoc.ref.parent.parent.parent.path
+      const typeMap = {
+        events: TimelineHack,
+        projects: TimelineProject,
+        books: TimelineBook,
+        achievements: TimelineAchievement
+      }
+      timelineData.push((await typeMap[mDocType].fromDoc(this, mDoc)) as never)
     }
-    timelineData.push((await typeMap[mDocType].fromDoc(that, mDoc)) as never)
-  }
 
-  for (const [mItemId, mItem] of (timelineData as TimelineItem[]).entries()) {
-    mItem._orderId = mItemId + 1
-  }
+    if (timelineData.length > 0) {
+      commit('updateLastDate', timelineData[timelineData.length - 1].date)
 
-  for (let index = 1; index < timelineData.length; index++) {
-    const prevYear = new Date(
-      (timelineData[index - 1] as TimelineItem).date
-    ).getFullYear()
-    const currentYear = new Date(
-      (timelineData[index] as TimelineItem).date
-    ).getFullYear()
-    if (prevYear > currentYear) {
-      timelineData.splice(index, 0, {
-        date:
-          prevYear - currentYear > 1
-            ? `${currentYear + 1} — ${prevYear}`
-            : prevYear,
-        _type: 'years'
-      } as never)
-      index++
+      for (const [
+        mItemId,
+        mItem
+      ] of (timelineData as TimelineItem[]).entries()) {
+        mItem._orderId = mItemId + 1
+      }
+
+      for (let index = 1; index < timelineData.length; index++) {
+        const prevYear = new Date(
+          (timelineData[index - 1] as TimelineItem).date
+        ).getFullYear()
+        const currentYear = new Date(
+          (timelineData[index] as TimelineItem).date
+        ).getFullYear()
+        if (prevYear > currentYear) {
+          timelineData.splice(index, 0, {
+            date:
+              prevYear - currentYear > 1
+                ? `${currentYear + 1} — ${prevYear}`
+                : prevYear,
+            _type: 'years'
+          } as never)
+          index++
+        }
+      }
+
+      commit('addTimelineItems', timelineData)
     }
-  }
 
-  return timelineData
-}
-
-export const actions = {
-  async loadTimelineItems({ commit }) {
-    const items = await mergeAndSortItems(
-      this,
-      'projects',
-      'books',
-      'achievements',
-      'events'
-    )
-    commit('updateTimelineItems', items)
-    return items
+    return timelineData
   },
   updateHoveredItem: ({ commit, state }, hoveredItem) => {
     commit('updateHoveredItem', hoveredItem)
@@ -117,5 +114,8 @@ export const getters = {
   },
   getImageItems(state) {
     return state.imageItems
+  },
+  getLastDate(state) {
+    return state.lastDate
   }
 }

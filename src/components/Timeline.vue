@@ -12,14 +12,18 @@
 
     <component
       :is="i._type"
-      v-for="(i, index) of value"
+      v-for="(i, index) of getTimelineItems"
       :key="index"
       :item="i"
     />
 
-    <Header emoji="👶">
-      {{ $t('birth') }}
-    </Header>
+    <client-only>
+      <Header v-if="noMore" emoji="👶">
+        {{ $t('birth') }}
+      </Header>
+      <infinite-loading v-else @infinite="loadMore">
+      </infinite-loading>
+    </client-only>
   </div>
 </template>
 
@@ -31,6 +35,9 @@ import ProjectItem from '~/components/timeline/items/ProjectItem.vue'
 import YearItem from '~/components/timeline/Year.vue'
 import Header from '~/components/timeline/Header.vue'
 import EventItem from '~/components/timeline/items/EventItem.vue'
+import { namespace } from '~/node_modules/nuxt-property-decorator'
+
+const vuexModule = namespace('timeline')
 
 @Component({
   components: {
@@ -43,8 +50,22 @@ import EventItem from '~/components/timeline/items/EventItem.vue'
   }
 })
 export default class extends Vue {
-  @Prop()
-  value
+  @vuexModule.Getter
+  getTimelineItems
+
+  @vuexModule.Action
+  loadTimelineItems
+
+  noMore = false
+
+  async loadMore($state) {
+    if((await this.loadTimelineItems()).length > 0) {
+      $state.loaded()
+    } else {
+      $state.complete()
+      this.noMore = true
+    }
+  }
 }
 </script>
 
