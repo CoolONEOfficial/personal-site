@@ -18,12 +18,14 @@
     />
 
     <client-only>
-      <Header v-if="noMore" emoji="👶">
-        {{ $t('birth') }}
-      </Header>
-      <infinite-loading v-else @infinite="loadMore">
+      <infinite-loading @infinite="loadMore">
+        <div slot="no-more" />
       </infinite-loading>
     </client-only>
+
+    <Header v-if="noMore" emoji="👶">
+      {{ $t('birth') }}
+    </Header>
   </div>
 </template>
 
