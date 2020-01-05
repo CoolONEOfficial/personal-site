@@ -4,7 +4,8 @@ import InfiniteLoading from 'vue-infinite-loading'
 // @ts-ignore
 Vue.use(InfiniteLoading, {
   props: {
-    spinner: 'spiral'
+    spinner: 'spiral',
+    distance: 700
     /* other props need to configure */
   },
   system: {
