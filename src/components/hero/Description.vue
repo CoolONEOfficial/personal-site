@@ -11,7 +11,13 @@
         : ['hero-body']
     "
   >
-    <div :class="['container', { 'has-text-centered': !pageItem.singleImage }]">
+    <div
+      :class="[
+        'container',
+        { 'has-text-centered': !pageItem.singleImage },
+        { 'has-margin-top-20': $device.isMobile }
+      ]"
+    >
       <div :class="['columns', 'is-multiline', { 'is-6': !$device.isMobile }]">
         <div
           :class="[
@@ -152,7 +158,7 @@ export default class extends Vue {
 
   &-image {
     object-fit: contain;
-    max-height: 60vh;
+    max-height: 100%;
     max-width: 100%;
     position: relative;
     left: 50%;
