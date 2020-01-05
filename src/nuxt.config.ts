@@ -23,7 +23,8 @@ const whitelistPatternsChildren: RegExp[] = [
   /plyr/,
   /VueCarousel/,
   /aos/,
-  /pagination/
+  /pagination/,
+  /button/
 ]
 
 const config: Configuration = {
