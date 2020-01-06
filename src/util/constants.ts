@@ -23,7 +23,9 @@ export const SOCIAL_LINKS = {
   INSTAGRAM: 'https://www.instagram.com/coolone.official/',
   TWITTER: 'https://twitter.com/CoolONEOfficial',
   VK: 'https://vk.com/cooloneofficial',
-  GH: 'https://github.com/CoolONEOfficial'
+  GH: 'https://github.com/CoolONEOfficial',
+  TELEGRAM: 'https://t.me/cooloneofficial',
+  MEDIUM: 'https://medium.com/@coolone.official'
 }
 export const LOCALES = [
   {

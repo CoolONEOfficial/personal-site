@@ -5,6 +5,7 @@
         ? [
             'hero-head',
             'has-padding-left-15',
+            'has-padding-top-15',
             'has-padding-right-15',
             'has-margin-bottom-10'
           ]
@@ -14,8 +15,7 @@
     <div
       :class="[
         'container',
-        { 'has-text-centered': !pageItem.singleImage },
-        { 'has-margin-top-20': $device.isMobile }
+        { 'has-text-centered': !pageItem.singleImage }
       ]"
     >
       <div :class="['columns', 'is-multiline', { 'is-6': !$device.isMobile }]">

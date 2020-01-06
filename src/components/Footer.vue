@@ -6,7 +6,7 @@
           <!--TODO-->
         </div>
         <div class="column has-text-centered subtitle is-6 footer-text-wrapper">
-          <p class="footer-text">
+          <p :class="[{'footer-text': !$device.isMobile}]">
             <nuxt-link :to="localePath({ name: 'index' })">{{
               $t('initials')
             }}</nuxt-link
@@ -56,6 +56,18 @@ export default class extends Vue {
       url: SOCIAL_LINKS.SPOTIFY
     },
     {
+      icon: 'twitter-circled',
+      url: SOCIAL_LINKS.TWITTER
+    },
+    {
+      icon: 'telegram',
+      url: SOCIAL_LINKS.TELEGRAM
+    },
+    {
+      icon: 'medium-monogram',
+      url: SOCIAL_LINKS.MEDIUM
+    },
+    {
       icon: 'linkedin',
       url: SOCIAL_LINKS.LINKEDIN
     },
@@ -70,10 +82,6 @@ export default class extends Vue {
     {
       icon: 'github',
       url: SOCIAL_LINKS.GH
-    },
-    {
-      icon: 'twitter',
-      url: SOCIAL_LINKS.TWITTER
     }
   ]
 
@@ -93,6 +101,13 @@ export default class extends Vue {
   &-mobile {
     justify-content: center;
     flex-flow: wrap-reverse;
+    flex-wrap: wrap-reverse;
+    max-width: calc(5 * (32px + 0.5rem));
+    position: static;
+    top: unset;
+    transform: unset;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -108,7 +123,7 @@ export default class extends Vue {
 
 .social {
   padding: 0 !important;
-  margin: 0.25em !important;
+  margin: 0.25rem !important;
 }
 </style>
 
