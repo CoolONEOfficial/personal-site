@@ -1,6 +1,6 @@
 <template>
   <b-tag
-    :class="`hover-${getType === 'is-dark' ? 'light' : 'dark'} is-marginless`"
+    :class="`hover-${getType === 'is-dark' ? 'light' : 'dark'} is-marginless tag`"
     :type="getType"
   >
     <slot />
@@ -29,4 +29,9 @@ export default class extends Vue {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  .tag {
+    margin-left: 0.5px !important;
+    margin-right: 0.5px !important;
+  }
+</style>

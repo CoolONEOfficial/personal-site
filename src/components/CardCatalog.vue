@@ -1,19 +1,25 @@
 <template>
-  <div :class="['container', { 'is-loading': isLoading }]">
-    <div :class="['columns', 'is-multiline', 'columns-mobile']">
+  <div :class="['container', { 'is-loading': isLoading }, `columns-${$device.isMobile ? 'mobile' : 'desktop'}`]">
+    <div :class="['columns']">
       <div
         class="column is-one-third"
-        v-for="(_, index) of new Array(paginationCount / 2)"
+        v-for="(i, index) of items.slice(0, paginationCount / 2)"
         :key="index"
       >
         <Card
-          v-for="(i, cardIndex) of [
-            items[$device.isMobile ? index * 2 : index],
-            items[
-              $device.isMobile ? index * 2 + 1 : paginationCount / 2 + index
-            ]
-          ].filter(Boolean)"
-          :key="cardIndex"
+          :item="i"
+          :subtitle="itemSubtitle(i)"
+          class="has-margin-top-20"
+        />
+      </div>
+    </div>
+    <div :class="['columns']">
+      <div
+        class="column is-one-third"
+        v-for="(i, index) of items.slice(paginationCount / 2)"
+        :key="index"
+      >
+        <Card
           :item="i"
           :subtitle="itemSubtitle(i)"
           class="has-margin-top-20"

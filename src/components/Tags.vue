@@ -3,7 +3,14 @@
     <Tag v-for="(i, index) of value.slice(0, max)" :key="index">
       {{ i }}
     </Tag>
-    <Tag v-if="value.length > max"> +{{ value.length - max }} </Tag>
+    <Tag v-if="value.length > max">
+      <b-dropdown aria-role="list" position="is-bottom-left">
+        <p slot="trigger" role="button">+{{ value.length - max }}</p>
+        <Tag v-for="(i, index) of value.slice(max)" :key="index">
+          {{ i }}
+        </Tag>
+      </b-dropdown>
+    </Tag>
   </b-taglist>
 </template>
 
@@ -23,4 +30,5 @@ export default class extends Vue {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+</style>

@@ -3,7 +3,7 @@
     <client-only placeholder="Loading...">
       <carousel
         class="images-carousel"
-        :perPageCustom="[[1024, 3]]"
+        :perPageCustom="item.images.length > 2 ? [[1024, 3]] : []"
         :scroll-per-page="false"
         :pagination-enabled="false"
         :navigate-to="[

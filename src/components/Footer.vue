@@ -10,10 +10,10 @@
             <nuxt-link :to="localePath({ name: 'index' })">{{
               $t('initials')
             }}</nuxt-link
-            >.<br />{{ $t('license-text') }}
+            ><br />{{ $t('license-text') }}
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a
-            >.<br />{{ $t('icon8-license-text') }}
-            <a href="https://icons8.com/">icon8.com</a>.
+            ><br />{{ $t('icon8-license-text') }}
+            <a href="https://icons8.com/">icon8.com</a>
           </p>
         </div>
         <div class="column">

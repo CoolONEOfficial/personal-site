@@ -20,6 +20,7 @@
     <client-only>
       <infinite-loading @infinite="loadMore">
         <div slot="no-more" />
+        <div slot="no-results" />
       </infinite-loading>
     </client-only>
 

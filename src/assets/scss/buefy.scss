@@ -9,8 +9,8 @@ $text-invert: whitesmoke;
 $scheme-main: hsl(0, 0%, 100%);
 $scheme-invert: hsl(0, 0%, 4%);
 $timeline-item-padding-bottom: 1em;
-$dark: #464646;
-$timeline-line-color-black: $dark;
+$dark: #202020;
+$timeline-line-color-black: #464646;
 $timeline-line-color-white: hsl(0, 0%, 86%);
 $timeline-marker-color: var(--timeline-line);
 $timeline-line-color: var(--timeline-line);
@@ -34,12 +34,24 @@ $pagination-active-border-color: transparent;
 $pagination-focus-border-col: transparent;
 $pagination-hover-border-color: transparent;
 $pagination-border-color: transparent;
+$card-shadow: 0 0 0 0;
 
 @import '~bulma';
 @import '~bulma-timeline';
 
 .tag {
   height: 20px !important;
+}
+
+.dropdown {
+  &-content {
+    background-color: transparent !important;
+  }
+
+  &-menu {
+    min-width: 0;
+    transform: translateX(-50%);
+  }
 }
 
 .zoom-in-enter-active,

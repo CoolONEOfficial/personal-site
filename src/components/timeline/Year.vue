@@ -1,8 +1,12 @@
 <template>
   <header
-    :class="['timeline-header', { 'left-position': $device.isMobile && item.date.length > 4 }]"
+    :class="[
+      'timeline-header',
+      { 'left-position': $device.isMobile && item.date.length > 4 }
+    ]"
   >
-    <span :class="['tag']">{{ item.date }}</span>
+    <div class="horizontal-line" />
+    <span :class="['tag', 'year-tag']">{{ item.date }}</span>
   </header>
 </template>
 
@@ -21,5 +25,17 @@ export default class extends Vue {
 .left-position {
   position: relative;
   left: 24px;
+}
+
+.year-tag {
+  z-index: 1;
+}
+
+.horizontal-line {
+  position: absolute;
+  margin-top: 10px;
+  height: 1px;
+  width: 100vw;
+  background-color: var(--timeline-line);
 }
 </style>
