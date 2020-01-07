@@ -35,6 +35,7 @@ export default class extends Vue {
   position: absolute;
   margin-top: 10px;
   height: 1px;
+  left: 0;
   width: 100vw;
   background-color: var(--timeline-line);
 }

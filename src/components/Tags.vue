@@ -4,7 +4,7 @@
       {{ i }}
     </Tag>
     <Tag v-if="value.length > max">
-      <b-dropdown aria-role="list" position="is-bottom-left">
+      <b-dropdown aria-role="list" position="is-bottom-left" :mobile-modal="false">
         <p slot="trigger" role="button">+{{ value.length - max }}</p>
         <Tag v-for="(i, index) of value.slice(max)" :key="index">
           {{ i }}
