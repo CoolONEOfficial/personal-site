@@ -263,10 +263,9 @@ const config: Configuration = {
     pages: [/^\/$/],
 
     store: {
-      type: 'redis',
+      type: 'memory',
       ttl: 60,
-      url:
-        'redis://h:pf5ff99dafe34569d29295524ce41d62c5e51059ed08c2bf59a4a6fed5e60192f@ec2-54-194-116-185.eu-west-1.compute.amazonaws.com:22609'
+      max: 100
     }
   }
 }
