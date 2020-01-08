@@ -27,6 +27,7 @@
     "aos": "^3.0.0-beta.6",
     "bulma-helpers": "^0.3.8",
     "bulma-timeline": "^3.0.4",
+    "core-js": "2.*",
     "firebase": "^7.6.1",
     "firebase-admin": "^8.9.0",
     "firebase-functions": "^3.3.0",
@@ -48,17 +49,17 @@
     "nuxt-jsonld": "^1.4.5",
     "nuxt-property-decorator": "^2.5.0",
     "nuxt-purgecss": "^0.2.1",
+    "nuxt-ssr-cache": "^1.5.1",
     "plyr": "^3.5.6",
     "purgecss-webpack-plugin": "^1.6.0",
     "sass-loader": "^8.0.0",
     "vue-carousel": "^0.18.0",
+    "vue-infinite-loading": "^2.4.4",
     "vue-plyr": "^6.0.4",
     "vue-scrollto": "^2.17.1",
     "vuex-persist": "^2.2.0",
-    "vue-infinite-loading": "^2.4.4",
     "vuexfire": "^3.2.0",
-    "xhr2": "^0.2.0",
-    "core-js": "2.*"
+    "xhr2": "^0.2.0"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.5.4",

@@ -126,6 +126,7 @@ const config: Configuration = {
     '@nuxtjs/device',
     'nuxt-i18n',
     'nuxt-fire',
+    'nuxt-ssr-cache',
     'vue-scrollto/nuxt',
     '@nuxtjs/component-cache',
     '@bazzite/nuxt-optimized-images',
@@ -250,6 +251,22 @@ const config: Configuration = {
   },
   googleAnalytics: {
     id: 'G-N84HJNQLWP'
+  },
+  cache: {
+    // if you're serving multiple host names (with differing
+    // results) from the same server, set this option to true.
+    // (cache keys will be prefixed by your host name)
+    // if your server is behind a reverse-proxy, please use
+    // express or whatever else that uses 'X-Forwarded-Host'
+    // header field to provide req.hostname (actual host name)
+    useHostPrefix: false,
+    pages: [/^\/$/],
+
+    store: {
+      type: 'redis',
+      url:
+        'redis://h:pf5ff99dafe34569d29295524ce41d62c5e51059ed08c2bf59a4a6fed5e60192f@ec2-54-194-116-185.eu-west-1.compute.amazonaws.com:22609'
+    }
   }
 }
 
