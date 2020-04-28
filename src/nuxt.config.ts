@@ -1,17 +1,15 @@
 import { Configuration } from '@nuxt/types'
 import {
-  BASE_URL,
-  FIREBASE_PROJECT_ID,
-  FIREBASE_STORAGE_BUCKET,
+  BASE_URL, FIREBASE_OPTIONS_DEBUG, FIREBASE_OPTIONS_PROD, IS_DEV,
   LOCALES,
   PRIMARY_COLOR
-} from './util/constants'
+} from "./util/constants";
 import PurgecssPlugin from 'purgecss-webpack-plugin'
 import glob from 'glob-all'
 import path from 'path'
 import purgecss from '@fullhuman/postcss-purgecss'
 const getRoutes = require('./util/routes.ts')
-const isDev = process.env.NODE_ENV !== 'production'
+const isDev = IS_DEV
 
 const whitelistPatterns: RegExp[] = [/mdi/, /icon/, /is-grouped/, /picture/]
 const whitelistPatternsChildren: RegExp[] = [
@@ -122,10 +120,11 @@ const config: Configuration = {
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
     '@nuxtjs/pwa',
+    'nuxt-purgecss',
     '@nuxtjs/style-resources',
     '@nuxtjs/device',
     'nuxt-i18n',
-    'nuxt-fire',
+    '@nuxtjs/firebase',
     'nuxt-ssr-cache',
     'vue-scrollto/nuxt',
     '@nuxtjs/component-cache',
@@ -154,43 +153,43 @@ const config: Configuration = {
     publicPath: '/assets/',
     extractCSS: true,
     extend(config, { isDev, isClient, loaders: { vue } }) {
-      if (!isDev && config.plugins != undefined) {
-        config.plugins.push(
-          new PurgecssPlugin({
-            // purgecss configuration
-            // https://github.com/FullHuman/purgecss
-            paths: glob.sync([
-              path.join(__dirname, './pages/**/*.vue'),
-              path.join(__dirname, './layouts/**/*.vue'),
-              path.join(__dirname, './components/**/*.vue')
-            ]),
-            whitelist: ['html', 'body', 'nuxt-progress'],
-            whitelistPatterns,
-            whitelistPatternsChildren
-          })
-        )
-      }
+      // if (!isDev && config.plugins != undefined) {
+      //   config.plugins.push(
+      //     new PurgecssPlugin({
+      //       // purgecss configuration
+      //       // https://github.com/FullHuman/purgecss
+      //       paths: glob.sync([
+      //         path.join(__dirname, './pages/**/*.vue'),
+      //         path.join(__dirname, './layouts/**/*.vue'),
+      //         path.join(__dirname, './components/**/*.vue')
+      //       ]),
+      //       whitelist: ['html', 'body', 'nuxt-progress'],
+      //       whitelistPatterns,
+      //       whitelistPatternsChildren
+      //     })
+      //   )
+      // }
       if (isClient && vue != undefined && vue.transformAssetUrls != undefined) {
         vue.transformAssetUrls.img = ['data-src', 'src']
         vue.transformAssetUrls.source = ['data-srcset', 'srcset']
       }
-    },
-    postcss: isDev
-      ? {}
-      : {
-          plugins: [
-            purgecss({
-              content: [
-                './pages/**/*.vue',
-                './layouts/**/*.vue',
-                './components/**/*.vue'
-              ],
-              whitelist: ['html', 'body', 'nuxt-progress'],
-              whitelistPatterns,
-              whitelistPatternsChildren
-            })
-          ]
-        }
+    }
+    // postcss: isDev
+    //   ? {}
+    //   : {
+    //       plugins: [
+    //         purgecss({
+    //           content: [
+    //             './pages/**/*.vue',
+    //             './layouts/**/*.vue',
+    //             './components/**/*.vue'
+    //           ],
+    //           whitelist: ['html', 'body', 'nuxt-progress'],
+    //           whitelistPatterns,
+    //           whitelistPatternsChildren
+    //         })
+    //       ]
+    //     }
   },
   env: {
     spotifyClientId:
@@ -209,6 +208,25 @@ const config: Configuration = {
     css: false,
     materialDesignIcons: true
   },
+  purgeCSS: {
+    //enabled: true, // delete this
+    paths: glob.sync([
+      path.join(__dirname, './pages/**/*.vue'),
+      path.join(__dirname, './layouts/**/*.vue'),
+      path.join(__dirname, './components/**/*.vue')
+    ]),
+    whitelist: ['html', 'body', 'nuxt-progress'],
+    whitelistPatterns: whitelistPatterns,
+    whitelistPatternsChildren: whitelistPatternsChildren
+    // extractors: [
+    //   {
+    //     extractor(content) {
+    //       return content.match(/[A-z0-9-:\\/]+/g)
+    //     },
+    //     extensions: ['html', 'vue', 'js']
+    //   },
+    // ]
+  },
   i18n: {
     locales: LOCALES,
     baseUrl: BASE_URL,
@@ -222,16 +240,28 @@ const config: Configuration = {
       fallbackLocale: 'en'
     }
   },
-  fire: {
+  firebase: {
     config: {
-      apiKey: 'AIzaSyBDVOdqcspdnve9eiRpR91mV6VSFZPMNFI',
-      authDomain: 'personal-site-d9a58.firebaseapp.com',
-      databaseURL: 'https://personal-site-d9a58.firebaseio.com',
-      projectId: FIREBASE_PROJECT_ID,
-      storageBucket: FIREBASE_STORAGE_BUCKET,
-      messagingSenderId: '296312063282',
-      appId: '1:296312063282:web:d0da9be983c7eb90c7432b',
-      measurementId: 'G-9H4D1GY1VP'
+      production: {
+        apiKey: 'AIzaSyBDVOdqcspdnve9eiRpR91mV6VSFZPMNFI', // prod
+        authDomain: 'personal-site-d9a58.firebaseapp.com',
+        databaseURL: 'https://personal-site-d9a58.firebaseio.com',
+        projectId: FIREBASE_OPTIONS_PROD.projectId,
+        storageBucket: FIREBASE_OPTIONS_PROD.storageBucket,
+        messagingSenderId: '296312063282',
+        appId: '1:296312063282:web:d0da9be983c7eb90c7432b',
+        measurementId: 'G-9H4D1GY1VP'
+      },
+      development: {
+        apiKey: "AIzaSyAXHCMrN49uB3CVc2_e1qdyOUshVdTCT-k", // debug
+        authDomain: "personal-site-debug.firebaseapp.com",
+        databaseURL: "https://personal-site-debug.firebaseio.com",
+        projectId: FIREBASE_OPTIONS_DEBUG.projectId,
+        storageBucket: FIREBASE_OPTIONS_DEBUG.storageBucket,
+        messagingSenderId: "164468905867",
+        appId: "1:164468905867:web:130e7479ebac9603b0418e",
+        measurementId: "G-S0XPH8NXLT"
+      }
     },
     services: {
       firestore: true,

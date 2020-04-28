@@ -3,8 +3,6 @@
 [![Build Status](https://travis-ci.org/CoolONEOfficial/personal-site.svg?branch=master)](https://travis-ci.org/CoolONEOfficial/personal-site)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Description
-
 Personal site portfolio
 
 ### Features
@@ -19,7 +17,7 @@ Personal site portfolio
 * Spotify integration to stream playable music (with Cloud Functions api on express.js)
 * Integrated with [mobile app](https://github.com/CoolONEOfficial/personal_site_app) on flutter for content management
 
-## 👶Start
+## 👶 Start
 
 ### Install dependencies
 
@@ -36,7 +34,7 @@ $ yarn dev
 Open [http://localhost:3000]()
 
 
-## 🚀Build and Deploy to Firebase
+## 🚀 Build and Deploy to Firebase
 
 ### Build
 

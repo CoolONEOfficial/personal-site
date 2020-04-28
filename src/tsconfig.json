@@ -21,13 +21,14 @@
       "@types/node",
       "@nuxt/types",
       "@types/webpack-env",
-      "nuxt-fire",
+      "@nuxtjs/firebase",
       "nuxt-i18n",
       "@nuxt/vue-app",
       "@nuxtjs/axios",
       "@nuxtjs/date-fns",
       "@nuxtjs/device",
-      "@types/firebase"
+      "@types/firebase",
+      "long"
     ]
   },
   "include": ["**/*.ts", "**/*.vue", "node_modules/@types/node/globals.d.ts"],

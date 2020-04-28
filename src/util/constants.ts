@@ -3,8 +3,18 @@ export const PRIMARY_COLOR = '#03A9F4'
 export const PLACEHOLDER_IMAGE = '/icon.png'
 export const LOGO_IMAGE = '/favicon.jpg'
 export const BASE_URL = 'https://coolone.ru'
-export const FIREBASE_PROJECT_ID = 'personal-site-d9a58'
-export const FIREBASE_STORAGE_BUCKET = 'personal-site-d9a58.appspot.com'
+export const FIREBASE_OPTIONS_PROD = {
+  projectId: 'personal-site-d9a58',
+  storageBucket: 'personal-site-d9a58.appspot.com'
+}
+export const FIREBASE_OPTIONS_DEBUG = {
+  projectId: "personal-site-debug",
+  storageBucket: "personal-site-debug.appspot.com"
+}
+export const IS_DEV = process.env.NODE_ENV !== 'production'
+export const FIREBASE_OPTIONS = IS_DEV
+  ? FIREBASE_OPTIONS_DEBUG
+  : FIREBASE_OPTIONS_PROD
 export const CAROUSEL_INTERVAL = 7000
 export const ABOUT_DOCUMENT_ID = '-LxIxfTkocxN2eQIVT_1'
 export const COLL_NAMES = {
