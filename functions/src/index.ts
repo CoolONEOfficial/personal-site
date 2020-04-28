@@ -13,37 +13,40 @@ const sizesColl = "sizes";
 const listenCollections = ["achievements", "projects", "events", "books"];
 
 export const documentWriteListener = functions.firestore
-  .document("{collectionId}/{doc}/{timeline}/{documentUid}")
+  .document("timeline/{documentId}")
   .onWrite((change, context) => {
-    if (
-      listenCollections.indexOf(context.params.collectionId) > -1 &&
-      context.params.doc === "doc" &&
-      context.params.timeline === "timeline"
-    ) {
+
+    if (listenCollections.indexOf(context.params.collectionId) > -1) {
       if (!change.before.exists) {
         // New document Created : add one to count
 
-        return firebaseHelper.firestore.updateDocument(
-          db,
-          sizesColl,
-          context.params.collectionId,
-          {
-            numberOfDocs: FieldValue.increment(1)
-          }
-        );
+        const timelineType = change.after.data()
+        if (timelineType) {
+          return firebaseHelper.firestore.updateDocument(
+            db,
+            sizesColl,
+            timelineType['timelineType'],
+            {
+              numberOfDocs: FieldValue.increment(1)
+            }
+          );
+        }
       } else if (change.before.exists && change.after.exists) {
         // Updating existing document : Do nothing
       } else if (!change.after.exists) {
         // Deleting document : subtract one from count
 
-        return firebaseHelper.firestore.updateDocument(
-          db,
-          sizesColl,
-          context.params.collectionId,
-          {
-            numberOfDocs: FieldValue.increment(-1)
-          }
-        );
+        const timelineType = change.before.data()
+        if (timelineType) {
+          return firebaseHelper.firestore.updateDocument(
+            db,
+            sizesColl,
+            timelineType['timelineType'],
+            {
+              numberOfDocs: FieldValue.increment(-1)
+            }
+          );
+        }
       }
     }
 

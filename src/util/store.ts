@@ -8,9 +8,8 @@ import { DocumentSnapshotBuilder } from '~/node_modules/@google-cloud/firestore/
 
 const queryRef = (that, collName) =>
   that.$fireStore
-    .collection(collName)
-    .doc('doc')
     .collection('timeline')
+    .where('timelineType', '==', collName)
     .orderBy('date', 'desc')
 
 export async function getDocsCount(that, collName) {
@@ -38,8 +37,6 @@ export async function getItems(that, collName, timelineType) {
 
 export async function getItemPage(that, doc, collName, pageType) {
   const docRef = that.$fireStore
-    .collection(collName)
-    .doc('doc')
     .collection('timeline')
     .doc(doc)
 

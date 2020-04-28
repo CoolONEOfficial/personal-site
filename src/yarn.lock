@@ -1051,7 +1051,7 @@
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.39.tgz#32ce49e0ba54d831750afde59e32889bef444fd3"
   integrity sha512-V5oQjtYxHlEpWdQr68ZFo8T+3NVccrTieRy8RnzYIasCeptxOxwYUG0cAAKmalgrrrfRJdXup8h5ybi3XSW9Hw==
 
-"@fullhuman/postcss-purgecss@^2.0.5", "@fullhuman/postcss-purgecss@^2.1.2":
+"@fullhuman/postcss-purgecss@^2.0.5":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@fullhuman/postcss-purgecss/-/postcss-purgecss-2.1.2.tgz#8fe4d4ae2b58214b5452cb490a31c7146517442f"
   integrity sha512-Jf34YVBK9GtXTblpu0svNUJdA7rTQoRMz+yEJe6mwTnXDIGipWLzaX/VgU/x6IPC6WvU5SY/XlawwqhxoyFPTg==

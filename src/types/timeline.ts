@@ -42,7 +42,7 @@ export class TimelineItem extends Item {
       item.descriptionText,
       item.descriptionHtml,
       item.tags,
-      doc.ref.parent.parent.parent.path,
+      doc.data().timelineType,
       doc.id
     )
   }

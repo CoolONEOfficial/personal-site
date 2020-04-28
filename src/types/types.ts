@@ -27,7 +27,7 @@ export class Item {
         const list = (
           await that.$fireStorage
             .ref()
-            .child(`${doc.ref.parent.parent.parent.path}/${doc.id}/images`)
+            .child(`${doc.data().timelineType}/${doc.id}/images`)
             .list()
         ).items
 
@@ -54,12 +54,12 @@ export class Item {
             ? {
               original: await that.$fireStorage
                 .ref()
-                .child(`${doc.ref.parent.parent.parent.path}/${doc.id}/${mName}/1${data[mName]}`)
+                .child(`${doc.data().timelineType}/${doc.id}/${mName}/1${data[mName]}`)
                 .getDownloadURL(),
               small: await that.$fireStorage
                 .ref()
                 .child(
-                  `${doc.ref.parent.parent.parent.path}/${doc.id}/${mName}/1_400x400${data[mName]}`
+                  `${doc.data().timelineType}/${doc.id}/${mName}/1_400x400${data[mName]}`
                 )
                 .getDownloadURL()
             }

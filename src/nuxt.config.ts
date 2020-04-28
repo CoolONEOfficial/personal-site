@@ -1,17 +1,16 @@
-import { Configuration } from '@nuxt/types'
+import { Configuration } from "@nuxt/types";
 import {
   BASE_URL, FIREBASE_OPTIONS_DEBUG, FIREBASE_OPTIONS_PROD, IS_DEV,
   LOCALES,
   PRIMARY_COLOR
 } from "./util/constants";
-import PurgecssPlugin from 'purgecss-webpack-plugin'
-import glob from 'glob-all'
-import path from 'path'
-import purgecss from '@fullhuman/postcss-purgecss'
-const getRoutes = require('./util/routes.ts')
-const isDev = IS_DEV
+import glob from "glob-all";
+import path from "path";
 
-const whitelistPatterns: RegExp[] = [/mdi/, /icon/, /is-grouped/, /picture/]
+const getRoutes = require("./util/routes.ts");
+const isDev = IS_DEV;
+
+const whitelistPatterns: RegExp[] = [/mdi/, /icon/, /is-grouped/, /picture/, /-dark/, /-light/];
 const whitelistPatternsChildren: RegExp[] = [
   /navbar/,
   /modal/,
@@ -23,13 +22,13 @@ const whitelistPatternsChildren: RegExp[] = [
   /aos/,
   /pagination/,
   /button/
-]
+];
 
 const config: Configuration = {
   modern: !isDev,
   debug: !isDev,
   dev: isDev,
-  mode: 'universal',
+  mode: "universal",
   /*
    ** Headers of the page
    */
@@ -38,38 +37,38 @@ const config: Configuration = {
     // @ts-ignore
     titleTemplate: ({ title, locale }) => {
       const end = {
-        ru: 'Cайт-портфолио Николая Трухина',
-        en: 'Website portfolio of Nikolai Trukhin'
-      }
+        ru: "Cайт-портфолио Николая Трухина",
+        en: "Website portfolio of Nikolai Trukhin"
+      };
 
-      return title ? `${title} — ${end[locale]}` : end[locale]
+      return title ? `${title} — ${end[locale]}` : end[locale];
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'msapplication-TileColor', content: PRIMARY_COLOR },
-      { name: 'theme-color', content: PRIMARY_COLOR }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "msapplication-TileColor", content: PRIMARY_COLOR },
+      { name: "theme-color", content: PRIMARY_COLOR }
     ],
     link: [
       {
-        rel: 'apple-touch-icon',
-        sizes: '180x180',
-        href: '/apple-touch-icon.png'
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/apple-touch-icon.png"
       },
       {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        href: '/favicon-32x32.png'
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/favicon-32x32.png"
       },
       {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        href: '/favicon-16x16.png'
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: "/favicon-16x16.png"
       },
-      { rel: 'manifest', href: '/site.webmanifest' },
-      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: PRIMARY_COLOR }
+      { rel: "manifest", href: "/site.webmanifest" },
+      { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: PRIMARY_COLOR }
     ]
   },
   /*
@@ -80,56 +79,56 @@ const config: Configuration = {
    ** Global CSS
    */
   css: [
-    './assets/scss/buefy.scss',
-    './assets/scss/vue-carousel.scss',
-    './assets/scss/styles.scss',
-    'bulma-helpers/css/bulma-helpers.min.css',
-    'plyr/dist/plyr.css'
+    "./assets/scss/buefy.scss",
+    "./assets/scss/vue-carousel.scss",
+    "./assets/scss/styles.scss",
+    "bulma-helpers/css/bulma-helpers.min.css",
+    "plyr/dist/plyr.css"
   ],
   styleResources: {
-    scss: ['./assets/scss/buefy.scss']
+    scss: ["./assets/scss/buefy.scss"]
   },
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '@/plugins/aos', ssr: false },
-    { src: '~/plugins/vue-carousel', ssr: false },
-    { src: '~/plugins/vue-lazysizes', ssr: false },
-    { src: '~/plugins/vuex-persist', ssr: false },
-    { src: '~/plugins/vue-infinite-loading', ssr: false },
-    '~/plugins/vue-plyr',
-    '~/plugins/jsonld'
+    { src: "@/plugins/aos", ssr: false },
+    { src: "~/plugins/vue-carousel", ssr: false },
+    { src: "~/plugins/vue-lazysizes", ssr: false },
+    { src: "~/plugins/vuex-persist", ssr: false },
+    { src: "~/plugins/vue-infinite-loading", ssr: false },
+    "~/plugins/vue-plyr",
+    "~/plugins/jsonld"
   ],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
-    '@nuxt/typescript-build',
-    '@nuxtjs/dotenv',
-    '@nuxtjs/date-fns',
-    '@nuxtjs/google-analytics'
+    "@nuxt/typescript-build",
+    "@nuxtjs/dotenv",
+    "@nuxtjs/date-fns",
+    "@nuxtjs/google-analytics"
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
     // Doc: https://buefy.github.io/#/documentation
-    'nuxt-buefy',
+    "nuxt-buefy",
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    '@nuxtjs/proxy',
-    '@nuxtjs/pwa',
-    'nuxt-purgecss',
-    '@nuxtjs/style-resources',
-    '@nuxtjs/device',
-    'nuxt-i18n',
-    '@nuxtjs/firebase',
-    'nuxt-ssr-cache',
-    'vue-scrollto/nuxt',
-    '@nuxtjs/component-cache',
-    '@bazzite/nuxt-optimized-images',
-    '@nuxtjs/sitemap' // sitemap at end
+    "@nuxtjs/axios",
+    "@nuxtjs/proxy",
+    "@nuxtjs/pwa",
+    "nuxt-purgecss",
+    "@nuxtjs/style-resources",
+    "@nuxtjs/device",
+    "nuxt-i18n",
+    "@nuxtjs/firebase",
+    "nuxt-ssr-cache",
+    "vue-scrollto/nuxt",
+    "@nuxtjs/component-cache",
+    "@bazzite/nuxt-optimized-images",
+    "@nuxtjs/sitemap" // sitemap at end
   ],
   /*
    ** Axios module configuration
@@ -139,9 +138,9 @@ const config: Configuration = {
     proxy: true
   },
   proxy: {
-    '/api/': {
-      target: 'https://coolone.ru/',
-      pathRewrite: { '^/api/': '' },
+    "/api/": {
+      target: "https://coolone.ru/",
+      pathRewrite: { "^/api/": "" },
       changeOrigin: true
     }
   },
@@ -150,55 +149,23 @@ const config: Configuration = {
    */
   build: {
     // analyze: true,
-    publicPath: '/assets/',
+    publicPath: "/assets/",
     extractCSS: true,
     extend(config, { isDev, isClient, loaders: { vue } }) {
-      // if (!isDev && config.plugins != undefined) {
-      //   config.plugins.push(
-      //     new PurgecssPlugin({
-      //       // purgecss configuration
-      //       // https://github.com/FullHuman/purgecss
-      //       paths: glob.sync([
-      //         path.join(__dirname, './pages/**/*.vue'),
-      //         path.join(__dirname, './layouts/**/*.vue'),
-      //         path.join(__dirname, './components/**/*.vue')
-      //       ]),
-      //       whitelist: ['html', 'body', 'nuxt-progress'],
-      //       whitelistPatterns,
-      //       whitelistPatternsChildren
-      //     })
-      //   )
-      // }
       if (isClient && vue != undefined && vue.transformAssetUrls != undefined) {
-        vue.transformAssetUrls.img = ['data-src', 'src']
-        vue.transformAssetUrls.source = ['data-srcset', 'srcset']
+        vue.transformAssetUrls.img = ["data-src", "src"];
+        vue.transformAssetUrls.source = ["data-srcset", "srcset"];
       }
     }
-    // postcss: isDev
-    //   ? {}
-    //   : {
-    //       plugins: [
-    //         purgecss({
-    //           content: [
-    //             './pages/**/*.vue',
-    //             './layouts/**/*.vue',
-    //             './components/**/*.vue'
-    //           ],
-    //           whitelist: ['html', 'body', 'nuxt-progress'],
-    //           whitelistPatterns,
-    //           whitelistPatternsChildren
-    //         })
-    //       ]
-    //     }
   },
   env: {
     spotifyClientId:
-      process.env.SPOTIFY_CLIENT_ID || 'c1a97fcc39184989b6ad7156730636e2',
-    clientBaseUrl: process.env.API_URL || 'https://personal-site-d9a58.web.app'
+      process.env.SPOTIFY_CLIENT_ID || "c1a97fcc39184989b6ad7156730636e2",
+    clientBaseUrl: process.env.API_URL || "https://personal-site-d9a58.web.app"
   },
   manifest: {
-    name: 'Website portfolio of Nikolai Trukhin',
-    lang: 'en-US'
+    name: "Website portfolio of Nikolai Trukhin",
+    lang: "en-US"
   },
   typescript: {
     typeCheck: true,
@@ -209,48 +176,41 @@ const config: Configuration = {
     materialDesignIcons: true
   },
   purgeCSS: {
-    //enabled: true, // delete this
+    mode: "webpack",
+    enabled: true, // delete this
     paths: glob.sync([
-      path.join(__dirname, './pages/**/*.vue'),
-      path.join(__dirname, './layouts/**/*.vue'),
-      path.join(__dirname, './components/**/*.vue')
+      path.join(__dirname, "./pages/**/*.vue"),
+      path.join(__dirname, "./layouts/**/*.vue"),
+      path.join(__dirname, "./components/**/*.vue")
     ]),
-    whitelist: ['html', 'body', 'nuxt-progress'],
-    whitelistPatterns: whitelistPatterns,
-    whitelistPatternsChildren: whitelistPatternsChildren
-    // extractors: [
-    //   {
-    //     extractor(content) {
-    //       return content.match(/[A-z0-9-:\\/]+/g)
-    //     },
-    //     extensions: ['html', 'vue', 'js']
-    //   },
-    // ]
+    whitelist: ["html", "body", "nuxt-progress"],
+    whitelistPatterns,
+    whitelistPatternsChildren
   },
   i18n: {
     locales: LOCALES,
     baseUrl: BASE_URL,
-    defaultLocale: 'en',
+    defaultLocale: "en",
     seo: false,
-    strategy: 'no_prefix',
-    vueI18n: { fallbackLocale: 'en' },
+    strategy: "no_prefix",
+    vueI18n: { fallbackLocale: "en" },
     vueI18nLoader: true,
     detectBrowserLanguage: {
       useCookie: true,
-      fallbackLocale: 'en'
+      fallbackLocale: "en"
     }
   },
   firebase: {
     config: {
       production: {
-        apiKey: 'AIzaSyBDVOdqcspdnve9eiRpR91mV6VSFZPMNFI', // prod
-        authDomain: 'personal-site-d9a58.firebaseapp.com',
-        databaseURL: 'https://personal-site-d9a58.firebaseio.com',
+        apiKey: "AIzaSyBDVOdqcspdnve9eiRpR91mV6VSFZPMNFI", // prod
+        authDomain: "personal-site-d9a58.firebaseapp.com",
+        databaseURL: "https://personal-site-d9a58.firebaseio.com",
         projectId: FIREBASE_OPTIONS_PROD.projectId,
         storageBucket: FIREBASE_OPTIONS_PROD.storageBucket,
-        messagingSenderId: '296312063282',
-        appId: '1:296312063282:web:d0da9be983c7eb90c7432b',
-        measurementId: 'G-9H4D1GY1VP'
+        messagingSenderId: "296312063282",
+        appId: "1:296312063282:web:d0da9be983c7eb90c7432b",
+        measurementId: "G-9H4D1GY1VP"
       },
       development: {
         apiKey: "AIzaSyAXHCMrN49uB3CVc2_e1qdyOUshVdTCT-k", // debug
@@ -274,13 +234,13 @@ const config: Configuration = {
   sitemap: {
     hostname: BASE_URL,
     gzip: true,
-    exclude: ['/auth'],
+    exclude: ["/auth"],
     routes() {
-      return getRoutes()
+      return getRoutes();
     }
   },
   googleAnalytics: {
-    id: 'G-N84HJNQLWP'
+    id: "G-N84HJNQLWP"
   },
   cache: {
     // if you're serving multiple host names (with differing
@@ -293,11 +253,11 @@ const config: Configuration = {
     pages: [/^\/$/],
 
     store: {
-      type: 'memory',
+      type: "memory",
       ttl: 60,
       max: 100
     }
   }
-}
+};
 
-export default config
+export default config;

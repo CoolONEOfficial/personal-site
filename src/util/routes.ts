@@ -13,20 +13,11 @@ const db = firebase
 module.exports = async function getRoutes() {
   const routes: string[] = []
 
-  for (const mColl of [
-    COLL_NAMES.EVENTS,
-    COLL_NAMES.BOOKS,
-    COLL_NAMES.PROJECTS,
-    COLL_NAMES.ACHIEVEMENTS
-  ]) {
-    for (const mDoc of (
-      await db.collection(mColl)
-        .doc('doc')
-        .collection('timeline')
-        .get()
-    ).docs) {
-      routes.push(`${mColl}/${mDoc.id}`)
-    }
+  for (const mDoc of (
+    await db.collection('timeline')
+      .get()
+  ).docs) {
+    routes.push(`${mDoc.data().timelineType}/${mDoc.id}`)
   }
 
   console.log('dynamic routes:', routes)

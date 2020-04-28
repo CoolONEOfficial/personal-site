@@ -33,7 +33,7 @@ export const mutations = {
 export const actions = {
   async loadTimelineItems({ commit, getters }) {
     const queryRef = (this as any).$fireStore
-      .collectionGroup('timeline')
+      .collection('timeline')
       .orderBy('date', 'desc')
     const timelineDocs = (
       await (getters.getLastDate != null
@@ -47,7 +47,7 @@ export const actions = {
     const timelineData: TimelineItem[] = []
 
     for (const mDoc of timelineDocs) {
-      const mDocType = mDoc.ref.parent.parent.parent.path
+      const mDocType = mDoc.data().timelineType
       const typeMap = {
         events: TimelineHack,
         projects: TimelineProject,
