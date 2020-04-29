@@ -5,7 +5,7 @@ import { BASE_URL } from '~/util/constants'
 export const JSON_LD = {
   PERSON: {
     '@type': 'Person',
-    name: 'Nickolay Trukhin',
+    name: 'Nikolay Trukhin',
     image: LOGO_IMAGE,
     sameAs: [
       SOCIAL_LINKS.VK,
@@ -100,7 +100,7 @@ const descriptionMap = {
 }
 const titleMap = {
   ru: 'Cайт-портфолио Николая Трухина',
-  en: 'Website portfolio of Nikolai Trukhin'
+  en: 'Website portfolio of Nikolay Trukhin'
 }
 
 export function getMeta(

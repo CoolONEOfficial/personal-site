@@ -130,7 +130,7 @@ export default class extends Vue {
 <i18n>
   {
     "en": {
-      "initials": "Website portfolio of Nikolai Trukhin",
+      "initials": "Website portfolio of Nikolay Trukhin",
       "license-text": "The source code is licensed",
       "icon8-license-text": "Icons by "
     },

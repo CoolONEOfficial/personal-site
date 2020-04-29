@@ -184,7 +184,7 @@ export default class extends Vue {
 <i18n>
   {
     "en": {
-      "initials": "Nickolay Trukhin",
+      "initials": "Nikolay Trukhin",
       "developer": "developer"
     },
     "ru": {
