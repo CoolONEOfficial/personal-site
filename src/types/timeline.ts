@@ -9,6 +9,7 @@ export class TimelineItem extends Item {
   constructor(
     title,
     date,
+    urlName,
     images,
     singleImage,
     logo,
@@ -21,6 +22,7 @@ export class TimelineItem extends Item {
     super(
       title,
       date,
+      urlName,
       images,
       singleImage,
       logo,
@@ -36,6 +38,7 @@ export class TimelineItem extends Item {
     return new TimelineItem(
       item.title,
       item.date,
+      item.urlName,
       item.images,
       item.singleImage,
       item.logo,

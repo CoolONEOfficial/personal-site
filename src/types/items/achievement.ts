@@ -18,6 +18,7 @@ export class TimelineAchievement extends TimelineItem {
   constructor(
     title,
     date,
+    urlName,
     images,
     singleImage,
     logo,
@@ -32,6 +33,7 @@ export class TimelineAchievement extends TimelineItem {
     super(
       title,
       date,
+      urlName,
       images,
       singleImage,
       logo,
@@ -53,6 +55,7 @@ export class TimelineAchievement extends TimelineItem {
     return new TimelineAchievement(
       item.title,
       item.date,
+      item.urlName,
       item.images,
       item.singleImage,
       item.logo,
@@ -71,6 +74,7 @@ export class PageAchievement extends TimelineAchievement {
   constructor(
     title,
     date,
+    urlName,
     images,
     singleImage,
     logo,
@@ -87,6 +91,7 @@ export class PageAchievement extends TimelineAchievement {
     super(
       title,
       date,
+      urlName,
       images,
       singleImage,
       logo,
@@ -111,6 +116,7 @@ export class PageAchievement extends TimelineAchievement {
     return new PageAchievement(
       item.title,
       item.date,
+      item.urlName,
       item.images,
       item.singleImage,
       item.logo,

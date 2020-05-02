@@ -10,6 +10,7 @@ export class TimelineHack extends TimelineEvent {
   constructor(
     title,
     date,
+    urlName,
     images,
     singleImage,
     logo,
@@ -25,6 +26,7 @@ export class TimelineHack extends TimelineEvent {
     super(
       title,
       date,
+      urlName,
       images,
       singleImage,
       logo,
@@ -45,6 +47,7 @@ export class TimelineHack extends TimelineEvent {
     return new TimelineHack(
       item.title,
       item.date,
+      item.urlName,
       item.images,
       item.singleImage,
       item.logo,
@@ -64,6 +67,7 @@ export class PageHack extends TimelineHack {
   constructor(
     title,
     date,
+    urlName,
     images,
     singleImage,
     logo,
@@ -81,6 +85,7 @@ export class PageHack extends TimelineHack {
     super(
       title,
       date,
+      urlName,
       images,
       singleImage,
       logo,
@@ -106,6 +111,7 @@ export class PageHack extends TimelineHack {
     return new PageHack(
       item.title,
       item.date,
+      item.urlName,
       item.images,
       item.singleImage,
       item.logo,

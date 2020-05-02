@@ -26,6 +26,7 @@ export class TimelineProject extends TimelineItem {
   constructor(
     title,
     date,
+    urlName,
     images,
     singleImage,
     logo,
@@ -40,6 +41,7 @@ export class TimelineProject extends TimelineItem {
     super(
       title,
       date,
+      urlName,
       images,
       singleImage,
       logo,
@@ -58,6 +60,7 @@ export class TimelineProject extends TimelineItem {
     return new TimelineProject(
       item.title,
       item.date,
+      item.urlName,
       item.images,
       item.singleImage,
       item.logo,
@@ -101,6 +104,7 @@ export class PageProject extends TimelineProject {
   constructor(
     title,
     date,
+    urlName,
     images,
     singleImage,
     logo,
@@ -119,6 +123,7 @@ export class PageProject extends TimelineProject {
     super(
       title,
       date,
+      urlName,
       images,
       singleImage,
       logo,
@@ -143,6 +148,7 @@ export class PageProject extends TimelineProject {
     return new PageProject(
       item.title,
       item.date,
+      item.urlName,
       item.images,
       item.singleImage,
       item.logo,

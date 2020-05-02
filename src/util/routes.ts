@@ -17,7 +17,11 @@ module.exports = async function getRoutes() {
     await db.collection('timeline')
       .get()
   ).docs) {
-    routes.push(`${mDoc.data().timelineType}/${mDoc.id}`)
+    routes.push(`${mDoc.data().timelineType}/${
+      'urlName' in mDoc.data()
+        ? mDoc.data()['urlName']
+        : mDoc.id
+    }`)
   }
 
   console.log('dynamic routes:', routes)

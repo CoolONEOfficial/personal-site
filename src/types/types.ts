@@ -9,6 +9,7 @@ export class Item {
   constructor(
     public title: LocalizedString,
     public date: Date,
+    public urlName?: String,
     public images?: Image[],
     public singleImage?: Image,
     public logo?: Image,
@@ -73,6 +74,7 @@ export class Item {
     return new Item(
       data.title,
       (data.date as Timestamp).toDate(),
+      data.urlName,
       data.images,
       data.singleImage,
       data.logo,

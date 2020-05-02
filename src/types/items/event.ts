@@ -40,6 +40,7 @@ export class TimelineEvent extends TimelineItem {
   constructor(
     title,
     date,
+    urlName,
     images,
     singleImage,
     logo,
@@ -54,6 +55,7 @@ export class TimelineEvent extends TimelineItem {
     super(
       title,
       date,
+      urlName,
       images,
       singleImage,
       logo,
@@ -72,6 +74,7 @@ export class TimelineEvent extends TimelineItem {
     return new TimelineEvent(
       item.title,
       item.date,
+      item.urlName,
       item.images,
       item.singleImage,
       item.logo,
@@ -90,6 +93,7 @@ export class PageEvent extends TimelineEvent {
   constructor(
     title,
     date,
+    urlName,
     images,
     singleImage,
     logo,
@@ -106,6 +110,7 @@ export class PageEvent extends TimelineEvent {
     super(
       title,
       date,
+      urlName,
       images,
       singleImage,
       logo,
@@ -130,6 +135,7 @@ export class PageEvent extends TimelineEvent {
     return new PageEvent(
       item.title,
       item.date,
+      item.urlName,
       item.images,
       item.singleImage,
       item.logo,

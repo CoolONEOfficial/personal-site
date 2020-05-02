@@ -11,6 +11,7 @@ export class TimelineBook extends TimelineItem {
   constructor(
     title,
     date,
+    urlName,
     images,
     singleImage,
     logo,
@@ -24,6 +25,7 @@ export class TimelineBook extends TimelineItem {
     super(
       title,
       date,
+      urlName,
       images,
       singleImage,
       logo,
@@ -42,6 +44,7 @@ export class TimelineBook extends TimelineItem {
     return new TimelineBook(
       item.title,
       item.date,
+      item.urlName,
       item.images,
       item.singleImage,
       item.logo,
@@ -59,6 +62,7 @@ export class PageBook extends TimelineBook {
   constructor(
     title,
     date,
+    urlName,
     images,
     singleImage,
     logo,
@@ -74,6 +78,7 @@ export class PageBook extends TimelineBook {
     super(
       title,
       date,
+      urlName,
       images,
       singleImage,
       logo,
@@ -97,6 +102,7 @@ export class PageBook extends TimelineBook {
     return new PageBook(
       item.title,
       item.date,
+      item.urlName,
       item.images,
       item.singleImage,
       item.logo,

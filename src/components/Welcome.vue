@@ -110,11 +110,12 @@
 <script lang="ts">
 import { Component, Getter, Vue, Watch } from 'nuxt-property-decorator'
 import { Action, namespace } from '~/node_modules/nuxt-property-decorator'
-import { CAROUSEL_INTERVAL, LOGO_IMAGE } from '~/util/constants'
+import { CAROUSEL_INTERVAL, IS_DEV, LOGO_IMAGE } from "~/util/constants";
 import Picture from '~/components/Picture.vue'
 import Icon from '~/components/Icon.vue'
 import LangSwitcher from '~/components/LangSwitcher.vue'
 import ThemeSwitcher from '~/components/ThemeSwitcher.vue'
+import ListResult = firebase.storage.ListResult;
 
 const vuexModule = namespace('timeline')
 
@@ -125,12 +126,6 @@ export default class extends Vue {
   carouselModel = 0
 
   navigateTo: any = 0
-
-  @vuexModule.Action
-  initImageItems
-
-  @vuexModule.Getter
-  getImageItems
 
   @Getter
   getTheme
@@ -161,9 +156,26 @@ export default class extends Vue {
   }
 
   mounted() {
-    this.initImageItems()
+    if(process.env.NODE_ENV === 'production') {
+      (this as any).$fireStorage
+        .ref()
+        .child(`avatars`)
+        .list().then(async (res: ListResult) => {
 
-    this.images.push(...this.getImageItems.map((mItem) => mItem.images).flat().slice(0,5))
+        const pairs = res.items.reduce(function(result, value, index, array) {
+          if (index % 2 === 0)
+            result.push(array.slice(index, index + 2) as never);
+          return result;
+        }, [])
+
+        for (const item of pairs) {
+          this.images.push({
+            original: await (item[0] as any).getDownloadURL(),
+            small: await (item[1] as any).getDownloadURL()
+          })
+        }
+      })
+    }
   }
 }
 </script>

@@ -65,8 +65,6 @@ export default class extends Vue {
 
   @Watch('currentPage')
   async onCurrentPageChanged(newVal, prevVal) {
-    console.log('new curr: ', newVal, ', prev: ', prevVal)
-
     const diff = Math.abs(newVal - prevVal)
 
     this.isLoading = true

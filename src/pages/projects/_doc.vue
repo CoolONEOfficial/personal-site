@@ -1,4 +1,3 @@
-import { ProjectType } from "~/types/items/project";
 <template>
   <Hero :doc="$route.params.doc" :item="getProjectPage">
     <nuxt />

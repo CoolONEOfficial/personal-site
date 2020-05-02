@@ -39,7 +39,7 @@
             :to="
               localePath({
                 name: `${item._type}-doc`,
-                params: { doc: item._doc }
+                params: { doc: item.urlName ? item.urlName : item._doc }
               })
             "
           >

@@ -4,7 +4,6 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import Timestamp = firebase.firestore.Timestamp
 import { TimelineItem } from '~/types/timeline'
-import { DocumentSnapshotBuilder } from '~/node_modules/@google-cloud/firestore/build/src/document'
 
 const queryRef = (that, collName) =>
   that.$fireStore
@@ -36,13 +35,26 @@ export async function getItems(that, collName, timelineType) {
 }
 
 export async function getItemPage(that, doc, collName, pageType) {
-  const docRef = that.$fireStore
-    .collection('timeline')
-    .doc(doc)
+  let docRef, docData
+  if(doc.length != 20) {
+    let snapshot = await that.$fireStore
+      .collection('timeline')
+      .where('timelineType', '==', collName)
+      .where('urlName', '==', doc)
+      .limit(1)
+      .get()
+    docData = snapshot.docs[0]
+    docRef = docData.ref
+  } else {
+    docRef = that.$fireStore
+      .collection('timeline')
+      .doc(doc)
+    docData = await docRef.get()
+  }
 
   return pageType.fromDocs(
     that,
-    await docRef.get(),
+    docData,
     await docRef
       .collection('page')
       .doc('doc')
