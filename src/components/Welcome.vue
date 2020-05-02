@@ -32,6 +32,7 @@
             class="welcome-background-image"
             v-model="i.small"
             fit="cover"
+            :limit-dialog-height="false"
             :alt="`Background image of welcome screen №${index + 1}`"
             data-aos="fade"
           />

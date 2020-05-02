@@ -14,7 +14,7 @@
       <img
         :data-src.sync="srcset"
         :src.sync="srcset"
-        :class="['lazyload', 'picture-img']"
+        :class="['lazyload', 'picture-img', limitDialogHeight ? 'picture-img-limit' : '']"
         :style="`object-fit: ${fit};`"
         @click="onImageClick"
         :alt="alt"
@@ -43,6 +43,9 @@ export default class extends Vue {
   @Prop()
   alt
 
+  @Prop({ default: true })
+  limitDialogHeight
+
   onImageClick() {
     this.$emit('click')
   }
@@ -65,7 +68,10 @@ export default class extends Vue {
   &-img {
     width: 100% !important;
     height: 100% !important;
-    max-height: calc(100vh - 50px);
+
+    &-limit {
+      max-height: calc(100vh - 50px);
+    }
   }
 }
 </style>
