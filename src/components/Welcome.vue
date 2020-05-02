@@ -1,6 +1,6 @@
 <template>
   <section class="hero is-fullheight">
-    <b-modal :can-cancel="['escape', 'x']" :active.sync="isModalActive" trap-focus animation="zoom-in">
+    <b-modal :active.sync="isModalActive" trap-focus animation="zoom-in">
       <carousel
         class="show-overflow"
         :navigate-to="navigateTo"
@@ -31,6 +31,7 @@
           <Picture
             class="welcome-background-image"
             v-model="i.small"
+            fit="cover"
             :alt="`Background image of welcome screen №${index + 1}`"
             data-aos="fade"
           />
@@ -77,6 +78,7 @@
                 <Picture
                   class="image is-128x128 welcome-carousel-image"
                   v-model="i.small"
+                  fit="cover"
                   :alt="`Carousel image of welcome screen №${index + 1}`"
                 />
               </slide>
@@ -213,7 +215,7 @@ export default class extends Vue {
       height: 100vh !important;
 
       & img {
-        object-fit: cover;
+        height: 100%;
       }
       filter: blur(15px) grayscale(50%) opacity(25%);
     }
@@ -229,7 +231,7 @@ export default class extends Vue {
       border-radius: 50%;
 
       & img {
-        object-fit: cover;
+        height: 100%;
       }
     }
 

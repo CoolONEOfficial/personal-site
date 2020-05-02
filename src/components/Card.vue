@@ -8,7 +8,6 @@
         fit="cover"
       />
       <b-modal
-        :can-cancel="['escape', 'x']"
         :active.sync="isModalActive"
         trap-focus
         animation="zoom-in"

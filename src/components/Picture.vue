@@ -14,8 +14,8 @@
       <img
         :data-src.sync="srcset"
         :src.sync="srcset"
-        :class="['lazyload']"
-        :style="`width: 100%; height: 100%; object-fit: ${fit};`"
+        :class="['lazyload', 'picture-img']"
+        :style="`object-fit: ${fit};`"
         @click="onImageClick"
         :alt="alt"
       />
@@ -61,5 +61,11 @@ export default class extends Vue {
 .picture {
   height: calc(100% - 8px);
   margin-bottom: -6px;
+
+  &-img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: calc(100vh - 50px);
+  }
 }
 </style>

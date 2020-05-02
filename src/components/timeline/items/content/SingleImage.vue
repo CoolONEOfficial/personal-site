@@ -12,7 +12,7 @@
       @click="onImageClick"
       alt="Timeline image"
     />
-    <b-modal :can-cancel="['escape', 'x']" :active.sync="isModalActive" trap-focus animation="zoom-in">
+    <b-modal :active.sync="isModalActive" trap-focus animation="zoom-in">
       <Picture
         class="modal-image"
         v-model="item.singleImage.original"
