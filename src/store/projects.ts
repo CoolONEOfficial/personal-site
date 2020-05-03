@@ -1,15 +1,15 @@
-import { COLL_NAMES } from '~/util/constants'
+import { COLL_NAMES, TYPE_NAMES } from "~/util/constants";
 
 import {
-  getDocsCount,
+  getDocsCountByType,
   getItemPage,
   getItems,
   nextPage,
-  prevPage
-} from '~/util/store'
+  prevPage, queryRefByType
+} from "~/util/store";
 import { PageProject, TimelineProject } from '~/types/items/project'
 
-const COLL_NAME = COLL_NAMES.PROJECTS
+const TYPE_NAME = TYPE_NAMES.PROJECTS
 
 export const state = () => ({
   books: [],
@@ -32,26 +32,26 @@ export const mutations = {
 
 export const actions = {
   async loadProjects({ commit }) {
-    commit('updateDocsCount', await getDocsCount(this, COLL_NAME))
-    commit('updateProjects', await getItems(this, COLL_NAME, TimelineProject))
+    commit('updateDocsCount', await getDocsCountByType(this, TYPE_NAME))
+    commit('updateProjects', await getItems(this, queryRefByType(this, TYPE_NAME)))
   },
 
   async loadProjectPage({ commit }, doc) {
     console.log('loading project page...')
-    commit('updateProjectPage', await getItemPage(this, doc, COLL_NAME, PageProject))
+    commit('updateProjectPage', await getItemPage(this, doc, TYPE_NAME, PageProject))
   },
 
   async nextPage({ commit, getters }) {
     commit(
       'updateProjects',
-      await nextPage(this, COLL_NAME, getters.getProjects, TimelineProject)
+      await nextPage(this, queryRefByType(this, TYPE_NAME), getters.getProjects)
     )
   },
 
   async prevPage({ commit, getters }) {
     commit(
       'updateProjects',
-      await prevPage(this, COLL_NAME, getters.getProjects, TimelineProject)
+      await prevPage(this, queryRefByType(this, TYPE_NAME), getters.getProjects)
     )
   }
 }

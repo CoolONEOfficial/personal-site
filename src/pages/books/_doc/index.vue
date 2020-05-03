@@ -5,9 +5,9 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
-import { COLL_NAMES } from '~/util/constants'
 import Description from '~/components/hero/Description.vue'
-const vuexModule = namespace(COLL_NAMES.BOOKS)
+import { VUEX_NAMES } from "~/util/constants";
+const vuexModule = namespace(VUEX_NAMES.BOOKS)
 
 @Component({
   components: { Description }

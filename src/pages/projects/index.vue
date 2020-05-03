@@ -4,21 +4,19 @@
     :on-next-page="nextPage"
     :on-prev-page="prevPage"
     :items="getProjects"
-    :item-subtitle="subtitle"
   />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
-import { COLL_NAMES } from '~/util/constants'
+import { VUEX_NAMES } from "~/util/constants";
 import Card from '~/components/Card.vue'
 import CardCatalog from '~/components/CardCatalog.vue'
 import { getMeta } from '~/util/seo'
-import { TimelineProject } from "~/types/items/project";
 
-const COLL_NAME = COLL_NAMES.PROJECTS
-const vuexModule = namespace(COLL_NAME)
+const VUEX_NAME = VUEX_NAMES.PROJECTS
+const vuexModule = namespace(VUEX_NAME)
 
 @Component({
   components: { CardCatalog, Card }
@@ -36,18 +34,9 @@ export default class extends Vue {
   @vuexModule.Action
   prevPage
 
-  subtitle(item) {
-    return TimelineProject.getSubtitle(
-      this.$t(item.type),
-      this.$t('for'),
-      this.$t(item.platform),
-      item.platform
-    )
-  }
-
   async fetch({ store }) {
     try {
-      await store.dispatch(`${COLL_NAME}/loadProjects`)
+      await store.dispatch(`${VUEX_NAME}/loadProjects`)
     } catch (e) {
       console.error('error! ', e)
     }
@@ -66,7 +55,5 @@ export default class extends Vue {
   }
 }
 </script>
-
-<i18n src="~/lang/projectsTypes.json" />
 
 <i18n src="~/lang/projects.json" />

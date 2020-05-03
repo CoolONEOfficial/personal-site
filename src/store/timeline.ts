@@ -1,12 +1,6 @@
-import firebase from 'firebase/app'
 import 'firebase/firestore'
-import QuerySnapshot = firebase.firestore.QuerySnapshot
 import { TimelineItem } from '~/types/timeline'
-import { EventType } from '~/types/items/event'
-import { TimelineProject } from '~/types/items/project'
-import { TimelineBook } from '~/types/items/book'
-import { TimelineAchievement } from '~/types/items/achievement'
-import { TimelineHack } from '~/types/items/events/hack'
+import { TIMELINE_TYPE_MAP } from "~/util/store";
 
 export const state = () => ({
   timelineItems: [],
@@ -44,13 +38,8 @@ export const actions = {
 
     for (const mDoc of timelineDocs) {
       const mDocType = mDoc.data().timelineType
-      const typeMap = {
-        events: TimelineHack,
-        projects: TimelineProject,
-        books: TimelineBook,
-        achievements: TimelineAchievement
-      }
-      timelineData.push((await typeMap[mDocType].fromDoc(this, mDoc)) as never)
+
+      timelineData.push((await TIMELINE_TYPE_MAP[mDocType].fromDoc(this, mDoc)) as never)
     }
 
     if (timelineData.length > 0) {

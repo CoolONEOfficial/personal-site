@@ -177,7 +177,6 @@ const config: Configuration = {
   },
   purgeCSS: {
     mode: "webpack",
-    enabled: true, // delete this
     paths: glob.sync([
       path.join(__dirname, "./pages/**/*.vue"),
       path.join(__dirname, "./layouts/**/*.vue"),

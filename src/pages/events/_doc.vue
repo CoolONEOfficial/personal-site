@@ -8,13 +8,13 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import Hero from '~/components/Hero.vue'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
-import { COLL_NAMES } from '~/util/constants'
+import { VUEX_NAMES } from "~/util/constants";
 import { getArticle, getMetaPage } from '~/util/seo'
 import { Jsonld } from '~/node_modules/nuxt-jsonld'
 import { EventType, PageEvent } from '~/types/items/event'
 
-const COLL_NAME = COLL_NAMES.EVENTS
-const vuexModule = namespace(COLL_NAME)
+const VUEX_NAME = VUEX_NAMES.EVENTS
+const vuexModule = namespace(VUEX_NAME)
 
 @Jsonld
 @Component({
@@ -26,7 +26,7 @@ export default class extends Vue {
 
   async fetch({ store, params }) {
     try {
-      await store.dispatch(`${COLL_NAME}/loadEventPage`, params.doc)
+      await store.dispatch(`${VUEX_NAME}/loadEventPage`, params.doc)
     } catch (e) {
       console.error('error! ', e)
     }
@@ -53,7 +53,7 @@ export default class extends Vue {
         break
     }
 
-    return getArticle(this, this.$i18n.locale, COLL_NAME, this.getEventPage, {
+    return getArticle(this, this.$i18n.locale, VUEX_NAME, this.getEventPage, {
       '@type': type,
       location: this.getEventPage.location
         ? {

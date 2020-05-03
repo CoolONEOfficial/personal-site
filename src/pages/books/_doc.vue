@@ -8,7 +8,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import Hero from '~/components/Hero.vue'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
-import { COLL_NAMES, LOGO_IMAGE } from '~/util/constants'
+import { COLL_NAMES, LOGO_IMAGE, TYPE_NAMES, VUEX_NAMES } from "~/util/constants";
 import {
   getArticle,
   getLdBreadcrumbs,
@@ -19,8 +19,8 @@ import {
 import { Jsonld } from '~/node_modules/nuxt-jsonld'
 import { PageBook } from '~/types/items/book'
 
-const COLL_NAME = COLL_NAMES.BOOKS
-const vuexModule = namespace(COLL_NAME)
+const VUEX_NAME = VUEX_NAMES.BOOKS
+const vuexModule = namespace(VUEX_NAME)
 
 @Jsonld
 @Component({
@@ -32,7 +32,7 @@ export default class extends Vue {
 
   async fetch({ store, params }) {
     try {
-      await store.dispatch(`${COLL_NAME}/loadBookPage`, params.doc)
+      await store.dispatch(`${VUEX_NAME}/loadBookPage`, params.doc)
     } catch (e) {
       console.error('error! ', e)
     }
@@ -49,7 +49,7 @@ export default class extends Vue {
   }
 
   jsonld() {
-    return getArticle(this, this.$i18n.locale, COLL_NAME, this.getBookPage, {
+    return getArticle(this, this.$i18n.locale, VUEX_NAME, this.getBookPage, {
       '@type': 'Book',
       author: this.getBookPage.author
     })

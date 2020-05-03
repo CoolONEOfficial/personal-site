@@ -1,61 +1,91 @@
-import { PAGINATION_COUNT } from '~/util/constants'
+import { COLL_NAMES, PAGINATION_COUNT } from "~/util/constants";
 import QuerySnapshot = firebase.firestore.QuerySnapshot
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import Timestamp = firebase.firestore.Timestamp
 import { TimelineItem } from '~/types/timeline'
+import { TimelineHack } from "~/types/items/events/hack";
+import { TimelineProject } from "~/types/items/project";
+import { TimelineBook } from "~/types/items/book";
+import { TimelineAchievement } from "~/types/items/achievement";
 
-const queryRef = (that, collName) =>
-  that.$fireStore
-    .collection('timeline')
-    .where('timelineType', '==', collName)
-    .orderBy('date', 'desc')
-
-export async function getDocsCount(that, collName) {
-  const sizeDoc = await that.$fireStore
-    .collection('sizes')
-    .doc(collName)
-    .get()
-  return sizeDoc.data()['numberOfDocs']
+export const TIMELINE_TYPE_MAP = {
+  events: TimelineHack,
+  projects: TimelineProject,
+  books: TimelineBook,
+  achievements: TimelineAchievement
 }
 
-export function parseQuery(that, ss: QuerySnapshot, timelineType) {
+export const TIMELINE_SUBTITLE_MAP = {
+  events: (that, item) => that.$t(item.type),
+  projects: (that, item) => TimelineProject.getSubtitle(
+    that.$t(item.type),
+    that.$t('for'),
+    that.$t(item.platform),
+    item.platform
+  ),
+  books: (that, item) => item.author,
+  achievements: (that, item) => item.organisation,
+}
+
+export const queryRefByType = (that, typeName) =>
+  that.$fireStore
+    .collection('timeline')
+    .where('timelineType', '==', typeName)
+    .orderBy('date', 'desc')
+
+export const queryRefByTag = (that, tagName) =>
+  that.$fireStore
+    .collection('timeline')
+    .where('tags', 'array-contains', tagName)
+    .orderBy('date', 'desc')
+
+export async function getDocsCountByType(that, typeName) {
+  const sizeDoc = await that.$fireStore
+    .collection(COLL_NAMES.SIZES)
+    .doc('timelineType')
+    .get()
+  return sizeDoc.data()[typeName]
+}
+
+export async function getDocsCountByTag(that, tagName) {
+  const sizeDoc = await that.$fireStore
+    .collection(COLL_NAMES.SIZES)
+    .doc('tags')
+    .get()
+  return sizeDoc.data()[tagName]
+}
+
+export function parseQuery(that, ss: QuerySnapshot) {
   return Promise.all(
     ss.docs.map(async (mDoc) => {
-      return (await timelineType.fromDoc(that, mDoc)) as never
+      const mDocType = mDoc.data().timelineType
+      return (await TIMELINE_TYPE_MAP[mDocType].fromDoc(that, mDoc)) as never
     })
   )
 }
 
-export async function getItems(that, collName, timelineType) {
-  const ss = await queryRef(that, collName)
+export async function getItems(
+  that,
+  queryRef
+) {
+  const ss = await queryRef
     .limit(PAGINATION_COUNT)
     .get()
-  return parseQuery(that, ss, timelineType)
+  return parseQuery(that, ss)
 }
 
-export async function getItemPage(that, doc, collName, pageType) {
-  let docRef, docData
-  if(doc.length != 20) {
-    let snapshot = await that.$fireStore
-      .collection('timeline')
-      .where('timelineType', '==', collName)
-      .where('urlName', '==', doc)
-      .limit(1)
-      .get()
-    docData = snapshot.docs[0]
-    docRef = docData.ref
-  } else {
-    docRef = that.$fireStore
-      .collection('timeline')
-      .doc(doc)
-    docData = await docRef.get()
-  }
+export async function getItemPage(that, urlName, timelineType, pageType) {
+  let snapshot = await queryRefByType(that, timelineType)
+    .where('urlName', '==', urlName)
+    .limit(1)
+    .get()
+  let docData = snapshot.docs[0]
 
   return pageType.fromDocs(
     that,
     docData,
-    await docRef
+    await docData.ref
       .collection('page')
       .doc('doc')
       .get()
@@ -64,34 +94,30 @@ export async function getItemPage(that, doc, collName, pageType) {
 
 export async function nextPage(
   that,
-  collName,
-  items: TimelineItem[],
-  timelineType
+  queryRef,
+  items: TimelineItem[]
 ) {
   return parseQuery(
     that,
-    await queryRef(that, collName)
+    await queryRef
       .startAfter(
         Timestamp.fromMillis(items[items.length - 1].date.getTime())
       )
       .limit(PAGINATION_COUNT)
-      .get(),
-    timelineType
+      .get()
   )
 }
 
 export async function prevPage(
   that,
-  collName,
-  items: TimelineItem[],
-  timelineType
+  queryRef,
+  items: TimelineItem[]
 ) {
   return parseQuery(
     that,
-    await queryRef(that, collName)
+    await queryRef
       .endBefore(Timestamp.fromMillis(items[0].date.getTime()))
       .limitToLast(PAGINATION_COUNT)
-      .get(),
-    timelineType
+      .get()
   )
 }

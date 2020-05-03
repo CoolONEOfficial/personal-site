@@ -61,13 +61,13 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
-import { COLL_NAMES } from '~/util/constants'
+import { COLL_NAMES, VUEX_NAMES } from "~/util/constants";
 import { Track } from '~/types/music'
 import { getMeta } from "~/util/seo";
 import Picture from "~/components/Picture.vue";
 
-const COLL_NAME = COLL_NAMES.MUSIC
-const vuexModule = namespace(COLL_NAME)
+const VUEX_NAME = VUEX_NAMES.MUSIC
+const vuexModule = namespace(VUEX_NAME)
 
 @Component({
   components: { Picture }
@@ -114,7 +114,7 @@ export default class extends Vue {
 
   async fetch({ store, params }) {
     try {
-      await store.dispatch(`${COLL_NAME}/loadMusic`)
+      await store.dispatch(`${VUEX_NAME}/loadMusic`)
     } catch (e) {
       console.error('error! ', e)
     }

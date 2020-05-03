@@ -39,8 +39,9 @@ import YearItem from '~/components/timeline/Year.vue'
 import Header from '~/components/timeline/Header.vue'
 import EventItem from '~/components/timeline/items/EventItem.vue'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
+import { VUEX_NAMES } from "~/util/constants";
 
-const vuexModule = namespace('timeline')
+const vuexModule = namespace(VUEX_NAMES.TIMELINE)
 
 @Component({
   components: {

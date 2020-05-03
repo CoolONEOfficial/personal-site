@@ -1,10 +1,12 @@
 <template>
-  <b-tag
-    :class="`hover-${getType === 'is-dark' ? 'light' : 'dark'} is-marginless tag`"
-    :type="getType"
-  >
-    <slot />
-  </b-tag>
+  <component :is="link ? 'nuxt-link' : 'div'" :to="link">
+    <b-tag
+      :class="`hover-${getType === 'is-dark' ? 'light' : 'dark'} is-marginless tag`"
+      :type="getType"
+    >
+      <slot />
+    </b-tag>
+  </component>
 </template>
 
 <script lang="ts">
@@ -15,6 +17,9 @@ import { THEMES } from '~/types/theme'
 export default class extends Vue {
   @Prop()
   type
+
+  @Prop({ default: undefined })
+  link
 
   @Getter
   getTheme

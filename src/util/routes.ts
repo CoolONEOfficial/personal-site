@@ -11,7 +11,8 @@ const db = firebase
   .firestore()
 
 module.exports = async function getRoutes() {
-  const routes: string[] = []
+  const routes: string[] = [];
+  const tags: string[] = [];
 
   for (const mDoc of (
     await db.collection('timeline')
@@ -22,6 +23,12 @@ module.exports = async function getRoutes() {
         ? mDoc.data()['urlName']
         : mDoc.id
     }`)
+    tags.push(...mDoc.data().tags)
+  }
+
+  const totalTags = Array.from(new Set(tags))
+  for (const tag of totalTags) {
+    routes.push(`tag/${tag}`)
   }
 
   console.log('dynamic routes:', routes)

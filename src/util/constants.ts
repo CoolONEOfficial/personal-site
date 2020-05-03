@@ -16,13 +16,26 @@ export const FIREBASE_OPTIONS = IS_DEV
   ? FIREBASE_OPTIONS_DEBUG
   : FIREBASE_OPTIONS_PROD
 export const CAROUSEL_INTERVAL = 7000
-export const ABOUT_DOCUMENT_ID = '-LxIxfTkocxN2eQIVT_1'
+export const ABOUT_DOCUMENT_ID = 'personal-site'
 export const COLL_NAMES = {
+  TIMELINE: 'timeline',
+  SPOTIFY: 'spotify',
+  SIZES: 'sizes'
+}
+export const TYPE_NAMES = {
+  ACHIEVEMENTS: 'achievements',
+  PROJECTS: 'projects',
+  BOOKS: 'books',
+  EVENTS: 'events'
+}
+export const VUEX_NAMES = {
   ACHIEVEMENTS: 'achievements',
   PROJECTS: 'projects',
   BOOKS: 'books',
   EVENTS: 'events',
-  MUSIC: 'music'
+  MUSIC: 'music',
+  TAG_ITEMS: 'tag_items',
+  TIMELINE: 'timeline'
 }
 export const SOCIAL_LINKS = {
   FB: 'https://www.facebook.com/coolone.official',

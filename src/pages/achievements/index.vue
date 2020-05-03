@@ -4,20 +4,19 @@
     :on-next-page="nextPage"
     :on-prev-page="prevPage"
     :items="getAchievements"
-    :item-subtitle="subtitle"
   />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
-import { COLL_NAMES } from '~/util/constants'
+import { VUEX_NAMES } from "~/util/constants";
 import Card from '~/components/Card.vue'
 import CardCatalog from '~/components/CardCatalog.vue'
-import { getMeta, getMetaPage } from '~/util/seo'
+import { getMeta} from '~/util/seo'
 
-const COLL_NAME = COLL_NAMES.ACHIEVEMENTS
-const vuexModule = namespace(COLL_NAME)
+const VUEX_NAME = VUEX_NAMES.ACHIEVEMENTS
+const vuexModule = namespace(VUEX_NAME)
 
 @Component({
   components: { CardCatalog, Card }
@@ -35,13 +34,9 @@ export default class extends Vue {
   @vuexModule.Action
   prevPage
 
-  subtitle(item) {
-    return item.organisation
-  }
-
   async fetch({ store }) {
     try {
-      await store.dispatch(`${COLL_NAME}/loadAchievements`)
+      await store.dispatch(`${VUEX_NAME}/loadAchievements`)
     } catch (e) {
       console.error('error! ', e)
     }

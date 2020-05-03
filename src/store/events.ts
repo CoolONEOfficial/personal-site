@@ -1,15 +1,15 @@
-import { COLL_NAMES } from '~/util/constants'
-
+import { TYPE_NAMES } from "~/util/constants";
 import {
-  getDocsCount,
+  getDocsCountByType,
   getItemPage,
   getItems,
   nextPage,
-  prevPage
+  prevPage,
+  queryRefByType
 } from '~/util/store'
-import { PageEvent, TimelineEvent } from '~/types/items/event'
+import { PageEvent } from '~/types/items/event'
 
-const COLL_NAME = COLL_NAMES.EVENTS
+const TYPE_NAME = TYPE_NAMES.EVENTS
 
 export const state = () => ({
   events: [],
@@ -32,25 +32,25 @@ export const mutations = {
 
 export const actions = {
   async loadEvents({ commit, getters }) {
-    commit('updateDocsCount', await getDocsCount(this, COLL_NAME))
-    commit('updateEvents', await getItems(this, COLL_NAME, TimelineEvent))
+    commit('updateDocsCount', await getDocsCountByType(this, TYPE_NAME))
+    commit('updateEvents', await getItems(this, queryRefByType(this, TYPE_NAME)))
   },
 
   async loadEventPage({ commit }, doc) {
-    commit('updateEventPage', await getItemPage(this, doc, COLL_NAME, PageEvent))
+    commit('updateEventPage', await getItemPage(this, doc, TYPE_NAME, PageEvent))
   },
 
   async nextPage({ commit, getters }) {
     commit(
       'updateEvents',
-      await nextPage(this, COLL_NAME, getters.getEvents, TimelineEvent)
+      await nextPage(this, queryRefByType(this, TYPE_NAME), getters.getEvents)
     )
   },
 
   async prevPage({ commit, getters }) {
     commit(
       'updateEvents',
-      await prevPage(this, COLL_NAME, getters.getEvents, TimelineEvent)
+      await prevPage(this, queryRefByType(this, TYPE_NAME), getters.getEvents)
     )
   }
 }

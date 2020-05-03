@@ -8,7 +8,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import Hero from '~/components/Hero.vue'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
-import { COLL_NAMES } from '~/util/constants'
+import { VUEX_NAMES } from "~/util/constants";
 import { getArticle, getMetaPage } from '~/util/seo'
 import { Jsonld } from '~/node_modules/nuxt-jsonld'
 import {
@@ -17,8 +17,8 @@ import {
   ProjectType
 } from '~/types/items/project'
 
-const COLL_NAME = COLL_NAMES.PROJECTS
-const vuexModule = namespace(COLL_NAME)
+const VUEX_NAME = VUEX_NAMES.PROJECTS
+const vuexModule = namespace(VUEX_NAME)
 
 @Jsonld
 @Component({
@@ -30,7 +30,7 @@ export default class extends Vue {
 
   async fetch({ store, params }) {
     try {
-      await store.dispatch(`${COLL_NAME}/loadProjectPage`, params.doc)
+      await store.dispatch(`${VUEX_NAME}/loadProjectPage`, params.doc)
     } catch (e) {
       console.error('error! ', e)
     }
@@ -59,7 +59,7 @@ export default class extends Vue {
           break
       }
 
-    return getArticle(this, this.$i18n.locale, COLL_NAME, this.getProjectPage, {
+    return getArticle(this, this.$i18n.locale, VUEX_NAME, this.getProjectPage, {
       '@type': type
     })
   }

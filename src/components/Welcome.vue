@@ -113,14 +113,14 @@
 <script lang="ts">
 import { Component, Getter, Vue, Watch } from 'nuxt-property-decorator'
 import { Action, namespace } from '~/node_modules/nuxt-property-decorator'
-import { CAROUSEL_INTERVAL, IS_DEV, LOGO_IMAGE } from "~/util/constants";
+import { CAROUSEL_INTERVAL, IS_DEV, LOGO_IMAGE, VUEX_NAMES } from "~/util/constants";
 import Picture from '~/components/Picture.vue'
 import Icon from '~/components/Icon.vue'
 import LangSwitcher from '~/components/LangSwitcher.vue'
 import ThemeSwitcher from '~/components/ThemeSwitcher.vue'
 import ListResult = firebase.storage.ListResult;
 
-const vuexModule = namespace('timeline')
+const vuexModule = namespace(VUEX_NAMES.TIMELINE)
 
 @Component({
   components: { ThemeSwitcher, LangSwitcher, Icon, Picture }

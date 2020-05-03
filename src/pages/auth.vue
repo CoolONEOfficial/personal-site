@@ -15,8 +15,9 @@
 <script lang="ts">
   import { Component, Getter, State, Vue } from "nuxt-property-decorator";
 import { namespace } from "~/node_modules/nuxt-property-decorator";
+  import { VUEX_NAMES } from "~/util/constants";
 
-const vuexModule = namespace('music')
+const vuexModule = namespace(VUEX_NAMES.MUSIC)
 
 @Component({
   nuxtI18n: {

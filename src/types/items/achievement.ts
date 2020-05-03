@@ -1,8 +1,7 @@
 import { TimelineItem } from '~/types/timeline'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot
-import { PLACEHOLDER_IMAGE } from '~/util/constants'
+
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot
 import { deepMerge } from '~/node_modules/@typescript-eslint/experimental-utils/dist/eslint-utils'
 import DocumentData = firebase.firestore.DocumentData

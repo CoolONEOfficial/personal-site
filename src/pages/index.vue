@@ -14,9 +14,9 @@ import { Component, namespace, Vue } from 'nuxt-property-decorator'
 import Timeline from '~/components/Timeline.vue'
 import { Jsonld } from '~/node_modules/nuxt-jsonld'
 import { JSON_LD } from '~/util/seo'
-import { LOGO_IMAGE } from '~/util/constants'
+import { LOGO_IMAGE, VUEX_NAMES } from "~/util/constants";
 
-const vuexModule = namespace('timeline')
+const vuexModule = namespace(VUEX_NAMES.TIMELINE)
 
 @Jsonld
 @Component({

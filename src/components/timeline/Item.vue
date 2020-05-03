@@ -105,8 +105,9 @@ import Images from '~/components/timeline/items/content/Images.vue'
 import Description from '~/components/timeline/items/content/Description.vue'
 import Picture from '~/components/Picture.vue'
 import Icon from '~/components/Icon.vue'
+import { VUEX_NAMES } from "~/util/constants";
 
-const vuexModule = namespace('timeline')
+const vuexModule = namespace(VUEX_NAMES.TIMELINE)
 
 @Component({
   components: { Icon, Picture, Description, Images, SingleImage }

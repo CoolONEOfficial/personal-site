@@ -4,20 +4,19 @@
     :on-next-page="nextPage"
     :on-prev-page="prevPage"
     :items="getEvents"
-    :item-subtitle="subtitle"
   />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from '~/node_modules/nuxt-property-decorator'
-import { COLL_NAMES } from '~/util/constants'
+import { COLL_NAMES, VUEX_NAMES } from "~/util/constants";
 import Card from '~/components/Card.vue'
 import CardCatalog from '~/components/CardCatalog.vue'
 import { getMeta } from '~/util/seo'
 
-const COLL_NAME = COLL_NAMES.EVENTS
-const vuexModule = namespace(COLL_NAME)
+const VUEX_NAME = VUEX_NAMES.EVENTS
+const vuexModule = namespace(VUEX_NAME)
 
 @Component({
   components: { CardCatalog, Card }
@@ -35,13 +34,9 @@ export default class extends Vue {
   @vuexModule.Action
   prevPage
 
-  subtitle(item) {
-    return this.$t(item.type)
-  }
-
   async fetch({ store }) {
     try {
-      await store.dispatch(`${COLL_NAME}/loadEvents`)
+      await store.dispatch(`${VUEX_NAME}/loadEvents`)
     } catch (e) {
       console.error('error! ', e)
     }
@@ -60,7 +55,5 @@ export default class extends Vue {
   }
 }
 </script>
-
-<i18n src="~/lang/eventsTypes.json" />
 
 <i18n src="~/lang/events.json" />

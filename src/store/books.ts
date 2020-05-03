@@ -1,15 +1,15 @@
-import { COLL_NAMES } from '~/util/constants'
+import { COLL_NAMES, TYPE_NAMES, VUEX_NAMES } from "~/util/constants";
 
 import {
-  getDocsCount,
+  getDocsCountByType,
   getItemPage,
   getItems,
   nextPage,
-  prevPage
-} from '~/util/store'
+  prevPage, queryRefByType
+} from "~/util/store";
 import { PageBook, TimelineBook } from '~/types/items/book'
 
-const COLL_NAME = COLL_NAMES.BOOKS
+const TYPE_NAME = TYPE_NAMES.BOOKS
 
 export const state = () => ({
   books: [],
@@ -32,25 +32,25 @@ export const mutations = {
 
 export const actions = {
   async loadBooks({ commit }) {
-    commit('updateDocsCount', await getDocsCount(this, COLL_NAME))
-    commit('updateBooks', await getItems(this, COLL_NAME, TimelineBook))
+    commit('updateDocsCount', await getDocsCountByType(this, TYPE_NAME))
+    commit('updateBooks', await getItems(this, queryRefByType(this, TYPE_NAME)))
   },
 
   async loadBookPage({ commit }, doc) {
-    commit('updateBookPage', await getItemPage(this, doc, COLL_NAME, PageBook))
+    commit('updateBookPage', await getItemPage(this, doc, TYPE_NAME, PageBook))
   },
 
   async nextPage({ commit, getters }) {
     commit(
       'updateBooks',
-      await nextPage(this, COLL_NAME, getters.getBooks, TimelineBook)
+      await nextPage(this, queryRefByType(this, TYPE_NAME), getters.getBooks)
     )
   },
 
   async prevPage({ commit, getters }) {
     commit(
       'updateBooks',
-      await prevPage(this, COLL_NAME, getters.getBooks, TimelineBook)
+      await prevPage(this, queryRefByType(this, TYPE_NAME), getters.getBooks)
     )
   }
 }

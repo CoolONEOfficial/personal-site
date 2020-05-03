@@ -43,6 +43,7 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { PAGINATION_COUNT } from '~/util/constants'
 import { Watch } from '~/node_modules/nuxt-property-decorator'
 import Card from '~/components/Card.vue'
+import { TIMELINE_SUBTITLE_MAP } from "~/util/store";
 
 @Component({
   components: { Card }
@@ -51,8 +52,9 @@ export default class extends Vue {
   @Prop()
   items
 
-  @Prop()
-  itemSubtitle!: Function
+  itemSubtitle(item) {
+    return TIMELINE_SUBTITLE_MAP[item._type](this, item)
+  }
 
   @Prop()
   docsCount
@@ -101,3 +103,7 @@ export default class extends Vue {
   min-height: calc(100vh - 5rem - 25px);
 }
 </style>
+
+<i18n src="~/lang/projectsTypes.json" />
+
+<i18n src="~/lang/eventsTypes.json" />
