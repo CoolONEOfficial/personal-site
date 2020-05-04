@@ -158,11 +158,15 @@ export default class extends Vue {
 
   &-image {
     object-fit: contain;
-    max-height: 100%;
+    max-height: 50vh;
     max-width: 100%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+
+    & img {
+      max-height: 100vw !important;
+    }
 
     &-desktop {
       margin-left: 2rem;
