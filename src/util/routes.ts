@@ -1,14 +1,9 @@
 import {
-  COLL_NAMES,
-  LOCALES,
   FIREBASE_OPTIONS
 } from "./constants";
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-
-const db = firebase
-  .initializeApp(FIREBASE_OPTIONS)
-  .firestore()
+import { db } from "../nuxt.config";
 
 module.exports = async function getRoutes() {
   const routes: string[] = [];

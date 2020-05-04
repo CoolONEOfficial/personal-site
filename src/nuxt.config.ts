@@ -1,11 +1,23 @@
 import { Configuration } from "@nuxt/types";
 import {
-  BASE_URL, FIREBASE_OPTIONS_DEBUG, FIREBASE_OPTIONS_PROD, IS_DEV,
+  BASE_URL,
+  FIREBASE_OPTIONS,
+  FIREBASE_OPTIONS_DEV,
+  FIREBASE_OPTIONS_PROD,
+  IS_DEV,
   LOCALES,
   PRIMARY_COLOR
 } from "./util/constants";
 import glob from "glob-all";
 import path from "path";
+import firebase from "firebase";
+import 'firebase/storage';
+;(global as any).XMLHttpRequest = require('xhr2')
+const app = firebase
+  .initializeApp(FIREBASE_OPTIONS)
+
+export const db = app.firestore()
+export const storage = app.storage().ref()
 
 const getRoutes = require("./util/routes.ts");
 const isDev = IS_DEV;
@@ -128,6 +140,7 @@ const config: Configuration = {
     "vue-scrollto/nuxt",
     "@nuxtjs/component-cache",
     "@bazzite/nuxt-optimized-images",
+    '@nuxtjs/feed',
     "@nuxtjs/sitemap" // sitemap at end
   ],
   /*
@@ -201,26 +214,8 @@ const config: Configuration = {
   },
   firebase: {
     config: {
-      production: {
-        apiKey: "AIzaSyBDVOdqcspdnve9eiRpR91mV6VSFZPMNFI", // prod
-        authDomain: "personal-site-d9a58.firebaseapp.com",
-        databaseURL: "https://personal-site-d9a58.firebaseio.com",
-        projectId: FIREBASE_OPTIONS_PROD.projectId,
-        storageBucket: FIREBASE_OPTIONS_PROD.storageBucket,
-        messagingSenderId: "296312063282",
-        appId: "1:296312063282:web:d0da9be983c7eb90c7432b",
-        measurementId: "G-9H4D1GY1VP"
-      },
-      development: {
-        apiKey: "AIzaSyAXHCMrN49uB3CVc2_e1qdyOUshVdTCT-k", // debug
-        authDomain: "personal-site-debug.firebaseapp.com",
-        databaseURL: "https://personal-site-debug.firebaseio.com",
-        projectId: FIREBASE_OPTIONS_DEBUG.projectId,
-        storageBucket: FIREBASE_OPTIONS_DEBUG.storageBucket,
-        messagingSenderId: "164468905867",
-        appId: "1:164468905867:web:130e7479ebac9603b0418e",
-        measurementId: "G-S0XPH8NXLT"
-      }
+      production: FIREBASE_OPTIONS_PROD,
+      development: FIREBASE_OPTIONS_DEV
     },
     services: {
       firestore: true,
@@ -230,6 +225,7 @@ const config: Configuration = {
   optimizedImages: {
     optimizeImages: true
   },
+  feed: require("./util/rss.ts"),
   sitemap: {
     hostname: BASE_URL,
     gzip: true,
