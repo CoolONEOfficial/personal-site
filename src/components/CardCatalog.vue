@@ -3,11 +3,13 @@
     <div :class="['columns']">
       <div
         class="column is-one-third"
-        v-for="(_, index) of Array(paginationCount / 2)"
+        v-for="(_, index) of Array($device.isMobile ? paginationCount : paginationCount / 2)"
         :key="index"
       >
         <Card
-          v-for="(i, index) of [
+          v-for="(i, index) of $device.isMobile ? [
+                       items[index]
+                  ] : [
                       items[index],
                       items[paginationCount / 2 + index]
                   ]"
@@ -15,7 +17,7 @@
           v-if="i"
           :item="i"
           :subtitle="itemSubtitle(i)"
-          :class="`has-margin-top-${$device.isMobile ? 10 : 30}`"
+          :class="{ 'has-margin-top-30': $device.isDesktop }"
         />
       </div>
     </div>
