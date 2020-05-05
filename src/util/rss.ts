@@ -27,7 +27,7 @@ module.exports = async () => {
       async create(feed) {
         const timeline = await db.collection('timeline')
           .orderBy('date', "desc")
-          .get()
+          .get();
 
         feed.options = {
           title: title[lang],
@@ -72,7 +72,18 @@ module.exports = async () => {
               link: BASE_URL + '/' + data.timelineType + '/' + data.urlName,
               description: convertToHTML(data.description[lang]),
               content: content,
-              date: data['date'].toDate()
+              date: data['date'].toDate(),
+              category: [
+                {
+                  name: data['timelineType'],
+                  domain: BASE_URL + '/' + data['timelineType']
+                }
+              ].concat(data['tags'] ? data['tags'].map((tag) => {
+                return {
+                  name: tag,
+                  domain: BASE_URL + '/tag/' + tag
+                }
+              }) : [])
             })
           }
         }

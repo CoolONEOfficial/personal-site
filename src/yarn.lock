@@ -1547,15 +1547,13 @@
     consola "^2.11.3"
     eslint-loader "^4.0.2"
 
-"@nuxtjs/feed@^1.1.0":
+"@nuxtjs/feed@nuxt-community/feed-module#renovate/all-minor-patch":
   version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/feed/-/feed-1.1.0.tgz#a4741ffff693615dd989fc8fdd3a8f6a8abc81b8"
-  integrity sha512-yy44/jvL9QEJoAag+FWkwAZPGoe3VPVumXD86OUeW37j7rcfUOtwVBRSJiabtZOOHNdqSUn/9Z0L07yyubmkhQ==
+  resolved "https://codeload.github.com/nuxt-community/feed-module/tar.gz/080eeef500452cc147a9a58a7807b413da1369a3"
   dependencies:
     async-cache "^1.1.0"
-    consola "^2.3.2"
-    feed "^2.0.2"
-    fs-extra "^7.0.1"
+    consola "^2.11.3"
+    feed "^4.1.0"
 
 "@nuxtjs/firebase@^5.0.7":
   version "5.0.7"
@@ -3751,7 +3749,7 @@ consola@^1.4.5:
     lodash "^4.17.5"
     std-env "^1.1.0"
 
-consola@^2.10.0, consola@^2.10.1, consola@^2.11.3, consola@^2.3.2, consola@^2.4.0, consola@^2.5.6, consola@^2.6.0, consola@^2.9.0:
+consola@^2.10.0, consola@^2.10.1, consola@^2.11.3, consola@^2.4.0, consola@^2.5.6, consola@^2.6.0, consola@^2.9.0:
   version "2.11.3"
   resolved "https://registry.yarnpkg.com/consola/-/consola-2.11.3.tgz#f7315836224c143ac5094b47fd4c816c2cd1560e"
   integrity sha512-aoW0YIIAmeftGR8GSpw6CGQluNdkWMWh3yEFjH/hmynTYnMtibXszii3lxCXmk8YxJtI3FAK5aTiquA5VH68Gw==
@@ -5372,13 +5370,12 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-feed@^2.0.2:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/feed/-/feed-2.0.4.tgz#14cd71b3bae1e965b81f7e0c5927e8941de996f8"
-  integrity sha512-sWatfulDP6d18qVaWcu34qmq9ml6UeN6nHSBJpNZ2muBqxjPAdT375whPYAHP+gqLfyabtYU5qf2Dv4nqtlp0w==
+feed@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/feed/-/feed-4.1.0.tgz#58f1c9cc2b44715d14ac59234e1bf20c5d757aa7"
+  integrity sha512-dAXWXM8QMxZ1DRnAxDmy1MaWZFlh1Ku7TU3onbXgHrVJynsxkNGPUed1AxszVW8AXo43xExronVkIqK+ACsoBA==
   dependencies:
-    luxon "^1.3.3"
-    xml "^1.0.1"
+    xml-js "^1.6.11"
 
 figgy-pudding@^3.5.1:
   version "3.5.2"
@@ -5721,15 +5718,6 @@ fs-constants@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs-constants/-/fs-constants-1.0.0.tgz#6be0de9be998ce16af8afc24497b9ee9b7ccd9ad"
   integrity sha512-y6OAwoSIf7FyjMIv94u+b5rdheZEjzR63GTyZJm5qh4Bi+2YgwLCcI/fPFZkL5PSixOt6ZNKm+w+Hfp/Bciwow==
-
-fs-extra@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-7.0.1.tgz#4f189c44aa123b895f722804f55ea23eadc348e9"
-  integrity sha512-YJDaCJZEnBmcbw13fvdAM9AwNOJwOzrE4pqMqBq5nFiEqXUqHwlK4B+3pUw6JNvfSPtX05xFHtYy/1ni01eGCw==
-  dependencies:
-    graceful-fs "^4.1.2"
-    jsonfile "^4.0.0"
-    universalify "^0.1.0"
 
 fs-extra@^8.1.0:
   version "8.1.0"
@@ -7749,11 +7737,6 @@ lru-cache@^5.0.0, lru-cache@^5.1.1:
   integrity sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==
   dependencies:
     yallist "^3.0.2"
-
-luxon@^1.3.3:
-  version "1.24.0"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.24.0.tgz#6db04b79ec8f7159973d4dcf21871fd6acfb3d58"
-  integrity sha512-PNeB5cFbBtmuS137OuEdaJnCMTMPS2vz9hnM1Zl6tUIuYdtUgEhMqfVZ7yxX0jHEGx6rp757ECe7cdZxDgq2Tg==
 
 make-dir@^1.0.0, make-dir@^1.2.0:
   version "1.3.0"
@@ -10314,11 +10297,6 @@ reserved-words@^0.1.2:
   resolved "https://registry.yarnpkg.com/reserved-words/-/reserved-words-0.1.2.tgz#00a0940f98cd501aeaaac316411d9adc52b31ab1"
   integrity sha1-AKCUD5jNUBrqqsMWQR2a3FKzGrE=
 
-resize-detector@^0.1.10:
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/resize-detector/-/resize-detector-0.1.10.tgz#1da3f961aa5f914ccbcfd3752d52fd45beeb692c"
-  integrity sha512-iLcXC8A6Fb0DfA+TRiywrK/0A22bFqkhntjMJMEzXDA4XkcEkfwpNbv7W8iewUiD0xYIaeiXOfiEehTqGKsUFw==
-
 resolve-from@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-3.0.0.tgz#b22c7af7d9d6881bc8b6e653335eebcb0a188748"
@@ -11956,14 +11934,6 @@ vue-carousel@^0.18.0:
     regenerator-runtime "^0.12.1"
     vue "^2.5.17"
 
-vue-clamp@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/vue-clamp/-/vue-clamp-0.3.0.tgz#5b5377e7c7f11c4d3305542cefdd964ac98fcde5"
-  integrity sha512-QMc98bTde4Ou1dlesnKfrwuOVve66fNlnYL3IBSA1nNC4COuGq2uNq6E2l7tQxSXzobC+DRhT01yBKVE/eaLsg==
-  dependencies:
-    core-js "^3.6.4"
-    resize-detector "^0.1.10"
-
 vue-class-component@7.2.3, vue-class-component@^7.1.0:
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.2.3.tgz#a5b1abd53513a72ad51098752e2dedd499807cca"
@@ -12446,10 +12416,12 @@ xhr2@^0.2.0:
   resolved "https://registry.yarnpkg.com/xhr2/-/xhr2-0.2.0.tgz#eddeff782f3b7551061b8d75645085269396e521"
   integrity sha512-BDtiD0i2iKPK/S8OAZfpk6tyzEDnKKSjxWHcMBVmh+LuqJ8A32qXTyOx+TVOg2dKvq6zGBq2sgKPkEeRs1qTRA==
 
-xml@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
-  integrity sha1-eLpyAgApxbyHuKgaPPzXS0ovweU=
+xml-js@^1.6.11:
+  version "1.6.11"
+  resolved "https://registry.yarnpkg.com/xml-js/-/xml-js-1.6.11.tgz#927d2f6947f7f1c19a316dd8eea3614e8b18f8e9"
+  integrity sha512-7rVi2KMfwfWFl+GpPg6m80IVMWXLRjO+PxTq7V2CDhoGak0wzYzFgUY2m4XJ47OGdXd8eLE8EmwfAmdjw7lC1g==
+  dependencies:
+    sax "^1.2.4"
 
 xmlbuilder@^13.0.0:
   version "13.0.2"
