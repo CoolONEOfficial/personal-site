@@ -2,14 +2,21 @@
   <footer class="footer has-margin-top-10">
     <div class="content">
       <div class="columns is-multiline">
-        <div v-if="!$device.isMobile" class="column">
-          <!--TODO-->
+        <div class="column">
+          <a :href="`/${$i18n.locale}.xml`" :class="{ 'rss-mobile': $device.isMobile }">
+            <Icon
+              class="image is-32x32 social icon-hover"
+              icon="rss"
+              fit="contain"
+              alt="Footer rss icon"
+            />
+          </a>
         </div>
         <div class="column has-text-centered subtitle is-6 footer-text-wrapper">
           <p :class="[{'footer-text': !$device.isMobile}]">
-            <nuxt-link :to="localePath({ name: 'index' })">{{
-              $t('initials')
-            }}</nuxt-link
+            <nuxt-link :to="localePath({ name: 'index' })">
+              {{ $t('initials') }}
+            </nuxt-link
             ><br />{{ $t('license-text') }}
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a
             ><br />{{ $t('icon8-license-text') }}
@@ -124,6 +131,11 @@ export default class extends Vue {
 .social {
   padding: 0 !important;
   margin: 0.25rem !important;
+}
+
+.rss-mobile {
+  display: flex;
+  justify-content: center;
 }
 </style>
 
