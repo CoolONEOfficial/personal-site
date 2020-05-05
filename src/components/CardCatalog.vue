@@ -15,12 +15,13 @@
           v-if="i"
           :item="i"
           :subtitle="itemSubtitle(i)"
-          :class="`has-margin-top-${$device.isMobile ? 10 : 25}`"
+          :class="`has-margin-top-${$device.isMobile ? 10 : 30}`"
         />
       </div>
     </div>
 
     <b-pagination
+      :class="$device.isMobile ? 'pagination-mobile' : ''"
       v-if="docsCount > paginationCount"
       :total="docsCount"
       :current.sync="currentPage"
@@ -94,6 +95,11 @@ export default class extends Vue {
 
 .columns-mobile {
   min-height: calc(100vh - 5rem - 25px);
+}
+
+.pagination-mobile {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
 

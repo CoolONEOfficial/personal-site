@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div v-if="itemImage" class="card-image">
+    <div v-if="itemImage" :class="`card-image card-image-${$device.isMobile ? 'mobile' : 'desktop'}`">
       <Picture
         v-model="itemImage.small"
         @click="isModalActive = true"
@@ -125,13 +125,19 @@ export default class extends Vue {
 
 .card-image {
   transition: max-height 1s ease-in-out;
-  max-height: 0;
   overflow: hidden;
 
+  &-mobile {
+    max-height: 20vh;
+  }
+
+  &-desktop {
+    max-height: 0;
+  }
 }
 
 .card:hover {
-  .card-image {
+  .card-image-desktop {
     max-height: 20vh !important;
   }
 }
