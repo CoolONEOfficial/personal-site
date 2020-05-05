@@ -170,9 +170,10 @@ export default class extends Vue {
     width: 100%;
     height: 300px;
     position: absolute;
+    transform: translateY(45px);
     left: 0;
-    bottom: 60px;
-    background: linear-gradient(transparent 200px, var(--navbar-background));
+    bottom: 90px;
+    background: linear-gradient(transparent 200px,var(--navbar-background));
   }
 }
 </style>
