@@ -10314,6 +10314,11 @@ reserved-words@^0.1.2:
   resolved "https://registry.yarnpkg.com/reserved-words/-/reserved-words-0.1.2.tgz#00a0940f98cd501aeaaac316411d9adc52b31ab1"
   integrity sha1-AKCUD5jNUBrqqsMWQR2a3FKzGrE=
 
+resize-detector@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/resize-detector/-/resize-detector-0.1.10.tgz#1da3f961aa5f914ccbcfd3752d52fd45beeb692c"
+  integrity sha512-iLcXC8A6Fb0DfA+TRiywrK/0A22bFqkhntjMJMEzXDA4XkcEkfwpNbv7W8iewUiD0xYIaeiXOfiEehTqGKsUFw==
+
 resolve-from@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-3.0.0.tgz#b22c7af7d9d6881bc8b6e653335eebcb0a188748"
@@ -11950,6 +11955,14 @@ vue-carousel@^0.18.0:
     global "^4.3.2"
     regenerator-runtime "^0.12.1"
     vue "^2.5.17"
+
+vue-clamp@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/vue-clamp/-/vue-clamp-0.3.0.tgz#5b5377e7c7f11c4d3305542cefdd964ac98fcde5"
+  integrity sha512-QMc98bTde4Ou1dlesnKfrwuOVve66fNlnYL3IBSA1nNC4COuGq2uNq6E2l7tQxSXzobC+DRhT01yBKVE/eaLsg==
+  dependencies:
+    core-js "^3.6.4"
+    resize-detector "^0.1.10"
 
 vue-class-component@7.2.3, vue-class-component@^7.1.0:
   version "7.2.3"

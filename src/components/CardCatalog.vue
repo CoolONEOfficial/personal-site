@@ -3,26 +3,19 @@
     <div :class="['columns']">
       <div
         class="column is-one-third"
-        v-for="(i, index) of items.slice(0, paginationCount / 2)"
+        v-for="(_, index) of Array(paginationCount / 2)"
         :key="index"
       >
         <Card
+          v-for="(i, index) of [
+                      items[index],
+                      items[paginationCount / 2 + index]
+                  ]"
+          :key="index"
+          v-if="i"
           :item="i"
           :subtitle="itemSubtitle(i)"
-          class="has-margin-top-20"
-        />
-      </div>
-    </div>
-    <div :class="['columns']">
-      <div
-        class="column is-one-third"
-        v-for="(i, index) of items.slice(paginationCount / 2)"
-        :key="index"
-      >
-        <Card
-          :item="i"
-          :subtitle="itemSubtitle(i)"
-          class="has-margin-top-20"
+          :class="`has-margin-top-${$device.isMobile ? 10 : 25}`"
         />
       </div>
     </div>
