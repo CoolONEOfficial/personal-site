@@ -80,7 +80,19 @@ const config: Configuration = {
         href: "/favicon-16x16.png"
       },
       { rel: "manifest", href: "/site.webmanifest" },
-      { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: PRIMARY_COLOR }
+      { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: PRIMARY_COLOR },
+      {
+        rel: "alternate",
+        type: "application/rss+xml",
+        title: "Cайт-портфолио Николая Трухина",
+        href: "/ru.xml"
+      },
+      {
+        rel: "alternate",
+        type: "application/rss+xml",
+        title: "Website portfolio of Nikolay Trukhin",
+        href: "/en.xml"
+      }
     ]
   },
   /*
