@@ -15,6 +15,7 @@ Personal site portfolio
 * Dark/Light theme support
 * SEO friendly (JSON-LD, Open graph etc)
 * Spotify integration to stream playable music (with Cloud Functions api on express.js)
+* RSS2 integration
 * Integrated with [mobile app](https://github.com/CoolONEOfficial/personal_site_app) on flutter for content management
 
 ## 👶 Start
