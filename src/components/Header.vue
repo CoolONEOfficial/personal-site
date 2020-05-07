@@ -17,16 +17,8 @@
         <div>
           <h1 class="title is-5">{{ $t('initials') }}</h1>
           <div class="columns is-marginless header-subtitle">
-            <b-taglist attached class="is-marginless">
-              <b-tag class="hover-light is-marginless" type="is-dark"
-                >Web
-              </b-tag>
-              <b-tag class="hover-dark is-marginless" type="is-primary"
-                >Mobile
-              </b-tag>
-            </b-taglist>
-            <div class="tag-text">
-              {{ $t('developer') }}
+            <div class="tag-text" :style="`font-size: 0.${$i18n.locale.valueOf() === 'en' ? '715' : '7'}rem;`">
+              Web & Mobile {{ $t('developer') }}
             </div>
           </div>
         </div>
@@ -155,7 +147,8 @@ export default class extends Vue {
   }
 
   .title {
-    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+    margin-bottom: 0 !important;
   }
 
   .last-tag {
@@ -164,8 +157,6 @@ export default class extends Vue {
 
   .tag-text {
     color: var(--text-color) !important;
-    margin-left: 0.5rem;
-    font-size: 0.75rem;
     line-height: 1.6 !important;
   }
 

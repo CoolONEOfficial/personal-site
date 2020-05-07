@@ -100,7 +100,7 @@ const descriptionMap = {
 }
 const titleMap = {
   ru: 'Cайт-портфолио Николая Трухина',
-  en: 'Website portfolio of Nikolay Trukhin'
+  en: 'Nikolay Trukhin\'s site'
 }
 
 export function getMeta(

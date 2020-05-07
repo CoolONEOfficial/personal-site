@@ -16,7 +16,6 @@ import Icon from '~/components/Icon.vue'
 })
 export default class extends Vue {
   get linkLang() {
-    console.log(this.$i18n.locale, this.$i18n.locale === 'ru')
     return this.$i18n.locale === 'ru' ? 'en' : 'ru'
   }
 

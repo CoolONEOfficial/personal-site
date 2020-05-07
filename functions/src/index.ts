@@ -24,7 +24,6 @@ export const documentWriteListener = functions.firestore
 
         const timelineType = afterData['timelineType'];
         if (timelineType) {
-          console.log("type +1: " + timelineType)
           promiseList.push(firebaseHelper.firestore.updateDocument(
             db,
             sizesColl,
@@ -38,7 +37,6 @@ export const documentWriteListener = functions.firestore
         const tags = afterData['tags'];
         if (tags) {
           for (const tag of tags) {
-            console.log("type +1 tag: " + tag)
             promiseList.push(firebaseHelper.firestore.updateDocument(
               db,
               sizesColl,

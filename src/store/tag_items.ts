@@ -27,13 +27,9 @@ export const actions = {
   async loadItems({ commit }, tagName) {
     console.log("tag: " + tagName)
     const ddd = await getDocsCountByTag(this, tagName);
-    console.log("count test: ");
-    console.log(ddd);
     commit("updateDocsCount", ddd);
 
     const proj = await getItems(this, queryRefByTag(this, tagName))
-    console.log("proj: ");
-    console.log(proj);
     commit("updateItems", proj);
   },
 

@@ -50,7 +50,7 @@ const config: Configuration = {
     titleTemplate: ({ title, locale }) => {
       const end = {
         ru: "Cайт-портфолио Николая Трухина",
-        en: "Website portfolio of Nikolay Trukhin"
+        en: "Nikolay Trukhin's site"
       };
 
       return title ? `${title} — ${end[locale]}` : end[locale];
@@ -90,7 +90,7 @@ const config: Configuration = {
       {
         rel: "alternate",
         type: "application/rss+xml",
-        title: "Website portfolio of Nikolay Trukhin",
+        title: "Nikolay Trukhin's site",
         href: "/en.xml"
       }
     ]
@@ -189,7 +189,7 @@ const config: Configuration = {
     clientBaseUrl: process.env.API_URL || "https://personal-site-d9a58.web.app"
   },
   manifest: {
-    name: "Website portfolio of Nikolay Trukhin",
+    name: "Nikolay Trukhin's site",
     lang: "en-US"
   },
   typescript: {

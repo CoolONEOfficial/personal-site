@@ -4,7 +4,7 @@ import { db, storage } from "../nuxt.config";
 import { convertToHTML } from "./md";
 
 const title = {
-  'en': 'Nikolay Trukhin\'s website',
+  'en': 'Nikolay Trukhin\'s site',
   'ru': 'Cайт Николая Трухина'
 }
 
