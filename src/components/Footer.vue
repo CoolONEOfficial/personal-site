@@ -4,7 +4,7 @@
       <div class="columns is-multiline">
         <div class="column has-margin-top-30">
           <p :class="['subscribe-text', { 'subscribe-text-left': !$device.isMobile }]">
-            Subscribe to updates
+            {{ $t('subscribe-updates') }}
           </p>
           <div :class="['icons', 'icons-left', { 'icons-mobile': $device.isMobile }]">
             <a v-for="(i, index) of channels" :key="index" :href="i.url.replace(/LANG/gi, $i18n.locale)">
@@ -32,7 +32,7 @@
         </div>
         <div class="column has-margin-top-30">
           <p :class="['subscribe-text', { 'subscribe-text-right': !$device.isMobile }]">
-            Subscribe to me
+            {{ $t('subscribe-me') }}
           </p>
           <div :class="['icons', `icons-right`, { 'icons-mobile': $device.isMobile }]">
             <a v-for="(i, index) of socials" :key="index" :href="i.url">
@@ -183,12 +183,16 @@ export default class extends Vue {
     "en": {
       "initials": "Nikolay Trukhin's site",
       "license-text": "The source code is licensed",
-      "icon8-license-text": "Icons by "
+      "icon8-license-text": "Icons by ",
+      "subscribe-me": "Subscribe to me",
+      "subscribe-updates": "Subscribe to updates"
     },
     "ru": {
       "initials": "Cайт Николая Трухина",
       "license-text": "Исходный код лицензирован",
-      "icon8-license-text": "На сайте используются иконки от "
+      "icon8-license-text": "На сайте используются иконки от ",
+      "subscribe-me": "Подпишитесь на меня",
+      "subscribe-updates": "Подпишитесь на обновления"
     }
   }
 </i18n>
