@@ -21,7 +21,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async loadTimelineItems({ commit, getters }) {
+  async loadTimelineItems({ commit, getters, state }) {
     const queryRef = (this as any).$fireStore
       .collection('timeline')
       .orderBy('date', 'desc')
@@ -52,6 +52,28 @@ export const actions = {
         mItem._orderId = mItemId + 1
       }
 
+      function makeYearItem(fromYear, toYear) {
+        return {
+          date:
+            toYear - fromYear > 1
+              ? `${fromYear + 1} — ${toYear}`
+              : toYear,
+          _type: 'years'
+        }
+      }
+
+      if (state.timelineItems.length > 0) {
+        const firstYear = new Date(
+          (timelineData[0] as TimelineItem).date
+        ).getFullYear()
+        const lastYear = new Date(
+          (state.timelineItems[state.timelineItems.length - 1] as TimelineItem).date
+        ).getFullYear()
+        if (lastYear > firstYear) {
+          timelineData.unshift(makeYearItem(firstYear, lastYear) as never)
+        }
+      }
+
       for (let index = 1; index < timelineData.length; index++) {
         const prevYear = new Date(
           (timelineData[index - 1] as TimelineItem).date
@@ -60,13 +82,11 @@ export const actions = {
           (timelineData[index] as TimelineItem).date
         ).getFullYear()
         if (prevYear > currentYear) {
-          timelineData.splice(index, 0, {
-            date:
-              prevYear - currentYear > 1
-                ? `${currentYear + 1} — ${prevYear}`
-                : prevYear,
-            _type: 'years'
-          } as never)
+          timelineData.splice(
+            index,
+            0,
+            makeYearItem(currentYear, prevYear) as never
+          )
           index++
         }
       }
