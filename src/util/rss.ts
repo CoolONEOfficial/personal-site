@@ -19,6 +19,10 @@ function imageHtml(src: string, alt = '') {
 
 module.exports = async () => {
   const feedList = []
+  const categories = {
+    'ru': ['IT', 'Портфолио', 'Блог', 'Программирование'],
+    'en': ['IT', 'Portfolio', 'Blog', 'Programming']
+  }
 
   for (const lang of ['ru', 'en']) {
     feedList.push({
@@ -88,7 +92,7 @@ module.exports = async () => {
           }
         }
 
-        feed.addCategory('IT/Portfolio/Blog/Programming')
+        feed.addCategory(categories[lang].join("/"))
 
         feed.addContributor({
           name: 'Nikolay Trukhin',

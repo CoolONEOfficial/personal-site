@@ -35,7 +35,7 @@ export default class extends Vue {
 <style scoped lang="scss">
   .dropdown-tags {
     position: absolute;
-    transform: translateY(5px);
+    transform: translateY(5px) translateX(-100%);
     z-index: 1;
   }
 </style>

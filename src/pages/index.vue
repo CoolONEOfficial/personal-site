@@ -47,11 +47,11 @@ export default class extends Vue {
 <i18n>
   {
     "en": {
-      "name": "Website portfolio of Nikolay Trukhin",
+      "name": "Nikolay Trukhin's site",
       "chronology": "Chronology"
     },
     "ru": {
-      "name": "Cайт-портфолио Николая Трухина",
+      "name": "Cайт Николая Трухина",
       "chronology": "Хронология"
     }
   }

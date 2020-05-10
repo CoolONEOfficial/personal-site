@@ -94,9 +94,9 @@ export function getMetaPage(locale, item: TimelineItem | any) {
 
 const descriptionMap = {
   ru:
-    'Портфолио Mobile/Web разработчика, где Вы можете увидеть технические достижения, прочитанные книги, прослушать музыку и многое другое.',
+    'Сайт Mobile/Web разработчика, где Вы можете увидеть технические достижения, прочитанные книги, прослушать музыку и многое другое.',
   en:
-    'A portfolio of a mobile/web developer, where you can see technical achievements, read books, listen to music and much more.'
+    'A site of a mobile/web developer, where you can see technical achievements, read books, listen to music and much more.'
 }
 const titleMap = {
   ru: 'Cайт-портфолио Николая Трухина',
