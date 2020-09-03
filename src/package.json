@@ -26,7 +26,7 @@
     "@nuxtjs/sitemap": "2.4.0",
     "@nuxtjs/style-resources": "1.0.0",
     "aos": "3.0.0-beta.6",
-    "bulma-helpers": "0.3.10",
+    "bulma-helpers": "0.3.12",
     "bulma-timeline": "3.0.4",
     "core-js": "2.6.11",
     "firebase": "7.14.2",
