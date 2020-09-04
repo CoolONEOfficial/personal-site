@@ -51,7 +51,7 @@
     "nuxt-property-decorator": "2.7.2",
     "nuxt-purgecss": "1.0.0",
     "nuxt-ssr-cache": "1.5.1",
-    "plyr": "3.5.10",
+    "plyr": "3.6.2",
     "sass-loader": "8.0.2",
     "vue-carousel": "0.18.0",
     "vue-infinite-loading": "2.4.5",
