@@ -8534,10 +8534,10 @@ nuxt-purgecss@1.0.0:
     purgecss "^2.0.5"
     purgecss-webpack-plugin "^2.0.5"
 
-nuxt-ssr-cache@1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/nuxt-ssr-cache/-/nuxt-ssr-cache-1.5.1.tgz#4480d2b1f37cf1d088f40614ff2a4a13452c2361"
-  integrity sha512-UOdr96MRrEVPPadzdyttBmdcFbVSj8zYDNxRLyUKXdeA1ZtR7s76LqYGDaNRiH2NmO6YMulMCFcydPGbyDq7hg==
+nuxt-ssr-cache@1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/nuxt-ssr-cache/-/nuxt-ssr-cache-1.5.2.tgz#489ef7b6f60be9dab1b0af96319d5a9971961c0b"
+  integrity sha512-iOk45E2kaCxxg44WvELEqcsdqJWmO0uQsu/BOsRQTxav1CD5+idoAWybxAP9UeWbT6rR+GLDsCJIZg7vrDaMLg==
   dependencies:
     bluebird "^3.5.5"
     cache-manager "^2.9.1"

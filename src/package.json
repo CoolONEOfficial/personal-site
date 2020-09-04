@@ -50,7 +50,7 @@
     "nuxt-jsonld": "1.4.9",
     "nuxt-property-decorator": "2.7.2",
     "nuxt-purgecss": "1.0.0",
-    "nuxt-ssr-cache": "1.5.1",
+    "nuxt-ssr-cache": "1.5.2",
     "plyr": "3.5.10",
     "sass-loader": "8.0.2",
     "vue-carousel": "0.18.0",
