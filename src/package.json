@@ -47,7 +47,7 @@
     "nuxt": "2.12.2",
     "nuxt-buefy": "0.3.28",
     "nuxt-i18n": "6.10.1",
-    "nuxt-jsonld": "1.4.9",
+    "nuxt-jsonld": "1.4.10",
     "nuxt-property-decorator": "2.7.2",
     "nuxt-purgecss": "1.0.0",
     "nuxt-ssr-cache": "1.5.1",
