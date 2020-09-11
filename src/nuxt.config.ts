@@ -40,7 +40,7 @@ const config: Configuration = {
   modern: !isDev,
   debug: !isDev,
   dev: isDev,
-  mode: "universal",
+  target: 'static',
   /*
    ** Headers of the page
    */
