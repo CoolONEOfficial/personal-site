@@ -45,7 +45,6 @@ export const actions = {
       const resp = await (this as any).$axios.$get(
         `${apiUrl}/api/v1/spotify/now-playing`
       )
-      console.log('resp: ', resp)
       commit('updateTrack', Track.fromMap(resp['item']))
       commit('updateIsPlaying', resp['is_playing'])
       commit('updateTrackProgress', resp['progress_ms'])

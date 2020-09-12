@@ -8,6 +8,7 @@
   "scripts": {
     "start:src": "cd src && yarn start",
     "dev": "cd src && yarn dev",
+    "generate": "cd src && yarn generate",
     "build:src": "cd src && yarn build",
     "install": "yarn install:functions && yarn install:src",
     "install:functions": "cd functions && yarn",

@@ -13,8 +13,7 @@ import path from "path";
 import firebase from "firebase";
 import 'firebase/storage';
 ;(global as any).XMLHttpRequest = require('xhr2')
-const app = firebase
-  .initializeApp(FIREBASE_OPTIONS)
+const app = !firebase.apps.length ? firebase.initializeApp(FIREBASE_OPTIONS) : firebase.app()
 
 export const db = app.firestore()
 export const storage = app.storage().ref()
@@ -40,7 +39,7 @@ const config: Configuration = {
   modern: !isDev,
   debug: !isDev,
   dev: isDev,
-  target: 'static',
+  target: "static",
   /*
    ** Headers of the page
    */
