@@ -39,7 +39,7 @@ const config: Configuration = {
   modern: !isDev,
   debug: !isDev,
   dev: isDev,
-  target: "static",
+  target: isDev ? "server" : "static",
   /*
    ** Headers of the page
    */

@@ -19,6 +19,7 @@
     </b-modal>
     <client-only>
       <carousel
+        data-aos="fade"
         v-model="carouselModel"
         class="welcome-background"
         :perPage="1"
@@ -34,12 +35,11 @@
             fit="cover"
             :limit-dialog-height="false"
             :alt="`Background image of welcome screen №${index + 1}`"
-            data-aos="fade"
           />
         </slide>
       </carousel>
     </client-only>
-    <div class="hero-head">
+    <div class="hero-head" data-aos="fade" data-aos-delay="3000">
       <div
         :class="[
           'columns',
@@ -53,11 +53,13 @@
         <LangSwitcher class="welcome-switcher" />
       </div>
     </div>
-    <div class="hero-body" data-aos="fade" data-aos-delay="1000">
+    <div class="hero-body">
       <div :class="['container', { 'has-text-centered': $device.isMobile }]">
         <div class="columns">
           <client-only>
             <carousel
+              data-aos="fade"
+              data-aos-delay="1000"
               v-model="carouselModel"
               :class="[
                 'welcome-carousel',
@@ -91,8 +93,8 @@
               { 'has-margin-left-50': !$device.isMobile }
             ]"
           >
-            <p class="title has-margin-top-30">{{ $t('initials') }}</p>
-            <p class="subtitle">{{ $t('developer') }}</p>
+            <p class="title has-margin-top-30" data-aos="fade" data-aos-delay="2000">{{ $t('initials') }}</p>
+            <p class="subtitle" data-aos="fade" data-aos-delay="2400">{{ $t('developer') }}</p>
           </div>
         </div>
       </div>
@@ -100,6 +102,9 @@
     <div class="hero-foot">
       <a href="#" v-scroll-to="'#main-content'">
         <b-icon
+          data-aos="fade-up"
+          data-aos-anchor-placement="bottom-bottom"
+          data-aos-delay="2600"
           :class="['welcome-scroll', 'icon-hover']"
           icon="chevron-down"
           size="is-medium"
@@ -201,7 +206,7 @@ export default class extends Vue {
     position: relative;
     left: 50%;
     bottom: 2rem;
-    transform: translateX(-50%);
+    transform: translateX(-50%) !important;
   }
 
   &-background {
@@ -239,7 +244,7 @@ export default class extends Vue {
     &-mobile {
       position: relative;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) !important;
     }
   }
 
