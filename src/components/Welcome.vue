@@ -39,7 +39,7 @@
         </slide>
       </carousel>
     </client-only>
-    <div class="hero-head" data-aos="fade" data-aos-delay="3000">
+    <div class="hero-head" data-aos="fade-down" data-aos-delay="2600">
       <div
         :class="[
           'columns',
@@ -58,7 +58,7 @@
         <div class="columns">
           <client-only>
             <carousel
-              data-aos="fade"
+              :data-aos="$device.isMobile ? 'fade' : 'fade-right'"
               data-aos-delay="1000"
               v-model="carouselModel"
               :class="[
@@ -204,9 +204,8 @@ export default class extends Vue {
 
   &-scroll {
     position: relative;
-    left: 50%;
+    left: calc(50% - 16px);
     bottom: 2rem;
-    transform: translateX(-50%) !important;
   }
 
   &-background {
@@ -243,8 +242,7 @@ export default class extends Vue {
 
     &-mobile {
       position: relative;
-      left: 50%;
-      transform: translateX(-50%) !important;
+      left: calc(50% - 64px);
     }
   }
 

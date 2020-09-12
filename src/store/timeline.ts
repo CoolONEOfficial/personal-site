@@ -5,7 +5,7 @@ import { TIMELINE_TYPE_MAP } from "~/util/store";
 export const state = () => ({
   timelineItems: [],
   hoveredItem: null,
-  lastDate: null
+  lastDate: null,
 })
 
 export const mutations = {
@@ -17,7 +17,7 @@ export const mutations = {
   },
   updateHoveredItem(state, hoveredItem) {
     state.hoveredItem = hoveredItem
-  }
+  },
 }
 
 export const actions = {
@@ -99,7 +99,7 @@ export const actions = {
   updateHoveredItem: ({ commit, state }, hoveredItem) => {
     commit('updateHoveredItem', hoveredItem)
     return state.hoveredItem
-  }
+  },
 }
 
 export const getters = {

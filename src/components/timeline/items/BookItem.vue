@@ -1,6 +1,7 @@
 <template>
   <Item
     :item="item"
+    :index="index"
     icon="book"
     :subtitle="item.author"
   />

@@ -1,5 +1,9 @@
 <template>
-  <Item :icon="icon" :item="item" :subtitle="subtitle" />
+  <Item
+    :item="item"
+    :icon="icon"
+    :subtitle="subtitle"
+  />
 </template>
 
 <script lang="ts">
