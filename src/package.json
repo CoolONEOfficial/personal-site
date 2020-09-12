@@ -10,8 +10,7 @@
     "build": "nuxt-ts build",
     "generate": "nuxt-ts generate",
     "start": "nuxt-ts start",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "heroku-postbuild": "npm run generate"
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
     "@bazzite/nuxt-optimized-images": "0.4.0",
@@ -45,13 +44,13 @@
     "marked-plaintext": "0.0.2",
     "node-sass": "4.14.0",
     "nuxt": "2.14.5",
-    "nuxt-buefy": "0.3.28",
-    "nuxt-i18n": "6.10.1",
-    "nuxt-jsonld": "1.4.9",
+    "nuxt-buefy": "0.4.3",
+    "nuxt-i18n": "6.15.1",
+    "nuxt-jsonld": "1.4.10",
     "nuxt-property-decorator": "2.7.2",
     "nuxt-purgecss": "1.0.0",
     "nuxt-ssr-cache": "1.5.2",
-    "plyr": "3.5.10",
+    "plyr": "3.6.2",
     "sass-loader": "8.0.2",
     "vue-carousel": "0.18.0",
     "vue-infinite-loading": "2.4.5",

@@ -1,0 +1,17 @@
+[[redirects]]
+  from = "https://eloquent-ardinghelli-9e59ff.netlify.app/*"
+  to = "https://coolone.ru/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://eloquent-ardinghelli-9e59ff.netlify.app/*"
+  to = "https://coolone.ru/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://coolone.ru/*"
+  to = "https://coolone.ru/:splat"
+  status = 301
+  force = true
