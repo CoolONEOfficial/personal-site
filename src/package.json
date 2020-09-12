@@ -11,7 +11,7 @@
     "generate": "nuxt-ts generate",
     "start": "nuxt-ts start",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run generate"
   },
   "dependencies": {
     "@bazzite/nuxt-optimized-images": "0.4.0",
