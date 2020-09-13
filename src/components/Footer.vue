@@ -1,12 +1,13 @@
 <template>
   <footer class="footer has-margin-top-10">
+    <client-only>
     <div class="content">
       <div class="columns is-multiline">
         <div class="column has-margin-top-30">
-          <p :class="['subscribe-text', { 'subscribe-text-left': !$device.isMobile }]">
+          <p :class="['subscribe-text-updates']">
             {{ $t('subscribe-updates') }}
           </p>
-          <div :class="['icons', 'icons-left', { 'icons-mobile': $device.isMobile }]">
+          <div :class="['icons', 'icons-left']">
             <a v-for="(i, index) of channels" :key="index" :href="i.url.replace(/LANG/gi, $i18n.locale)">
               <Icon
                 class="image is-32x32 icons-icon icon-hover"
@@ -17,8 +18,8 @@
             </a>
           </div>
         </div>
-        <div class="column has-text-centered subtitle is-6 footer-text-wrapper">
-          <p :class="[{'footer-text': !$device.isMobile}]">
+        <div class="column has-text-centered subtitle is-6 footer-text-wrapper has-margin-top-30">
+          <p :class="['footer-text']">
             <nuxt-link :to="localePath({ name: 'index' })">
               {{ $t('initials') }}
             </nuxt-link>
@@ -31,7 +32,7 @@
           </p>
         </div>
         <div class="column has-margin-top-30">
-          <p :class="['subscribe-text', { 'subscribe-text-right': !$device.isMobile }]">
+          <p :class="['subscribe-text-me']">
             {{ $t('subscribe-me') }}
           </p>
           <div :class="['icons', `icons-right`, { 'icons-mobile': $device.isMobile }]">
@@ -47,6 +48,7 @@
         </div>
       </div>
     </div>
+    </client-only>
   </footer>
 </template>
 
@@ -133,7 +135,7 @@ export default class extends Vue {
     flex-direction: row-reverse;
   }
 
-  &-mobile {
+  @media (max-width: 768px) {
     justify-content: center !important;
     flex-flow: wrap-reverse;
     flex-wrap: wrap-reverse;
@@ -144,37 +146,46 @@ export default class extends Vue {
     margin-left: auto;
     margin-right: auto;
   }
+
+  &-icon {
+    padding: 0 !important;
+    margin: 0.25rem !important;
+  }
 }
 
 .footer-text {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  @media (max-width: 768px) {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 
-  &-wrapper {
-    margin-bottom: 0 !important;
+    &-wrapper {
+      margin-bottom: 0 !important;
+    }
   }
-}
-
-.icons-icon {
-  padding: 0 !important;
-  margin: 0.25rem !important;
 }
 
 .subscribe-text {
-  position: absolute;
-  transform: translateY(-25px);
-  left: 30px;
-  right: 30px;
-  text-align: center;
-
-  &-right {
-    left: unset !important;
+  &-updates, &-me {
+    position: absolute;
+    transform: translateY(-25px);
+    left: 30px;
+    right: 30px;
+    text-align: center;
   }
 
-  &-left {
-    right: unset !important;
+  &-updates {
+    @media (min-width: 769px) {
+      left: unset !important;
+    }
   }
+
+  &-me {
+    @media (min-width: 769px) {
+      right: unset !important;
+    }
+  }
+
 }
 </style>
 

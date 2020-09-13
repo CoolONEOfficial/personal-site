@@ -147,7 +147,7 @@ export default class extends Vue {
   }
 
   get itemRtl() {
-    return isRtl(this, this.item)
+    return window.innerWidth > 768 && isRtl(this, this.item)
   }
 }
 </script>
@@ -181,7 +181,7 @@ export default class extends Vue {
   margin-left: -31px;
 
   width: calc(100vw - 33px);
-  @media only screen and (min-width: 769px) {
+  @media (min-width: 769px) {
     width: calc(50vw);
   }
   max-height: 0;
@@ -196,6 +196,7 @@ export default class extends Vue {
 }
 
 .timeline {
+
   &-marker {
     margin-top: 1em;
 
@@ -208,7 +209,7 @@ export default class extends Vue {
   }
 
   &-item {
-    @media only screen and (min-width: 769px) {
+    @media (min-width: 769px) {
       &:nth-of-type(even) {
         .content {
           margin-right: calc(-29.5px - 2em);
@@ -222,6 +223,12 @@ export default class extends Vue {
       }
     }
 
+    @media (max-width: 768px) {
+      .content {
+        margin-right: calc(-29.5px - 2em);
+      }
+    }
+
     box-shadow: inset 0 8px 0 0 var(--background-color),
       inset 0 -8px 0 0 var(--background-color);
 
@@ -229,7 +236,7 @@ export default class extends Vue {
     transition-property: padding-left, padding-right, background-color;
 
     &.hovered {
-      @media only screen and (min-width: 769px) {
+      @media (min-width: 769px) {
         padding-left: 30px;
         padding-right: 30px;
       }
