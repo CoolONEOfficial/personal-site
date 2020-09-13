@@ -32,16 +32,17 @@ const whitelistPatternsChildren: RegExp[] = [
   /VueCarousel/,
   /aos/,
   /pagination/,
-  /button/,
-  /icons/,
-  /footer/
+  /button/
 ];
 
 const config: Configuration = {
   modern: !isDev,
   debug: !isDev,
   dev: isDev,
-  target: "static",
+  target: isDev ? "server" : "static",
+  generate: {
+    fallback: "404.html"
+  },
   /*
    ** Headers of the page
    */
@@ -144,6 +145,7 @@ const config: Configuration = {
     "@nuxtjs/axios",
     "@nuxtjs/proxy",
     "@nuxtjs/pwa",
+    "nuxt-purgecss",
     "@nuxtjs/style-resources",
     "@nuxtjs/device",
     "nuxt-i18n",
